@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مجوهرات الخميس · مجوهرات فاخرة وتصاميم أنيقة</title>
+<meta name="description" content="مجوهرات الخميس، علامة سعودية متخصصة في المجوهرات الفاخرة والألماس المعتمد والتصاميم الأنيقة. خواتم، قلائد، أساور وأقراط بأناقة تدوم.">
+<meta property="og:title" content="مجوهرات الخميس">
+<meta property="og:description" content="مجوهرات فاخرة وألماس معتمد وتصاميم أنيقة من قلب المملكة العربية السعودية.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#211208">
+<link rel="icon" type="image/svg+xml" href="assets/monogram.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=El+Messiri:wght@500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brown-900:#1b0e05; --brown-850:#241408; --brown-800:#2c1a0d; --brown-700:#3a2416;
+  --cream:#f5eddf; --cream-2:#ece0cb; --cream-3:#e2d3ba;
+  --gold-1:#b9791f; --gold-2:#e7a63c; --gold-3:#f6d27a; --ink:#2a1a0e;
+  --gold-grad:linear-gradient(135deg,#f6d27a 0%,#e7a63c 45%,#b9791f 100%);
+  --maxw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Tajawal',system-ui,sans-serif;
+  background:var(--cream); color:var(--ink);
+  line-height:1.75; overflow-x:hidden; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{font-family:'El Messiri',serif;font-weight:700;letter-spacing:-.01em}
+.calli{font-family:'Aref Ruqaa',serif}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+.gold-text{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{font-family:'El Messiri';font-size:.82rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-1);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:.55rem;font-family:'El Messiri';font-weight:600;font-size:1rem;
+  padding:.85rem 1.7rem;border-radius:60px;cursor:pointer;transition:.35s;border:1px solid transparent}
+.btn-gold{background:var(--gold-grad);color:#2a1608;box-shadow:0 10px 30px -10px rgba(231,166,60,.7)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px rgba(231,166,60,.85)}
+.btn-ghost{border-color:rgba(231,166,60,.55);color:var(--gold-2)}
+.btn-ghost:hover{background:rgba(231,166,60,.12);border-color:var(--gold-2)}
+
+/* ---------- Announcement + Nav ---------- */
+.topbar{background:var(--brown-900);color:var(--cream-3);text-align:center;font-size:.82rem;
+  letter-spacing:.12em;padding:.5rem;font-family:'El Messiri'}
+.topbar b{color:var(--gold-3);font-weight:600}
+nav{position:sticky;top:0;z-index:60;background:rgba(245,237,223,.82);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(185,121,31,.22);transition:.3s}
+nav.scrolled{background:rgba(27,14,5,.92);border-bottom-color:rgba(231,166,60,.25)}
+nav.scrolled .nav-links a,nav.scrolled .brand-name{color:var(--cream)}
+nav.scrolled .nav-links a:hover{color:var(--gold-3)}
+.navrow{display:flex;align-items:center;justify-content:space-between;height:78px}
+.brand{display:flex;align-items:center;gap:.7rem}
+.brand img{height:44px;width:44px}
+.brand-name{font-family:'El Messiri';font-weight:700;font-size:1.15rem;color:var(--brown-800);transition:.3s}
+.brand-name span{display:block;font-size:.62rem;letter-spacing:.34em;color:var(--gold-1);font-weight:600}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{font-family:'El Messiri';font-weight:500;font-size:.98rem;color:var(--brown-700);position:relative;transition:.25s}
+.nav-links a::after{content:'';position:absolute;bottom:-6px;right:0;width:0;height:2px;background:var(--gold-grad);transition:.3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:1rem}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0}
+.burger span{width:26px;height:2px;background:var(--gold-1);border-radius:2px}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 92% 82%, #e7a63c 0%, #d98f2b 24%, rgba(217,143,43,0) 56%),
+    radial-gradient(90% 80% at 6% 6%, #f5ead6 0%, #e8d6b6 45%, rgba(232,214,182,0) 72%),
+    linear-gradient(135deg,#f3e7d1 0%,#eddab6 45%,#e3b968 100%);
+}
+.hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");mix-blend-mode:overlay;pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1rem,4vw,3rem);align-items:center;
+  min-height:88vh;position:relative;z-index:5}
+/* right column: content */
+.hero-content{padding:2.5rem 0}
+.hero .wordmark{width:min(400px,66vw);margin-bottom:1.5rem;filter:drop-shadow(0 6px 18px rgba(120,70,10,.28))}
+.hero h1{font-size:clamp(1.7rem,4vw,3rem);line-height:1.28;color:var(--brown-800);margin-bottom:1.1rem;
+  text-shadow:0 1px 0 rgba(255,248,235,.5)}
+.hero p{font-size:clamp(1rem,1.5vw,1.16rem);color:#5a4327;max-width:33rem;margin-bottom:2rem;font-weight:400}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+/* left column: signature ring stage */
+.hero-stage{position:relative;display:flex;align-items:center;justify-content:center;height:64vh;min-height:420px}
+.hero-ring{position:absolute;width:min(440px,42vw);aspect-ratio:1;border-radius:50%;
+  border:clamp(38px,5.5vw,74px) solid var(--brown-800);
+  box-shadow:0 40px 110px -34px rgba(27,14,5,.6), inset 0 0 50px rgba(0,0,0,.22)}
+.hero-gem{position:relative;z-index:2;width:auto;max-height:min(260px,52%);
+  filter:drop-shadow(0 24px 46px rgba(0,0,0,.42));animation:float 6s ease-in-out infinite}
+.hero .btn-ghost{color:#5a3a16;border-color:rgba(90,58,22,.5)}
+.hero .btn-ghost:hover{background:rgba(90,58,22,.1);border-color:rgba(90,58,22,.75)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:5;color:var(--brown-700);
+  font-family:'El Messiri';font-size:.8rem;letter-spacing:.3em;opacity:.7;display:flex;flex-direction:column;align-items:center;gap:.4rem}
+.scroll-hint .dot{width:6px;height:6px;border-radius:50%;background:var(--gold-1);animation:bob 1.6s infinite}
+@keyframes bob{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(8px);opacity:.3}}
+
+/* ---------- Section shells ---------- */
+section{position:relative}
+.pad{padding:clamp(4.5rem,9vw,8rem) 0}
+.dark{background:radial-gradient(120% 120% at 80% 0%,#3a2416 0%,#241408 45%,#1b0e05 100%);color:var(--cream)}
+.sec-head{text-align:center;max-width:620px;margin:0 auto 3.4rem}
+.sec-head .eyebrow{display:inline-block;margin-bottom:1rem}
+.sec-head h2{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.2;margin-bottom:1rem}
+.dark .sec-head h2{color:var(--cream)}
+.sec-head p{color:#6a5236;font-weight:400}
+.dark .sec-head p{color:#c9b48f}
+.rule{width:64px;height:2px;background:var(--gold-grad);margin:1.2rem auto 0;border-radius:2px}
+
+/* ---------- Collections ---------- */
+.collections{background:linear-gradient(180deg,#f5eddf 0%,#efe3cd 100%)}
+.col-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem}
+.col-card{position:relative;border-radius:20px;padding:2.4rem 1.6rem;overflow:hidden;
+  background:radial-gradient(130% 100% at 80% 0%,#3a2416,#211208);color:var(--cream);
+  border:1px solid rgba(231,166,60,.22);transition:.4s;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end}
+.col-card::before{content:'';position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;
+  border:20px solid rgba(231,166,60,.14);transition:.5s}
+.col-card:hover{transform:translateY(-8px);border-color:rgba(231,166,60,.55);box-shadow:0 30px 60px -22px rgba(27,14,5,.55)}
+.col-card:hover::before{transform:scale(1.25) rotate(20deg)}
+.col-icon{width:52px;height:52px;margin-bottom:auto;color:var(--gold-3)}
+.col-card h3{font-size:1.4rem;color:var(--gold-3);margin:1.4rem 0 .3rem}
+.col-card p{font-size:.92rem;color:#cdb894;font-weight:300}
+.col-card .go{margin-top:1rem;font-family:'El Messiri';font-size:.86rem;color:var(--gold-2);display:flex;align-items:center;gap:.4rem;opacity:.85}
+
+/* ---------- Diamond cuts ---------- */
+.cuts-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.1rem;margin-top:1rem}
+.cut{background:linear-gradient(180deg,rgba(58,36,22,.55),rgba(27,14,5,.85));border:1px solid rgba(231,166,60,.2);
+  border-radius:18px;padding:1.6rem 1rem 1.3rem;text-align:center;transition:.4s;position:relative;overflow:hidden}
+.cut::after{content:'';position:absolute;inset:0;background:radial-gradient(60% 55% at 50% 38%,rgba(246,210,122,.22),transparent 70%);opacity:0;transition:.4s}
+.cut:hover{transform:translateY(-6px);border-color:rgba(246,210,122,.6)}
+.cut:hover::after{opacity:1}
+.cut .gemwrap{height:120px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;position:relative;z-index:2}
+.cut img{max-height:118px;width:auto;filter:drop-shadow(0 10px 22px rgba(246,210,122,.35))}
+.cut h4{font-family:'El Messiri';color:var(--gold-3);font-size:1.1rem;margin-bottom:.15rem;position:relative;z-index:2}
+.cut span{font-size:.78rem;color:#b49b74;letter-spacing:.12em;position:relative;z-index:2}
+
+/* ---------- Feature / values ---------- */
+.values{background:linear-gradient(180deg,#efe3cd 0%,#f5eddf 100%)}
+.val-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+.val{text-align:center;padding:2rem 1.2rem;border-radius:18px;background:#fff;border:1px solid rgba(185,121,31,.16);
+  transition:.35s;box-shadow:0 14px 34px -24px rgba(90,50,10,.5)}
+.val:hover{transform:translateY(-6px);box-shadow:0 24px 44px -22px rgba(90,50,10,.55)}
+.val-ic{width:60px;height:60px;margin:0 auto 1.2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 35% 30%,#fff5df,#f2dca0);color:var(--gold-1);border:1px solid rgba(185,121,31,.3)}
+.val-ic svg{width:30px;height:30px}
+.val h3{font-size:1.18rem;color:var(--brown-800);margin-bottom:.4rem}
+.val p{font-size:.9rem;color:#6a5236;font-weight:400}
+
+/* ---------- Featured split ---------- */
+.feature-split{display:grid;grid-template-columns:1.05fr .95fr;gap:0;align-items:center}
+.feature-visual{position:relative;min-height:520px;background:
+  radial-gradient(100% 90% at 30% 30%,#e7a63c,#c98a2e 55%,#3a2416 100%);display:flex;align-items:center;justify-content:center}
+.feature-visual .ring2{position:absolute;width:74%;aspect-ratio:1;border-radius:50%;border:34px solid rgba(27,14,5,.55)}
+.feature-visual img{position:relative;z-index:2;max-height:360px;filter:drop-shadow(0 30px 50px rgba(0,0,0,.4))}
+.feature-copy{padding:clamp(2.5rem,5vw,4.5rem)}
+.feature-copy .eyebrow{margin-bottom:1rem;display:inline-block}
+.feature-copy h2{font-size:clamp(1.7rem,3.4vw,2.5rem);color:var(--cream);line-height:1.25;margin-bottom:1.2rem}
+.feature-copy p{color:#c9b48f;margin-bottom:1.2rem;font-weight:400}
+.feature-copy ul{list-style:none;margin:1.4rem 0 2rem}
+.feature-copy li{display:flex;gap:.7rem;align-items:center;margin-bottom:.7rem;color:var(--cream-2)}
+.feature-copy li svg{width:20px;height:20px;color:var(--gold-3);flex:none}
+
+/* ---------- Story ---------- */
+.story{background:linear-gradient(180deg,#f5eddf,#efe3cd)}
+.story-inner{max-width:760px;margin:0 auto;text-align:center}
+.story-inner img.wm{width:min(360px,70vw);margin:0 auto 2rem}
+.story-inner p{font-size:clamp(1.02rem,1.6vw,1.22rem);color:#5a4327;font-weight:400;margin-bottom:1.3rem}
+.story-stats{display:flex;justify-content:center;gap:clamp(2rem,6vw,4.5rem);margin-top:3rem;flex-wrap:wrap}
+.stat b{font-family:'El Messiri';font-size:2.4rem;font-weight:700;display:block}
+.stat span{font-size:.85rem;color:#6a5236;letter-spacing:.14em}
+
+/* ---------- Contact ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.contact-copy h2{font-size:clamp(1.9rem,4vw,2.8rem);color:var(--cream);margin-bottom:1rem;line-height:1.2}
+.contact-copy p{color:#c9b48f;margin-bottom:2rem;font-weight:400}
+.contact-list{list-style:none}
+.contact-list li{display:flex;gap:1rem;align-items:center;margin-bottom:1.4rem}
+.contact-list .ci{width:48px;height:48px;border-radius:12px;background:rgba(231,166,60,.12);border:1px solid rgba(231,166,60,.3);
+  display:flex;align-items:center;justify-content:center;color:var(--gold-3);flex:none}
+.contact-list .ci svg{width:22px;height:22px}
+.contact-list small{display:block;color:#b49b74;font-size:.78rem;letter-spacing:.1em}
+.contact-list b{font-family:'El Messiri';font-size:1.1rem;color:var(--cream)}
+.contact-card{background:linear-gradient(160deg,#3a2416,#211208);border:1px solid rgba(231,166,60,.28);
+  border-radius:24px;padding:2.6rem;text-align:center}
+.contact-card .cc-ic{width:70px;height:70px;margin:0 auto 1.4rem}
+.contact-card h3{color:var(--gold-3);font-size:1.5rem;margin-bottom:.6rem}
+.contact-card p{color:#c9b48f;margin-bottom:1.8rem;font-weight:400}
+.wa-big{width:100%;justify-content:center;background:#25D366;color:#08260f;box-shadow:0 12px 30px -12px rgba(37,211,102,.6)}
+.wa-big:hover{transform:translateY(-3px)}
+.hours{margin-top:1.6rem;font-size:.85rem;color:#b49b74;border-top:1px solid rgba(231,166,60,.18);padding-top:1.4rem}
+
+/* ---------- Footer ---------- */
+footer{background:var(--brown-900);color:#c9b48f;padding:3.4rem 0 2rem}
+.foot-grid{display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;
+  border-bottom:1px solid rgba(231,166,60,.16);padding-bottom:2rem;margin-bottom:1.6rem}
+.foot-brand{display:flex;align-items:center;gap:.8rem}
+.foot-brand img{height:50px;width:50px}
+.foot-brand b{font-family:'El Messiri';color:var(--cream);font-size:1.2rem;display:block}
+.foot-brand span{font-size:.72rem;letter-spacing:.3em;color:var(--gold-1)}
+.foot-links{display:flex;gap:1.6rem;flex-wrap:wrap}
+.foot-links a{font-family:'El Messiri';font-size:.92rem;transition:.25s}
+.foot-links a:hover{color:var(--gold-3)}
+.foot-social{display:flex;gap:.8rem}
+.foot-social a{width:40px;height:40px;border-radius:50%;border:1px solid rgba(231,166,60,.3);display:flex;
+  align-items:center;justify-content:center;color:var(--gold-2);transition:.3s}
+.foot-social a:hover{background:var(--gold-grad);color:#211208;border-color:transparent}
+.foot-social svg{width:18px;height:18px}
+.copy{text-align:center;font-size:.82rem;color:#8a734e}
+.copy a{color:var(--gold-2)}
+
+/* ---------- Floating WA ---------- */
+.fab{position:fixed;bottom:24px;left:24px;z-index:80;width:60px;height:60px;border-radius:50%;background:#25D366;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -8px rgba(37,211,102,.6);
+  transition:.3s;animation:pulse 2.6s infinite}
+.fab:hover{transform:scale(1.08)}
+.fab svg{width:30px;height:30px;color:#fff}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+
+/* ---------- Reveal ---------- */
+.reveal{opacity:0;transform:translateY(30px);transition:.8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- Responsive ---------- */
+@media(max-width:960px){
+  .col-grid{grid-template-columns:repeat(2,1fr)}
+  .val-grid{grid-template-columns:repeat(2,1fr)}
+  .cuts-grid{grid-template-columns:repeat(3,1fr)}
+  .feature-split{grid-template-columns:1fr}
+  .feature-visual{min-height:380px}
+  .contact-grid{grid-template-columns:1fr;gap:2.4rem}
+}
+@media(max-width:680px){
+  .nav-links{position:fixed;inset:78px 0 auto 0;flex-direction:column;background:rgba(27,14,5,.97);
+    padding:1.4rem;gap:1.2rem;transform:translateY(-140%);transition:.4s;border-bottom:1px solid rgba(231,166,60,.25)}
+  .nav-links.open{transform:none}
+  .nav-links a{color:var(--cream)}
+  .nav-cta .btn-ghost{display:none}
+  .burger{display:flex}
+  .hero .wrap{grid-template-columns:1fr;min-height:auto;padding-top:2rem;padding-bottom:1rem;gap:0}
+  .hero-content{text-align:center;margin:0 auto;padding-top:1.5rem}
+  .hero .wordmark{margin-inline:auto}
+  .hero-cta{justify-content:center}
+  .hero-stage{height:44vh;min-height:300px;order:2}
+  .hero-ring{width:min(300px,72vw)}
+  .hero-gem{width:min(150px,36vw)}
+  .cuts-grid{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">صياغة يدوية · ألماس معتمد · <b>توصيل داخل المملكة</b></div>
+
+<nav id="nav">
+  <div class="wrap navrow">
+    <a href="#" class="brand">
+      <img src="assets/monogram.svg" alt="شعار مجوهرات الخميس">
+      <span class="brand-name">مجوهرات الخميس<span>AL KHAMEES JEWELLERY</span></span>
+    </a>
+    <div class="nav-links" id="navlinks">
+      <a href="#collections">المجموعات</a>
+      <a href="#cuts">أشكال الألماس</a>
+      <a href="#values">لماذا نحن</a>
+      <a href="#story">قصتنا</a>
+      <a href="#contact">تواصل معنا</a>
+    </div>
+    <div class="nav-cta">
+      <a href="https://wa.me/966501431431?text=مرحباً، أرغب بالاستفسار عن مجوهرات الخميس" target="_blank" rel="noopener" class="btn btn-ghost">احجز موعدك</a>
+      <button class="burger" id="burger" aria-label="القائمة"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-content">
+      <img src="assets/wordmark-dark.png" alt="مجوهرات الخميس" class="wordmark">
+      <h1>فنّ المجوهرات الفاخرة<br>يبدأ من لمسة <span class="gold-text">الخميس</span></h1>
+      <p>علامة سعودية تصوغ الألماس المعتمد والذهب الأصيل في تصاميم أنيقة تُروى بها المناسبات، وتبقى ذكرى تُورّث.</p>
+      <div class="hero-cta">
+        <a href="#collections" class="btn btn-gold">اكتشف المجموعات
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6" transform="scale(-1,1) translate(-24,0)"/></svg>
+        </a>
+        <a href="https://wa.me/966501431431?text=مرحباً، أرغب بالاستفسار عن مجوهرات الخميس" target="_blank" rel="noopener" class="btn btn-ghost">تواصل واتساب</a>
+      </div>
+    </div>
+    <div class="hero-stage">
+      <div class="hero-ring"></div>
+      <img src="assets/gem-pear.png" alt="ألماسة كمثرية" class="hero-gem">
+    </div>
+  </div>
+  <div class="scroll-hint"><span>تصفّح</span><span class="dot"></span></div>
+</header>
+
+<!-- COLLECTIONS -->
+<section id="collections" class="pad collections">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">مجموعاتنا</span>
+      <h2>قطعٌ تُختار بعناية لكل مناسبة</h2>
+      <p>من خاتم الخطوبة إلى هدية العمر، لكل لحظة قطعة تليق بها من مجوهرات الخميس.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="col-grid">
+      <a class="col-card reveal" href="https://wa.me/966501431431?text=أرغب بمشاهدة مجموعة الخواتم" target="_blank" rel="noopener">
+        <svg class="col-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 14l6-8 6 8-6 7z"/><circle cx="24" cy="32" r="12"/></svg>
+        <h3>الخواتم</h3><p>خواتم ألماس وذهب بتصاميم كلاسيكية وعصرية.</p>
+        <span class="go">استعرض ›</span>
+      </a>
+      <a class="col-card reveal" href="https://wa.me/966501431431?text=أرغب بمشاهدة مجموعة القلائد" target="_blank" rel="noopener">
+        <svg class="col-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 10c0 14 28 14 28 0"/><path d="M24 24l4 8-4 4-4-4z"/></svg>
+        <h3>القلائد</h3><p>عقود تُبرز أناقة الإطلالة بلمسة راقية.</p>
+        <span class="go">استعرض ›</span>
+      </a>
+      <a class="col-card reveal" href="https://wa.me/966501431431?text=أرغب بمشاهدة مجموعة الأساور" target="_blank" rel="noopener">
+        <svg class="col-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="24" cy="24" rx="16" ry="11"/><circle cx="24" cy="13" r="3" fill="currentColor"/></svg>
+        <h3>الأساور</h3><p>أساور بتفاصيل دقيقة تكمل حضورك اليومي.</p>
+        <span class="go">استعرض ›</span>
+      </a>
+      <a class="col-card reveal" href="https://wa.me/966501431431?text=أرغب بمشاهدة مجموعة الأقراط" target="_blank" rel="noopener">
+        <svg class="col-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="24" cy="14" r="5"/><path d="M24 19v6"/><path d="M18 32l6-7 6 7-6 7z"/></svg>
+        <h3>الأقراط</h3><p>أقراط تضيء الوجه ببريق الألماس الأصيل.</p>
+        <span class="go">استعرض ›</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DIAMOND CUTS -->
+<section id="cuts" class="pad dark">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">علم الألماس</span>
+      <h2>أيّ قصّةٍ من الألماس تعكس شخصيتك؟</h2>
+      <p>نختار لك أنقى قطع الألماس المعتمدة، بقصّاتٍ متعددة تناسب ذوقك ومناسبتك.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="cuts-grid">
+      <div class="cut reveal"><div class="gemwrap"><img src="assets/gem-round.png" alt="ألماس دائري"></div><h4>الدائري</h4><span>ROUND</span></div>
+      <div class="cut reveal"><div class="gemwrap"><img src="assets/gem-cushion.png" alt="ألماس وسادة"></div><h4>الوسادة</h4><span>CUSHION</span></div>
+      <div class="cut reveal"><div class="gemwrap"><img src="assets/gem-pear.png" alt="ألماس كمثري"></div><h4>الكمثري</h4><span>PEAR</span></div>
+      <div class="cut reveal"><div class="gemwrap"><img src="assets/gem-heart.png" alt="ألماس قلب"></div><h4>القلب</h4><span>HEART</span></div>
+      <div class="cut reveal"><div class="gemwrap"><img src="assets/gem-oval.png" alt="ألماس بيضاوي"></div><h4>البيضاوي</h4><span>OVAL</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values" class="pad values">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">لماذا مجوهرات الخميس</span>
+      <h2>ثقةٌ تُصاغ مع كل قطعة</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="val-grid">
+      <div class="val reveal">
+        <div class="val-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.5 5 5.5.8-4 3.9 1 5.5L12 20l-5 2.7 1-5.5-4-3.9 5.5-.8z"/></svg></div>
+        <h3>ألماس معتمد</h3><p>كل قطعة مرفقة بشهادة تثبت جودتها ونقاءها.</p>
+      </div>
+      <div class="val reveal">
+        <div class="val-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l7-7 3 3 6-9"/><path d="M13 6h5v5"/></svg></div>
+        <h3>صياغة يدوية</h3><p>حرفيّة عالية بأيدٍ ماهرة تُتقن أدق التفاصيل.</p>
+      </div>
+      <div class="val reveal">
+        <div class="val-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>ضمان أصالة</h3><p>ضمان على الذهب والألماس يمنحك راحة البال.</p>
+      </div>
+      <div class="val reveal">
+        <div class="val-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2 5 5 .5-3.8 3.4 1.2 5.1L12 18l-4.6 3 1.2-5.1L4.8 12.5 10 12z"/><circle cx="18" cy="19" r="3"/></svg></div>
+        <h3>تصميم خاص</h3><p>نصمّم قطعتك حسب رؤيتك من الفكرة حتى اللمعان.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE SPLIT -->
+<section class="dark">
+  <div class="feature-split">
+    <div class="feature-visual">
+      <div class="ring2"></div>
+      <img src="assets/gem-heart.png" alt="ألماسة قلب فاخرة" class="reveal">
+    </div>
+    <div class="feature-copy">
+      <span class="eyebrow">قطعة الموسم</span>
+      <h2>حين يتحوّل الألماس إلى وعدٍ يدوم</h2>
+      <p>قطعٌ مختارة تجمع بين نقاء الألماس ودفء الذهب، مصمّمة لتكون شاهدةً على أجمل لحظات حياتك.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg>ألماس بدرجات نقاء عالية</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg>ذهب عيار 18 و 21 قيراط</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg>تغليف فاخر يليق بالهدية</li>
+      </ul>
+      <a href="https://wa.me/966501431431?text=أرغب بالاستفسار عن قطعة الموسم" target="_blank" rel="noopener" class="btn btn-gold">اطلب استشارة مجانية</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story" class="pad story">
+  <div class="wrap story-inner reveal">
+    <img src="assets/wordmark-dark.png" alt="مجوهرات الخميس" class="wm">
+    <p>وُلدت <b>مجوهرات الخميس</b> من شغفٍ بالجمال الأصيل، لتقدّم للعميل السعودي مجوهرات تجمع بين الفخامة والذوق الرفيع. نختار كل حجرٍ بعناية، ونصوغ كل قطعةٍ بحبٍّ لتبقى معك ذكرى لا تُنسى.</p>
+    <div class="story-stats">
+      <div class="stat"><b class="gold-text">100%</b><span>ألماس معتمد</span></div>
+      <div class="stat"><b class="gold-text">+٥٠٠</b><span>عميل سعيد</span></div>
+      <div class="stat"><b class="gold-text">٢٤ق</b><span>ذهب أصيل</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="pad dark">
+  <div class="wrap contact-grid">
+    <div class="contact-copy reveal">
+      <span class="eyebrow">تواصل معنا</span>
+      <h2>لنصنع لك القطعة التي تحلم بها</h2>
+      <p>فريقنا جاهز لمساعدتك في اختيار قطعتك المثالية أو تصميمها خصيصاً لك. تواصل معنا في أي وقت.</p>
+      <ul class="contact-list">
+        <li>
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
+          <div><small>هاتف / واتساب</small><b dir="ltr">+966 50 143 1431</b></div>
+        </li>
+        <li>
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><small>الموقع</small><b>المملكة العربية السعودية</b></div>
+        </li>
+        <li>
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div><small>ساعات العمل</small><b>يومياً · ٤ عصراً حتى ١٢ منتصف الليل</b></div>
+        </li>
+      </ul>
+    </div>
+    <div class="contact-card reveal">
+      <img src="assets/monogram.svg" alt="" class="cc-ic">
+      <h3>احجز موعدك الخاص</h3>
+      <p>تجربة تسوّق خاصة مع مستشار مجوهرات، في الوقت الذي يناسبك.</p>
+      <a href="https://wa.me/966501431431?text=مرحباً، أرغب بحجز موعد في مجوهرات الخميس" target="_blank" rel="noopener" class="btn wa-big">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-3-.2-.3A8 8 0 1 1 12 20zm4.6-6c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-1.9-1.2 7.3 7.3 0 0 1-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.5.3-.5v-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6.7 9a4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c2 .9 2 .6 2.4.5a2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.3-.2-.5-.3z"/></svg>
+        تواصل عبر واتساب
+      </a>
+      <div class="hours">مساعد بن خميس · خدمة عملاء مجوهرات الخميس</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/monogram.svg" alt="شعار مجوهرات الخميس">
+        <div><b>مجوهرات الخميس</b><span>AL KHAMEES JEWELLERY</span></div>
+      </div>
+      <div class="foot-links">
+        <a href="#collections">المجموعات</a>
+        <a href="#cuts">أشكال الألماس</a>
+        <a href="#values">لماذا نحن</a>
+        <a href="#story">قصتنا</a>
+        <a href="#contact">تواصل</a>
+      </div>
+      <div class="foot-social">
+        <a href="https://wa.me/966501431431" target="_blank" rel="noopener" aria-label="واتساب"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.4A10 10 0 1 0 12 2zm5 14.5a2.5 2.5 0 0 1-1.7 1.2c-.4.1-.9.2-2.4-.5a11.2 11.2 0 0 1-4.3-3.8 4.9 4.9 0 0 1-1-2.6 2.8 2.8 0 0 1 .9-2.1 1 1 0 0 1 .7-.3h.5c.2 0 .4 0 .6.4l.8 1.9v.4l-.3.5-.4.5c-.1.1-.2.3-.1.5a7.3 7.3 0 0 0 1.3 1.7 6.5 6.5 0 0 0 1.9 1.2c.2.1.4.1.5-.1s.6-.8.8-1 .4-.2.6-.1 1.5.7 1.7.8.4.2.5.3a1.4 1.4 0 0 1-.1 1z"/></svg></a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="انستقرام"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="تيك توك"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2 1.5 3.6 3.5 4v3c-1.4 0-2.7-.4-3.8-1.1v6.3A5.7 5.7 0 1 1 10 9.5v3.1a2.7 2.7 0 1 0 2 2.6V3z"/></svg></a>
+      </div>
+    </div>
+    <p class="copy">© <span id="yr"></span> مجوهرات الخميس · جميع الحقوق محفوظة · من إبداع <a href="https://www.eclipseagency.net" target="_blank" rel="noopener">Eclipse Agency</a></p>
+  </div>
+</footer>
+
+<a href="https://wa.me/966501431431?text=مرحباً، أرغب بالاستفسار عن مجوهرات الخميس" class="fab" target="_blank" rel="noopener" aria-label="تواصل واتساب">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.4A10 10 0 1 0 12 2zm5 14.5a2.5 2.5 0 0 1-1.7 1.2c-.4.1-.9.2-2.4-.5a11.2 11.2 0 0 1-4.3-3.8 4.9 4.9 0 0 1-1-2.6 2.8 2.8 0 0 1 .9-2.1 1 1 0 0 1 .7-.3h.5c.2 0 .4 0 .6.4l.8 1.9v.4l-.3.5-.4.5c-.1.1-.2.3-.1.5a7.3 7.3 0 0 0 1.3 1.7 6.5 6.5 0 0 0 1.9 1.2c.2.1.4.1.5-.1s.6-.8.8-1 .4-.2.6-.1 1.5.7 1.7.8.4.2.5.3a1.4 1.4 0 0 1-.1 1z"/></svg>
+</a>
+
+<script>
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+const burger=document.getElementById('burger'),links=document.getElementById('navlinks');
+burger.addEventListener('click',()=>links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+document.getElementById('yr').textContent=new Date().getFullYear();
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
