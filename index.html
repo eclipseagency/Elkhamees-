@@ -1,489 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مجوهرات الخميس · مجوهرات فاخرة وتصاميم أنيقة</title>
-<meta name="description" content="مجوهرات الخميس، علامة سعودية متخصصة في المجوهرات الفاخرة والألماس المعتمد والتصاميم الأنيقة. خواتم، قلائد، أساور وأقراط بأناقة تدوم.">
-<meta property="og:title" content="مجوهرات الخميس">
-<meta property="og:description" content="مجوهرات فاخرة وألماس معتمد وتصاميم أنيقة من قلب المملكة العربية السعودية.">
-<meta property="og:type" content="website">
-<meta name="theme-color" content="#211208">
-<link rel="icon" type="image/svg+xml" href="assets/monogram.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=El+Messiri:wght@500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --brown-900:#1b0e05; --brown-850:#241408; --brown-800:#2c1a0d; --brown-700:#3a2416;
-  --cream:#f5eddf; --cream-2:#ece0cb; --cream-3:#e2d3ba;
-  --gold-1:#b9791f; --gold-2:#e7a63c; --gold-3:#f6d27a; --ink:#2a1a0e;
-  --gold-grad:linear-gradient(135deg,#f6d27a 0%,#e7a63c 45%,#b9791f 100%);
-  --maxw:1200px;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Tajawal',system-ui,sans-serif;
-  background:var(--cream); color:var(--ink);
-  line-height:1.75; overflow-x:hidden; -webkit-font-smoothing:antialiased;
-}
-h1,h2,h3,.display{font-family:'El Messiri',serif;font-weight:700;letter-spacing:-.01em}
-.calli{font-family:'Aref Ruqaa',serif}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
-.gold-text{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.eyebrow{font-family:'El Messiri';font-size:.82rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-1);font-weight:600}
-.btn{display:inline-flex;align-items:center;gap:.55rem;font-family:'El Messiri';font-weight:600;font-size:1rem;
-  padding:.85rem 1.7rem;border-radius:60px;cursor:pointer;transition:.35s;border:1px solid transparent}
-.btn-gold{background:var(--gold-grad);color:#2a1608;box-shadow:0 10px 30px -10px rgba(231,166,60,.7)}
-.btn-gold:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px rgba(231,166,60,.85)}
-.btn-ghost{border-color:rgba(231,166,60,.55);color:var(--gold-2)}
-.btn-ghost:hover{background:rgba(231,166,60,.12);border-color:var(--gold-2)}
-
-/* ---------- Announcement + Nav ---------- */
-.topbar{background:var(--brown-900);color:var(--cream-3);text-align:center;font-size:.82rem;
-  letter-spacing:.12em;padding:.5rem;font-family:'El Messiri'}
-.topbar b{color:var(--gold-3);font-weight:600}
-nav{position:sticky;top:0;z-index:60;background:rgba(245,237,223,.82);backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(185,121,31,.22);transition:.3s}
-nav.scrolled{background:rgba(27,14,5,.92);border-bottom-color:rgba(231,166,60,.25)}
-nav.scrolled .nav-links a,nav.scrolled .brand-name{color:var(--cream)}
-nav.scrolled .nav-links a:hover{color:var(--gold-3)}
-.navrow{display:flex;align-items:center;justify-content:space-between;height:78px}
-.brand{display:flex;align-items:center;gap:.7rem}
-.brand img{height:44px;width:44px}
-.brand-name{font-family:'El Messiri';font-weight:700;font-size:1.15rem;color:var(--brown-800);transition:.3s}
-.brand-name span{display:block;font-size:.62rem;letter-spacing:.34em;color:var(--gold-1);font-weight:600}
-.nav-links{display:flex;gap:2rem;align-items:center}
-.nav-links a{font-family:'El Messiri';font-weight:500;font-size:.98rem;color:var(--brown-700);position:relative;transition:.25s}
-.nav-links a::after{content:'';position:absolute;bottom:-6px;right:0;width:0;height:2px;background:var(--gold-grad);transition:.3s}
-.nav-links a:hover::after{width:100%}
-.nav-cta{display:flex;align-items:center;gap:1rem}
-.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0}
-.burger span{width:26px;height:2px;background:var(--gold-1);border-radius:2px}
-
-/* ---------- Hero ---------- */
-.hero{position:relative;overflow:hidden;
-  background:
-    radial-gradient(120% 90% at 92% 82%, #e7a63c 0%, #d98f2b 24%, rgba(217,143,43,0) 56%),
-    radial-gradient(90% 80% at 6% 6%, #f5ead6 0%, #e8d6b6 45%, rgba(232,214,182,0) 72%),
-    linear-gradient(135deg,#f3e7d1 0%,#eddab6 45%,#e3b968 100%);
-}
-.hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");mix-blend-mode:overlay;pointer-events:none}
-.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1rem,4vw,3rem);align-items:center;
-  min-height:88vh;position:relative;z-index:5}
-/* right column: content */
-.hero-content{padding:2.5rem 0}
-.hero .wordmark{width:min(400px,66vw);margin-bottom:1.5rem;filter:drop-shadow(0 6px 18px rgba(120,70,10,.28))}
-.hero h1{font-size:clamp(1.7rem,4vw,3rem);line-height:1.28;color:var(--brown-800);margin-bottom:1.1rem;
-  text-shadow:0 1px 0 rgba(255,248,235,.5)}
-.hero p{font-size:clamp(1rem,1.5vw,1.16rem);color:#5a4327;max-width:33rem;margin-bottom:2rem;font-weight:400}
-.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
-/* left column: signature ring stage */
-.hero-stage{position:relative;display:flex;align-items:center;justify-content:center;height:64vh;min-height:420px}
-.hero-ring{position:absolute;width:min(440px,42vw);aspect-ratio:1;border-radius:50%;
-  border:clamp(38px,5.5vw,74px) solid var(--brown-800);
-  box-shadow:0 40px 110px -34px rgba(27,14,5,.6), inset 0 0 50px rgba(0,0,0,.22)}
-.hero-gem{position:relative;z-index:2;width:auto;max-height:min(260px,52%);
-  filter:drop-shadow(0 24px 46px rgba(0,0,0,.42));animation:float 6s ease-in-out infinite}
-.hero .btn-ghost{color:#5a3a16;border-color:rgba(90,58,22,.5)}
-.hero .btn-ghost:hover{background:rgba(90,58,22,.1);border-color:rgba(90,58,22,.75)}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
-.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:5;color:var(--brown-700);
-  font-family:'El Messiri';font-size:.8rem;letter-spacing:.3em;opacity:.7;display:flex;flex-direction:column;align-items:center;gap:.4rem}
-.scroll-hint .dot{width:6px;height:6px;border-radius:50%;background:var(--gold-1);animation:bob 1.6s infinite}
-@keyframes bob{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(8px);opacity:.3}}
-
-/* ---------- Section shells ---------- */
-section{position:relative}
-.pad{padding:clamp(4.5rem,9vw,8rem) 0}
-.dark{background:radial-gradient(120% 120% at 80% 0%,#3a2416 0%,#241408 45%,#1b0e05 100%);color:var(--cream)}
-.sec-head{text-align:center;max-width:620px;margin:0 auto 3.4rem}
-.sec-head .eyebrow{display:inline-block;margin-bottom:1rem}
-.sec-head h2{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.2;margin-bottom:1rem}
-.dark .sec-head h2{color:var(--cream)}
-.sec-head p{color:#6a5236;font-weight:400}
-.dark .sec-head p{color:#c9b48f}
-.rule{width:64px;height:2px;background:var(--gold-grad);margin:1.2rem auto 0;border-radius:2px}
-
-/* ---------- Collections ---------- */
-.collections{background:linear-gradient(180deg,#f5eddf 0%,#efe3cd 100%)}
-.col-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem}
-.col-card{position:relative;border-radius:20px;padding:2.4rem 1.6rem;overflow:hidden;
-  background:radial-gradient(130% 100% at 80% 0%,#3a2416,#211208);color:var(--cream);
-  border:1px solid rgba(231,166,60,.22);transition:.4s;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end}
-.col-card::before{content:'';position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;
-  border:20px solid rgba(231,166,60,.14);transition:.5s}
-.col-card:hover{transform:translateY(-8px);border-color:rgba(231,166,60,.55);box-shadow:0 30px 60px -22px rgba(27,14,5,.55)}
-.col-card:hover::before{transform:scale(1.25) rotate(20deg)}
-.col-icon{width:52px;height:52px;margin-bottom:auto;color:var(--gold-3)}
-.col-card h3{font-size:1.4rem;color:var(--gold-3);margin:1.4rem 0 .3rem}
-.col-card p{font-size:.92rem;color:#cdb894;font-weight:300}
-.col-card .go{margin-top:1rem;font-family:'El Messiri';font-size:.86rem;color:var(--gold-2);display:flex;align-items:center;gap:.4rem;opacity:.85}
-
-/* ---------- Diamond cuts ---------- */
-.cuts-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.1rem;margin-top:1rem}
-.cut{background:linear-gradient(180deg,rgba(58,36,22,.55),rgba(27,14,5,.85));border:1px solid rgba(231,166,60,.2);
-  border-radius:18px;padding:1.6rem 1rem 1.3rem;text-align:center;transition:.4s;position:relative;overflow:hidden}
-.cut::after{content:'';position:absolute;inset:0;background:radial-gradient(60% 55% at 50% 38%,rgba(246,210,122,.22),transparent 70%);opacity:0;transition:.4s}
-.cut:hover{transform:translateY(-6px);border-color:rgba(246,210,122,.6)}
-.cut:hover::after{opacity:1}
-.cut .gemwrap{height:120px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;position:relative;z-index:2}
-.cut img{max-height:118px;width:auto;filter:drop-shadow(0 10px 22px rgba(246,210,122,.35))}
-.cut h4{font-family:'El Messiri';color:var(--gold-3);font-size:1.1rem;margin-bottom:.15rem;position:relative;z-index:2}
-.cut span{font-size:.78rem;color:#b49b74;letter-spacing:.12em;position:relative;z-index:2}
-
-/* ---------- Feature / values ---------- */
-.values{background:linear-gradient(180deg,#efe3cd 0%,#f5eddf 100%)}
-.val-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
-.val{text-align:center;padding:2rem 1.2rem;border-radius:18px;background:#fff;border:1px solid rgba(185,121,31,.16);
-  transition:.35s;box-shadow:0 14px 34px -24px rgba(90,50,10,.5)}
-.val:hover{transform:translateY(-6px);box-shadow:0 24px 44px -22px rgba(90,50,10,.55)}
-.val-ic{width:60px;height:60px;margin:0 auto 1.2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  background:radial-gradient(circle at 35% 30%,#fff5df,#f2dca0);color:var(--gold-1);border:1px solid rgba(185,121,31,.3)}
-.val-ic svg{width:30px;height:30px}
-.val h3{font-size:1.18rem;color:var(--brown-800);margin-bottom:.4rem}
-.val p{font-size:.9rem;color:#6a5236;font-weight:400}
-
-/* ---------- Featured split ---------- */
-.feature-split{display:grid;grid-template-columns:1.05fr .95fr;gap:0;align-items:center}
-.feature-visual{position:relative;min-height:520px;background:
-  radial-gradient(100% 90% at 30% 30%,#e7a63c,#c98a2e 55%,#3a2416 100%);display:flex;align-items:center;justify-content:center}
-.feature-visual .ring2{position:absolute;width:74%;aspect-ratio:1;border-radius:50%;border:34px solid rgba(27,14,5,.55)}
-.feature-visual img{position:relative;z-index:2;max-height:360px;filter:drop-shadow(0 30px 50px rgba(0,0,0,.4))}
-.feature-copy{padding:clamp(2.5rem,5vw,4.5rem)}
-.feature-copy .eyebrow{margin-bottom:1rem;display:inline-block}
-.feature-copy h2{font-size:clamp(1.7rem,3.4vw,2.5rem);color:var(--cream);line-height:1.25;margin-bottom:1.2rem}
-.feature-copy p{color:#c9b48f;margin-bottom:1.2rem;font-weight:400}
-.feature-copy ul{list-style:none;margin:1.4rem 0 2rem}
-.feature-copy li{display:flex;gap:.7rem;align-items:center;margin-bottom:.7rem;color:var(--cream-2)}
-.feature-copy li svg{width:20px;height:20px;color:var(--gold-3);flex:none}
-
-/* ---------- Story ---------- */
-.story{background:linear-gradient(180deg,#f5eddf,#efe3cd)}
-.story-inner{max-width:760px;margin:0 auto;text-align:center}
-.story-inner img.wm{width:min(360px,70vw);margin:0 auto 2rem}
-.story-inner p{font-size:clamp(1.02rem,1.6vw,1.22rem);color:#5a4327;font-weight:400;margin-bottom:1.3rem}
-.story-stats{display:flex;justify-content:center;gap:clamp(2rem,6vw,4.5rem);margin-top:3rem;flex-wrap:wrap}
-.stat b{font-family:'El Messiri';font-size:2.4rem;font-weight:700;display:block}
-.stat span{font-size:.85rem;color:#6a5236;letter-spacing:.14em}
-
-/* ---------- Contact ---------- */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
-.contact-copy h2{font-size:clamp(1.9rem,4vw,2.8rem);color:var(--cream);margin-bottom:1rem;line-height:1.2}
-.contact-copy p{color:#c9b48f;margin-bottom:2rem;font-weight:400}
-.contact-list{list-style:none}
-.contact-list li{display:flex;gap:1rem;align-items:center;margin-bottom:1.4rem}
-.contact-list .ci{width:48px;height:48px;border-radius:12px;background:rgba(231,166,60,.12);border:1px solid rgba(231,166,60,.3);
-  display:flex;align-items:center;justify-content:center;color:var(--gold-3);flex:none}
-.contact-list .ci svg{width:22px;height:22px}
-.contact-list small{display:block;color:#b49b74;font-size:.78rem;letter-spacing:.1em}
-.contact-list b{font-family:'El Messiri';font-size:1.1rem;color:var(--cream)}
-.contact-card{background:linear-gradient(160deg,#3a2416,#211208);border:1px solid rgba(231,166,60,.28);
-  border-radius:24px;padding:2.6rem;text-align:center}
-.contact-card .cc-ic{width:70px;height:70px;margin:0 auto 1.4rem}
-.contact-card h3{color:var(--gold-3);font-size:1.5rem;margin-bottom:.6rem}
-.contact-card p{color:#c9b48f;margin-bottom:1.8rem;font-weight:400}
-.wa-big{width:100%;justify-content:center;background:#25D366;color:#08260f;box-shadow:0 12px 30px -12px rgba(37,211,102,.6)}
-.wa-big:hover{transform:translateY(-3px)}
-.hours{margin-top:1.6rem;font-size:.85rem;color:#b49b74;border-top:1px solid rgba(231,166,60,.18);padding-top:1.4rem}
-
-/* ---------- Footer ---------- */
-footer{background:var(--brown-900);color:#c9b48f;padding:3.4rem 0 2rem}
-.foot-grid{display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;
-  border-bottom:1px solid rgba(231,166,60,.16);padding-bottom:2rem;margin-bottom:1.6rem}
-.foot-brand{display:flex;align-items:center;gap:.8rem}
-.foot-brand img{height:50px;width:50px}
-.foot-brand b{font-family:'El Messiri';color:var(--cream);font-size:1.2rem;display:block}
-.foot-brand span{font-size:.72rem;letter-spacing:.3em;color:var(--gold-1)}
-.foot-links{display:flex;gap:1.6rem;flex-wrap:wrap}
-.foot-links a{font-family:'El Messiri';font-size:.92rem;transition:.25s}
-.foot-links a:hover{color:var(--gold-3)}
-.foot-social{display:flex;gap:.8rem}
-.foot-social a{width:40px;height:40px;border-radius:50%;border:1px solid rgba(231,166,60,.3);display:flex;
-  align-items:center;justify-content:center;color:var(--gold-2);transition:.3s}
-.foot-social a:hover{background:var(--gold-grad);color:#211208;border-color:transparent}
-.foot-social svg{width:18px;height:18px}
-.copy{text-align:center;font-size:.82rem;color:#8a734e}
-.copy a{color:var(--gold-2)}
-
-/* ---------- Floating WA ---------- */
-.fab{position:fixed;bottom:24px;left:24px;z-index:80;width:60px;height:60px;border-radius:50%;background:#25D366;
-  display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -8px rgba(37,211,102,.6);
-  transition:.3s;animation:pulse 2.6s infinite}
-.fab:hover{transform:scale(1.08)}
-.fab svg{width:30px;height:30px;color:#fff}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
-
-/* ---------- Reveal ---------- */
-.reveal{opacity:0;transform:translateY(30px);transition:.8s cubic-bezier(.2,.7,.2,1)}
-.reveal.in{opacity:1;transform:none}
-
-/* ---------- Responsive ---------- */
-@media(max-width:960px){
-  .col-grid{grid-template-columns:repeat(2,1fr)}
-  .val-grid{grid-template-columns:repeat(2,1fr)}
-  .cuts-grid{grid-template-columns:repeat(3,1fr)}
-  .feature-split{grid-template-columns:1fr}
-  .feature-visual{min-height:380px}
-  .contact-grid{grid-template-columns:1fr;gap:2.4rem}
-}
-@media(max-width:680px){
-  .nav-links{position:fixed;inset:78px 0 auto 0;flex-direction:column;background:rgba(27,14,5,.97);
-    padding:1.4rem;gap:1.2rem;transform:translateY(-140%);transition:.4s;border-bottom:1px solid rgba(231,166,60,.25)}
-  .nav-links.open{transform:none}
-  .nav-links a{color:var(--cream)}
-  .nav-cta .btn-ghost{display:none}
-  .burger{display:flex}
-  .hero .wrap{grid-template-columns:1fr;min-height:auto;padding-top:2rem;padding-bottom:1rem;gap:0}
-  .hero-content{text-align:center;margin:0 auto;padding-top:1.5rem}
-  .hero .wordmark{margin-inline:auto}
-  .hero-cta{justify-content:center}
-  .hero-stage{height:44vh;min-height:300px;order:2}
-  .hero-ring{width:min(300px,72vw)}
-  .hero-gem{width:min(150px,36vw)}
-  .cuts-grid{grid-template-columns:repeat(2,1fr)}
-  .foot-grid{flex-direction:column;text-align:center}
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>مجوهرات الخميس | ذهب يروي حكايتك</title>
+  <meta name="description" content="تسوّقي مختارات مجوهرات الخميس من الذهب عيار ٢١: أطقم، خواتم، أساور، قلائد وأقراط مع توصيل إلى جميع مناطق المملكة.">
+  <meta name="theme-color" content="#21150f">
+  <meta property="og:title" content="مجوهرات الخميس">
+  <meta property="og:description" content="ذهب يروي حكايتك — مختارات فاخرة من الذهب عيار ٢١.">
+  <meta property="og:image" content="assets/hero-collection.webp">
+  <link rel="icon" href="assets/monogram.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#241712;--brown:#2c1a12;--brown2:#4b2b1c;--cream:#f7f2e9;--paper:#fffdf9;--sand:#e8dccb;--gold:#b88743;--gold2:#d9b477;--muted:#76685f;--line:rgba(50,28,18,.13);--shadow:0 20px 60px rgba(45,25,15,.12);--max:1320px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:120px}body{margin:0;background:var(--cream);color:var(--ink);font-family:"IBM Plex Sans Arabic",sans-serif;-webkit-font-smoothing:antialiased}body.lock{overflow:hidden}button,input{font:inherit}button,a{color:inherit}a{text-decoration:none}img{display:block;max-width:100%}svg{display:block}.container{width:min(var(--max),calc(100% - 48px));margin:auto}.serif{font-family:"Aref Ruqaa",serif}.eyebrow{display:flex;align-items:center;gap:10px;color:var(--gold);font-weight:600;font-size:.82rem;letter-spacing:.08em}.eyebrow:before{content:"";width:28px;height:1px;background:currentColor}.section{padding:104px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:36px}.section-head h2{font:700 clamp(2rem,4vw,3.45rem)/1.15 "Aref Ruqaa",serif;margin:8px 0 0}.section-head p{margin:0;color:var(--muted);max-width:500px;line-height:1.9}.text-link{display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid var(--ink);padding-bottom:5px;font-weight:600}.icon-btn{width:44px;height:44px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer;border-radius:50%;position:relative;transition:.25s}.icon-btn:hover{background:rgba(184,135,67,.11)}.icon-btn svg{width:21px}.count{position:absolute;top:1px;right:1px;background:var(--brown);color:#fff;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:.68rem;border:2px solid var(--paper)}
+    .announcement{height:36px;background:var(--brown);color:#f5eadb;font-size:.79rem;display:flex;align-items:center;justify-content:center;gap:20px}.announcement span{opacity:.75}.header{background:rgba(255,253,249,.94);position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}.nav{height:86px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}.nav-links{display:flex;gap:28px;font-weight:500;font-size:.94rem}.nav-links a{position:relative}.nav-links a:after{content:"";position:absolute;right:0;bottom:-8px;width:0;height:1px;background:var(--gold);transition:.25s}.nav-links a:hover:after{width:100%}.brand{display:flex;justify-content:center}.brand img{width:188px;height:auto}.nav-actions{display:flex;justify-content:flex-end;align-items:center;gap:2px}.lang{font-size:.82rem;font-weight:600;margin-left:10px}.menu-btn{display:none}
+    .hero{min-height:calc(100svh - 122px);background:#1f120c;position:relative;overflow:hidden;color:#fff}.hero-img{position:absolute;inset:0;background:url("assets/hero-collection.webp") center/cover no-repeat}.hero-img:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,14,8,.04) 28%,rgba(28,14,8,.22) 52%,rgba(28,14,8,.88) 100%)}.hero-content{min-height:calc(100svh - 122px);display:flex;align-items:center;position:relative;z-index:2}.hero-copy{width:min(570px,52%);padding:80px 0}.hero .eyebrow{color:#e3c28e}.hero h1{font:700 clamp(3.5rem,7.2vw,7rem)/1.02 "Aref Ruqaa",serif;margin:20px 0 24px;letter-spacing:-.03em}.hero h1 em{color:#ddbb84;font-style:normal}.hero p{font-size:1.08rem;line-height:2;color:#e8ddd3;max-width:500px}.cta-row{display:flex;gap:12px;margin-top:35px;flex-wrap:wrap}.btn{border:1px solid transparent;padding:14px 24px;min-height:52px;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:600;cursor:pointer;transition:.25s}.btn-primary{background:#fff;color:var(--brown)}.btn-primary:hover{background:var(--gold2);transform:translateY(-2px)}.btn-outline{border-color:rgba(255,255,255,.5);color:#fff}.btn-outline:hover{background:#fff;color:var(--brown)}.hero-note{position:absolute;z-index:3;bottom:25px;left:25px;display:flex;gap:10px;align-items:center;font-size:.78rem;color:#e7d8c9}.hero-note i{display:block;width:42px;height:1px;background:var(--gold2)}
+    .trust{background:var(--paper);border-bottom:1px solid var(--line)}.trust-row{display:grid;grid-template-columns:repeat(4,1fr)}.trust-item{display:flex;align-items:center;justify-content:center;gap:13px;padding:26px 18px;border-left:1px solid var(--line)}.trust-item:last-child{border:0}.trust-item svg{width:25px;color:var(--gold)}.trust-item b{display:block;font-size:.9rem}.trust-item small{color:var(--muted)}
+    .categories{background:var(--cream)}.category-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-template-rows:300px 300px;gap:16px}.category{position:relative;overflow:hidden;background:#ddd}.category:first-child{grid-row:1/3}.category img{width:100%;height:100%;object-fit:cover;transition:transform .7s}.category:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(25,12,7,.75),transparent 60%)}.category:hover img{transform:scale(1.045)}.category-copy{position:absolute;z-index:2;bottom:28px;right:28px;color:#fff}.category-copy span{font-size:.78rem;opacity:.75}.category-copy h3{font:700 2rem "Aref Ruqaa",serif;margin:3px 0}.category-copy a{font-size:.86rem;border-bottom:1px solid rgba(255,255,255,.7)}
+    .products{background:var(--paper)}.filters{display:flex;gap:8px;overflow:auto;padding-bottom:4px;margin-bottom:34px;scrollbar-width:none}.filter{flex:none;border:1px solid var(--line);background:transparent;border-radius:999px;padding:10px 20px;cursor:pointer;color:var(--muted);transition:.2s}.filter.active,.filter:hover{background:var(--brown);border-color:var(--brown);color:#fff}.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.product-card{min-width:0}.product-media{position:relative;aspect-ratio:4/5;overflow:hidden;background:#eee8df}.product-media img{width:100%;height:100%;object-fit:cover;transition:transform .55s}.product-card:hover .product-media img{transform:scale(1.04)}.product-badge{position:absolute;right:12px;top:12px;background:rgba(255,253,249,.92);padding:6px 10px;font-size:.72rem;font-weight:600}.wish{position:absolute;left:10px;top:10px;background:rgba(255,253,249,.92)}.wish.active svg{fill:#9f3c33;color:#9f3c33}.quick-add{position:absolute;bottom:12px;left:12px;right:12px;background:rgba(37,22,15,.94);color:#fff;border:0;padding:13px;cursor:pointer;transform:translateY(75px);transition:.3s;font-weight:600}.product-card:hover .quick-add,.quick-add:focus{transform:none}.product-info{padding:16px 2px}.product-info small{color:var(--gold);font-weight:600}.product-info h3{font-size:1rem;margin:5px 0 9px;font-weight:500}.price{display:flex;gap:10px;align-items:center;font-weight:700}.old{color:#9e9189;text-decoration:line-through;font-size:.82rem;font-weight:400}.product-card.hidden{display:none}
+    .story-banner{background:var(--brown);color:#fff}.story-wrap{display:grid;grid-template-columns:1fr 1fr;min-height:650px}.story-photo{background:url("assets/model-gold.jpg") center 34%/cover no-repeat;min-height:520px}.story-copy{padding:9vw 8vw;display:flex;flex-direction:column;justify-content:center}.story-copy .eyebrow{color:#d7b47b}.story-copy h2{font:700 clamp(2.8rem,5vw,5.2rem)/1.08 "Aref Ruqaa",serif;margin:18px 0}.story-copy p{color:#d7c8bd;line-height:2;max-width:520px}.story-copy .text-link{align-self:flex-start;margin-top:22px;color:#e5c999;border-color:#e5c999}
+    .occasion{background:#efe6da}.occasion-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.occasion-card{background:var(--paper);padding:38px 32px;min-height:235px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid transparent;transition:.25s}.occasion-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:var(--shadow)}.occasion-card .num{color:var(--gold);font:400 1rem "Aref Ruqaa",serif}.occasion-card h3{font:700 1.8rem "Aref Ruqaa",serif;margin:30px 0 8px}.occasion-card p{margin:0;color:var(--muted);line-height:1.8;font-size:.9rem}.occasion-card svg{width:28px;margin-top:20px}
+    .service{background:var(--paper)}.service-row{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line)}.service-item{text-align:center;padding:48px 30px;border-left:1px solid var(--line)}.service-item:last-child{border:0}.service-item svg{width:34px;margin:0 auto 18px;color:var(--gold)}.service-item h3{font:700 1.45rem "Aref Ruqaa",serif;margin:0 0 8px}.service-item p{color:var(--muted);font-size:.88rem;line-height:1.8;margin:0}
+    .newsletter{background:#d9c1a1;padding:76px 0}.news-row{display:flex;justify-content:space-between;align-items:center;gap:40px}.news-row h2{font:700 clamp(2rem,4vw,3.5rem) "Aref Ruqaa",serif;margin:0}.news-row p{margin:8px 0 0;color:#5f4939}.news-form{display:flex;width:min(480px,100%);border-bottom:1px solid var(--ink)}.news-form input{border:0;background:transparent;outline:0;padding:14px 0;flex:1;min-width:0}.news-form button{border:0;background:transparent;font-weight:700;cursor:pointer;padding:14px}
+    footer{background:#1d120d;color:#e7ddd6;padding:70px 0 24px}.foot-grid{display:grid;grid-template-columns:1.2fr repeat(3,.7fr);gap:50px;padding-bottom:55px}.foot-brand img{width:220px;filter:brightness(0) invert(1);opacity:.92}.foot-brand p{color:#a99a91;line-height:1.9;max-width:340px;font-size:.88rem}.foot-col h4{color:#d3ad70;margin:0 0 20px}.foot-col a,.foot-col span{display:block;color:#baada5;margin:11px 0;font-size:.88rem}.foot-col a:hover{color:#fff}.copyright{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;color:#82766f;font-size:.78rem;display:flex;justify-content:space-between;gap:20px}
+    .overlay{position:fixed;inset:0;background:rgba(25,12,7,.5);z-index:80;opacity:0;pointer-events:none;transition:.3s}.overlay.show{opacity:1;pointer-events:auto}.drawer{position:fixed;z-index:90;top:0;left:0;width:min(420px,100%);height:100%;background:var(--paper);transform:translateX(-100%);transition:.35s;display:flex;flex-direction:column}.drawer.show{transform:none}.drawer-head{height:80px;padding:0 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.drawer-head h2{font:700 1.7rem "Aref Ruqaa",serif}.drawer-body{padding:24px;overflow:auto;flex:1}.empty-cart{text-align:center;padding:80px 20px;color:var(--muted)}.empty-cart svg{width:42px;margin:0 auto 16px;color:var(--gold)}.cart-line{display:grid;grid-template-columns:74px 1fr auto;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}.cart-line img{width:74px;height:88px;object-fit:cover}.cart-line h4{margin:4px 0;font-size:.9rem}.cart-line small{color:var(--muted)}.remove{border:0;background:none;cursor:pointer;color:#9f3c33}.drawer-foot{padding:20px 24px;border-top:1px solid var(--line)}.total{display:flex;justify-content:space-between;margin-bottom:16px;font-weight:700}.drawer-foot .btn{width:100%;background:var(--brown);color:#fff}.toast{position:fixed;right:50%;transform:translate(50%,30px);bottom:28px;z-index:110;background:var(--brown);color:#fff;padding:13px 22px;opacity:0;pointer-events:none;transition:.3s;box-shadow:var(--shadow);font-size:.88rem}.toast.show{opacity:1;transform:translate(50%,0)}.mobile-nav{position:fixed;inset:0 0 0 auto;width:min(360px,88%);z-index:95;background:var(--paper);padding:24px;transform:translateX(110%);transition:.35s}.mobile-nav.show{transform:none}.mobile-nav-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}.mobile-nav-head img{width:170px}.mobile-nav a{display:block;font:700 1.7rem "Aref Ruqaa",serif;padding:13px 0;border-bottom:1px solid var(--line)}
+    @media(max-width:1000px){.nav{grid-template-columns:auto 1fr auto}.brand{justify-content:flex-start}.nav-links{display:none}.menu-btn{display:grid}.product-grid{grid-template-columns:repeat(2,1fr)}.category-grid{grid-template-columns:1fr 1fr;grid-template-rows:440px 280px}.category:first-child{grid-column:1/3;grid-row:auto}.story-wrap{grid-template-columns:1fr}.story-photo{order:2}.foot-grid{grid-template-columns:1fr 1fr}.hero-copy{width:65%}.trust-row{grid-template-columns:1fr 1fr}.trust-item:nth-child(2){border-left:0}.trust-item:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+    @media(max-width:680px){.container{width:min(100% - 28px,var(--max))}.announcement{font-size:.7rem}.announcement span{display:none}.nav{height:70px}.brand img{width:145px}.lang,.search-btn{display:none}.hero,.hero-content{min-height:700px}.hero-img{background-position:57% center}.hero-img:after{background:linear-gradient(0deg,rgba(28,14,8,.93) 0%,rgba(28,14,8,.55) 58%,rgba(28,14,8,.1) 100%)}.hero-content{align-items:flex-end}.hero-copy{width:100%;padding:70px 0 80px}.hero h1{font-size:3.6rem}.hero p{font-size:.96rem}.hero-note{display:none}.section{padding:72px 0}.section-head{align-items:start;flex-direction:column;margin-bottom:25px}.section-head p{font-size:.9rem}.category-grid{display:flex;overflow:auto;scroll-snap-type:x mandatory}.category{min-width:82vw;height:440px;scroll-snap-align:center}.category:first-child{min-width:82vw}.product-grid{gap:10px}.product-info h3{font-size:.88rem}.quick-add{transform:none;font-size:.8rem;padding:11px}.product-badge{font-size:.65rem}.story-copy{padding:72px 22px}.story-photo{min-height:480px}.occasion-grid,.service-row{grid-template-columns:1fr}.service-item{border-left:0;border-bottom:1px solid var(--line)}.news-row{align-items:start;flex-direction:column}.foot-grid{grid-template-columns:1fr;gap:28px}.foot-col:nth-child(3),.foot-col:nth-child(4){display:none}.copyright{flex-direction:column}.trust-item{justify-content:flex-start;padding:20px 10px}.trust-item small{font-size:.68rem}.trust-item b{font-size:.78rem}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
 </head>
 <body>
-
-<div class="topbar">صياغة يدوية · ألماس معتمد · <b>توصيل داخل المملكة</b></div>
-
-<nav id="nav">
-  <div class="wrap navrow">
-    <a href="#" class="brand">
-      <img src="assets/monogram.svg" alt="شعار مجوهرات الخميس">
-      <span class="brand-name">مجوهرات الخميس<span>AL KHAMEES JEWELLERY</span></span>
-    </a>
-    <div class="nav-links" id="navlinks">
-      <a href="#collections">المجموعات</a>
-      <a href="#cuts">أشكال الألماس</a>
-      <a href="#values">لماذا نحن</a>
-      <a href="#story">قصتنا</a>
-      <a href="#contact">تواصل معنا</a>
+  <div class="announcement"><b>توصيل إلى جميع مناطق المملكة</b><span>•</span><span>تغليف هدايا فاخر مجانًا</span><span>•</span><span>ذهب عيار ٢١ موثّق بالفاتورة</span></div>
+  <header class="header">
+    <div class="container nav">
+      <nav class="nav-links" aria-label="التنقل الرئيسي"><a href="#new">وصل حديثًا</a><a href="#shop">المجوهرات</a><a href="#occasions">المناسبات</a><a href="#story">حكايتنا</a></nav>
+      <a class="brand" href="#" aria-label="الصفحة الرئيسية"><img src="assets/wordmark-dark.png" alt="مجوهرات الخميس"></a>
+      <div class="nav-actions"><span class="lang">EN</span><button class="icon-btn search-btn" aria-label="بحث" onclick="searchProducts()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button><button class="icon-btn" aria-label="المفضلة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5a5.5 5.5 0 0 0 1-8.9Z"/></svg></button><button class="icon-btn" aria-label="سلة التسوق" onclick="openCart()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 7h15l-2 8H8L6 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><span class="count" id="cartCount">0</span></button><button class="icon-btn menu-btn" aria-label="القائمة" onclick="openMenu()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button></div>
     </div>
-    <div class="nav-cta">
-      <a href="https://wa.me/966501431431?text=مرحباً، أرغب بالاستفسار عن مجوهرات الخميس" target="_blank" rel="noopener" class="btn btn-ghost">احجز موعدك</a>
-      <button class="burger" id="burger" aria-label="القائمة"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<header class="hero">
-  <div class="wrap">
-    <div class="hero-content">
-      <img src="assets/wordmark-dark.png" alt="مجوهرات الخميس" class="wordmark">
-      <h1>فنّ المجوهرات الفاخرة<br>يبدأ من لمسة <span class="gold-text">الخميس</span></h1>
-      <p>علامة سعودية تصوغ الألماس المعتمد والذهب الأصيل في تصاميم أنيقة تُروى بها المناسبات، وتبقى ذكرى تُورّث.</p>
-      <div class="hero-cta">
-        <a href="#collections" class="btn btn-gold">اكتشف المجموعات
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6" transform="scale(-1,1) translate(-24,0)"/></svg>
-        </a>
-        <a href="https://wa.me/966501431431?text=مرحباً، أرغب بالاستفسار عن مجوهرات الخميس" target="_blank" rel="noopener" class="btn btn-ghost">تواصل واتساب</a>
-      </div>
-    </div>
-    <div class="hero-stage">
-      <div class="hero-ring"></div>
-      <img src="assets/gem-pear.png" alt="ألماسة كمثرية" class="hero-gem">
-    </div>
-  </div>
-  <div class="scroll-hint"><span>تصفّح</span><span class="dot"></span></div>
-</header>
-
-<!-- COLLECTIONS -->
-<section id="collections" class="pad collections">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">مجموعاتنا</span>
-      <h2>قطعٌ تُختار بعناية لكل مناسبة</h2>
-      <p>من خاتم الخطوبة إلى هدية العمر، لكل لحظة قطعة تليق بها من مجوهرات الخميس.</p>
-      <div class="rule"></div>
-    </div>
-    <div class="col-grid">
-      <a class="col-card reveal" href="https://wa.me/966501431431?text=أرغب بمشاهدة مجموعة الخواتم" target="_blank" rel="noopener">
-        <svg class="col-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 14l6-8 6 8-6 7z"/><circle cx="24" cy="32" r="12"/></svg>
-        <h3>الخواتم</h3><p>خواتم ألماس وذهب بتصاميم كلاسيكية وعصرية.</p>
-        <span class="go">استعرض ›</span>
-      </a>
-      <a class="col-card reveal" href="https://wa.me/966501431431?text=أرغب بمشاهدة مجموعة القلائد" target="_blank" rel="noopener">
-        <svg class="col-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 10c0 14 28 14 28 0"/><path d="M24 24l4 8-4 4-4-4z"/></svg>
-        <h3>القلائد</h3><p>عقود تُبرز أناقة الإطلالة بلمسة راقية.</p>
-        <span class="go">استعرض ›</span>
-      </a>
-      <a class="col-card reveal" href="https://wa.me/966501431431?text=أرغب بمشاهدة مجموعة الأساور" target="_blank" rel="noopener">
-        <svg class="col-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="24" cy="24" rx="16" ry="11"/><circle cx="24" cy="13" r="3" fill="currentColor"/></svg>
-        <h3>الأساور</h3><p>أساور بتفاصيل دقيقة تكمل حضورك اليومي.</p>
-        <span class="go">استعرض ›</span>
-      </a>
-      <a class="col-card reveal" href="https://wa.me/966501431431?text=أرغب بمشاهدة مجموعة الأقراط" target="_blank" rel="noopener">
-        <svg class="col-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="24" cy="14" r="5"/><path d="M24 19v6"/><path d="M18 32l6-7 6 7-6 7z"/></svg>
-        <h3>الأقراط</h3><p>أقراط تضيء الوجه ببريق الألماس الأصيل.</p>
-        <span class="go">استعرض ›</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- DIAMOND CUTS -->
-<section id="cuts" class="pad dark">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">علم الألماس</span>
-      <h2>أيّ قصّةٍ من الألماس تعكس شخصيتك؟</h2>
-      <p>نختار لك أنقى قطع الألماس المعتمدة، بقصّاتٍ متعددة تناسب ذوقك ومناسبتك.</p>
-      <div class="rule"></div>
-    </div>
-    <div class="cuts-grid">
-      <div class="cut reveal"><div class="gemwrap"><img src="assets/gem-round.png" alt="ألماس دائري"></div><h4>الدائري</h4><span>ROUND</span></div>
-      <div class="cut reveal"><div class="gemwrap"><img src="assets/gem-cushion.png" alt="ألماس وسادة"></div><h4>الوسادة</h4><span>CUSHION</span></div>
-      <div class="cut reveal"><div class="gemwrap"><img src="assets/gem-pear.png" alt="ألماس كمثري"></div><h4>الكمثري</h4><span>PEAR</span></div>
-      <div class="cut reveal"><div class="gemwrap"><img src="assets/gem-heart.png" alt="ألماس قلب"></div><h4>القلب</h4><span>HEART</span></div>
-      <div class="cut reveal"><div class="gemwrap"><img src="assets/gem-oval.png" alt="ألماس بيضاوي"></div><h4>البيضاوي</h4><span>OVAL</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- VALUES -->
-<section id="values" class="pad values">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">لماذا مجوهرات الخميس</span>
-      <h2>ثقةٌ تُصاغ مع كل قطعة</h2>
-      <div class="rule"></div>
-    </div>
-    <div class="val-grid">
-      <div class="val reveal">
-        <div class="val-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.5 5 5.5.8-4 3.9 1 5.5L12 20l-5 2.7 1-5.5-4-3.9 5.5-.8z"/></svg></div>
-        <h3>ألماس معتمد</h3><p>كل قطعة مرفقة بشهادة تثبت جودتها ونقاءها.</p>
-      </div>
-      <div class="val reveal">
-        <div class="val-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l7-7 3 3 6-9"/><path d="M13 6h5v5"/></svg></div>
-        <h3>صياغة يدوية</h3><p>حرفيّة عالية بأيدٍ ماهرة تُتقن أدق التفاصيل.</p>
-      </div>
-      <div class="val reveal">
-        <div class="val-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h3>ضمان أصالة</h3><p>ضمان على الذهب والألماس يمنحك راحة البال.</p>
-      </div>
-      <div class="val reveal">
-        <div class="val-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2 5 5 .5-3.8 3.4 1.2 5.1L12 18l-4.6 3 1.2-5.1L4.8 12.5 10 12z"/><circle cx="18" cy="19" r="3"/></svg></div>
-        <h3>تصميم خاص</h3><p>نصمّم قطعتك حسب رؤيتك من الفكرة حتى اللمعان.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURE SPLIT -->
-<section class="dark">
-  <div class="feature-split">
-    <div class="feature-visual">
-      <div class="ring2"></div>
-      <img src="assets/gem-heart.png" alt="ألماسة قلب فاخرة" class="reveal">
-    </div>
-    <div class="feature-copy">
-      <span class="eyebrow">قطعة الموسم</span>
-      <h2>حين يتحوّل الألماس إلى وعدٍ يدوم</h2>
-      <p>قطعٌ مختارة تجمع بين نقاء الألماس ودفء الذهب، مصمّمة لتكون شاهدةً على أجمل لحظات حياتك.</p>
-      <ul>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg>ألماس بدرجات نقاء عالية</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg>ذهب عيار 18 و 21 قيراط</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg>تغليف فاخر يليق بالهدية</li>
-      </ul>
-      <a href="https://wa.me/966501431431?text=أرغب بالاستفسار عن قطعة الموسم" target="_blank" rel="noopener" class="btn btn-gold">اطلب استشارة مجانية</a>
-    </div>
-  </div>
-</section>
-
-<!-- STORY -->
-<section id="story" class="pad story">
-  <div class="wrap story-inner reveal">
-    <img src="assets/wordmark-dark.png" alt="مجوهرات الخميس" class="wm">
-    <p>وُلدت <b>مجوهرات الخميس</b> من شغفٍ بالجمال الأصيل، لتقدّم للعميل السعودي مجوهرات تجمع بين الفخامة والذوق الرفيع. نختار كل حجرٍ بعناية، ونصوغ كل قطعةٍ بحبٍّ لتبقى معك ذكرى لا تُنسى.</p>
-    <div class="story-stats">
-      <div class="stat"><b class="gold-text">100%</b><span>ألماس معتمد</span></div>
-      <div class="stat"><b class="gold-text">+٥٠٠</b><span>عميل سعيد</span></div>
-      <div class="stat"><b class="gold-text">٢٤ق</b><span>ذهب أصيل</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="pad dark">
-  <div class="wrap contact-grid">
-    <div class="contact-copy reveal">
-      <span class="eyebrow">تواصل معنا</span>
-      <h2>لنصنع لك القطعة التي تحلم بها</h2>
-      <p>فريقنا جاهز لمساعدتك في اختيار قطعتك المثالية أو تصميمها خصيصاً لك. تواصل معنا في أي وقت.</p>
-      <ul class="contact-list">
-        <li>
-          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
-          <div><small>هاتف / واتساب</small><b dir="ltr">+966 50 143 1431</b></div>
-        </li>
-        <li>
-          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-          <div><small>الموقع</small><b>المملكة العربية السعودية</b></div>
-        </li>
-        <li>
-          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-          <div><small>ساعات العمل</small><b>يومياً · ٤ عصراً حتى ١٢ منتصف الليل</b></div>
-        </li>
-      </ul>
-    </div>
-    <div class="contact-card reveal">
-      <img src="assets/monogram.svg" alt="" class="cc-ic">
-      <h3>احجز موعدك الخاص</h3>
-      <p>تجربة تسوّق خاصة مع مستشار مجوهرات، في الوقت الذي يناسبك.</p>
-      <a href="https://wa.me/966501431431?text=مرحباً، أرغب بحجز موعد في مجوهرات الخميس" target="_blank" rel="noopener" class="btn wa-big">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-3-.2-.3A8 8 0 1 1 12 20zm4.6-6c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-1.9-1.2 7.3 7.3 0 0 1-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.5.3-.5v-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6.7 9a4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c2 .9 2 .6 2.4.5a2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.3-.2-.5-.3z"/></svg>
-        تواصل عبر واتساب
-      </a>
-      <div class="hours">مساعد بن خميس · خدمة عملاء مجوهرات الخميس</div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <img src="assets/monogram.svg" alt="شعار مجوهرات الخميس">
-        <div><b>مجوهرات الخميس</b><span>AL KHAMEES JEWELLERY</span></div>
-      </div>
-      <div class="foot-links">
-        <a href="#collections">المجموعات</a>
-        <a href="#cuts">أشكال الألماس</a>
-        <a href="#values">لماذا نحن</a>
-        <a href="#story">قصتنا</a>
-        <a href="#contact">تواصل</a>
-      </div>
-      <div class="foot-social">
-        <a href="https://wa.me/966501431431" target="_blank" rel="noopener" aria-label="واتساب"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.4A10 10 0 1 0 12 2zm5 14.5a2.5 2.5 0 0 1-1.7 1.2c-.4.1-.9.2-2.4-.5a11.2 11.2 0 0 1-4.3-3.8 4.9 4.9 0 0 1-1-2.6 2.8 2.8 0 0 1 .9-2.1 1 1 0 0 1 .7-.3h.5c.2 0 .4 0 .6.4l.8 1.9v.4l-.3.5-.4.5c-.1.1-.2.3-.1.5a7.3 7.3 0 0 0 1.3 1.7 6.5 6.5 0 0 0 1.9 1.2c.2.1.4.1.5-.1s.6-.8.8-1 .4-.2.6-.1 1.5.7 1.7.8.4.2.5.3a1.4 1.4 0 0 1-.1 1z"/></svg></a>
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="انستقرام"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-        <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="تيك توك"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2 1.5 3.6 3.5 4v3c-1.4 0-2.7-.4-3.8-1.1v6.3A5.7 5.7 0 1 1 10 9.5v3.1a2.7 2.7 0 1 0 2 2.6V3z"/></svg></a>
-      </div>
-    </div>
-    <p class="copy">© <span id="yr"></span> مجوهرات الخميس · جميع الحقوق محفوظة · من إبداع <a href="https://www.eclipseagency.net" target="_blank" rel="noopener">Eclipse Agency</a></p>
-  </div>
-</footer>
-
-<a href="https://wa.me/966501431431?text=مرحباً، أرغب بالاستفسار عن مجوهرات الخميس" class="fab" target="_blank" rel="noopener" aria-label="تواصل واتساب">
-  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.4A10 10 0 1 0 12 2zm5 14.5a2.5 2.5 0 0 1-1.7 1.2c-.4.1-.9.2-2.4-.5a11.2 11.2 0 0 1-4.3-3.8 4.9 4.9 0 0 1-1-2.6 2.8 2.8 0 0 1 .9-2.1 1 1 0 0 1 .7-.3h.5c.2 0 .4 0 .6.4l.8 1.9v.4l-.3.5-.4.5c-.1.1-.2.3-.1.5a7.3 7.3 0 0 0 1.3 1.7 6.5 6.5 0 0 0 1.9 1.2c.2.1.4.1.5-.1s.6-.8.8-1 .4-.2.6-.1 1.5.7 1.7.8.4.2.5.3a1.4 1.4 0 0 1-.1 1z"/></svg>
-</a>
-
-<script>
-const nav=document.getElementById('nav');
-addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
-const burger=document.getElementById('burger'),links=document.getElementById('navlinks');
-burger.addEventListener('click',()=>links.classList.toggle('open'));
-links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
-document.getElementById('yr').textContent=new Date().getFullYear();
-const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
+  </header>
+  <main>
+    <section class="hero" id="new"><div class="hero-img"></div><div class="container hero-content"><div class="hero-copy"><div class="eyebrow">مجموعة الموسم الجديد</div><h1>ذهبٌ يروي<br><em>حكايتك</em></h1><p>قطع صُممت لترافق لحظاتك الأجمل. اكتشفي مختارات الخميس من الذهب عيار ٢١، بتفاصيل تجمع أصالة الصياغة وأناقة اليوم.</p><div class="cta-row"><a class="btn btn-primary" href="#shop">تسوّقي المجموعة <span>←</span></a><a class="btn btn-outline" href="#occasions">اختاري حسب المناسبة</a></div></div></div><div class="hero-note"><i></i> صورة تجريبية للمجموعة — تستبدل بصور الكتالوج</div></section>
+    <section class="trust"><div class="container trust-row">
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m12 3 3 3 4 .5-.5 4 2 3.5-3.5 2-1 4-4-1.5L8 20l-1-4-3.5-2 2-3.5-.5-4L9 6l3-3Z"/><path d="m9 12 2 2 4-4"/></svg><div><b>ذهب مضمون</b><small>موثّق بالعيار والوزن</small></div></div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h12v10H3zM15 10h3l3 3v4h-6z"/><circle cx="7" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg><div><b>شحن لجميع المملكة</b><small>بتغليف آمن ومؤمّن</small></div></div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 7v13M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7Zm0 0h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7Z"/></svg><div><b>تغليف يليق بهديتك</b><small>جاهز لكل المناسبات</small></div></div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg><div><b>نساعدك في الاختيار</b><small>عبر واتساب والمتجر</small></div></div>
+    </div></section>
+    <section class="section categories"><div class="container"><div class="section-head"><div><div class="eyebrow">تسوّقي بطريقتك</div><h2>كل قطعة تبدأ بشعور</h2></div><p>من هدية بسيطة إلى طقم ليلة العمر، اختاري الفئة الأقرب لمناسبتك واتركي التفاصيل علينا.</p></div><div class="category-grid">
+      <article class="category"><img src="assets/model-gold.jpg" alt="موديل ترتدي مجوهرات ذهبية"><div class="category-copy"><span>الأكثر طلبًا</span><h3>أطقم الذهب</h3><a href="#shop" data-filter-link="sets">اكتشفي الأطقم</a></div></article>
+      <article class="category"><img src="assets/ring-pear.png" alt="خاتم فاخر" style="object-fit:contain;background:#d9bb84"><div class="category-copy"><span>رمز لحكاية جديدة</span><h3>الخواتم</h3><a href="#shop" data-filter-link="rings">تسوّقي الخواتم</a></div></article>
+      <article class="category"><img src="assets/necklace-box.jpg" alt="قلادة ذهبية رقيقة"><div class="category-copy"><span>تفاصيل كل يوم</span><h3>القلائد</h3><a href="#shop" data-filter-link="necklaces">تسوّقي القلائد</a></div></article>
+      <article class="category"><img src="assets/bridal-set.jpg" alt="طقم ذهب"><div class="category-copy"><span>لإطلالة متكاملة</span><h3>مجوهرات العروس</h3><a href="#shop" data-filter-link="sets">اكتشفي المجموعة</a></div></article>
+      <article class="category"><img src="assets/model-necklace.jpg" alt="قلادة ذهبية"><div class="category-copy"><span>هدية قريبة للقلب</span><h3>هدايا الذهب</h3><a href="#occasions">اختاري هديتك</a></div></article>
+    </div></div></section>
+    <section class="section products" id="shop"><div class="container"><div class="section-head"><div><div class="eyebrow">مختارات الخميس</div><h2>قطع تستحق الاقتناء</h2></div><a class="text-link" href="#shop">عرض كل المنتجات ←</a></div><div class="filters" role="tablist"><button class="filter active" data-filter="all">الكل</button><button class="filter" data-filter="sets">الأطقم</button><button class="filter" data-filter="rings">الخواتم</button><button class="filter" data-filter="bracelets">الأساور</button><button class="filter" data-filter="necklaces">القلائد</button></div><div class="product-grid" id="productGrid"></div></div></section>
+    <section class="story-banner" id="story"><div class="story-wrap"><div class="story-photo" role="img" aria-label="أناقة مجوهرات الخميس"></div><div class="story-copy"><div class="eyebrow">من قلب الدمام</div><h2>ثقةٌ تُبنى<br>قطعةً بعد قطعة</h2><p>في مجوهرات الخميس نؤمن أن الذهب ليس مجرد زينة؛ بل ذكرى تبقى. لذلك نختار كل قطعة بعناية، ونوضح العيار والوزن والسعر لتكون تجربتك مطمئنة من أول نظرة حتى لحظة الاستلام.</p><a class="text-link" href="#services">اعرفي المزيد عن تجربتنا ←</a></div></div></section>
+    <section class="section occasion" id="occasions"><div class="container"><div class="section-head"><div><div class="eyebrow">لمن تهدينها؟</div><h2>ذهب لكل مناسبة</h2></div><p>اختيارات مدروسة تساعدك على الوصول للهدية المناسبة بسرعة.</p></div><div class="occasion-grid"><article class="occasion-card"><span class="num">٠١</span><div><h3>هدية لها</h3><p>قلائد وأساور ناعمة تحمل معنى يدوم طويلًا.</p></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></article><article class="occasion-card"><span class="num">٠٢</span><div><h3>ملكة وزفاف</h3><p>أطقم فاخرة وتفاصيل تكمّل فرحة ليلة العمر.</p></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></article><article class="occasion-card"><span class="num">٠٣</span><div><h3>هدية لنفسك</h3><p>لأن أجمل المناسبات هي التي تصنعينها أنتِ.</p></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></article></div></div></section>
+    <section class="section service" id="services"><div class="container"><div class="section-head"><div><div class="eyebrow">تجربة الخميس</div><h2>تفاصيل تمنحك الثقة</h2></div></div><div class="service-row"><article class="service-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3 4 7v5c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg><h3>فاتورة واضحة</h3><p>العيار والوزن والسعر موضّحة لتشتري باطمئنان.</p></article><article class="service-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v16H4zM8 8h8v8H8z"/></svg><h3>تغليف فاخر وآمن</h3><p>كل قطعة تصل جاهزة للإهداء ومحفوظة بعناية.</p></article><article class="service-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 10h8M8 14h5"/><path d="M21 12a9 9 0 1 1-3-6.7"/></svg><h3>خدمة قريبة منك</h3><p>نتابع معك الاختيار والطلب عبر واتساب حتى الاستلام.</p></article></div></div></section>
+    <section class="newsletter"><div class="container news-row"><div><h2>كوني أول من يكتشف الجديد</h2><p>مجموعات جديدة، هدايا الموسم، واختيارات الخميس.</p></div><form class="news-form" id="newsForm"><input type="email" required placeholder="البريد الإلكتروني" aria-label="البريد الإلكتروني"><button>اشتركي ←</button></form></div></section>
+  </main>
+  <footer><div class="container"><div class="foot-grid"><div class="foot-brand"><img src="assets/wordmark-cream.png" alt="مجوهرات الخميس"><p>ذهب يرافق أجمل الحكايات. من سوق الحب بالدمام إلى جميع مناطق المملكة.</p></div><div class="foot-col"><h4>تسوّقي</h4><a href="#shop">وصل حديثًا</a><a href="#shop">الأطقم</a><a href="#shop">الخواتم</a><a href="#occasions">الهدايا</a></div><div class="foot-col"><h4>خدمة العملاء</h4><a href="#services">الشحن والتوصيل</a><a href="#services">سياسة الاستبدال</a><a href="#services">العناية بالذهب</a><a href="https://wa.me/966138320814">تواصلي معنا</a></div><div class="foot-col"><h4>تفضّلي بزيارتنا</h4><span>سوق الحب، الدمام</span><span>السبت–الخميس: ٩ص–١٠م</span><span>الجمعة: ١م–١٠م</span><a href="tel:+966138320814" dir="ltr">+966 13 832 0814</a></div></div><div class="copyright"><span>© ٢٠٢٦ مجوهرات الخميس. جميع الحقوق محفوظة.</span><span>واجهة متجر تجريبية — الأسعار والصور قابلة للتحديث</span></div></div></footer>
+  <div class="overlay" id="overlay" onclick="closePanels()"></div><aside class="drawer" id="cartDrawer" aria-label="سلة التسوق"><div class="drawer-head"><h2>سلة التسوق</h2><button class="icon-btn" onclick="closePanels()" aria-label="إغلاق">✕</button></div><div class="drawer-body" id="cartBody"></div><div class="drawer-foot"><div class="total"><span>الإجمالي</span><span id="cartTotal">٠ ر.س</span></div><button class="btn" onclick="checkoutWhatsApp()">إكمال الطلب عبر واتساب</button></div></aside>
+  <aside class="mobile-nav" id="mobileNav"><div class="mobile-nav-head"><img src="assets/wordmark-dark.png" alt="مجوهرات الخميس"><button class="icon-btn" onclick="closePanels()">✕</button></div><a href="#new" onclick="closePanels()">وصل حديثًا</a><a href="#shop" onclick="closePanels()">المجوهرات</a><a href="#occasions" onclick="closePanels()">المناسبات</a><a href="#story" onclick="closePanels()">حكايتنا</a><a href="https://wa.me/966138320814">تواصلي معنا</a></aside><div class="toast" id="toast"></div>
+  <script>
+    const products=[
+      {id:1,name:"طقم الخميس الملكي",cat:"sets",karat:"ذهب عيار ٢١",price:12450,old:0,img:"assets/bridal-set.jpg",badge:"وصل حديثًا"},
+      {id:2,name:"خاتم لمعة الكمثرى",cat:"rings",karat:"ذهب وألماس",price:3850,old:4200,img:"assets/ring-pear.png",badge:"الأكثر طلبًا",contain:true},
+      {id:3,name:"قلادة الوصال الناعمة",cat:"necklaces",karat:"ذهب عيار ٢١",price:1790,old:0,img:"assets/necklace-box.jpg",badge:"هدية مثالية"},
+      {id:4,name:"سوار أوراق الذهب",cat:"bracelets",karat:"ذهب عيار ٢١",price:2640,old:0,img:"assets/hero-collection.webp",badge:"حصري"},
+      {id:5,name:"طقم ليلة العمر",cat:"sets",karat:"ذهب عيار ٢١",price:9800,old:10500,img:"assets/bridal-set.jpg",badge:"اختيار العروس"},
+      {id:6,name:"خاتم الألماس البيضاوي",cat:"rings",karat:"ذهب وألماس",price:4290,old:0,img:"assets/ring-pear.png",badge:"قطعة مميزة",contain:true},
+      {id:7,name:"قلادة حكاية",cat:"necklaces",karat:"ذهب عيار ٢١",price:2100,old:0,img:"assets/model-necklace.jpg",badge:"جديد"},
+      {id:8,name:"سوار الخميس المجدول",cat:"bracelets",karat:"ذهب عيار ٢١",price:3150,old:0,img:"assets/hero-collection.webp",badge:"الأكثر طلبًا"}
+    ];
+    let cart=[];const money=n=>new Intl.NumberFormat("ar-SA").format(n)+" ر.س";
+    function renderProducts(filter="all"){document.getElementById("productGrid").innerHTML=products.filter(p=>filter==="all"||p.cat===filter).map(p=>`<article class="product-card"><div class="product-media"${p.contain?' style="background:#d9bb84"':''}><img src="${p.img}" alt="${p.name}" loading="lazy"${p.contain?' style="object-fit:contain"':''}><span class="product-badge">${p.badge}</span><button class="icon-btn wish" aria-label="أضف للمفضلة" onclick="toggleWish(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8-7.7a5.5 5.5 0 0 0 .8-8.7Z"/></svg></button><button class="quick-add" onclick="addCart(${p.id})">أضيفي إلى السلة</button></div><div class="product-info"><small>${p.karat}</small><h3>${p.name}</h3><div class="price"><span>${money(p.price)}</span>${p.old?`<span class="old">${money(p.old)}</span>`:""}</div></div></article>`).join("")}
+    document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");renderProducts(b.dataset.filter)}));
+    document.querySelectorAll("[data-filter-link]").forEach(a=>a.addEventListener("click",()=>{const f=a.dataset.filterLink;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x.dataset.filter===f));renderProducts(f)}));
+    function addCart(id){const item=cart.find(x=>x.id===id);item?item.qty++:cart.push({...products.find(p=>p.id===id),qty:1});updateCart();toast("تمت إضافة القطعة إلى السلة")}
+    function removeCart(id){cart=cart.filter(x=>x.id!==id);updateCart()}
+    function updateCart(){document.getElementById("cartCount").textContent=new Intl.NumberFormat("ar-SA").format(cart.reduce((s,x)=>s+x.qty,0));document.getElementById("cartTotal").textContent=money(cart.reduce((s,x)=>s+x.price*x.qty,0));document.getElementById("cartBody").innerHTML=cart.length?cart.map(x=>`<div class="cart-line"><img src="${x.img}" alt=""><div><small>${x.karat}</small><h4>${x.name}</h4><span>${money(x.price)} × ${new Intl.NumberFormat("ar-SA").format(x.qty)}</span></div><button class="remove" onclick="removeCart(${x.id})">حذف</button></div>`).join(""):`<div class="empty-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 7h15l-2 8H8L6 3H2"/></svg><b>سلتك بانتظار قطعة جميلة</b><p>اكتشفي مختاراتنا وأضيفي ما يعجبك.</p></div>`}
+    function openCart(){closePanels();document.getElementById("cartDrawer").classList.add("show");document.getElementById("overlay").classList.add("show");document.body.classList.add("lock")}
+    function openMenu(){closePanels();document.getElementById("mobileNav").classList.add("show");document.getElementById("overlay").classList.add("show");document.body.classList.add("lock")}
+    function closePanels(){document.querySelectorAll(".drawer,.mobile-nav,.overlay").forEach(x=>x.classList.remove("show"));document.body.classList.remove("lock")}
+    function toggleWish(btn){btn.classList.toggle("active");toast(btn.classList.contains("active")?"أضيفت إلى المفضلة":"أزيلت من المفضلة")}
+    function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove("show"),2200)}
+    function searchProducts(){const q=prompt("ما القطعة التي تبحثين عنها؟");if(!q)return;const found=products.filter(p=>p.name.includes(q)||p.karat.includes(q));document.getElementById("productGrid").innerHTML="";if(found.length){const ids=new Set(found.map(x=>x.id));renderProducts();document.querySelectorAll(".product-card").forEach((c,i)=>c.style.display=ids.has(products[i].id)?"block":"none")}else toast("لم نجد نتائج مطابقة حاليًا");location.hash="shop"}
+    function checkoutWhatsApp(){if(!cart.length)return toast("أضيفي قطعة إلى السلة أولًا");const lines=cart.map(x=>`- ${x.name} × ${x.qty} (${money(x.price*x.qty)})`).join("\n");window.open(`https://wa.me/966138320814?text=${encodeURIComponent("مرحبًا مجوهرات الخميس، أرغب بطلب:\n"+lines+"\nالإجمالي: "+money(cart.reduce((s,x)=>s+x.price*x.qty,0)))}`,"_blank")}
+    document.getElementById("newsForm").addEventListener("submit",e=>{e.preventDefault();e.target.reset();toast("شكرًا لكِ، سنشاركك كل جديد")});renderProducts();updateCart();
+  </script>
 </body>
 </html>
