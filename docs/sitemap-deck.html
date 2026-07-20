@@ -20,32 +20,17 @@ body { background:#3a3630; display:flex; flex-direction:column; align-items:cent
   color:#c9bdb3;
 }
 
-/* ---------- shared chrome ---------- */
 .edge { position:absolute; top:0; right:0; width:1.6mm; height:297mm; background:linear-gradient(#c79a58,#6f4c2f); }
 .hdr { position:absolute; top:15mm; right:20mm; left:20mm; display:flex; justify-content:space-between; align-items:baseline; }
 .hdr .brand { font-family:"amiri",serif; font-size:10pt; color:#c79a58; letter-spacing:.3pt; }
 .hdr .pg { font-size:8pt; color:#6b6058; }
 .hdr-rule { position:absolute; top:21mm; right:20mm; left:20mm; height:.3mm; background:#2a241e; }
 .ftr { position:absolute; bottom:12mm; right:20mm; left:20mm; display:flex; justify-content:space-between; font-size:7.5pt; color:#5c534c; }
-.body-area { position:absolute; top:32mm; right:20mm; left:20mm; bottom:20mm; }
+.body-area { position:absolute; top:30mm; right:20mm; left:20mm; bottom:62mm; }
 
-/* ---------- type roles ---------- */
 .kicker { font-size:8pt; color:#c79a58; letter-spacing:1.6pt; margin-bottom:3mm; }
-.h2 { font-family:"amiri",serif; font-size:21pt; color:#faf8f4; line-height:1.3; margin-bottom:2mm; }
-.lede { font-size:9.5pt; line-height:1.85; color:#a99c91; margin-bottom:7mm; }
-.h3 { font-family:"tajawal",sans-serif; font-weight:700; font-size:11.5pt; color:#faf8f4; }
-.lbl { font-weight:700; font-size:9pt; color:#c79a58; }
-.txt { font-size:9.5pt; line-height:1.8; color:#bdb1a6; }
-.small { font-size:8.5pt; line-height:1.75; color:#9a8d83; }
-
-/* ---------- section blocks ---------- */
-.sec { display:flex; gap:5mm; padding:4.5mm 0; border-bottom:.25mm solid #211c17; }
-.sec:last-child { border-bottom:none; }
-.num { font-family:"amiri",serif; font-size:15pt; color:#c79a58; width:9mm; flex:none; line-height:1.1; padding-top:.6mm; }
-.sec-body { flex:1; }
-.sec-body .h3 { margin-bottom:1.6mm; }
-.row { margin-bottom:1.2mm; }
-.row:last-child { margin-bottom:0; }
+.h2 { font-family:"amiri",serif; font-size:22pt; color:#faf8f4; line-height:1.3; margin-bottom:3mm; }
+.lede { font-size:10pt; line-height:1.85; color:#a99c91; margin-bottom:7mm; max-width:150mm; }
 
 /* ---------- cover ---------- */
 .cover-frame { position:absolute; top:14mm; right:14mm; left:14mm; bottom:14mm; border:.3mm solid #2e2820; }
@@ -54,31 +39,23 @@ body { background:#3a3630; display:flex; flex-direction:column; align-items:cent
 .cover-brand { font-family:"amiri",serif; font-size:15pt; color:#c79a58; letter-spacing:1pt; margin-bottom:4mm; }
 .cover-sub { font-size:8pt; color:#6b6058; letter-spacing:3pt; margin-bottom:16mm; }
 .cover-title { font-family:"amiri",serif; font-size:35pt; color:#faf8f4; line-height:1.35; margin-bottom:6mm; }
-.cover-desc { font-size:10pt; line-height:1.9; color:#a99c91; max-width:105mm; }
+.cover-desc { font-size:10pt; line-height:1.9; color:#a99c91; max-width:100mm; }
 .cover-rule { width:26mm; height:.4mm; background:#c79a58; margin:12mm 0; }
 .cover-meta { font-size:8.5pt; color:#7a6d65; line-height:2; }
 
-/* ---------- tree ---------- */
-.tree { border:.25mm solid #241f19; background:#100e0c; padding:7mm 8mm; margin-bottom:6mm; }
-.tree ul { list-style:none; }
-.tree > ul > li { padding:1.6mm 0; }
-.tree .t1 { font-weight:700; font-size:10pt; color:#faf8f4; }
-.tree .t1::before { content:"◆"; color:#c79a58; font-size:6.5pt; margin-left:3mm; vertical-align:1.2mm; }
-.tree ul ul { margin:1.4mm 6mm 0 0; border-right:.25mm solid #2a241e; padding-right:5mm; }
-.tree ul ul li { padding:.9mm 0; font-size:9pt; color:#a99c91; }
-.tree ul ul li::before { content:""; display:inline-block; width:3mm; height:.25mm; background:#2a241e; vertical-align:1.4mm; margin-left:2.5mm; margin-right:-5mm; }
+/* ---------- section rows ---------- */
+.row { display:flex; gap:6mm; padding:3.8mm 0; border-bottom:.25mm solid #211c17; }
+.row:last-of-type { border-bottom:none; }
+.num { font-family:"amiri",serif; font-size:15pt; color:#c79a58; width:8mm; flex:none; line-height:1; padding-top:1.2mm; }
+.rb { flex:1; }
+.name { font-family:"tajawal",sans-serif; font-weight:700; font-size:12pt; color:#faf8f4; margin-bottom:1.4mm; }
+.why { font-size:10pt; line-height:1.7; color:#bdb1a6; }
+.kids { font-size:8.5pt; color:#7f7369; margin-top:1.6mm; letter-spacing:.2pt; }
 
-/* ---------- misc blocks ---------- */
-.callout { border-right:.7mm solid #c79a58; background:#141210; padding:4mm 5mm; margin-top:5mm; }
-.two { display:flex; gap:7mm; }
-.two > * { flex:1; }
-.card { border:.25mm solid #241f19; padding:5mm 5.5mm; background:#100e0c; height:100%; }
-.card h4 { font-family:"tajawal",sans-serif; font-weight:700; font-size:10pt; color:#c79a58; margin-bottom:3mm; }
-.list { list-style:none; }
-.list li { font-size:9pt; line-height:1.7; color:#bdb1a6; padding:1.5mm 0 1.5mm 0; border-bottom:.2mm solid #1c1814; }
-.list li:last-child { border-bottom:none; }
-.list li::before { content:"—"; color:#6f4c2f; margin-left:2.5mm; }
-.out li::before { content:"×"; color:#7a5545; }
+/* ---------- footer note ---------- */
+.next { position:absolute; right:20mm; left:20mm; bottom:22mm; border-top:.3mm solid #2a241e; padding-top:6mm; }
+.next .t { font-family:"tajawal",sans-serif; font-weight:700; font-size:10.5pt; color:#c79a58; margin-bottom:2mm; }
+.next .d { font-size:9.5pt; line-height:1.75; color:#a99c91; }
 
 /* ---------- print ---------- */
 @page { size:210mm 297mm; margin:0; }
@@ -101,8 +78,8 @@ body { background:#3a3630; display:flex; flex-direction:column; align-items:cent
     <div class="diamond"></div>
     <div class="cover-brand">مجوهرات الخميس</div>
     <div class="cover-sub">AL KHAMEES JEWELLERY</div>
-    <div class="cover-title">خريطة الموقع<br>والغرض من كل قسم</div>
-    <div class="cover-desc">مستند يوضح هيكل الموقع ووظيفة كل قسم، للاتفاق على النطاق قبل بداية التنفيذ.</div>
+    <div class="cover-title">خريطة الموقع</div>
+    <div class="cover-desc">أقسام الموقع ووظيفة كل قسم، للاتفاق عليها قبل بداية التنفيذ.</div>
     <div class="cover-rule"></div>
     <div class="cover-meta">
       مسودة للمراجعة · ٢٠ يوليو ٢٠٢٦<br>
@@ -111,211 +88,96 @@ body { background:#3a3630; display:flex; flex-direction:column; align-items:cent
   </div>
 </div>
 
-<!-- ============ 2. IDEA + STRUCTURE ============ -->
+<!-- ============ 2. STRUCTURE ============ -->
 <div class="page" data-canvas-width="794" data-canvas-height="1123">
   <div class="edge"></div>
   <div class="hdr"><div class="brand">مجوهرات الخميس</div><div class="pg">٠٢</div></div>
   <div class="hdr-rule"></div>
+
   <div class="body-area">
-    <div class="kicker">القسم الأول</div>
-    <div class="h2">الفكرة وهيكل الصفحات</div>
+    <div class="kicker">الهيكل</div>
+    <div class="h2">أقسام الموقع</div>
     <div class="lede">
-      الموقع واجهة عرض فاخرة تخدم هدفين فقط: أن يشوف العميل التصاميم بجودة صورة
-      تليق بالذهب والألماس، وأن يوصل لنا في واتساب وهو عارف وش يبي بالضبط.
-      البيع النهائي يتم في المعرض أو عبر واتساب، مو عربة شراء إلكترونية.
-      هذا القرار وحده يبسّط الموقع كثير ويخلي وظيفة كل قسم واضحة.
+      الموقع واجهة عرض تنتهي بواتساب. العميل يشوف التصاميم، ويوصل لنا وهو عارف
+      وش يبي. البيع يتم في المعرض أو بالمحادثة، مو عربة شراء إلكترونية.
     </div>
 
-    <div class="tree">
-      <ul>
-        <li><span class="t1">الرئيسية</span></li>
-        <li><span class="t1">المجوهرات</span>
-          <ul>
-            <li>خواتم</li><li>قلائد</li><li>أساور</li><li>أقراط</li>
-            <li>أطقم كاملة</li><li>صفحة القطعة الواحدة</li>
-          </ul>
-        </li>
-        <li><span class="t1">المناسبات</span>
-          <ul>
-            <li>الزواج والملكة</li><li>الخطوبة</li><li>الهدايا</li><li>التخرج والترقيات</li>
-          </ul>
-        </li>
-        <li><span class="t1">خدماتنا</span></li>
-        <li><span class="t1">عن الدار</span></li>
-        <li><span class="t1">الأسئلة الشائعة</span></li>
-        <li><span class="t1">تواصل وزيارة المعرض</span></li>
-      </ul>
-    </div>
-
-    <div class="callout">
-      <span class="lbl">لماذا هذا العدد؟</span>
-      <span class="txt">خمس صفحات رئيسية فقط. كل صفحة لها وظيفة لا تتكرر في غيرها،
-      وأي إضافة بعد الاعتماد تكون قرار منفصل حتى ما يتوسع العمل بدون سبب.</span>
-    </div>
-  </div>
-  <div class="ftr"><div>خريطة الموقع والغرض من كل قسم</div><div>Eclipse Agency</div></div>
-</div>
-
-<!-- ============ 3. PURPOSE PART 1 ============ -->
-<div class="page" data-canvas-width="794" data-canvas-height="1123">
-  <div class="edge"></div>
-  <div class="hdr"><div class="brand">مجوهرات الخميس</div><div class="pg">٠٣</div></div>
-  <div class="hdr-rule"></div>
-  <div class="body-area">
-    <div class="kicker">القسم الثاني</div>
-    <div class="h2">الغرض من كل قسم</div>
-
-    <div class="sec">
+    <div class="row">
       <div class="num">٠١</div>
-      <div class="sec-body">
-        <div class="h3">الرئيسية</div>
-        <div class="row"><span class="lbl">الغرض: </span><span class="txt">الانطباع الأول، وتوجيه الزائر لواحد من ثلاث طرق خلال ثوانٍ.</span></div>
-        <div class="row"><span class="lbl">المحتوى: </span><span class="txt">صورة رئيسية قوية، مختارات الجديد، دخول سريع للفئات، وشريط ثقة (ألماس معتمد، صياغة يدوية، ضمان).</span></div>
+      <div class="rb">
+        <div class="name">الرئيسية</div>
+        <div class="why">الانطباع الأول، وتوجيه الزائر للقسم اللي يبيه خلال ثوانٍ.</div>
       </div>
     </div>
 
-    <div class="sec">
+    <div class="row">
       <div class="num">٠٢</div>
-      <div class="sec-body">
-        <div class="h3">المجوهرات</div>
-        <div class="row"><span class="lbl">الغرض: </span><span class="txt">التصفح المنظّم. الزائر اللي يعرف وش يبي يوصل له بسرعة.</span></div>
-        <div class="row"><span class="lbl">المحتوى: </span><span class="txt">شبكة قطع مع فلترة بالفئة ونوع المعدن (ذهب أصفر، أبيض، وردي).</span></div>
-        <div class="row"><span class="lbl">الأسعار: </span><span class="txt">نقترح نطاق سعري تقريبي بدل سعر ثابت لأن سعر الذهب متغير. ولو تفضلون بدون أسعار، نستبدلها بزر "اطلب السعر".</span></div>
+      <div class="rb">
+        <div class="name">المجوهرات</div>
+        <div class="why">التصفح المنظّم حسب الفئة ونوع المعدن.</div>
+        <div class="kids">خواتم · قلائد · أساور · أقراط · أطقم كاملة</div>
       </div>
     </div>
 
-    <div class="sec">
+    <div class="row">
       <div class="num">٠٣</div>
-      <div class="sec-body">
-        <div class="h3">صفحة القطعة</div>
-        <div class="row"><span class="lbl">الغرض: </span><span class="txt">تعطي العميل ثقة كافية يراسلنا وهو جاد.</span></div>
-        <div class="row"><span class="lbl">المحتوى: </span><span class="txt">صور متعددة، الوزن والعيار، نوع الحجر، الشهادة إن وجدت، المقاسات المتاحة، ووقت التنفيذ لو القطعة تُصنع بالطلب.</span></div>
-        <div class="row"><span class="lbl">الإجراء: </span><span class="txt">زر واتساب يفتح المحادثة ومعها اسم القطعة ورقمها تلقائياً، عشان الموظف يعرف عن أي قطعة يتكلم من أول رسالة.</span></div>
+      <div class="rb">
+        <div class="name">صفحة القطعة</div>
+        <div class="why">تفاصيل تكفي ليراسلنا وهو جاد، وزر واتساب يفتح المحادثة باسم القطعة.</div>
       </div>
     </div>
 
-    <div class="sec">
+    <div class="row">
       <div class="num">٠٤</div>
-      <div class="sec-body">
-        <div class="h3">المناسبات</div>
-        <div class="row"><span class="lbl">الغرض: </span><span class="txt">يخدم العميل اللي يشتري لمناسبة مو لقطعة معينة، وهذا أغلب المشترين.</span></div>
-        <div class="row"><span class="lbl">المحتوى: </span><span class="txt">مجموعات مختارة لكل مناسبة، مع اقتراح ميزانية تقريبية.</span></div>
-        <div class="row"><span class="lbl">ليش مهم: </span><span class="txt">يحوّل الزائر المتردد لأنه يبسّط القرار بدل ما يخليه يتصفح كل شيء.</span></div>
+      <div class="rb">
+        <div class="name">المناسبات</div>
+        <div class="why">يخدم اللي يشتري لمناسبة، مو لقطعة معينة.</div>
+        <div class="kids">الزواج والملكة · الخطوبة · الهدايا · التخرج</div>
       </div>
     </div>
-  </div>
-  <div class="ftr"><div>خريطة الموقع والغرض من كل قسم</div><div>Eclipse Agency</div></div>
-</div>
 
-<!-- ============ 4. PURPOSE PART 2 ============ -->
-<div class="page" data-canvas-width="794" data-canvas-height="1123">
-  <div class="edge"></div>
-  <div class="hdr"><div class="brand">مجوهرات الخميس</div><div class="pg">٠٤</div></div>
-  <div class="hdr-rule"></div>
-  <div class="body-area">
-    <div class="kicker">القسم الثاني · تتمة</div>
-    <div class="h2">الغرض من كل قسم</div>
-
-    <div class="sec">
+    <div class="row">
       <div class="num">٠٥</div>
-      <div class="sec-body">
-        <div class="h3">خدماتنا</div>
-        <div class="row"><span class="lbl">الغرض: </span><span class="txt">يوضح إن الدار مو بس بيع، وهذا يبني ثقة ويرجّع العميل مرة ثانية.</span></div>
-        <div class="row"><span class="lbl">المحتوى: </span><span class="txt">التصميم الخاص حسب الطلب، الصيانة والتلميع، تغيير المقاس، التقييم وإعادة الشراء.</span></div>
+      <div class="rb">
+        <div class="name">خدماتنا</div>
+        <div class="why">تصميم خاص، صيانة وتلميع، تغيير مقاس، وتقييم.</div>
       </div>
     </div>
 
-    <div class="sec">
+    <div class="row">
       <div class="num">٠٦</div>
-      <div class="sec-body">
-        <div class="h3">عن الدار</div>
-        <div class="row"><span class="lbl">الغرض: </span><span class="txt">المصداقية. المجوهرات شراء ثقة قبل ما تكون شراء منتج.</span></div>
-        <div class="row"><span class="lbl">المحتوى: </span><span class="txt">قصة مختصرة، خبرة الدار، صور المعرض من الداخل، واعتمادات الألماس.</span></div>
+      <div class="rb">
+        <div class="name">عن الدار</div>
+        <div class="why">المصداقية. المجوهرات شراء ثقة قبل كل شيء.</div>
       </div>
     </div>
 
-    <div class="sec">
+    <div class="row">
       <div class="num">٠٧</div>
-      <div class="sec-body">
-        <div class="h3">الأسئلة الشائعة</div>
-        <div class="row"><span class="lbl">الغرض: </span><span class="txt">يقلل الأسئلة المتكررة على واتساب، ويريّح فريق المبيعات.</span></div>
-        <div class="row"><span class="lbl">المحتوى: </span><span class="txt">الضمان، الاستبدال والإرجاع، الشحن داخل المملكة، طرق الدفع، شهادة الألماس، ومدة التصميم الخاص.</span></div>
+      <div class="rb">
+        <div class="name">الأسئلة الشائعة</div>
+        <div class="why">الضمان والاستبدال والشحن، عشان تقل الأسئلة المتكررة على واتساب.</div>
       </div>
     </div>
 
-    <div class="sec">
+    <div class="row">
       <div class="num">٠٨</div>
-      <div class="sec-body">
-        <div class="h3">تواصل وزيارة المعرض</div>
-        <div class="row"><span class="lbl">الغرض: </span><span class="txt">ينقل الزائر من الإنترنت إلى المعرض أو المحادثة.</span></div>
-        <div class="row"><span class="lbl">المحتوى: </span><span class="txt">العنوان: ٢٥٨١ طريق الأمير سلطان بن عبدالعزيز، العليا، الرياض · أوقات العمل: السبت إلى الخميس ٣ عصراً حتى ١١ مساءً، الجمعة إجازة · زر واتساب مباشر وخريطة قوقل وحسابات التواصل.</span></div>
-      </div>
-    </div>
-
-    <div class="callout">
-      <span class="lbl">نحتاج تأكيد منكم: </span>
-      <span class="txt">أي رقم هو رقم الواتساب الرسمي؟ قوقل مابس يعرض ٩٦٦٥٥٢١٨٨٨٢٢
-      بينما الموقع الحالي يحوّل على ٩٦٦١٣٨٣٢٠٨١٤.</span>
-    </div>
-
-    <div style="margin-top:5mm">
-      <span class="lbl">صفحات ثانوية: </span>
-      <span class="small">في الفوتر فقط، مو في القائمة الرئيسية · سياسة الاستبدال والإرجاع · الشحن والتغليف · سياسة الخصوصية.</span>
-    </div>
-  </div>
-  <div class="ftr"><div>خريطة الموقع والغرض من كل قسم</div><div>Eclipse Agency</div></div>
-</div>
-
-<!-- ============ 5. SCOPE + NEXT ============ -->
-<div class="page" data-canvas-width="794" data-canvas-height="1123">
-  <div class="edge"></div>
-  <div class="hdr"><div class="brand">مجوهرات الخميس</div><div class="pg">٠٥</div></div>
-  <div class="hdr-rule"></div>
-  <div class="body-area">
-    <div class="kicker">القسم الثالث</div>
-    <div class="h2">النطاق والخطوة القادمة</div>
-
-    <div class="two" style="margin-bottom:7mm">
-      <div class="card">
-        <h4>اللي نحتاجه منكم للبدء</h4>
-        <ul class="list">
-          <li>الكتالوج: صور القطع بجودة عالية، مع الاسم والوزن والعيار</li>
-          <li>قرار الأسعار: نطاق سعري، أو سعر ثابت، أو "اطلب السعر"</li>
-          <li>رقم الواتساب المعتمد</li>
-          <li>نص قصير عن الدار، أو نكتبه إحنا وتراجعونه</li>
-          <li>صور المعرض من الداخل</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h4>خارج النطاق في هذه المرحلة</h4>
-        <ul class="list out">
-          <li>عربة شراء ودفع إلكتروني</li>
-          <li>حساب عميل وتسجيل دخول</li>
-          <li>نسخة إنجليزية من الموقع</li>
-          <li>تطبيق جوال</li>
-        </ul>
-        <div class="small" style="margin-top:4mm">
-          كلها ممكنة كمرحلة ثانية، لكن كل وحدة منها تغيّر الهيكل، فالأفضل نثبت
-          المرحلة الأولى أول.
-        </div>
-      </div>
-    </div>
-
-    <div class="callout">
-      <span class="lbl">ملاحظة على الكتالوج: </span>
-      <span class="txt">صور القطع هي أكبر بند وأكثر شيء يأخر التنفيذ عادةً.
-      كل ما وصلتنا مبكر، كل ما قصر الوقت بين الاعتماد والإطلاق.</span>
-    </div>
-
-    <div style="margin-top:9mm; border-top:.3mm solid #2a241e; padding-top:7mm">
-      <div class="h3" style="margin-bottom:2.5mm">الخطوة القادمة</div>
-      <div class="txt">
-        راجعوا هذا المستند مع أبو يوسف، وعدّلوا أو احذفوا أي قسم. بعد ما توافقون
-        على الهيكل، نرجع لكم بجدول زمني ونبدأ التنفيذ على الأساس المتفق عليه.
+      <div class="rb">
+        <div class="name">تواصل وزيارة المعرض</div>
+        <div class="why">العنوان وأوقات العمل وزر واتساب مباشر.</div>
       </div>
     </div>
   </div>
-  <div class="ftr"><div>خريطة الموقع والغرض من كل قسم</div><div>Eclipse Agency</div></div>
+
+  <div class="next">
+    <div class="t">الخطوة القادمة</div>
+    <div class="d">
+      راجعوا الأقسام وعدّلوا أو احذفوا أي قسم. بعد الموافقة على الهيكل نرجع لكم
+      بجدول زمني ونبدأ التنفيذ.
+    </div>
+  </div>
+
+  <div class="ftr"><div>خريطة الموقع</div><div>Eclipse Agency</div></div>
 </div>
 
 </body>
