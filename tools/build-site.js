@@ -129,9 +129,18 @@ function layout(o) {
 '</a>\n' +
 
 '<script>\n' +
-'  // القائمة على الجوال — سطران، بلا مكتبة\n' +
+'  // القائمة على الجوال\n' +
 '  var b=document.querySelector(".burger"),n=document.querySelector(".nav");\n' +
 '  if(b&&n)b.addEventListener("click",function(){var o=n.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");});\n' +
+'  // الهيدر شفاف فوق الهيرو، ويصير معتماً بعد التمرير\n' +
+'  var h=document.querySelector(".header");\n' +
+'  function hs(){if(h)h.classList.toggle("solid",scrollY>40);}hs();addEventListener("scroll",hs,{passive:true});\n' +
+'  // ظهور تدريجي — يحترم تفضيل تقليل الحركة عبر CSS\n' +
+'  var rv=document.querySelectorAll(".rv");\n' +
+'  if(window.IntersectionObserver&&rv.length){\n' +
+'    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{rootMargin:"0px 0px -8% 0px"});\n' +
+'    rv.forEach(function(el){io.observe(el);});\n' +
+'  } else { rv.forEach(function(el){el.classList.add("in");}); }\n' +
 '</script>\n' +
 '</body>\n</html>\n';
 }
@@ -139,26 +148,40 @@ function layout(o) {
 /* ------------------------------------------------------------------ *
  * مكوّنات
  * ------------------------------------------------------------------ */
+/* الاسم ثم خط شعري ثم السعر على سطر واحد — نمط تحريري يقرأه العين مرة واحدة. */
 function pieceCard(p, depth) {
   var u = up(depth);
-  return '<a class="card" href="' + u + 'piece/' + p.slug + '">' +
+  return '<a class="card rv" href="' + u + 'piece/' + p.slug + '">' +
     '<span class="card-img"><img src="' + u + p.image + '" alt="' + esc(p.ar) + '" loading="lazy"></span>' +
     '<span class="card-body">' +
-      '<span class="card-name">' + esc(p.ar) + '</span>' +
+      '<span class="card-top">' +
+        '<span class="card-name">' + esc(p.ar) + '</span>' +
+        '<i class="card-rule"></i>' +
+        '<span class="card-price">' + esc(priceLabel(p)) + '</span>' +
+      '</span>' +
       '<span class="card-meta">' + esc(METAL[p.metal] || '') + ' · عيار ' + esc(p.karat) + '</span>' +
-      '<span class="card-price">' + esc(priceLabel(p)) + '</span>' +
     '</span></a>';
 }
 
 function trustBar() {
-  return '<section class="trust"><div class="wrap trust-row">' +
+  return '<section class="trust"><div class="wrap"><div class="trust-row">' +
     D.TRUST.map(function (t) {
-      return '<div><strong>' + esc(t.ar) + '</strong><span>' + esc(t.hint) + '</span></div>';
-    }).join('') + '</div></section>';
+      return '<div class="rv"><strong>' + esc(t.ar) + '</strong><span>' + esc(t.hint) + '</span></div>';
+    }).join('') + '</div></div></section>';
+}
+
+/* شريط متحرك — يعطي إحساساً بالحياة بلا صخب. */
+function marquee() {
+  var words = ['ذهب وألماس موثّق', '✳', 'صياغة يدوية', '✳', 'تصميم خاص حسب الطلب',
+               '✳', 'ضمان الدار', '✳', 'تغليف جاهز للإهداء', '✳'];
+  var run = words.map(function (w) { return '<span>' + esc(w) + '</span>'; }).join('');
+  return '<div class="marquee"><div class="marquee-in">' + run + run + '</div></div>';
 }
 
 function ctaBand(depth) {
-  return '<section class="cta"><div class="wrap">' +
+  return '<section class="cta">' +
+    '<img class="cta-bg" src="' + up(depth) + 'assets/concept-v2/campaign-hero.jpg" alt="" loading="lazy">' +
+    '<div class="wrap">' +
     '<h2>ما لقيت اللي تبيه؟</h2>' +
     '<p>راسلنا ووصف لنا القطعة، أو احجز زيارة للمعرض وشوفها بنفسك.</p>' +
     '<div class="cta-acts">' +
@@ -171,43 +194,60 @@ function ctaBand(depth) {
  * الصفحات
  * ------------------------------------------------------------------ */
 function home() {
-  var featured = D.PIECES.slice(0, 4);
+  /* خمس قطع: صفّ واحد مكتمل على سطح المكتب بدل قطعة يتيمة في صفّ ثانٍ. */
+  var featured = D.PIECES.slice(0, 5);
   return layout({
     title: 'دار مجوهرات', active: '', depth: 0,
     description: D.BRAND.name + ' — ذهب وألماس موثّق، صياغة يدوية، وتصميم خاص حسب الطلب.',
     body:
+/* الهيرو يملأ الشاشة كاملة: الصورة هي الصفحة، والنص عليها لا بجانبها.
+   العنوان ضخم عمداً — هذا ما يفصل موقع دار مجوهرات عن موقع متجر. */
 '<section class="hero">\n' +
 '  <img class="hero-img" src="assets/concept-v2/campaign-hero.jpg" alt="" fetchpriority="high">\n' +
-'  <div class="hero-copy">\n' +
-'    <span class="eyebrow">مجوهرات الخميس</span>\n' +
-'    <h1>قطعة تُلبس لسنوات،<br>لا لموسم</h1>\n' +
-'    <p>ذهب وألماس موثّق، صياغة يدوية في ورشتنا، وتصميم خاص لو ما لقيت اللي في بالك.</p>\n' +
-'    <div class="hero-acts">\n' +
-'      <a class="btn btn-gold" href="jewellery">تصفّح المجوهرات</a>\n' +
-'      <a class="btn btn-ghost" href="occasions">أشتري لمناسبة</a>\n' +
+'  <div class="hero-in"><div class="hero-copy">\n' +
+'    <span class="hero-eyebrow">✳ &nbsp;مجوهرات الخميس · المملكة العربية السعودية</span>\n' +
+'    <h1>قطعة تُلبس <em>لسنوات</em>،<br>لا لموسم</h1>\n' +
+'    <div class="hero-row">\n' +
+'      <p>ذهب وألماس موثّق، صياغة يدوية في ورشتنا، وتصميم خاص لو ما لقيت اللي في بالك.</p>\n' +
+'      <div class="hero-acts">\n' +
+'        <a class="btn btn-gold" href="jewellery">تصفّح المجوهرات</a>\n' +
+'        <a class="btn btn-ghost" href="occasions">أشتري لمناسبة</a>\n' +
+'      </div>\n' +
 '    </div>\n' +
-'  </div>\n' +
+'  </div></div>\n' +
+'  <div class="scroll-cue"><i></i><span>مرّر</span></div>\n' +
 '</section>\n' +
 
+marquee() +
 trustBar() +
 
+/* الفئات: صورة واحدة كبيرة يقابلها صفّ لكل فئة — تخطيط تحريري غير متماثل
+   بدل خمس بطاقات متساوية لا تقول أيها الأهم. */
 '<section class="section"><div class="wrap">\n' +
-'  <div class="sec-head"><h2>ادخل من هنا</h2><p>اختر الفئة اللي تدور عليها.</p></div>\n' +
-'  <div class="cats">' + D.CATEGORIES.map(function (c) {
-     return '<a class="cat" href="jewellery/' + c.slug + '">' +
-       '<img src="' + c.image + '" alt="" loading="lazy">' +
-       '<span><strong>' + esc(c.ar) + '</strong><em>' + esc(c.hint) + '</em></span></a>';
-   }).join('') + '</div>\n' +
+'  <div class="sec-head rv"><span class="sec-eyebrow">✳ &nbsp;المجموعات</span>' +
+'    <div class="sec-top"><h2>ادخل من هنا</h2><a class="more" href="jewellery">كل القطع ←</a></div></div>\n' +
+'  <div class="split rv">\n' +
+'    <div class="split-media"><img src="assets/model-necklace.jpg" alt="" loading="lazy"></div>\n' +
+'    <div class="split-list">' + D.CATEGORIES.map(function (c) {
+       return '<a class="cat-row" href="jewellery/' + c.slug + '">' +
+         '<img src="' + c.image + '" alt="" loading="lazy">' +
+         '<span><h3>' + esc(c.ar) + '</h3><p>' + esc(c.hint) + '</p></span>' +
+         '<span class="go">←</span></a>';
+     }).join('') + '</div>\n' +
+'  </div>\n' +
 '</div></section>\n' +
 
-'<section class="section section-alt"><div class="wrap">\n' +
-'  <div class="sec-head"><h2>مختارات</h2><a class="more" href="jewellery">كل القطع ←</a></div>\n' +
+/* شريط فاتح بين قسمين معتمين — التباين هو ما يمنع الصفحة من أن تصير كتلة واحدة. */
+'<section class="section on-light"><div class="wrap">\n' +
+'  <div class="sec-head rv"><span class="sec-eyebrow">✳ &nbsp;مختارات</span>' +
+'    <div class="sec-top"><h2>قطع اخترناها بأنفسنا</h2><a class="more" href="jewellery">شوف الكل ←</a></div></div>\n' +
 '  <div class="grid">' + featured.map(function (p) { return pieceCard(p, 0); }).join('') + '</div>\n' +
 '</div></section>\n' +
 
 '<section class="section"><div class="wrap">\n' +
-'  <div class="sec-head"><h2>تشتري لمناسبة؟</h2><p>اختر المناسبة ونرشّح لك.</p></div>\n' +
-'  <div class="occ-row">' + D.OCCASIONS.map(function (o) {
+'  <div class="sec-head rv"><span class="sec-eyebrow">✳ &nbsp;المناسبات</span>' +
+'    <h2>تشتري لمناسبة؟</h2><p>أغلب الناس يشترون لمناسبة، لا لقطعة بعينها. اختر المناسبة ونبسّط لك القرار.</p></div>\n' +
+'  <div class="occ-row rv">' + D.OCCASIONS.map(function (o) {
      return '<a class="occ" href="occasions/' + o.slug + '">' +
        '<img src="' + o.image + '" alt="" loading="lazy"><span>' + esc(o.ar) + '</span></a>';
    }).join('') + '</div>\n' +
@@ -284,7 +324,7 @@ function piecePage(p) {
     description: p.ar + ' — ' + (METAL[p.metal] || '') + ' عيار ' + p.karat + '. ' + (p.note || ''),
     body:
 '<section class="piece"><div class="wrap piece-grid">\n' +
-'  <div class="piece-media"><img src="../' + p.image + '" alt="' + esc(p.ar) + '"></div>\n' +
+'  <div class="piece-media rv"><img src="../' + p.image + '" alt="' + esc(p.ar) + '"></div>\n' +
 '  <div class="piece-info">\n' +
 '    <nav class="crumb"><a href="../">الرئيسية</a> · <a href="../jewellery">المجوهرات</a> · ' +
        '<a href="../jewellery/' + p.category + '">' + esc(c.ar) + '</a></nav>\n' +
@@ -302,8 +342,8 @@ function piecePage(p) {
 '  </div>\n' +
 '</div></section>\n' +
 (related.length
-  ? '<section class="section section-alt"><div class="wrap">' +
-    '<div class="sec-head"><h2>قطع مشابهة</h2></div>' +
+  ? '<section class="section on-light"><div class="wrap">' +
+    '<div class="sec-head rv"><span class="sec-eyebrow">✳ &nbsp;من نفس الفئة</span><h2>قطع مشابهة</h2></div>' +
     '<div class="grid">' + related.map(function (x) { return pieceCard(x, 1); }).join('') + '</div>' +
     '</div></section>'
   : '')
@@ -319,7 +359,7 @@ function occasions() {
 '<p>أغلب الناس يشترون لمناسبة، لا لقطعة بعينها. اختر المناسبة ونبسّط لك القرار.</p></div></section>\n' +
 '<section class="section"><div class="wrap"><div class="occ-cards">' +
  D.OCCASIONS.map(function (o) {
-   return '<a class="occ-card" href="occasions/' + o.slug + '">' +
+   return '<a class="occ-card rv" href="occasions/' + o.slug + '">' +
      '<img src="' + o.image + '" alt="" loading="lazy">' +
      '<div><h3>' + esc(o.ar) + '</h3><p>' + esc(o.lead) + '</p><span>شوف المجموعة ←</span></div></a>';
  }).join('') + '</div></div></section>\n' + ctaBand(0)
@@ -353,11 +393,11 @@ function services() {
 '<p>الدار ما هي بيع فقط. هذي الخدمات اللي نقدمها لقطعك، سواء اشتريتها منا أو لا.</p></div></section>\n' +
 '<section class="section"><div class="wrap"><div class="svc-grid">' +
  D.SERVICES.map(function (s) {
-   return '<article class="svc"><span class="svc-ic">' + s.icon + '</span>' +
+   return '<article class="svc rv"><span class="svc-ic">' + s.icon + '</span>' +
      '<h3>' + esc(s.ar) + '</h3><p>' + esc(s.body) + '</p>' +
      '<a href="' + wa('السلام عليكم، أبي أستفسر عن خدمة ' + s.ar + '.') + '" target="_blank" rel="noopener">اسأل عن الخدمة ←</a>' +
      '</article>';
- }).join('') + '</div></div></section>\n' + ctaBand(0)
+ }).join('') + '</div></div></section>\n' + marquee() + ctaBand(0)
   });
 }
 
@@ -368,8 +408,8 @@ function about() {
     body:
 '<section class="page-head"><div class="wrap"><h1>عن الدار</h1><p>' + esc(D.ABOUT.lead) + '</p></div></section>\n' +
 '<section class="section"><div class="wrap about-grid">' +
-'  <div class="about-copy">' + D.ABOUT.body.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</div>' +
-'  <div class="about-media"><img src="assets/model-gold.jpg" alt="" loading="lazy"></div>' +
+'  <div class="about-copy rv">' + D.ABOUT.body.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</div>' +
+'  <div class="about-media rv"><img src="assets/model-gold.jpg" alt="" loading="lazy"></div>' +
 '</div></section>\n' + trustBar() + ctaBand(0)
   });
 }
@@ -383,7 +423,7 @@ function faq() {
 '<p>لو ما لقيت جوابك، راسلنا واتساب وبنرد عليك.</p></div></section>\n' +
 '<section class="section"><div class="wrap faq-list">' +
  D.FAQ.map(function (f) {
-   return '<details><summary>' + esc(f.q) + '</summary><p>' + esc(f.a) + '</p></details>';
+   return '<details class="rv"><summary>' + esc(f.q) + '</summary><p>' + esc(f.a) + '</p></details>';
  }).join('') + '</div></section>\n' + ctaBand(0)
   });
 }
@@ -396,13 +436,13 @@ function contact() {
 '<section class="page-head"><div class="wrap"><h1>تواصل وزيارة المعرض</h1>' +
 '<p>راسلنا على واتساب، أو زرنا في المعرض وشوف القطع على الطبيعة.</p></div></section>\n' +
 '<section class="section"><div class="wrap contact-grid">\n' +
-'  <div class="contact-card">\n' +
+'  <div class="contact-card rv">\n' +
 '    <a class="btn btn-wa btn-block" href="' + wa('السلام عليكم، عندي استفسار.') + '" target="_blank" rel="noopener">راسلنا على واتساب</a>\n' +
 '    <div class="c-row"><span>العنوان</span><b>' + esc(D.BRAND.address) + '</b></div>\n' +
 '    <div class="c-row"><span>أوقات العمل</span><b>' + esc(D.BRAND.hours) + '</b></div>\n' +
 '    <a class="btn btn-ghost btn-block" href="' + D.BRAND.maps + '" target="_blank" rel="noopener">افتح الموقع في قوقل مابس</a>\n' +
 '  </div>\n' +
-'  <div class="contact-media"><img src="assets/necklace-box.jpg" alt="" loading="lazy"></div>\n' +
+'  <div class="contact-media rv"><img src="assets/necklace-box.jpg" alt="" loading="lazy"></div>\n' +
 '</div></section>\n'
   });
 }
