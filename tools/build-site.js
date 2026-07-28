@@ -92,8 +92,11 @@ function layout(o) {
 
 '<header class="header">\n' +
 '  <button class="burger" type="button" aria-label="القائمة" aria-expanded="false">☰</button>\n' +
+/* نسختان من الشعار: الكريمي فوق الهيرو الداكن، والذهبي على الهيدر الورقي.
+   التبديل في site.css — نسخة واحدة تختفي دائماً على خلفيتها. */
 '  <a class="logo" href="' + (u || './') + '" aria-label="' + esc(D.BRAND.name) + '">' +
-     '<img src="' + u + 'assets/wordmark-cream.png" alt="' + esc(D.BRAND.name) + '"></a>\n' +
+     '<img class="lg-on-dark" src="' + u + 'assets/wordmark-cream.png" alt="' + esc(D.BRAND.name) + '">' +
+     '<img class="lg-on-light" src="' + u + 'assets/wordmark-gold.png" alt="" aria-hidden="true"></a>\n' +
 '  <nav class="nav" aria-label="التنقل الرئيسي">' + nav + '</nav>\n' +
 '  <a class="wa-top" href="' + wa('السلام عليكم، عندي استفسار عن مجوهرات الخميس.') + '" target="_blank" rel="noopener">واتساب</a>\n' +
 '</header>\n' +
