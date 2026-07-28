@@ -1,25 +1,34 @@
-/* مجوهرات الخميس — نظام التصميم v3 «شمبانيا فاتح» (2026-07-28)
+/* مجوهرات الخميس — نظام التصميم v3.1 «داكن على فاتح، بدرجتين متقاربتين»
+ * (2026-07-28)
  *
- * v2 كان Noir داكناً. v3 يقلب المنظومة إلى لوحة فاتحة بقرار من مصطفى
- * (مرجع بصري: قالب Jewel على Framer):
+ * v2 كان Noir أسود بالكامل. v3 قلبه إلى فاتح بالكامل. v3.1 يجمع الاثنين
+ * بتناوب، بشرط أن يقترب الطرفان في الحرارة والدرجة (طلب مصطفى):
  *
- *   ١. الأساس فاتح: ورقي دافئ #f4f2ef ونص أسود، بدل الأسود الغامر.
- *   ٢. الشمبانيا هي لون العلامة الممتلئ: تدرّج #e0cdb4 → #cbb190 فوقه
- *      طبقة تصنفير (حبيبات) تعطي إحساس المعدن المصنفر لا اللون المسطّح.
- *   ٣. الذهبي للنص صار برونزاً أغمق (#8a6534) — الذهبي الفاتح لا يُقرأ
- *      على خلفية فاتحة، والتباين شرط لا تفضيل.
- *   ٤. ما يعلو صورة يبقى داكناً: الهيرو، شريط الدعوة، وبطاقات المناسبات.
- *      النص الأبيض فوق الصورة هو نفسه في القالب المرجعي.
- *   ٥. باقي قرارات v2 كما هي: مقياس خطّي كبير، شبكة خطوط شعرية 1px،
+ *   ١. الطرفان متقاربان: رملي دافئ #efe9e0 مقابل بنّي محروق #362e28،
+ *      لا أبيض ناصع مقابل أسود. كلاهما بنّي الأساس فيقرآن كعائلة واحدة.
+ *   ٢. التناوب: `.section` داكن و`.on-light` فاتح. الهيرو وشريط الدعوة
+ *      وبلاطات المناسبات داكنة دائماً — نص أبيض فوق صورة.
+ *   ٣. الشمبانيا جزيرة فاتحة في الحالتين: تدرّج #e0cdb4 → #cbb190 فوقه
+ *      تصنفير (ضوضاء SVG) يعطي إحساس المعدن المصنفر لا اللون المسطّح.
+ *      نصّها حبري دائماً، ولذلك تُستثنى صراحةً من قواعد القسم الداكن.
+ *   ٤. الأكسنت لونان لا لون: برونز #8a6534 على الفاتح، وذهبي #e0c08a على
+ *      الداكن. لون واحد لا يُقرأ على الخلفيتين.
+ *   ٥. الهيدر يُزاح بارتفاع الشريط العلوي (--topbar-h) حتى لا يركب عليه،
+ *      ويلتصق بالأعلى بعد التمرير.
+ *   ٦. باقي قرارات v2 كما هي: مقياس خطّي كبير، شبكة خطوط شعرية 1px،
  *      تخطيط غير متماثل، موتيف ✳، وحركة ظهور محترمة لتقليل الحركة.
  */
 
 :root{
-  /* الأساس الفاتح */
-  --paper:#f4f2ef;
-  --paper-2:#ebe6df;
+  /* الأساس الفاتح — رملي دافئ، أعمق من الكريمي الناصع */
+  --paper:#efe9e0;
+  --paper-2:#e6dfd4;
   --ivory:#faf9f7;
   --ivory-2:#ebe6dd;
+
+  /* الداكن — بنّي محروق لا أسود، ليقترب من الفاتح في الحرارة والدرجة */
+  --dark:#362e28;
+  --dark-2:#2e2721;
 
   /* الحبر */
   --ink:#141210;
@@ -86,14 +95,17 @@ h1,h2,h3,h4{font-family:var(--f-head);font-weight:700;line-height:1.2;margin:0;l
 
 /* ---------- الهيدر ---------- */
 /* شفاف فوق الهيرو الداكن (نص فاتح)، ويصير ورقياً عند التمرير (نص داكن). */
+/* الهيدر ثابت، والشريط العلوي في السياق العادي فوقه — فلو بدأ الهيدر من 0
+   ركب على الشريط وتراكب النصّان. يُزاح بارتفاع الشريط (يضبطه JS في
+   --topbar-h) حتى يبدأ التمرير، ثم يلتصق بالأعلى بعد أن يمضي الشريط. */
 .header{
-  position:fixed;top:0;inset-inline:0;z-index:60;
+  position:fixed;top:var(--topbar-h,0px);inset-inline:0;z-index:60;
   display:flex;align-items:center;gap:20px;
   padding:16px var(--pad);
-  transition:background .35s,border-color .35s,padding .35s;
+  transition:background .35s,border-color .35s,padding .35s,top .35s;
   border-bottom:1px solid transparent;
 }
-.header.solid{background:rgba(244,242,239,.9);backdrop-filter:blur(14px);border-bottom-color:var(--hair)}
+.header.solid{top:0;background:rgba(239,233,224,.92);backdrop-filter:blur(14px);border-bottom-color:var(--hair)}
 /* الشعار الكريمي يختفي على الهيدر الورقي، والذهبي يحلّ محلّه. */
 .logo img{height:26px;width:auto}
 .logo .lg-on-light{display:none}
@@ -122,7 +134,7 @@ h1,h2,h3,h4{font-family:var(--f-head);font-weight:700;line-height:1.2;margin:0;l
 
 /* الصفحات الداخلية لا هيرو فيها — الهيدر عليها ورقي دائماً، وإلا اختفى
    النص الفاتح على الخلفية الفاتحة قبل أن يبدأ التمرير. */
-body:has(.page-head) .header{background:rgba(244,242,239,.9);backdrop-filter:blur(14px);border-bottom-color:var(--hair)}
+body:has(.page-head) .header{background:rgba(239,233,224,.92);backdrop-filter:blur(14px);border-bottom-color:var(--hair)}
 body:has(.page-head) .nav a{color:var(--ink);opacity:.78}
 body:has(.page-head) .nav a::after{background:var(--gold)}
 body:has(.page-head) .nav a:hover{opacity:1}
@@ -179,8 +191,53 @@ body:has(.page-head) .burger{color:var(--ink)}
 .section{padding:clamp(64px,10vw,132px) 0;position:relative}
 .on-light{background:var(--paper);color:var(--ink)}
 .on-light h1,.on-light h2,.on-light h3{color:var(--ink)}
-/* الشريط المتناوب صار ورقياً أدفأ بدل الأسود. */
-.band{background:var(--paper-2)}
+
+/* ---------- التناوب داكن / فاتح ---------- */
+/* القسم العادي داكن و`.on-light` فاتح — لكن الطرفين متقاربان في الحرارة:
+   بنّي محروق #362e28 مقابل رملي #efe9e0، لا أسود مقابل أبيض. */
+.section:not(.on-light),.band{background:var(--dark);color:var(--sand)}
+.section:not(.on-light) h1,.section:not(.on-light) h2,.section:not(.on-light) h3,
+.band h1,.band h2,.band h3{color:var(--ivory)}
+.section:not(.on-light) .sec-head p,.band .sec-head p{color:var(--muted-on-dark)}
+.section:not(.on-light) .sec-eyebrow,.section:not(.on-light) .more,
+.section:not(.on-light) .ast,.band .sec-eyebrow,.band .more,.band .ast{color:var(--gold-on-dark)}
+.section:not(.on-light) .card-price,.band .card-price{color:var(--gold-on-dark)}
+.section:not(.on-light) .card-meta,.section:not(.on-light) .metal-note,
+.section:not(.on-light) .empty,.band .card-meta,.band .metal-note,.band .empty{color:var(--muted-on-dark)}
+.section:not(.on-light) .chip:hover,.band .chip:hover{color:var(--gold-on-dark)}
+.section:not(.on-light) .cat-row p,.band .cat-row p{color:var(--muted-on-dark)}
+.section:not(.on-light) .cat-row:hover,.band .cat-row:hover{background:rgba(224,192,138,.09)}
+.section:not(.on-light) .cat-row .go,.band .cat-row .go{color:var(--gold-on-dark)}
+.section:not(.on-light) .card:hover,.band .card:hover{background:rgba(224,192,138,.07)}
+.section:not(.on-light) .prose p,.section:not(.on-light) .about-copy p,
+.band .prose p,.band .about-copy p{color:var(--sand);opacity:.88}
+.section:not(.on-light) .prose-note,.band .prose-note{color:var(--muted-on-dark)}
+.section:not(.on-light) .prose-note a,.band .prose-note a{color:var(--gold-on-dark)}
+.section:not(.on-light) .btn-ghost,.band .btn-ghost{border-color:rgba(232,224,212,.34);color:var(--sand)}
+.section:not(.on-light) .btn-ghost:hover,.band .btn-ghost:hover{
+  border-color:var(--gold-on-dark);color:var(--gold-on-dark);background:transparent}
+/* الأسئلة والمواصفات وبطاقات التواصل داخل قسم داكن */
+.section:not(.on-light) .faq-list p,.band .faq-list p{color:var(--muted-on-dark)}
+.section:not(.on-light) .faq-list summary:hover,.band .faq-list summary:hover{color:var(--gold-on-dark)}
+.section:not(.on-light) .faq-list summary::after,.band .faq-list summary::after{color:var(--gold-on-dark)}
+.section:not(.on-light) .c-row span,.section:not(.on-light) .specs dt,
+.band .c-row span,.band .specs dt{color:var(--muted-on-dark)}
+.section:not(.on-light) .piece-ref b,.section:not(.on-light) .piece-price,
+.section:not(.on-light) .piece-visit,.band .piece-ref b,.band .piece-price,
+.band .piece-visit{color:var(--gold-on-dark)}
+.section:not(.on-light) .piece-note,.band .piece-note{color:var(--sand);opacity:.84}
+.section:not(.on-light) .piece-ref,.section:not(.on-light) .piece-hint,
+.band .piece-ref,.band .piece-hint{color:var(--muted-on-dark)}
+.section:not(.on-light) .svc-ic,.section:not(.on-light) .svc a,
+.band .svc-ic,.band .svc a{color:var(--gold)}
+/* أسطح الشمبانيا جزر فاتحة داخل القسم الداكن، فنصّها يبقى حبرياً.
+   قواعد القسم الداكن أعلى تخصيصاً من `.svc h3`، فتُستثنى صراحةً هنا. */
+.section:not(.on-light) .svc h3,.section:not(.on-light) .occ-card h3,
+.section:not(.on-light) .guide h3,.section:not(.on-light) .trust-row strong,
+.band .svc h3,.band .occ-card h3,.band .guide h3,.band .trust-row strong{color:var(--ink)}
+.section:not(.on-light) .occ-card span,.band .occ-card span{color:var(--gold)}
+.section:not(.on-light) .chip.on,.band .chip.on,
+.section:not(.on-light) .chip.on:hover,.band .chip.on:hover{color:var(--ink)}
 .sec-head{margin-block-end:clamp(30px,5vw,54px)}
 .sec-eyebrow{display:block;color:var(--gold);letter-spacing:.26em;font-size:.72rem;margin-block-end:14px}
 .sec-head h2{font-size:clamp(1.9rem,5.2vw,3.4rem);max-width:20ch}
@@ -240,10 +297,10 @@ body:has(.page-head) .burger{color:var(--ink)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));
   border-block-start:1px solid var(--hair-dk);border-inline-start:1px solid var(--hair-dk)}
 .on-light .grid{border-color:var(--hair-dk)}
-.band .grid,.section:not(.on-light) .grid{border-color:var(--hair)}
+.band .grid,.section:not(.on-light) .grid{border-color:var(--hair-on-dark)}
 .card{display:block;min-width:0;border-inline-end:1px solid var(--hair-dk);border-block-end:1px solid var(--hair-dk);
   padding:0 0 18px;transition:background .35s}
-.band .card,.section:not(.on-light) .card{border-color:var(--hair)}
+.band .card,.section:not(.on-light) .card{border-color:var(--hair-on-dark)}
 .card:hover{background:var(--champ-soft)}
 .card-img{display:block;aspect-ratio:1;overflow:hidden;background:var(--ivory)}
 .on-light .card-img{background:#fff}
@@ -253,16 +310,16 @@ body:has(.page-head) .burger{color:var(--ink)}
 .card-top{display:flex;align-items:baseline;gap:12px}
 .card-name{font-family:var(--f-head);font-size:1.08rem;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .card-rule{flex:1;height:1px;background:var(--hair-dk);min-width:14px}
-.band .card-rule,.section:not(.on-light) .card-rule{background:var(--hair)}
+.band .card-rule,.section:not(.on-light) .card-rule{background:var(--hair-on-dark)}
 .card-price{color:var(--gold);font-size:.85rem;font-weight:700;white-space:nowrap}
 .card-meta{display:block;color:var(--muted);font-size:.76rem;letter-spacing:.06em;margin-block-start:6px}
 .on-light .card-meta{color:var(--muted-lt)}
 .empty{color:var(--muted);grid-column:1/-1;padding:44px 24px}
 
 .chips{display:flex;flex-wrap:wrap;gap:0;margin-block-end:0;border:1px solid var(--hair-dk);width:max-content;max-width:100%}
-.band .chips,.section:not(.on-light) .chips{border-color:var(--hair)}
+.band .chips,.section:not(.on-light) .chips{border-color:var(--hair-on-dark)}
 .chip{padding:11px 22px;font-size:.8rem;letter-spacing:.1em;border-inline-end:1px solid var(--hair-dk);transition:.25s}
-.band .chip,.section:not(.on-light) .chip{border-color:var(--hair)}
+.band .chip,.section:not(.on-light) .chip{border-color:var(--hair-on-dark)}
 .chip:last-child{border-inline-end:0}
 .chip:hover{color:var(--gold)}
 .chip.on{font-weight:700}
@@ -402,7 +459,9 @@ body:has(.page-head) .burger{color:var(--ink)}
 /* ---------- الجوال ---------- */
 @media (max-width:960px){
   .burger{display:block}
-  .nav{position:fixed;inset:64px 0 auto;flex-direction:column;gap:0;background:var(--paper);
+  /* القائمة معلّقة أسفل الهيدر نفسه لا على مسافة ثابتة من أعلى النافذة،
+     فتتبعه حين يُزاح بارتفاع الشريط العلوي. */
+  .nav{position:absolute;top:100%;inset-inline:0;flex-direction:column;gap:0;background:var(--paper);
     border-block-end:1px solid var(--hair);padding:8px 0;display:none;text-align:center}
   .nav.open{display:flex}
   /* القائمة المنسدلة لوح ورقي دائماً، فالنص فيها داكن مهما كان الهيدر. */

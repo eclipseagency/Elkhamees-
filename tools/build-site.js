@@ -135,6 +135,10 @@ function layout(o) {
 '  // القائمة على الجوال\n' +
 '  var b=document.querySelector(".burger"),n=document.querySelector(".nav");\n' +
 '  if(b&&n)b.addEventListener("click",function(){var o=n.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");});\n' +
+'  // ارتفاع الشريط العلوي يُزاح به الهيدر حتى لا يركب عليه قبل التمرير\n' +
+'  var tb=document.querySelector(".top");\n' +
+'  function th(){document.documentElement.style.setProperty("--topbar-h",(tb?tb.offsetHeight:0)+"px");}\n' +
+'  th();addEventListener("resize",th,{passive:true});\n' +
 '  // الهيدر شفاف فوق الهيرو، ويصير معتماً بعد التمرير\n' +
 '  var h=document.querySelector(".header");\n' +
 '  function hs(){if(h)h.classList.toggle("solid",scrollY>40);}hs();addEventListener("scroll",hs,{passive:true});\n' +

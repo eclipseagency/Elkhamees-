@@ -74,6 +74,10 @@
   // القائمة على الجوال
   var b=document.querySelector(".burger"),n=document.querySelector(".nav");
   if(b&&n)b.addEventListener("click",function(){var o=n.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");});
+  // ارتفاع الشريط العلوي يُزاح به الهيدر حتى لا يركب عليه قبل التمرير
+  var tb=document.querySelector(".top");
+  function th(){document.documentElement.style.setProperty("--topbar-h",(tb?tb.offsetHeight:0)+"px");}
+  th();addEventListener("resize",th,{passive:true});
   // الهيدر شفاف فوق الهيرو، ويصير معتماً بعد التمرير
   var h=document.querySelector(".header");
   function hs(){if(h)h.classList.toggle("solid",scrollY>40);}hs();addEventListener("scroll",hs,{passive:true});
