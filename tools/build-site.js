@@ -207,22 +207,27 @@ function home() {
     title: 'دار مجوهرات', active: '', depth: 0,
     description: D.BRAND.name + ' — ذهب وألماس موثّق، صياغة يدوية، وتصميم خاص حسب الطلب.',
     body:
-/* الهيرو يملأ الشاشة كاملة: الصورة هي الصفحة، والنص عليها لا بجانبها.
-   العنوان ضخم عمداً — هذا ما يفصل موقع دار مجوهرات عن موقع متجر. */
+/* الهيرو: النص والصورة جاران على الورق، لا نصّ فوق صورة بحجاب أسود.
+   الشكل السابق قرأ كصفحة هبوط؛ هذا يقرأ كصفحة كتالوج. التسمية تحت
+   اللوحة (مجموعة/سنة) هي ما يميّز دار مجوهرات عن متجر. */
 '<section class="hero">\n' +
-'  <img class="hero-img" src="assets/editorial/campaign-hero.jpg" alt="" fetchpriority="high">\n' +
-'  <div class="hero-in"><div class="hero-copy">\n' +
-'    <span class="hero-eyebrow">✳ &nbsp;مجوهرات الخميس · المملكة العربية السعودية</span>\n' +
-'    <h1>قطعة تُلبس <em>لسنوات</em>،<br>لا لموسم</h1>\n' +
-'    <div class="hero-row">\n' +
+'  <div class="hero-in">\n' +
+'    <div class="hero-copy">\n' +
+'      <span class="hero-eyebrow">مجوهرات الخميس · المملكة العربية السعودية</span>\n' +
+'      <h1>قطعة تُلبس <em>لسنوات</em>،<br>لا لموسم</h1>\n' +
+'      <i class="hero-rule"></i>\n' +
 '      <p>ذهب وألماس موثّق، صياغة يدوية في ورشتنا، وتصميم خاص لو ما لقيت اللي في بالك.</p>\n' +
 '      <div class="hero-acts">\n' +
 '        <a class="btn btn-gold" href="jewellery">تصفّح المجوهرات</a>\n' +
-'        <a class="btn btn-ghost" href="occasions">أشتري لمناسبة</a>\n' +
+'        <a class="more" href="occasions">أشتري لمناسبة ←</a>\n' +
 '      </div>\n' +
 '    </div>\n' +
-'  </div></div>\n' +
-'  <div class="scroll-cue"><i></i><span>مرّر</span></div>\n' +
+'    <figure class="hero-plate">\n' +
+'      <img src="assets/editorial/campaign-hero.jpg" alt="قطعة من مجموعة الدار" fetchpriority="high">\n' +
+'      <figcaption><span>من مجموعة الدار</span><span>صياغة يدوية</span></figcaption>\n' +
+'    </figure>\n' +
+'  </div>\n' +
+'  <div class="scroll-cue"><span>مرّر</span><i></i></div>\n' +
 '</section>\n' +
 
 marquee() +

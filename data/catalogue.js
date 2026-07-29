@@ -114,10 +114,10 @@ var PIECES = [
  * المناسبات — أغلب المشترين يشترون لمناسبة، لا لقطعة بعينها
  * ------------------------------------------------------------------ */
 var OCCASIONS = [
-  { slug: 'wedding', ar: 'الزواج والملكة', image: 'assets/editorial/model-gold.jpg',
+  { slug: 'wedding', ar: 'الزواج والملكة', image: 'assets/editorial/hero-collection.jpg',
     lead: 'أطقم وقطع تليق بليلة العمر، ويمكن تنفيذها بتصميم خاص للعروس.',
     guide: 'ننصح بالبدء قبل الموعد بشهرين على الأقل إذا كان التصميم خاصاً.' },
-  { slug: 'engagement', ar: 'الخطوبة', image: 'assets/editorial/campaign-hero.jpg',
+  { slug: 'engagement', ar: 'الخطوبة', image: 'assets/editorial/model-gold.jpg',
     lead: 'خواتم خطوبة بحجر مركزي، مع إمكانية اختيار الحجر والعيار.',
     guide: 'نساعدك في اختيار المقاس بسرية إذا كانت مفاجأة.' },
   { slug: 'gifts', ar: 'الهدايا', image: 'assets/editorial/necklace-box.jpg',

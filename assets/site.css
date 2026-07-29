@@ -89,67 +89,73 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 }
 .header.solid{top:0;background:rgba(242,238,231,.94);backdrop-filter:blur(16px);border-bottom-color:var(--hair-2)}
 .logo img{height:24px;width:auto}
-.logo .lg-on-light{display:none}
-.header.solid .lg-on-dark,body:has(.page-head) .lg-on-dark{display:none}
-.header.solid .lg-on-light,body:has(.page-head) .lg-on-light{display:block}
+.logo .lg-on-dark{display:none}
+.logo .lg-on-light{display:block}
 .nav{display:flex;gap:30px;margin-inline-start:auto;font-size:.72rem;letter-spacing:.2em;font-weight:300}
-.nav a{color:var(--sand);opacity:.88;position:relative;padding:6px 0;transition:color .4s,opacity .3s}
+.nav a{color:var(--ink);opacity:.68;position:relative;padding:6px 0;transition:opacity .3s,color .3s}
 .nav a::after{content:'';position:absolute;inset-inline:0;bottom:0;height:1px;background:currentColor;
   transform:scaleX(0);transform-origin:inline-end;transition:transform .4s}
 .nav a:hover{opacity:1}
 .nav a:hover::after,.nav a.on::after{transform:scaleX(1);transform-origin:inline-start}
-.nav a.on{color:var(--gold-on-dark);opacity:1}
-.header.solid .nav a{color:var(--ink);opacity:.7}
-.header.solid .nav a:hover{opacity:1}
-.header.solid .nav a.on{color:var(--gold);opacity:1}
+.nav a.on{color:var(--gold);opacity:1}
 .wa-top{
-  border:1px solid rgba(230,222,206,.4);color:var(--sand);font-size:.68rem;letter-spacing:.2em;
+  border:1px solid var(--hair);color:var(--ink);font-size:.68rem;letter-spacing:.2em;
   padding:10px 22px;white-space:nowrap;transition:.3s;font-weight:300;
 }
-.wa-top:hover{background:var(--sand);color:var(--black);border-color:var(--sand)}
-.header.solid .wa-top{border-color:var(--hair);color:var(--ink)}
-.header.solid .wa-top:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.burger{display:none;background:none;border:0;color:var(--sand);font-size:1.2rem;cursor:pointer;padding:6px}
-.header.solid .burger{color:var(--ink)}
+.wa-top:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.burger{display:none;background:none;border:0;color:var(--ink);font-size:1.2rem;cursor:pointer;padding:6px}
 
-/* الصفحات الداخلية بلا هيرو — الهيدر عليها ورقي دائماً */
-body:has(.page-head) .header{background:rgba(242,238,231,.94);backdrop-filter:blur(16px);border-bottom-color:var(--hair-2)}
-body:has(.page-head) .nav a{color:var(--ink);opacity:.7}
-body:has(.page-head) .nav a:hover{opacity:1}
-body:has(.page-head) .nav a.on{color:var(--gold);opacity:1}
-body:has(.page-head) .wa-top{border-color:var(--hair);color:var(--ink)}
-body:has(.page-head) .wa-top:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-body:has(.page-head) .burger{color:var(--ink)}
 
 /* ---------- الهيرو ---------- */
-/* أقصر من ملء الشاشة (82vh): يترك أثر القسم التالي ظاهراً فيدعو للتمرير. */
-.hero{position:relative;min-height:82svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--black)}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% 26%;
-  animation:kenburns 26s ease-out both}
-@keyframes kenburns{from{transform:scale(1.08)}to{transform:scale(1)}}
-.hero::after{content:'';position:absolute;inset:0;
-  background:
-    linear-gradient(180deg,rgba(13,11,9,.52) 0%,rgba(13,11,9,.06) 32%,rgba(13,11,9,.78) 84%,rgba(13,11,9,.92) 100%),
-    linear-gradient(to right,rgba(13,11,9,.5) 0%,rgba(13,11,9,.08) 46%,transparent 72%)}
-.hero-in{position:relative;z-index:2;width:100%;padding:0 var(--pad) clamp(52px,8vh,92px)}
-.hero-copy{max-width:min(840px,100%);margin-inline-start:auto}
-.hero-eyebrow{display:block;color:var(--gold-on-dark);letter-spacing:.34em;font-size:.68rem;
-  margin-block-end:26px;font-weight:300}
+/* الشكل السابق: صورة تملأ الشاشة وحجاب أسود فوقها والنص عليها. قرأ كصفحة
+   هبوط لا كدار مجوهرات — الصورة المتاحة بورتريه تجميل لا تُظهر قطعة،
+   والحجاب أطفأ أول ما تراه العين. البديل تحريري: النص والصورة جاران على
+   الورق نفسه. لا حجاب، ولا نص فوق وجه، والطباعة هي التي تحمل الصفحة.
+   ميزة إضافية: الهيدر لم يعد يعلو خلفية داكنة، فسقط سبب اختفاء النص. */
+.hero{
+  position:relative;background:var(--paper);
+  padding:calc(var(--topbar-h,44px) + clamp(3.2rem,6vw,5.2rem)) 0 clamp(2.5rem,5vw,4rem);
+}
+.hero-in{
+  width:min(1320px,100% - var(--pad)*2);margin-inline:auto;
+  display:grid;grid-template-columns:1.02fr .98fr;
+  gap:clamp(2rem,5vw,5.5rem);align-items:center;
+}
+.hero-copy{max-width:none}
+.hero-eyebrow{display:block;color:var(--muted);letter-spacing:.3em;font-size:.66rem;
+  font-weight:300;margin-block-end:clamp(20px,3vw,30px)}
 .hero h1{
-  font-family:var(--f-head);font-weight:700;color:var(--paper-3);
-  font-size:clamp(2.6rem,7vw,6.5rem);line-height:1.06;
-  max-width:15ch;margin-block-end:clamp(28px,4vh,42px);
+  font-family:var(--f-head);font-weight:700;color:var(--ink);
+  font-size:clamp(2.3rem,5vw,4.6rem);line-height:1.12;
+  max-width:13ch;margin-block-end:clamp(22px,3vw,30px);
 }
-.hero h1 em{font-style:normal;color:var(--gold-on-dark)}
-.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:36px;flex-wrap:wrap}
-.hero p{color:var(--sand);opacity:.8;font-size:.98rem;max-width:42ch;margin:0;font-weight:300}
-.hero-acts{display:flex;gap:14px;flex-wrap:wrap}
+.hero h1 em{font-style:normal;color:var(--gold)}
+/* خيط شعري يفصل العنوان عن السطر التالي — علامة كتالوج لا صفحة بيع */
+.hero-rule{display:block;width:64px;height:1px;background:var(--gold);
+  margin-block-end:clamp(22px,3vw,30px)}
+.hero-row{display:block}
+.hero p{color:var(--muted);font-size:1rem;max-width:38ch;margin:0 0 clamp(28px,4vw,38px);font-weight:300}
+.hero-acts{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+
+/* لوحة الصورة — بورتريه 3:4 وتسمية تحتها كصفحة كتالوج */
+.hero-plate{margin:0;position:relative}
+/* ارتفاع محكوم بدل نسبة حرّة: 3:4 على عمود بعرض 640px تعطي 850px
+   فتتجاوز الشاشة ويسقط أسفل الهيرو خارج المشهد. */
+.hero-plate img{width:100%;height:clamp(400px,58vh,600px);object-fit:cover;object-position:50% 26%}
+.hero-plate figcaption{
+  display:flex;justify-content:space-between;gap:16px;
+  padding-block-start:14px;margin-block-start:14px;border-block-start:1px solid var(--hair-2);
+  font-size:.66rem;letter-spacing:.22em;color:var(--muted);font-weight:300;
+}
 .scroll-cue{
-  position:absolute;inset-inline-end:var(--pad);bottom:26px;z-index:2;
-  color:var(--muted-on-dark);font-size:.64rem;letter-spacing:.24em;display:flex;align-items:center;gap:12px;
+  display:flex;align-items:center;gap:12px;justify-content:flex-end;
+  width:min(1320px,100% - var(--pad)*2);margin:clamp(2rem,4vw,3.4rem) auto 0;
+  color:var(--muted);font-size:.64rem;letter-spacing:.24em;
 }
-.scroll-cue i{display:block;width:1px;height:38px;background:linear-gradient(var(--gold-on-dark),transparent);animation:cue 2.4s infinite}
-@keyframes cue{0%,100%{opacity:.25;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+.scroll-cue i{display:block;width:34px;height:1px;background:var(--hair);position:relative;overflow:hidden}
+.scroll-cue i::after{content:'';position:absolute;inset:0;background:var(--gold);
+  transform:translateX(100%);animation:cue 2.6s infinite}
+@keyframes cue{0%{transform:translateX(100%)}55%,100%{transform:translateX(-100%)}}
 
 /* ---------- الأزرار ---------- */
 /* لا تعبئة ذهبية. الأساسي حبر صلب، والثانوي خط شعري. */
@@ -164,10 +170,10 @@ body:has(.page-head) .burger{color:var(--ink)}
 .btn-ghost:hover{border-color:var(--ink)}
 .btn-block{display:flex;width:100%}
 /* فوق الصور الداكنة تنعكس المعادلة */
-.hero .btn-gold,.cta .btn-gold,.hero .btn-wa,.cta .btn-wa{background:var(--paper);color:var(--ink);border-color:var(--paper)}
-.hero .btn-gold:hover,.cta .btn-gold:hover,.hero .btn-wa:hover,.cta .btn-wa:hover{background:transparent;color:var(--paper)}
-.hero .btn-ghost,.cta .btn-ghost{border-color:rgba(230,222,206,.34);color:var(--sand)}
-.hero .btn-ghost:hover,.cta .btn-ghost:hover{border-color:var(--sand)}
+.cta .btn-gold,.cta .btn-wa{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.cta .btn-gold:hover,.cta .btn-wa:hover{background:transparent;color:var(--paper)}
+.cta .btn-ghost{border-color:rgba(230,222,206,.34);color:var(--sand)}
+.cta .btn-ghost:hover{border-color:var(--sand)}
 
 /* ---------- الأقسام ---------- */
 /* لا تناوب منتظم: الورق هو الأساس، والأسود يظهر مرتين فقط في الصفحة. */
@@ -400,11 +406,11 @@ body:has(.page-head) .burger{color:var(--ink)}
   .nav{position:absolute;top:100%;inset-inline:0;flex-direction:column;gap:0;background:var(--paper);
     border-block-end:1px solid var(--hair-2);padding:10px 0;display:none;text-align:center}
   .nav.open{display:flex}
-  .nav a,.header.solid .nav a,body:has(.page-head) .nav a{color:var(--ink);opacity:.78}
-  .nav a.on,.header.solid .nav a.on,body:has(.page-head) .nav a.on{color:var(--gold);opacity:1}
+  .nav a{color:var(--ink);opacity:.78}
+  .nav a.on{color:var(--gold);opacity:1}
   .nav a{padding:16px var(--pad);font-size:.86rem;letter-spacing:.14em}
   .logo{margin-inline-end:auto}
-  .split,.piece-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+  .hero-in,.split,.piece-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
   .split-media,.about-media{min-height:340px}
   .svc{border-inline-start:0;border-block-start:1px solid var(--hair-2)}
   .svc:first-child{border-block-start:0}
@@ -415,8 +421,6 @@ body:has(.page-head) .burger{color:var(--ink)}
   /* مؤشّر التمرير يزاحم زر الواتساب العائم على الشاشات الصغيرة. */
   .scroll-cue{display:none}
   .top{font-size:.62rem;letter-spacing:.16em;padding:10px 12px}
-  .hero{min-height:88svh}
-  .hero-row{flex-direction:column;align-items:flex-start;gap:26px}
   .grid{grid-template-columns:1fr 1fr;gap:2rem 1.2rem}
   /* في عمودين لا يتّسع سطر «الاسم — السعر»، فينكمش الاسم حتى يختفي. */
   .card-top{display:block}
