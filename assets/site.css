@@ -107,44 +107,47 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 
 
 /* ---------- الهيرو ---------- */
-/* ثلاثة أشكال جُرّبت: (١) صورة تملأ الشاشة والنص فوقها بحجاب أسود — قرأت
-   كصفحة هبوط. (٢) نص وصورة جاران في عمودين — الصورة ضاقت. (٣) وهذا:
-   ترويسة طباعية، ثم الصورة شريطاً بعرض المقطع كاملاً من حافة إلى حافة.
-   الصورة تأخذ حجمها كحملة، والنص يبقى على الورق لا فوق وجه. */
-.hero{position:relative;background:var(--paper);
-  padding:calc(var(--topbar-h,44px) + clamp(3.4rem,6vw,5.4rem)) 0 clamp(2.5rem,5vw,4rem)}
-.hero-in{width:min(1320px,100% - var(--pad)*2);margin-inline:auto;
-  margin-block-end:clamp(2.4rem,5vw,4rem)}
-/* الترويسة عمودان: العنوان الكبير في الأول، والسطر التعريفي والأزرار
-   في الثاني مرصوصة لأسفل — وإلا بقي نصف العرض فارغاً فوق الصورة. */
-.hero-copy{display:grid;grid-template-columns:1.32fr .68fr;
-  gap:clamp(2rem,5vw,4.5rem);align-items:end}
-.hero-head{min-width:0}
+/* الصورة خلفية والنص فوقها. الصورة مقلوبة أفقياً (assets/editorial/hero-bg.jpg)
+   لأن الموديل في يمين الكادر والعربية تبدأ من اليمين — فكان النص يقع على
+   الوجه. الحجاب حليبي لا أسود: الصورة فاتحة أصلاً، والحجاب الأسود هو ما
+   أطفأ المحاولة الأولى. النص حبري فوق الجزء الفاتح، فلا يحتاج تعتيماً. */
+.hero{
+  position:relative;background:var(--paper);overflow:hidden;
+  min-height:clamp(540px,84svh,780px);display:flex;align-items:center;
+  padding:calc(var(--topbar-h,44px) + clamp(4rem,7vw,6rem)) 0 clamp(3rem,6vw,5rem);
+}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:32% 28%;animation:kenburns 30s ease-out both}
+@keyframes kenburns{from{transform:scale(1.06)}to{transform:scale(1)}}
+/* حجاب علوي: الهيدر يعلو الصورة، ونصّه حبري — فوق شعر الموديل الغامق
+   يختفي. تدرّج حليبي من الأعلى يضمن قراءته بعرض الشاشة كاملاً. */
+.hero::before{content:'';position:absolute;inset-inline:0;top:0;z-index:1;pointer-events:none;
+  height:clamp(130px,20vh,210px);
+  background:linear-gradient(to bottom,rgba(242,238,231,.94) 0%,rgba(242,238,231,.72) 42%,rgba(242,238,231,0) 100%)}
+.hero::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to left,
+    rgba(242,238,231,.96) 0%,rgba(242,238,231,.9) 26%,
+    rgba(242,238,231,.55) 46%,rgba(242,238,231,.08) 66%,transparent 80%)}
+.hero-in{position:relative;z-index:2;width:min(1320px,100% - var(--pad)*2);margin-inline:auto}
+.hero-copy{max-width:min(620px,100%)}
 .hero-eyebrow{display:block;color:var(--muted);letter-spacing:.3em;font-size:.66rem;
   font-weight:300;margin-block-end:clamp(18px,2.6vw,26px)}
 .hero h1{
   font-family:var(--f-head);font-weight:700;color:var(--ink);
-  font-size:clamp(2.4rem,6vw,5.6rem);line-height:1.08;
-  max-width:none;margin-block-end:clamp(20px,2.6vw,28px);
+  font-size:clamp(2.4rem,5.4vw,4.8rem);line-height:1.1;
+  max-width:13ch;margin-block-end:clamp(20px,2.6vw,28px);
 }
 .hero h1 em{font-style:normal;color:var(--gold)}
-.hero-rule{display:block;width:64px;height:1px;background:var(--gold)}
-.hero-row{display:block;padding-block-end:6px}
-.hero p{color:var(--muted);font-size:.98rem;max-width:34ch;margin:0 0 clamp(22px,3vw,30px);font-weight:300}
+.hero-rule{display:block;width:64px;height:1px;background:var(--gold);
+  margin-block-end:clamp(20px,2.6vw,28px)}
+.hero-row{display:block}
+.hero p{color:var(--ink-2);font-size:1rem;max-width:34ch;
+  margin:0 0 clamp(24px,3.4vw,34px);font-weight:300}
 .hero-acts{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
-
-/* اللوحة بعرض المقطع كاملاً: تُكسر حدود الحاوية إلى حافتي النافذة. */
-.hero-plate{margin:0;position:relative;width:100vw;margin-inline:calc(50% - 50vw)}
-.hero-plate img{width:100%;height:clamp(320px,54vh,580px);object-fit:cover;object-position:50% 32%}
-.hero-plate figcaption{
-  width:min(1320px,100% - var(--pad)*2);margin-inline:auto;
-  display:flex;justify-content:space-between;gap:16px;
-  padding-block-start:14px;font-size:.66rem;letter-spacing:.22em;
-  color:var(--muted);font-weight:300;
-}
 .scroll-cue{
-  display:flex;align-items:center;gap:12px;justify-content:flex-end;
-  width:min(1320px,100% - var(--pad)*2);margin:clamp(1.6rem,3vw,2.6rem) auto 0;
+  position:absolute;z-index:2;inset-block-end:clamp(20px,3vw,32px);
+  inset-inline-start:max(var(--pad),calc(50% - 660px));
+  display:flex;align-items:center;gap:12px;
   color:var(--muted);font-size:.64rem;letter-spacing:.24em;
 }
 .scroll-cue i{display:block;width:34px;height:1px;background:var(--hair);position:relative;overflow:hidden}
@@ -405,13 +408,21 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
   .nav a.on{color:var(--gold);opacity:1}
   .nav a{padding:16px var(--pad);font-size:.86rem;letter-spacing:.14em}
   .logo{margin-inline-end:auto}
-  .hero-copy,.split,.piece-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+  .split,.piece-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
   .split-media,.about-media{min-height:340px}
   .svc{border-inline-start:0;border-block-start:1px solid var(--hair-2)}
   .svc:first-child{border-block-start:0}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:600px){
+  /* الشاشة الضيقة لا تتّسع لنصّ بجانب الموديل: الحجاب يصير رأسياً من أسفل
+     والنص يجلس عليه. */
+  .hero{align-items:flex-end;min-height:clamp(520px,80svh,680px)}
+  .hero::after{background:linear-gradient(to top,
+    rgba(242,238,231,.97) 0%,rgba(242,238,231,.93) 30%,
+    rgba(242,238,231,.42) 46%,transparent 62%)}
+  .hero-bg{object-position:38% 22%}
+  .hero-copy{max-width:none}
   .wa-top{display:none}
   /* مؤشّر التمرير يزاحم زر الواتساب العائم على الشاشات الصغيرة. */
   .scroll-cue{display:none}
