@@ -18,10 +18,17 @@
 <body>
 <div class="top">صناعة سعودية · ذهب وألماس موثّق · زيارة المعرض بموعد</div>
 <header class="header">
-  <button class="burger" type="button" aria-label="القائمة" aria-expanded="false">☰</button>
-  <a class="logo" href="../" aria-label="مجوهرات الخميس"><img class="lg-on-dark" src="../assets/wordmark-cream.png" alt="مجوهرات الخميس"><img class="lg-on-light" src="../assets/wordmark-gold.png" alt="" aria-hidden="true"></a>
+  <div class="head-main">
+    <button class="burger" type="button" aria-label="القائمة" aria-expanded="false">☰</button>
+    <form class="search" role="search" autocomplete="off">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.6-3.6"></path></svg>
+      <input type="search" name="q" placeholder="ابحث عن قطعة" aria-label="ابحث عن قطعة">
+      <div class="search-out" role="listbox" hidden></div>
+    </form>
+    <a class="logo" href="../" aria-label="مجوهرات الخميس"><img src="../assets/wordmark-gold.png" alt="مجوهرات الخميس"></a>
+    <a class="wa-top" href="https://wa.me/966138320814?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B9%D9%86%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D8%AC%D9%88%D9%87%D8%B1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AE%D9%85%D9%8A%D8%B3." target="_blank" rel="noopener">واتساب</a>
+  </div>
   <nav class="nav" aria-label="التنقل الرئيسي"><a href="../jewellery">المجوهرات</a><a href="../occasions" class="on">المناسبات</a><a href="../services">خدماتنا</a><a href="../about">عن الدار</a><a href="../faq">الأسئلة الشائعة</a><a href="../contact">تواصل</a></nav>
-  <a class="wa-top" href="https://wa.me/966138320814?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B9%D9%86%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D8%AC%D9%88%D9%87%D8%B1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AE%D9%85%D9%8A%D8%B3." target="_blank" rel="noopener">واتساب</a>
 </header>
 <main id="main">
 <section class="page-head"><div class="wrap"><nav class="crumb"><a href="../">الرئيسية</a> · <a href="../occasions">المناسبات</a> · <span>التخرج والترقيات</span></nav><h1>التخرج والترقيات</h1><p>قطع يومية أنيقة تُهدى في المناسبات السعيدة.</p></div></section>
@@ -48,13 +55,25 @@
   // القائمة على الجوال
   var b=document.querySelector(".burger"),n=document.querySelector(".nav");
   if(b&&n)b.addEventListener("click",function(){var o=n.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");});
-  // ارتفاع الشريط العلوي يُزاح به الهيدر حتى لا يركب عليه قبل التمرير
-  var tb=document.querySelector(".top");
-  function th(){document.documentElement.style.setProperty("--topbar-h",(tb?tb.offsetHeight:0)+"px");}
-  th();addEventListener("resize",th,{passive:true});
-  // الهيدر شفاف فوق الهيرو، ويصير معتماً بعد التمرير
-  var h=document.querySelector(".header");
-  function hs(){if(h)h.classList.toggle("solid",scrollY>40);}hs();addEventListener("scroll",hs,{passive:true});
+  // البحث — الفهرس من data/catalogue.js نفسه، فلا مصدر ثانٍ يتخلّف عنه
+  var IX=[{"t":"خاتم سوليتير ألماس","u":"../piece/solitaire-ring-18k","c":"خواتم","p":"اطلب السعر"},{"t":"خاتم ألماس قطع الكمثرى","u":"../piece/pear-ring-18k","c":"خواتم","p":"اطلب السعر"},{"t":"قلادة ألماس متدرجة","u":"../piece/diamond-necklace-18k","c":"قلائد","p":"اطلب السعر"},{"t":"قلادة دائرية بالألماس","u":"../piece/circular-necklace-18k","c":"قلائد","p":"اطلب السعر"},{"t":"إسورة تنس ألماس","u":"../piece/tennis-bracelet-18k","c":"أساور","p":"اطلب السعر"},{"t":"أقراط متدلية بالألماس","u":"../piece/drop-earrings-18k","c":"أقراط","p":"اطلب السعر"},{"t":"طقم عروس متكامل","u":"../piece/bridal-set-18k","c":"أطقم كاملة","p":"اطلب السعر"},{"t":"طقم الزفاف الكلاسيكي","u":"../piece/classic-bridal-set","c":"أطقم كاملة","p":"اطلب السعر"}];
+  var sf=document.querySelector(".search"),si=sf&&sf.querySelector("input"),so=sf&&sf.querySelector(".search-out");
+  function norm(s){return (s||"").replace(/[أإآ]/g,"ا").replace(/[ىئ]/g,"ي").replace(/ة/g,"ه").replace(/[ًٌٍَُِّْ]/g,"").toLowerCase();}
+  function hits(q){q=norm(q).trim();if(!q)return [];return IX.filter(function(x){return norm(x.t+" "+x.c).indexOf(q)>-1;}).slice(0,6);}
+  function draw(){
+    var r=hits(si.value);
+    if(!si.value.trim()){so.hidden=true;so.innerHTML="";return;}
+    so.hidden=false;
+    so.innerHTML=r.length?r.map(function(x){return '<a href="'+x.u+'"><span>'+x.t+'</span><small>'+x.c+' · '+x.p+'</small></a>';}).join("")
+      :'<p class="search-none">ما لقينا قطعة بهذا الاسم. <a href="../jewellery">تصفّح كل القطع</a></p>';
+  }
+  if(sf&&si&&so){
+    si.addEventListener("input",draw);
+    si.addEventListener("focus",draw);
+    sf.addEventListener("submit",function(e){e.preventDefault();var r=hits(si.value);location.href=r.length?r[0].u:"../jewellery";});
+    document.addEventListener("click",function(e){if(!sf.contains(e.target)){so.hidden=true;}});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"){so.hidden=true;si.blur();}});
+  }
   // ظهور تدريجي — يحترم تفضيل تقليل الحركة عبر CSS
   var rv=document.querySelectorAll(".rv");
   if(window.IntersectionObserver&&rv.length){

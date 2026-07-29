@@ -90,15 +90,23 @@ function layout(o) {
 
 '<div class="top">صناعة سعودية · ذهب وألماس موثّق · زيارة المعرض بموعد</div>\n' +
 
+/* هيدر متجر: صفّ أول فيه البحث والشعار في الوسط وزر الواتساب،
+   وتحته صفّ التنقّل بعرض الصفحة. الهيدر أبيض دائماً ويجلس في مسار
+   الصفحة (sticky) — لم يعد يطفو فوق الهيرو، فلا يحتاج حجاباً تحته. */
 '<header class="header">\n' +
-'  <button class="burger" type="button" aria-label="القائمة" aria-expanded="false">☰</button>\n' +
-/* نسختان من الشعار: الكريمي فوق الهيرو الداكن، والذهبي على الهيدر الورقي.
-   التبديل في site.css — نسخة واحدة تختفي دائماً على خلفيتها. */
-'  <a class="logo" href="' + (u || './') + '" aria-label="' + esc(D.BRAND.name) + '">' +
-     '<img class="lg-on-dark" src="' + u + 'assets/wordmark-cream.png" alt="' + esc(D.BRAND.name) + '">' +
-     '<img class="lg-on-light" src="' + u + 'assets/wordmark-gold.png" alt="" aria-hidden="true"></a>\n' +
+'  <div class="head-main">\n' +
+'    <button class="burger" type="button" aria-label="القائمة" aria-expanded="false">☰</button>\n' +
+'    <form class="search" role="search" autocomplete="off">\n' +
+'      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">' +
+       '<circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.6-3.6"></path></svg>\n' +
+'      <input type="search" name="q" placeholder="ابحث عن قطعة" aria-label="ابحث عن قطعة">\n' +
+'      <div class="search-out" role="listbox" hidden></div>\n' +
+'    </form>\n' +
+'    <a class="logo" href="' + (u || './') + '" aria-label="' + esc(D.BRAND.name) + '">' +
+       '<img src="' + u + 'assets/wordmark-gold.png" alt="' + esc(D.BRAND.name) + '"></a>\n' +
+'    <a class="wa-top" href="' + wa('السلام عليكم، عندي استفسار عن مجوهرات الخميس.') + '" target="_blank" rel="noopener">واتساب</a>\n' +
+'  </div>\n' +
 '  <nav class="nav" aria-label="التنقل الرئيسي">' + nav + '</nav>\n' +
-'  <a class="wa-top" href="' + wa('السلام عليكم، عندي استفسار عن مجوهرات الخميس.') + '" target="_blank" rel="noopener">واتساب</a>\n' +
 '</header>\n' +
 
 '<main id="main">\n' + o.body + '</main>\n' +
@@ -135,13 +143,28 @@ function layout(o) {
 '  // القائمة على الجوال\n' +
 '  var b=document.querySelector(".burger"),n=document.querySelector(".nav");\n' +
 '  if(b&&n)b.addEventListener("click",function(){var o=n.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");});\n' +
-'  // ارتفاع الشريط العلوي يُزاح به الهيدر حتى لا يركب عليه قبل التمرير\n' +
-'  var tb=document.querySelector(".top");\n' +
-'  function th(){document.documentElement.style.setProperty("--topbar-h",(tb?tb.offsetHeight:0)+"px");}\n' +
-'  th();addEventListener("resize",th,{passive:true});\n' +
-'  // الهيدر شفاف فوق الهيرو، ويصير معتماً بعد التمرير\n' +
-'  var h=document.querySelector(".header");\n' +
-'  function hs(){if(h)h.classList.toggle("solid",scrollY>40);}hs();addEventListener("scroll",hs,{passive:true});\n' +
+'  // البحث — الفهرس من data/catalogue.js نفسه، فلا مصدر ثانٍ يتخلّف عنه\n' +
+'  var IX=' + JSON.stringify(D.PIECES.map(function (p) {
+     var c = D.CATEGORIES.filter(function (x) { return x.slug === p.category; })[0];
+     return { t: p.ar, u: u + 'piece/' + p.slug, c: (c ? c.ar : ''), p: priceLabel(p) };
+   })) + ';\n' +
+'  var sf=document.querySelector(".search"),si=sf&&sf.querySelector("input"),so=sf&&sf.querySelector(".search-out");\n' +
+'  function norm(s){return (s||"").replace(/[أإآ]/g,"ا").replace(/[ىئ]/g,"ي").replace(/ة/g,"ه").replace(/[ًٌٍَُِّْ]/g,"").toLowerCase();}\n' +
+'  function hits(q){q=norm(q).trim();if(!q)return [];return IX.filter(function(x){return norm(x.t+" "+x.c).indexOf(q)>-1;}).slice(0,6);}\n' +
+'  function draw(){\n' +
+'    var r=hits(si.value);\n' +
+'    if(!si.value.trim()){so.hidden=true;so.innerHTML="";return;}\n' +
+'    so.hidden=false;\n' +
+'    so.innerHTML=r.length?r.map(function(x){return \'<a href="\'+x.u+\'"><span>\'+x.t+\'</span><small>\'+x.c+\' · \'+x.p+\'</small></a>\';}).join("")\n' +
+'      :\'<p class="search-none">ما لقينا قطعة بهذا الاسم. <a href="' + u + 'jewellery">تصفّح كل القطع</a></p>\';\n' +
+'  }\n' +
+'  if(sf&&si&&so){\n' +
+'    si.addEventListener("input",draw);\n' +
+'    si.addEventListener("focus",draw);\n' +
+'    sf.addEventListener("submit",function(e){e.preventDefault();var r=hits(si.value);location.href=r.length?r[0].u:"' + u + 'jewellery";});\n' +
+'    document.addEventListener("click",function(e){if(!sf.contains(e.target)){so.hidden=true;}});\n' +
+'    document.addEventListener("keydown",function(e){if(e.key==="Escape"){so.hidden=true;si.blur();}});\n' +
+'  }\n' +
 '  // ظهور تدريجي — يحترم تفضيل تقليل الحركة عبر CSS\n' +
 '  var rv=document.querySelectorAll(".rv");\n' +
 '  if(window.IntersectionObserver&&rv.length){\n' +

@@ -7,7 +7,7 @@
  *   ١. لا مساحات ممتلئة. الشمبانيا انتهت كخلفية؛ بقيت خيوطاً شعرية
  *      وتفاصيل دقيقة. الذهب تفصيل لا مسطّح — هذا وحده أزال طابع البانر.
  *   ٢. الصور وُحّدت قبل CSS (tools/normalize-images.py): كل قطعة معزولة
- *      على #f2eee7 بنسبة 4:5 وظل واحد. الشبكة صارت تقرأ كنظام.
+ *      على --paper-3 بنسبة 4:5 وظل واحد. الشبكة صارت تقرأ كنظام.
  *   ٣. سلّم طباعي صارم: Aref Ruqaa للعرض الكبير فقط (وللعناوين الكبرى
  *      وحدها)، وTajawal لكل ما عداه بأحجام محدودة ومتباعدة الحروف.
  *   ٤. الفراغ هو الفخامة: المسافة بين الأقسام clamp(6rem,12vw,11rem).
@@ -19,10 +19,13 @@
  */
 
 :root{
-  /* الورق — عاجي دافئ واحد، ودرجة أعمق للفواصل. لا أبيض ناصع. */
-  --paper:#f2eee7;
-  --paper-2:#e9e3d9;
-  --paper-3:#fbf9f5;
+  /* الورق — أبيض (قرار مصطفى 2026-07-29، بدل العاجي #f2eee7).
+     --paper-3 هو سطح بلاطة المنتج: أبيض مائل رمادياً بالكاد، ليطفو
+     المعدن الفاتح عليه. صور assets/catalogue وُحّدت على هذه القيمة
+     نفسها (tools/retint-catalogue.py) فلا يظهر مربّع تحت القطعة. */
+  --paper:#ffffff;
+  --paper-2:#f0ece5;
+  --paper-3:#f6f5f3;
 
   /* الحبر */
   --ink:#171310;
@@ -79,19 +82,49 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 }
 
 /* ---------- الهيدر ---------- */
-/* يُزاح بارتفاع الشريط العلوي (--topbar-h يضبطه JS) حتى لا يركب عليه. */
+/* هيدر متجر بصفّين: البحث والشعار وزر الواتساب فوق، والتنقّل تحته.
+   أبيض دائماً وملتصق بأعلى الشاشة عند التمرير (sticky) — لم يعد يطفو
+   فوق الهيرو، فلا يحتاج حجاباً تحته ولا نسخة كريمية من الشعار. */
 .header{
-  position:fixed;top:var(--topbar-h,0px);inset-inline:0;z-index:60;
-  display:flex;align-items:center;gap:24px;
-  padding:18px var(--pad);
-  transition:background .4s,border-color .4s,top .4s;
-  border-bottom:1px solid transparent;
+  position:sticky;top:0;z-index:60;background:var(--paper);
+  border-bottom:1px solid var(--hair-2);
 }
-.header.solid{top:0;background:rgba(242,238,231,.94);backdrop-filter:blur(16px);border-bottom-color:var(--hair-2)}
-.logo img{height:24px;width:auto}
-.logo .lg-on-dark{display:none}
-.logo .lg-on-light{display:block}
-.nav{display:flex;gap:30px;margin-inline-start:auto;font-size:.72rem;letter-spacing:.2em;font-weight:300}
+.head-main{
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;
+  padding:16px var(--pad);
+}
+.logo{justify-self:center}
+.logo img{height:26px;width:auto}
+.wa-top{justify-self:end}
+
+/* البحث — حقل بيضاوي خفيف، ونتائجه تنسدل تحته مباشرة */
+.search{position:relative;display:flex;align-items:center;gap:10px;
+  justify-self:start;width:min(340px,100%);
+  border:1px solid var(--hair);border-radius:999px;padding:9px 18px;color:var(--muted)}
+.search:focus-within{border-color:var(--gold)}
+.search input{
+  border:0;outline:0;background:transparent;width:100%;
+  font-family:var(--f-body);font-size:.82rem;font-weight:300;color:var(--ink);
+}
+.search input::placeholder{color:var(--muted);letter-spacing:.06em}
+.search input::-webkit-search-cancel-button{-webkit-appearance:none}
+.search-out{
+  position:absolute;top:calc(100% + 10px);inset-inline:0;z-index:70;
+  background:var(--paper);border:1px solid var(--hair-2);
+  box-shadow:0 18px 50px rgba(23,19,16,.10);max-height:min(60vh,420px);overflow:auto;
+}
+.search-out a{display:flex;flex-direction:column;gap:3px;padding:12px 18px;
+  border-block-end:1px solid var(--hair-2);color:var(--ink);transition:background .2s}
+.search-out a:last-child{border-block-end:0}
+.search-out a:hover{background:var(--paper-3)}
+.search-out span{font-size:.86rem}
+.search-out small{color:var(--muted);font-size:.68rem;letter-spacing:.14em}
+.search-none{margin:0;padding:14px 18px;color:var(--muted);font-size:.78rem}
+.search-none a{display:inline;padding:0;border:0;color:var(--gold)}
+
+/* صفّ التنقّل — تحت الشعار، بعرض الصفحة وفي الوسط */
+.nav{display:flex;justify-content:center;flex-wrap:wrap;gap:34px;
+  padding:0 var(--pad) 14px;font-size:.72rem;letter-spacing:.2em;font-weight:300}
 .nav a{color:var(--ink);opacity:.68;position:relative;padding:6px 0;transition:opacity .3s,color .3s}
 .nav a::after{content:'';position:absolute;inset-inline:0;bottom:0;height:1px;background:currentColor;
   transform:scaleX(0);transform-origin:inline-end;transition:transform .4s}
@@ -114,20 +147,17 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 .hero{
   position:relative;background:var(--paper);overflow:hidden;
   min-height:clamp(540px,84svh,780px);display:flex;align-items:center;
-  padding:calc(var(--topbar-h,44px) + clamp(4rem,7vw,6rem)) 0 clamp(3rem,6vw,5rem);
+  padding:clamp(3rem,6vw,5rem) 0;
 }
 .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   object-position:32% 28%;animation:kenburns 30s ease-out both}
 @keyframes kenburns{from{transform:scale(1.06)}to{transform:scale(1)}}
-/* حجاب علوي: الهيدر يعلو الصورة، ونصّه حبري — فوق شعر الموديل الغامق
-   يختفي. تدرّج حليبي من الأعلى يضمن قراءته بعرض الشاشة كاملاً. */
-.hero::before{content:'';position:absolute;inset-inline:0;top:0;z-index:1;pointer-events:none;
-  height:clamp(130px,20vh,210px);
-  background:linear-gradient(to bottom,rgba(242,238,231,.94) 0%,rgba(242,238,231,.72) 42%,rgba(242,238,231,0) 100%)}
+/* الحجاب العلوي أُزيل مع الهيدر الطافي: الهيدر الأبيض صار في مسار الصفحة
+   فوق الهيرو، فلم يعد فوق الصورة نصّ يحتاج تفتيحاً تحته. */
 .hero::after{content:'';position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(to left,
-    rgba(242,238,231,.96) 0%,rgba(242,238,231,.9) 26%,
-    rgba(242,238,231,.55) 46%,rgba(242,238,231,.08) 66%,transparent 80%)}
+    rgba(255,255,255,.96) 0%,rgba(255,255,255,.9) 26%,
+    rgba(255,255,255,.55) 46%,rgba(255,255,255,.08) 66%,transparent 80%)}
 .hero-in{position:relative;z-index:2;width:min(1320px,100% - var(--pad)*2);margin-inline:auto}
 .hero-copy{max-width:min(620px,100%)}
 .hero-eyebrow{display:block;color:var(--muted);letter-spacing:.3em;font-size:.66rem;
@@ -191,7 +221,7 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 .more:hover{border-bottom-color:var(--ink)}
 
 /* رأس الصفحات الداخلية */
-.page-head{padding:calc(72px + clamp(4rem,9vw,7.5rem)) 0 clamp(2.4rem,5vw,4rem)}
+.page-head{padding:clamp(3rem,7vw,5.5rem) 0 clamp(2.4rem,5vw,4rem)}
 .page-head h1{font-family:var(--f-head);font-weight:700;font-size:clamp(2.2rem,6vw,4.4rem);margin-block-end:18px}
 .page-head p{color:var(--muted);max-width:56ch;margin:0;font-size:.96rem;font-weight:300}
 .crumb{font-size:.68rem;letter-spacing:.22em;color:var(--muted);margin-block-end:22px}
@@ -237,8 +267,12 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
    جُرّبت «قطعة بطلة» بعرض عمودين، فأنتجت صفاً أخيراً مبتوراً وفراغاً
    يقرأ كخلل — عدد القطع متغيّر ولا يضمن امتلاء الصف. الشبكة الموحّدة
    أقوى هنا لأن الصور نفسها وُحّدت، فالانتظام يصير مقصوداً لا رتيباً. */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));
-  gap:clamp(2.4rem,4vw,4rem) clamp(1.6rem,3vw,3rem);border:0}
+/* خمس قطع في الصف على سطح المكتب (قرار مصطفى 2026-07-29)، وتنزل
+   إلى أربع ثم ثلاث ثم اثنتين مع ضيق الشاشة. */
+.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:clamp(2.4rem,4vw,3.4rem) clamp(1.2rem,2vw,2rem);border:0}
+@media (max-width:1240px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:1000px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .card{display:block;min-width:0;border:0;padding:0;transition:none}
 .card:hover{background:transparent}
 .card-img{display:block;aspect-ratio:4/5;overflow:hidden;background:var(--paper-3)}
@@ -400,14 +434,22 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 
 /* ---------- الجوال ---------- */
 @media (max-width:960px){
+  /* الجوال: صفّ فيه القائمة والشعار وواتساب، والبحث بعرض الصفحة تحته،
+     وقائمة التنقّل تنسدل من الزر. */
   .burger{display:block}
+  .header{position:relative}
+  .head-main{grid-template-columns:auto 1fr auto;gap:12px;
+    grid-template-areas:"burger logo wa" "search search search"}
+  .burger{grid-area:burger;justify-self:start}
+  .logo{grid-area:logo}
+  .wa-top{grid-area:wa}
+  .search{grid-area:search;width:100%;justify-self:stretch}
   .nav{position:absolute;top:100%;inset-inline:0;flex-direction:column;gap:0;background:var(--paper);
-    border-block-end:1px solid var(--hair-2);padding:10px 0;display:none;text-align:center}
+    border-block-end:1px solid var(--hair-2);padding:10px 0;display:none;text-align:center;z-index:65}
   .nav.open{display:flex}
   .nav a{color:var(--ink);opacity:.78}
   .nav a.on{color:var(--gold);opacity:1}
   .nav a{padding:16px var(--pad);font-size:.86rem;letter-spacing:.14em}
-  .logo{margin-inline-end:auto}
   .split,.piece-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
   .split-media,.about-media{min-height:340px}
   .svc{border-inline-start:0;border-block-start:1px solid var(--hair-2)}
@@ -419,8 +461,8 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
      والنص يجلس عليه. */
   .hero{align-items:flex-end;min-height:clamp(520px,80svh,680px)}
   .hero::after{background:linear-gradient(to top,
-    rgba(242,238,231,.97) 0%,rgba(242,238,231,.93) 30%,
-    rgba(242,238,231,.42) 46%,transparent 62%)}
+    rgba(255,255,255,.97) 0%,rgba(255,255,255,.93) 30%,
+    rgba(255,255,255,.42) 46%,transparent 62%)}
   .hero-bg{object-position:38% 22%}
   .hero-copy{max-width:none}
   .wa-top{display:none}
