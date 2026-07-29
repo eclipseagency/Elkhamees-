@@ -187,7 +187,7 @@ function marquee() {
 
 function ctaBand(depth) {
   return '<section class="cta">' +
-    '<img class="cta-bg" src="' + up(depth) + 'assets/concept-v2/campaign-hero.jpg" alt="" loading="lazy">' +
+    '<img class="cta-bg" src="' + up(depth) + 'assets/editorial/campaign-hero.jpg" alt="" loading="lazy">' +
     '<div class="wrap">' +
     '<h2>ما لقيت اللي تبيه؟</h2>' +
     '<p>راسلنا ووصف لنا القطعة، أو احجز زيارة للمعرض وشوفها بنفسك.</p>' +
@@ -210,7 +210,7 @@ function home() {
 /* الهيرو يملأ الشاشة كاملة: الصورة هي الصفحة، والنص عليها لا بجانبها.
    العنوان ضخم عمداً — هذا ما يفصل موقع دار مجوهرات عن موقع متجر. */
 '<section class="hero">\n' +
-'  <img class="hero-img" src="assets/concept-v2/campaign-hero.jpg" alt="" fetchpriority="high">\n' +
+'  <img class="hero-img" src="assets/editorial/campaign-hero.jpg" alt="" fetchpriority="high">\n' +
 '  <div class="hero-in"><div class="hero-copy">\n' +
 '    <span class="hero-eyebrow">✳ &nbsp;مجوهرات الخميس · المملكة العربية السعودية</span>\n' +
 '    <h1>قطعة تُلبس <em>لسنوات</em>،<br>لا لموسم</h1>\n' +
@@ -234,7 +234,7 @@ trustBar() +
 '  <div class="sec-head rv"><span class="sec-eyebrow">✳ &nbsp;المجموعات</span>' +
 '    <div class="sec-top"><h2>ادخل من هنا</h2><a class="more" href="jewellery">كل القطع ←</a></div></div>\n' +
 '  <div class="split rv">\n' +
-'    <div class="split-media"><img src="assets/model-necklace.jpg" alt="" loading="lazy"></div>\n' +
+'    <div class="split-media"><img src="assets/editorial/model-necklace-wide.jpg" alt="" loading="lazy"></div>\n' +
 '    <div class="split-list">' + D.CATEGORIES.map(function (c) {
        return '<a class="cat-row" href="jewellery/' + c.slug + '">' +
          '<img src="' + c.image + '" alt="" loading="lazy">' +

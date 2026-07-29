@@ -39,11 +39,11 @@ var BRAND = {
  * الفئات — ترتيبها هنا هو ترتيب ظهورها في الموقع
  * ------------------------------------------------------------------ */
 var CATEGORIES = [
-  { slug: 'rings', ar: 'خواتم', hint: 'خواتم الخطوبة والزواج والتصاميم اليومية', image: 'assets/concept-v2/ring.jpg' },
-  { slug: 'necklaces', ar: 'قلائد', hint: 'قلائد ناعمة وقطع بارزة للمناسبات', image: 'assets/concept-v2/necklace.jpg' },
-  { slug: 'bracelets', ar: 'أساور', hint: 'أساور ذهب وألماس بتصاميم متدرجة', image: 'assets/concept-v2/bracelet.jpg' },
-  { slug: 'earrings', ar: 'أقراط', hint: 'أقراط يومية وأخرى للسهرات', image: 'assets/concept-v2/earrings.jpg' },
-  { slug: 'sets', ar: 'أطقم كاملة', hint: 'أطقم متناسقة للعروس والمناسبات', image: 'assets/concept-v2/jewelry-set.jpg' }
+  { slug: 'rings', ar: 'خواتم', hint: 'خواتم الخطوبة والزواج والتصاميم اليومية', image: 'assets/catalogue/ring.jpg' },
+  { slug: 'necklaces', ar: 'قلائد', hint: 'قلائد ناعمة وقطع بارزة للمناسبات', image: 'assets/catalogue/necklace.jpg' },
+  { slug: 'bracelets', ar: 'أساور', hint: 'أساور ذهب وألماس بتصاميم متدرجة', image: 'assets/catalogue/bracelet.jpg' },
+  { slug: 'earrings', ar: 'أقراط', hint: 'أقراط يومية وأخرى للسهرات', image: 'assets/catalogue/earrings.jpg' },
+  { slug: 'sets', ar: 'أطقم كاملة', hint: 'أطقم متناسقة للعروس والمناسبات', image: 'assets/catalogue/jewelry-set.jpg' }
 ];
 
 var METALS = [
@@ -64,49 +64,49 @@ var PIECES = [
   { slug: 'solitaire-ring-18k', ref: 'KH-R-101', ar: 'خاتم سوليتير ألماس', category: 'rings', metal: 'white',
     karat: '18', weight: '3.4', stone: 'ألماس طبيعي · قطع دائري', certified: true,
     sizes: '10 – 20', madeToOrder: false, price: null,
-    image: 'assets/concept-v2/ring.jpg', occasions: ['engagement', 'wedding'],
+    image: 'assets/catalogue/ring.jpg', occasions: ['engagement', 'wedding'],
     note: 'خاتم كلاسيكي بحجر مركزي واحد، مناسب للخطوبة والارتداء اليومي.' },
 
   { slug: 'pear-ring-18k', ref: 'KH-R-102', ar: 'خاتم ألماس قطع الكمثرى', category: 'rings', metal: 'yellow',
     karat: '18', weight: '4.1', stone: 'ألماس طبيعي · قطع كمثرى', certified: true,
     sizes: '12 – 19', madeToOrder: true, price: null,
-    image: 'assets/ring-pear.png', occasions: ['engagement', 'gifts'],
+    image: 'assets/catalogue/ring-pear.jpg', occasions: ['engagement', 'gifts'],
     note: 'تصميم يُنفّذ بالطلب، ويمكن تعديل حجم الحجر وعيار الذهب.' },
 
   { slug: 'diamond-necklace-18k', ref: 'KH-N-201', ar: 'قلادة ألماس متدرجة', category: 'necklaces', metal: 'white',
     karat: '18', weight: '6.8', stone: 'ألماس طبيعي', certified: true,
     sizes: '40 – 45 سم', madeToOrder: false, price: null,
-    image: 'assets/concept-v2/necklace.jpg', occasions: ['wedding', 'gifts'],
+    image: 'assets/catalogue/necklace.jpg', occasions: ['wedding', 'gifts'],
     note: 'قلادة بتدرّج محسوب يبرز عند فتحة الرقبة.' },
 
   { slug: 'circular-necklace-18k', ref: 'KH-N-202', ar: 'قلادة دائرية بالألماس', category: 'necklaces', metal: 'yellow',
     karat: '18', weight: '5.2', stone: 'ألماس طبيعي', certified: true,
     sizes: '42 سم', madeToOrder: false, price: null,
-    image: 'assets/concept-v2/circular-necklace.jpg', occasions: ['gifts', 'graduation'],
+    image: 'assets/catalogue/circular-necklace.jpg', occasions: ['gifts', 'graduation'],
     note: 'قطعة يومية أنيقة تصلح هدية.' },
 
   { slug: 'tennis-bracelet-18k', ref: 'KH-B-301', ar: 'إسورة تنس ألماس', category: 'bracelets', metal: 'white',
     karat: '18', weight: '8.5', stone: 'ألماس طبيعي · صف كامل', certified: true,
     sizes: '17 – 19 سم', madeToOrder: false, price: null,
-    image: 'assets/concept-v2/bracelet.jpg', occasions: ['wedding', 'gifts'],
+    image: 'assets/catalogue/bracelet.jpg', occasions: ['wedding', 'gifts'],
     note: 'صف ألماس متصل بقفل مزدوج للأمان.' },
 
   { slug: 'drop-earrings-18k', ref: 'KH-E-401', ar: 'أقراط متدلية بالألماس', category: 'earrings', metal: 'white',
     karat: '18', weight: '4.6', stone: 'ألماس طبيعي', certified: true,
     sizes: '—', madeToOrder: false, price: null,
-    image: 'assets/concept-v2/earrings.jpg', occasions: ['wedding', 'engagement'],
+    image: 'assets/catalogue/earrings.jpg', occasions: ['wedding', 'engagement'],
     note: 'أقراط للسهرات بحركة خفيفة تعكس الضوء.' },
 
   { slug: 'bridal-set-18k', ref: 'KH-S-501', ar: 'طقم عروس متكامل', category: 'sets', metal: 'yellow',
     karat: '21', weight: '32.0', stone: 'ألماس وأحجار كريمة', certified: true,
     sizes: 'حسب المقاس', madeToOrder: true, price: null,
-    image: 'assets/concept-v2/jewelry-set.jpg', occasions: ['wedding'],
+    image: 'assets/catalogue/jewelry-set.jpg', occasions: ['wedding'],
     note: 'طقم يُنفّذ بالطلب: قلادة وأقراط وإسورة وخاتم بتصميم موحّد.' },
 
   { slug: 'classic-bridal-set', ref: 'KH-S-502', ar: 'طقم الزفاف الكلاسيكي', category: 'sets', metal: 'yellow',
     karat: '21', weight: '28.5', stone: 'ألماس طبيعي', certified: true,
     sizes: 'حسب المقاس', madeToOrder: true, price: null,
-    image: 'assets/bridal-set.jpg', occasions: ['wedding', 'engagement'],
+    image: 'assets/catalogue/bridal-set.jpg', occasions: ['wedding', 'engagement'],
     note: 'خطوط كلاسيكية تناسب حفلات الزواج والملكة.' }
 ];
 
@@ -114,16 +114,16 @@ var PIECES = [
  * المناسبات — أغلب المشترين يشترون لمناسبة، لا لقطعة بعينها
  * ------------------------------------------------------------------ */
 var OCCASIONS = [
-  { slug: 'wedding', ar: 'الزواج والملكة', image: 'assets/bridal-set.jpg',
+  { slug: 'wedding', ar: 'الزواج والملكة', image: 'assets/editorial/model-gold.jpg',
     lead: 'أطقم وقطع تليق بليلة العمر، ويمكن تنفيذها بتصميم خاص للعروس.',
     guide: 'ننصح بالبدء قبل الموعد بشهرين على الأقل إذا كان التصميم خاصاً.' },
-  { slug: 'engagement', ar: 'الخطوبة', image: 'assets/concept-v2/ring.jpg',
+  { slug: 'engagement', ar: 'الخطوبة', image: 'assets/editorial/campaign-hero.jpg',
     lead: 'خواتم خطوبة بحجر مركزي، مع إمكانية اختيار الحجر والعيار.',
     guide: 'نساعدك في اختيار المقاس بسرية إذا كانت مفاجأة.' },
-  { slug: 'gifts', ar: 'الهدايا', image: 'assets/necklace-box.jpg',
+  { slug: 'gifts', ar: 'الهدايا', image: 'assets/editorial/necklace-box.jpg',
     lead: 'قطع مختارة تصلح هدية في أي مناسبة، بتغليف الدار.',
     guide: 'أخبرنا بالميزانية ونرشّح لك ثلاث قطع مناسبة.' },
-  { slug: 'graduation', ar: 'التخرج والترقيات', image: 'assets/concept-v2/circular-necklace.jpg',
+  { slug: 'graduation', ar: 'التخرج والترقيات', image: 'assets/editorial/model-necklace.jpg',
     lead: 'قطع يومية أنيقة تُهدى في المناسبات السعيدة.',
     guide: 'قطع خفيفة تصلح للارتداء اليومي بعد المناسبة.' }
 ];
