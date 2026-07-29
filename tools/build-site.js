@@ -496,7 +496,15 @@ function policy(slug, title, paras) {
 /* ------------------------------------------------------------------ *
  * الكتابة
  * ------------------------------------------------------------------ */
+/* بصمة صور الكتالوج. vercel.json يخدم /assets بـ immutable لسنة، والصور
+   أُعيد تلوينها بأسماء الملفات نفسها — فبدون هذه البصمة يبقى الزائر
+   القديم يرى الخلفية العاجية على موقع أبيض. زدها عند أي تعديل للصور. */
+var CAT_V = '5';
+
 function write(rel, html) {
+  if (/\.html$/.test(rel)) {
+    html = html.replace(/(assets\/catalogue\/[a-z0-9-]+\.jpg)/g, '$1?v=' + CAT_V);
+  }
   var full = path.join(ROOT, rel);
   fs.mkdirSync(path.dirname(full), { recursive: true });
   fs.writeFileSync(full, html, 'utf8');
