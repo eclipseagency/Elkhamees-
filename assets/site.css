@@ -107,49 +107,44 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 
 
 /* ---------- الهيرو ---------- */
-/* الشكل السابق: صورة تملأ الشاشة وحجاب أسود فوقها والنص عليها. قرأ كصفحة
-   هبوط لا كدار مجوهرات — الصورة المتاحة بورتريه تجميل لا تُظهر قطعة،
-   والحجاب أطفأ أول ما تراه العين. البديل تحريري: النص والصورة جاران على
-   الورق نفسه. لا حجاب، ولا نص فوق وجه، والطباعة هي التي تحمل الصفحة.
-   ميزة إضافية: الهيدر لم يعد يعلو خلفية داكنة، فسقط سبب اختفاء النص. */
-.hero{
-  position:relative;background:var(--paper);
-  padding:calc(var(--topbar-h,44px) + clamp(3.2rem,6vw,5.2rem)) 0 clamp(2.5rem,5vw,4rem);
-}
-.hero-in{
-  width:min(1320px,100% - var(--pad)*2);margin-inline:auto;
-  display:grid;grid-template-columns:1.02fr .98fr;
-  gap:clamp(2rem,5vw,5.5rem);align-items:center;
-}
-.hero-copy{max-width:none}
+/* ثلاثة أشكال جُرّبت: (١) صورة تملأ الشاشة والنص فوقها بحجاب أسود — قرأت
+   كصفحة هبوط. (٢) نص وصورة جاران في عمودين — الصورة ضاقت. (٣) وهذا:
+   ترويسة طباعية، ثم الصورة شريطاً بعرض المقطع كاملاً من حافة إلى حافة.
+   الصورة تأخذ حجمها كحملة، والنص يبقى على الورق لا فوق وجه. */
+.hero{position:relative;background:var(--paper);
+  padding:calc(var(--topbar-h,44px) + clamp(3.4rem,6vw,5.4rem)) 0 clamp(2.5rem,5vw,4rem)}
+.hero-in{width:min(1320px,100% - var(--pad)*2);margin-inline:auto;
+  margin-block-end:clamp(2.4rem,5vw,4rem)}
+/* الترويسة عمودان: العنوان الكبير في الأول، والسطر التعريفي والأزرار
+   في الثاني مرصوصة لأسفل — وإلا بقي نصف العرض فارغاً فوق الصورة. */
+.hero-copy{display:grid;grid-template-columns:1.32fr .68fr;
+  gap:clamp(2rem,5vw,4.5rem);align-items:end}
+.hero-head{min-width:0}
 .hero-eyebrow{display:block;color:var(--muted);letter-spacing:.3em;font-size:.66rem;
-  font-weight:300;margin-block-end:clamp(20px,3vw,30px)}
+  font-weight:300;margin-block-end:clamp(18px,2.6vw,26px)}
 .hero h1{
   font-family:var(--f-head);font-weight:700;color:var(--ink);
-  font-size:clamp(2.3rem,5vw,4.6rem);line-height:1.12;
-  max-width:13ch;margin-block-end:clamp(22px,3vw,30px);
+  font-size:clamp(2.4rem,6vw,5.6rem);line-height:1.08;
+  max-width:none;margin-block-end:clamp(20px,2.6vw,28px);
 }
 .hero h1 em{font-style:normal;color:var(--gold)}
-/* خيط شعري يفصل العنوان عن السطر التالي — علامة كتالوج لا صفحة بيع */
-.hero-rule{display:block;width:64px;height:1px;background:var(--gold);
-  margin-block-end:clamp(22px,3vw,30px)}
-.hero-row{display:block}
-.hero p{color:var(--muted);font-size:1rem;max-width:38ch;margin:0 0 clamp(28px,4vw,38px);font-weight:300}
+.hero-rule{display:block;width:64px;height:1px;background:var(--gold)}
+.hero-row{display:block;padding-block-end:6px}
+.hero p{color:var(--muted);font-size:.98rem;max-width:34ch;margin:0 0 clamp(22px,3vw,30px);font-weight:300}
 .hero-acts{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
 
-/* لوحة الصورة — بورتريه 3:4 وتسمية تحتها كصفحة كتالوج */
-.hero-plate{margin:0;position:relative}
-/* ارتفاع محكوم بدل نسبة حرّة: 3:4 على عمود بعرض 640px تعطي 850px
-   فتتجاوز الشاشة ويسقط أسفل الهيرو خارج المشهد. */
-.hero-plate img{width:100%;height:clamp(400px,58vh,600px);object-fit:cover;object-position:50% 26%}
+/* اللوحة بعرض المقطع كاملاً: تُكسر حدود الحاوية إلى حافتي النافذة. */
+.hero-plate{margin:0;position:relative;width:100vw;margin-inline:calc(50% - 50vw)}
+.hero-plate img{width:100%;height:clamp(320px,54vh,580px);object-fit:cover;object-position:50% 32%}
 .hero-plate figcaption{
+  width:min(1320px,100% - var(--pad)*2);margin-inline:auto;
   display:flex;justify-content:space-between;gap:16px;
-  padding-block-start:14px;margin-block-start:14px;border-block-start:1px solid var(--hair-2);
-  font-size:.66rem;letter-spacing:.22em;color:var(--muted);font-weight:300;
+  padding-block-start:14px;font-size:.66rem;letter-spacing:.22em;
+  color:var(--muted);font-weight:300;
 }
 .scroll-cue{
   display:flex;align-items:center;gap:12px;justify-content:flex-end;
-  width:min(1320px,100% - var(--pad)*2);margin:clamp(2rem,4vw,3.4rem) auto 0;
+  width:min(1320px,100% - var(--pad)*2);margin:clamp(1.6rem,3vw,2.6rem) auto 0;
   color:var(--muted);font-size:.64rem;letter-spacing:.24em;
 }
 .scroll-cue i{display:block;width:34px;height:1px;background:var(--hair);position:relative;overflow:hidden}
@@ -410,7 +405,7 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
   .nav a.on{color:var(--gold);opacity:1}
   .nav a{padding:16px var(--pad);font-size:.86rem;letter-spacing:.14em}
   .logo{margin-inline-end:auto}
-  .hero-in,.split,.piece-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+  .hero-copy,.split,.piece-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
   .split-media,.about-media{min-height:340px}
   .svc{border-inline-start:0;border-block-start:1px solid var(--hair-2)}
   .svc:first-child{border-block-start:0}

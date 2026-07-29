@@ -207,26 +207,27 @@ function home() {
     title: 'دار مجوهرات', active: '', depth: 0,
     description: D.BRAND.name + ' — ذهب وألماس موثّق، صياغة يدوية، وتصميم خاص حسب الطلب.',
     body:
-/* الهيرو: النص والصورة جاران على الورق، لا نصّ فوق صورة بحجاب أسود.
-   الشكل السابق قرأ كصفحة هبوط؛ هذا يقرأ كصفحة كتالوج. التسمية تحت
-   اللوحة (مجموعة/سنة) هي ما يميّز دار مجوهرات عن متجر. */
+/* الهيرو: ترويسة طباعية على الورق، ثم الصورة شريطاً بعرض المقطع كاملاً.
+   الصورة تأخذ حجمها كحملة، والنص لا يجلس فوق وجه بحجاب أسود. */
 '<section class="hero">\n' +
-'  <div class="hero-in">\n' +
-'    <div class="hero-copy">\n' +
+'  <div class="hero-in"><div class="hero-copy">\n' +
+'    <div class="hero-head">\n' +
 '      <span class="hero-eyebrow">مجوهرات الخميس · المملكة العربية السعودية</span>\n' +
 '      <h1>قطعة تُلبس <em>لسنوات</em>،<br>لا لموسم</h1>\n' +
 '      <i class="hero-rule"></i>\n' +
+'    </div>\n' +
+'    <div class="hero-row">\n' +
 '      <p>ذهب وألماس موثّق، صياغة يدوية في ورشتنا، وتصميم خاص لو ما لقيت اللي في بالك.</p>\n' +
 '      <div class="hero-acts">\n' +
 '        <a class="btn btn-gold" href="jewellery">تصفّح المجوهرات</a>\n' +
 '        <a class="more" href="occasions">أشتري لمناسبة ←</a>\n' +
 '      </div>\n' +
 '    </div>\n' +
-'    <figure class="hero-plate">\n' +
-'      <img src="assets/editorial/campaign-hero.jpg" alt="قطعة من مجموعة الدار" fetchpriority="high">\n' +
-'      <figcaption><span>من مجموعة الدار</span><span>صياغة يدوية</span></figcaption>\n' +
-'    </figure>\n' +
-'  </div>\n' +
+'  </div></div>\n' +
+'  <figure class="hero-plate">\n' +
+'    <img src="assets/editorial/campaign-hero-wide.jpg" alt="قطعة من مجموعة الدار" fetchpriority="high">\n' +
+'    <figcaption><span>من مجموعة الدار</span><span>صياغة يدوية · ذهب وألماس موثّق</span></figcaption>\n' +
+'  </figure>\n' +
 '  <div class="scroll-cue"><span>مرّر</span><i></i></div>\n' +
 '</section>\n' +
 
