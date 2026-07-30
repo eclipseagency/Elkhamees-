@@ -6,8 +6,8 @@
  *
  *   ١. لا مساحات ممتلئة. الشمبانيا انتهت كخلفية؛ بقيت خيوطاً شعرية
  *      وتفاصيل دقيقة. الذهب تفصيل لا مسطّح — هذا وحده أزال طابع البانر.
- *   ٢. الصور وُحّدت قبل CSS (tools/normalize-images.py): كل قطعة معزولة
- *      على --paper-3 بنسبة 4:5 وظل واحد. الشبكة صارت تقرأ كنظام.
+ *   ٢. الصور تُوحَّد قبل CSS (tools/import-catalogue-images.py): كل قطعة
+ *      على --paper-3 بنسبة 1:1 كالمصدر. الشبكة صارت تقرأ كنظام.
  *   ٣. سلّم طباعي صارم: Aref Ruqaa للعرض الكبير فقط (وللعناوين الكبرى
  *      وحدها)، وTajawal لكل ما عداه بأحجام محدودة ومتباعدة الحروف.
  *   ٤. الفراغ هو الفخامة: المسافة بين الأقسام clamp(6rem,12vw,11rem).
@@ -15,7 +15,9 @@
  *      لا شريطاً يتكرر.
  *   ٦. الشبكة موحّدة لا «قطعة بطلة»: جُرّب أن تأخذ الأولى عمودين فأنتج
  *      صفاً أخيراً مبتوراً — عدد القطع متغيّر ولا يضمن امتلاء الصف.
- *   ٧. لا تُقصّ صورة قطعة أبداً: النسبة 4:5 كالمصدر، والحجم بالعرض وحده.
+ *   ٧. لا تُقصّ صورة قطعة أبداً: النسبة 1:1 كالمصدر، والحجم بالعرض وحده.
+ *      (كانت 4:5 حتى 2026-07-30، فكانت تضيف هوامش تحت المنتج وتقصّ جوانب
+ *      صور الموديل. صور الدار كلها مربّعة، فالمربّع هو الصفر قصّاً.)
  */
 
 :root{
@@ -269,40 +271,81 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
    أقوى هنا لأن الصور نفسها وُحّدت، فالانتظام يصير مقصوداً لا رتيباً. */
 /* خمس قطع في الصف على سطح المكتب (قرار مصطفى 2026-07-29)، وتنزل
    إلى أربع ثم ثلاث ثم اثنتين مع ضيق الشاشة. */
-.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
-  gap:clamp(2.4rem,4vw,3.4rem) clamp(1.2rem,2vw,2rem);border:0}
-@media (max-width:1240px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media (max-width:1000px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* شبكة المنتجات — أربعة في الصف بفواصل رفيعة، على غرار متاجر المجوهرات
+   الكبرى. الخمسة السابقة كانت تُصغّر البلاطة إلى ~240px فتضيع القطعة في
+   فراغ الصفحة، وهي الشكوى (مصطفى 2026-07-30).
+
+   الشبكة أعرض من عمود النص: تخرج من .wrap بسحب هامشي محسوب، فتقترب من
+   حافّتي الشاشة كما في متاجر المجوهرات، بينما يبقى النص على عرضه المريح.
+   لا نستعمل 100vw لأنه يشمل شريط التمرير فيُنتج تمريراً أفقياً.
+
+   من 4 أعمدة إلى عمودين مباشرة بلا محطة ثلاثة: ثلاثة أعمدة مع أربع قطع
+   تترك قطعة يتيمة في صف وحدها. */
+.grid{
+  --grid-pad:clamp(16px,2.2vw,32px);
+  --grid-max:1480px;
+  --grid-w:min(var(--grid-max), calc(100vw - var(--grid-pad)*2));
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  column-gap:clamp(8px,1vw,16px);row-gap:clamp(36px,4vw,56px);border:0;
+  width:var(--grid-w);margin-inline:calc((var(--grid-w) - 100%) / -2);
+}
+@media (max-width:820px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:10px;row-gap:32px}
+}
+
 .card{display:block;min-width:0;border:0;padding:0;transition:none}
 .card:hover{background:transparent}
-.card-img{display:block;aspect-ratio:4/5;overflow:hidden;background:var(--paper-3)}
-.card-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.3,1)}
-.card:hover .card-img img{transform:scale(1.035)}
+/* بلاطة مربّعة: صور الدار كلها 1:1 — المنتج والموديل — فلا قصّ ولا هوامش
+   مضافة، والقطعة تصل كما صوّرتها الدار (قرار 2026-07-30). */
+.card-img{display:block;aspect-ratio:1/1;overflow:hidden;background:var(--paper-3)}
+.card-img img{width:100%;height:100%;object-fit:cover}
 
 /* صورة الموديل تحت المؤشر: صورة المنتج تختفي وتظهر القطعة ملبوسة.
-   البطاقة نفسها تبقى ثابتة الحجم فلا تتزحزح الشبكة. */
+   البطاقة ثابتة الحجم فلا تتزحزح الشبكة، ولا ترتفع البطاقة — الارتفاع
+   يجعل صفّاً نظيفاً يترنّح.
+   الطبقتان تتحركان مستقلتين: صورة المنتج تكبر ببطء، وصورة الموديل تهبط
+   من تكبير طفيف إلى مقاسها وهي تظهر، فتبدو وكأنها استقرّت مكانها. */
 .card-img.has-hover{position:relative}
-.card-img .card-hover{position:absolute;inset:0;opacity:0;
-  transition:opacity .55s ease, transform 1.2s cubic-bezier(.2,.7,.3,1)}
-.card:hover .card-img .card-hover,
-.card:focus-visible .card-img .card-hover{opacity:1}
+.card-img .card-hover{position:absolute;inset:0;opacity:0}
+@media (hover:hover) and (pointer:fine){
+  .card-img img{transform:scale(1);transition:transform .9s cubic-bezier(.22,.61,.36,1)}
+  .card:hover .card-img>img:first-child{transform:scale(1.025)}
+  .card-img .card-hover{transform:scale(1.015);
+    transition:opacity .42s ease, transform .42s cubic-bezier(.22,.61,.36,1)}
+  .card:hover .card-img .card-hover,
+  .card:focus-visible .card-img .card-hover{opacity:1;transform:scale(1)}
+}
 /* على الجوال لا يوجد مرور بالمؤشر، فالصورة الثانية لا تُحمّل ولا تُعرض. */
 @media (hover:none){.card-img .card-hover{display:none}}
-@media (prefers-reduced-motion:reduce){.card-img .card-hover{transition:opacity .2s linear}}
-.card-body{display:block;padding:20px 2px 0}
+
+/* الاسم والسعر في سطر واحد. في RTL يبدأ الصفّ من اليمين تلقائياً، فلا
+   يُعكس الاتجاه — عكسه يقلب الترتيب الدلالي مرتين.
+   الاسم بخط النص لا خط الرقعة: الرقعة تجعل كل اسم منتج يُقرأ كعنوان. */
+.card-body{display:block;padding:16px 2px 0;position:relative}
 .card-top{display:flex;align-items:baseline;gap:14px}
-.card-name{font-family:var(--f-head);font-weight:700;font-size:1.1rem;min-width:0;
+.card-name{font-size:.86rem;font-weight:400;min-width:0;letter-spacing:.01em;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.card-rule{flex:1;height:1px;background:var(--hair-2);min-width:14px}
-.card-price{color:var(--muted);font-size:.72rem;letter-spacing:.14em;white-space:nowrap;font-weight:400}
-.card-meta{display:block;color:var(--muted);font-size:.7rem;letter-spacing:.16em;margin-block-start:8px;font-weight:300}
+.card-price{color:var(--muted);font-size:.78rem;letter-spacing:.04em;
+  white-space:nowrap;font-weight:300;margin-inline-start:auto}
+.card-meta{display:block;color:var(--muted);opacity:.78;font-size:.66rem;
+  letter-spacing:.08em;margin-block-start:6px;font-weight:300}
+/* خيط ذهبي قصير يُرسم تحت النص عند المرور — أثر واحد صغير بدل حركة كبيرة. */
+.card-body::after{content:"";position:absolute;inset-block-end:-6px;inset-inline-start:2px;
+  width:28px;height:1px;background:var(--gold-lt);
+  transform:scaleX(0);transform-origin:inline-start;transition:transform .38s ease}
+.card:hover .card-body::after{transform:scaleX(1)}
+@media (prefers-reduced-motion:reduce){
+  .card-img img,.card-img .card-hover,.card-body::after{transition:none}
+}
+
 .empty{color:var(--muted);grid-column:1/-1;padding:48px 4px}
 
-/* شبكة بثلاث قطع أو أقل (كـ«قطع مشابهة») تترك أعمدة فارغة تقرأ كخلل.
-   تُقيَّد الأعمدة بعرض أقصى وتُرصّ من البداية فتبدو مقصودة. */
-.grid:has(>.card:first-child:nth-last-child(-n+3)){
-  grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),300px));
-  justify-content:start;
+/* «قطع مشابهة» بثلاث قطع أو أقل تترك أعمدة فارغة تقرأ كخلل. تُقيَّد الأعمدة
+   بعرض أقصى وتُرصّ من البداية فتبدو مقصودة. مقصورة على هذه الشبكة وحدها:
+   لو بقيت عامة، أي فلترة تُرجع ثلاث قطع تنتقل فجأة إلى نظام بصري آخر. */
+.grid-related:has(>.card:first-child:nth-last-child(-n+3)){
+  grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),320px));
+  justify-content:start;width:100%;margin-inline:0;
 }
 
 /* الفلاتر — نص متباعد تحته خيط، لا أزرار ممتلئة */
@@ -437,8 +480,17 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 .wa-fab:hover{transform:scale(1.06)}
 
 /* ---------- ظهور عند التمرير ---------- */
-.rv{opacity:0;transform:translateY(22px);transition:opacity 1.1s cubic-bezier(.2,.7,.3,1),transform 1.1s cubic-bezier(.2,.7,.3,1)}
+.rv{opacity:0;transform:translateY(14px);
+  transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
 .rv.in{opacity:1;transform:none}
+/* البلاطات تظهر متتابعة لا دفعة واحدة — الصفّ يُقرأ كحركة واحدة. */
+.grid>.card:nth-child(4n+2){transition-delay:.06s}
+.grid>.card:nth-child(4n+3){transition-delay:.12s}
+.grid>.card:nth-child(4n+4){transition-delay:.18s}
+@media (max-width:820px){
+  .grid>.card:nth-child(4n+2),.grid>.card:nth-child(4n+4){transition-delay:.05s}
+  .grid>.card:nth-child(4n+3){transition-delay:0s}
+}
 @media (prefers-reduced-motion:reduce){
   .rv{opacity:1;transform:none;transition:none}
   .hero-img{animation:none}
@@ -485,10 +537,8 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
   .top{font-size:.62rem;letter-spacing:.16em;padding:10px 12px}
   .grid{grid-template-columns:1fr 1fr;gap:2rem 1.2rem}
   /* في عمودين لا يتّسع سطر «الاسم — السعر»، فينكمش الاسم حتى يختفي. */
-  .card-top{display:block}
-  .card-rule{display:none}
-  .card-name{display:block;font-size:.92rem;white-space:normal;overflow:visible}
-  .card-price{display:block;margin-block-start:6px}
+  .card-name{font-size:.8rem}
+  .card-price{font-size:.72rem}
   .cat-row{grid-template-columns:52px 1fr auto;gap:16px;padding:16px 2px}
   .occ-row{grid-template-columns:1fr 1fr}
   .chips{gap:20px}

@@ -211,7 +211,6 @@ function pieceCard(p, depth) {
     '<span class="card-body">' +
       '<span class="card-top">' +
         '<span class="card-name">' + esc(p.ar) + '</span>' +
-        '<i class="card-rule"></i>' +
         '<span class="card-price">' + esc(priceLabel(p)) + '</span>' +
       '</span>' +
       '<span class="card-meta">' + esc(metaLine(p)) + '</span>' +
@@ -408,7 +407,7 @@ function piecePage(p) {
 (related.length
   ? '<section class="section on-light"><div class="wrap">' +
     '<div class="sec-head rv"><span class="sec-eyebrow">✳ &nbsp;من نفس الفئة</span><h2>قطع مشابهة</h2></div>' +
-    '<div class="grid">' + related.map(function (x) { return pieceCard(x, 1); }).join('') + '</div>' +
+    '<div class="grid grid-related">' + related.map(function (x) { return pieceCard(x, 1); }).join('') + '</div>' +
     '</div></section>'
   : '')
   });
