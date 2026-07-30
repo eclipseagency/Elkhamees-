@@ -41,7 +41,10 @@ var BRAND = {
 var CATEGORIES = [
   { slug: 'rings', ar: 'خواتم', hint: 'خواتم الخطوبة والزواج والتصاميم اليومية', image: 'assets/catalogue/pear-quartet-ring.jpg' },
   { slug: 'necklaces', ar: 'قلائد', hint: 'قلائد ناعمة وقطع بارزة للمناسبات', image: 'assets/catalogue/pear-drop-necklace.jpg' },
-  { slug: 'bracelets', ar: 'أساور', hint: 'أساور ذهب وألماس بتصاميم متدرجة', image: 'assets/catalogue/marquise-cuff-bracelet.jpg' },
+  /* أساور وأطقم: لا قطع لهما في الكتالوج الحالي فيستبعدهما البناء تلقائياً.
+     صورة الإسورة على الموديل موجودة في المستودع (44.jpeg) لكن قطعتها لم
+     تُسلّم بصورة منتج، وهي قطعة أخرى من نفس الطقم لا صورة ثانية للقلادة. */
+  { slug: 'bracelets', ar: 'أساور', hint: 'أساور ذهب وألماس بتصاميم متدرجة', image: 'assets/catalogue/jewelry-set.jpg' },
   { slug: 'earrings', ar: 'أقراط', hint: 'أقراط يومية وأخرى للسهرات', image: 'assets/catalogue/cascade-earrings.jpg' },
   /* أطقم: لا توجد لها قطعة في الكتالوج الحالي، فيستبعدها البناء تلقائياً من
      التنقّل والصفحات، وتعود وحدها أول ما تُضاف قطعة. */
@@ -57,7 +60,7 @@ var METALS = [
 /* ------------------------------------------------------------------ *
  * القطع
  *
- * كتالوج الدار الفعلي — خمس قطع بصور المنتج الحقيقية (2026-07-30).
+ * كتالوج الدار الفعلي — أربع قطع بصور المنتج الحقيقية (2026-07-30).
  * لكل قطعة صورتان: `image` صورة المنتج على خلفية بيضاء، و`hover` صورة
  * الموديل وهي لابسة نفس القطعة. الصورة الثانية تظهر عند المرور على البطاقة.
  * الوزن والعيار والشهادة تُركت فارغة حيث لم تصل من الدار — الصفوف الفارغة
@@ -88,16 +91,6 @@ var PIECES = [
     hover: '',
     occasions: ['wedding'],
     note: 'قلادة مناسبات عريضة: عنقود مركيز وكمثرى في المنتصف تتدلى منه قطرات، على سلسلة ورقية مصقولة.' },
-
-  { slug: 'marquise-cuff-bracelet', ref: 'KH-B-401', ar: 'إسورة المركيز العريضة', category: 'bracelets', metal: 'white',
-    karat: '', weight: '', stone: 'ألماس · قطع مركيز وكمثرى', certified: false,
-    sizes: '', madeToOrder: false, price: null,
-    /* ⚠️ مؤقت: لم تصل صورة منتج للإسورة على خلفية بيضاء، فبطاقتها تستخدم
-       صورة الموديل ولا هوفر لها. تُستبدل أول ما تصل صورة المنتج. */
-    image: 'assets/catalogue/marquise-cuff-bracelet.jpg',
-    hover: '',
-    occasions: ['wedding', 'gifts'],
-    note: 'إسورة عريضة بثلاثة صفوف من المركيز والكمثرى المتشابكة، من نفس عائلة القلادة العريضة.' },
 
   { slug: 'cascade-earrings', ref: 'KH-E-301', ar: 'أقراط الشلال', category: 'earrings', metal: 'white',
     karat: '', weight: '', stone: 'ألماس · قطع كمثرى ودائري', certified: false,
