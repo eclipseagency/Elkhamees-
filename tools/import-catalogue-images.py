@@ -33,6 +33,10 @@ MAP = [
     ('3.png',    'cascade-earrings.jpg',            'product'),
     ('22.jpeg',  'cascade-earrings-model.jpg',      'model'),
     ('4.png',    'marquise-collar-necklace.jpg',    'product'),
+    # ⚠️ الوحيدة غير المصوّرة: الدار لم تسلّم صورة موديل لهذه القلادة، فوُلّدت
+    # من صورة المنتج + موديل الجلسة الحقيقية. الأصل والتفاصيل في
+    # assets/sources/README.md، ويُقرأ من هناك لا من مجلد صور المورّد.
+    ('assets/sources/4model-ai.png', 'marquise-collar-necklace-model.jpg', 'model'),
     # 44.jpeg إسورة من نفس الطقم، وليست صورة ثانية للقلادة العريضة. لا تدخل
     # الكتالوج حتى تصل صورة منتجها، ولا تُستخدم هوفراً لقطعة أخرى.
 ]
@@ -75,7 +79,8 @@ if __name__ == '__main__':
         sys.exit(__doc__)
     src = sys.argv[1]
     for f, name, kind in MAP:
-        p = os.path.join(src, f)
+        # اسم فيه مسار = ملف من المستودع نفسه (أصل غير مصوّر)، لا من مجلد المورّد.
+        p = f if os.sep in f or '/' in f else os.path.join(src, f)
         if not os.path.exists(p):
             print('  ناقص: ' + p)
             continue

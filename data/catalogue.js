@@ -86,9 +86,11 @@ var PIECES = [
   { slug: 'marquise-collar-necklace', ref: 'KH-N-202', ar: 'قلادة المركيز العريضة', category: 'necklaces', metal: 'white',
     karat: '', weight: '', stone: 'ألماس · قطع مركيز وكمثرى', certified: false,
     sizes: '', madeToOrder: false, price: null,
-    /* ⚠️ لا هوفر: لم تصل صورة موديل لهذه القلادة. */
+    /* ⚠️ صورة الهوفر هنا وحدها **مولّدة بالذكاء الاصطناعي** لا مصوّرة — الدار
+       لم تسلّم صورة موديل لهذه القطعة. التفاصيل في assets/sources/README.md.
+       تُستبدل بتصوير حقيقي أول ما يصل. صورة المنتج تصوير حقيقي. */
     image: 'assets/catalogue/marquise-collar-necklace.jpg',
-    hover: '',
+    hover: 'assets/catalogue/marquise-collar-necklace-model.jpg',
     occasions: ['wedding'],
     note: 'قلادة مناسبات عريضة: عنقود مركيز وكمثرى في المنتصف تتدلى منه قطرات، على سلسلة ورقية مصقولة.' },
 
