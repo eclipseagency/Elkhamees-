@@ -27,13 +27,14 @@ MAP = [
     ('1.png',    'pear-quartet-ring.jpg',           'product'),
     ('11.jpeg',  'pear-quartet-ring-model.jpg',     'model'),
     ('2.png',    'pear-drop-necklace.jpg',          'product'),
-    ('333.jpeg', 'pear-drop-necklace-model.jpg',    'model'),
+    # 33.jpeg و333.jpeg نفس القلادة على نفس الموديل بكادرين. المختار هو
+    # الأقرب لأن القلادة تُقرأ أوضح داخل بلاطة صغيرة (اختيار مصطفى 2026-07-30).
+    ('33.jpeg',  'pear-drop-necklace-model.jpg',    'model'),
     ('3.png',    'cascade-earrings.jpg',            'product'),
     ('22.jpeg',  'cascade-earrings-model.jpg',      'model'),
     ('4.png',    'marquise-collar-necklace.jpg',    'product'),
-    # ⚠️ مؤقت: الإسورة لم تصل لها صورة منتج على خلفية بيضاء، فبطاقتها
-    # تستخدم صورة الموديل. تُستبدل أول ما تصل صورة المنتج.
-    ('44.jpeg',  'marquise-cuff-bracelet.jpg',      'model'),
+    # 44.jpeg إسورة من نفس الطقم، وليست صورة ثانية للقلادة العريضة. لا تدخل
+    # الكتالوج حتى تصل صورة منتجها، ولا تُستخدم هوفراً لقطعة أخرى.
 ]
 
 OUT = os.path.join('assets', 'catalogue')
