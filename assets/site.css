@@ -278,6 +278,17 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 .card-img{display:block;aspect-ratio:4/5;overflow:hidden;background:var(--paper-3)}
 .card-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.3,1)}
 .card:hover .card-img img{transform:scale(1.035)}
+
+/* صورة الموديل تحت المؤشر: صورة المنتج تختفي وتظهر القطعة ملبوسة.
+   البطاقة نفسها تبقى ثابتة الحجم فلا تتزحزح الشبكة. */
+.card-img.has-hover{position:relative}
+.card-img .card-hover{position:absolute;inset:0;opacity:0;
+  transition:opacity .55s ease, transform 1.2s cubic-bezier(.2,.7,.3,1)}
+.card:hover .card-img .card-hover,
+.card:focus-visible .card-img .card-hover{opacity:1}
+/* على الجوال لا يوجد مرور بالمؤشر، فالصورة الثانية لا تُحمّل ولا تُعرض. */
+@media (hover:none){.card-img .card-hover{display:none}}
+@media (prefers-reduced-motion:reduce){.card-img .card-hover{transition:opacity .2s linear}}
 .card-body{display:block;padding:20px 2px 0}
 .card-top{display:flex;align-items:baseline;gap:14px}
 .card-name{font-family:var(--f-head);font-weight:700;font-size:1.1rem;min-width:0;
@@ -312,6 +323,9 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
   aspect-ratio:4/5;max-width:500px;margin-inline-start:auto;width:100%}
 .piece-media img{object-fit:contain}
 .piece-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.piece-media .card-hover{opacity:0;transition:opacity .55s ease}
+.piece-media.has-hover:hover .card-hover{opacity:1}
+@media (hover:none){.piece-media .card-hover{display:none}}
 .piece-info{padding:clamp(1rem,2vw,2rem) 0 0}
 .piece-info h1{font-family:var(--f-head);font-weight:700;font-size:clamp(1.9rem,4vw,2.9rem);margin-block-end:14px}
 .piece-ref{color:var(--muted);font-size:.68rem;letter-spacing:.22em}

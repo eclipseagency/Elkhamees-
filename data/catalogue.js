@@ -39,10 +39,12 @@ var BRAND = {
  * الفئات — ترتيبها هنا هو ترتيب ظهورها في الموقع
  * ------------------------------------------------------------------ */
 var CATEGORIES = [
-  { slug: 'rings', ar: 'خواتم', hint: 'خواتم الخطوبة والزواج والتصاميم اليومية', image: 'assets/catalogue/ring.jpg' },
-  { slug: 'necklaces', ar: 'قلائد', hint: 'قلائد ناعمة وقطع بارزة للمناسبات', image: 'assets/catalogue/necklace.jpg' },
-  { slug: 'bracelets', ar: 'أساور', hint: 'أساور ذهب وألماس بتصاميم متدرجة', image: 'assets/catalogue/bracelet.jpg' },
-  { slug: 'earrings', ar: 'أقراط', hint: 'أقراط يومية وأخرى للسهرات', image: 'assets/catalogue/earrings.jpg' },
+  { slug: 'rings', ar: 'خواتم', hint: 'خواتم الخطوبة والزواج والتصاميم اليومية', image: 'assets/catalogue/pear-quartet-ring.jpg' },
+  { slug: 'necklaces', ar: 'قلائد', hint: 'قلائد ناعمة وقطع بارزة للمناسبات', image: 'assets/catalogue/pear-drop-necklace.jpg' },
+  { slug: 'bracelets', ar: 'أساور', hint: 'أساور ذهب وألماس بتصاميم متدرجة', image: 'assets/catalogue/marquise-cuff-bracelet.jpg' },
+  { slug: 'earrings', ar: 'أقراط', hint: 'أقراط يومية وأخرى للسهرات', image: 'assets/catalogue/cascade-earrings.jpg' },
+  /* أطقم: لا توجد لها قطعة في الكتالوج الحالي، فيستبعدها البناء تلقائياً من
+     التنقّل والصفحات، وتعود وحدها أول ما تُضاف قطعة. */
   { slug: 'sets', ar: 'أطقم كاملة', hint: 'أطقم متناسقة للعروس والمناسبات', image: 'assets/catalogue/jewelry-set.jpg' }
 ];
 
@@ -55,59 +57,55 @@ var METALS = [
 /* ------------------------------------------------------------------ *
  * القطع
  *
- * ⚠️ كتالوج مبدئي لبناء الهيكل. الصور من مكتبة المشروع، والمواصفات نموذجية.
- * يُستبدل بالكامل بكتالوج الدار المعتمد قبل الإطلاق التجاري.
- * كل قطعة: ref يظهر للعميل ويُرسل في رسالة الواتساب حتى يعرف الموظف
- * عن أي قطعة يتكلم من أول رسالة.
+ * كتالوج الدار الفعلي — خمس قطع بصور المنتج الحقيقية (2026-07-30).
+ * لكل قطعة صورتان: `image` صورة المنتج على خلفية بيضاء، و`hover` صورة
+ * الموديل وهي لابسة نفس القطعة. الصورة الثانية تظهر عند المرور على البطاقة.
+ * الوزن والعيار والشهادة تُركت فارغة حيث لم تصل من الدار — الصفوف الفارغة
+ * لا تُطبع في جدول المواصفات. لا تُخترع أرقام: أي رقم يُنشر يلزم الدار به.
  * ------------------------------------------------------------------ */
 var PIECES = [
-  { slug: 'solitaire-ring-18k', ref: 'KH-R-101', ar: 'خاتم سوليتير ألماس', category: 'rings', metal: 'white',
-    karat: '18', weight: '3.4', stone: 'ألماس طبيعي · قطع دائري', certified: true,
-    sizes: '10 – 20', madeToOrder: false, price: null,
-    image: 'assets/catalogue/ring.jpg', occasions: ['engagement', 'wedding'],
-    note: 'خاتم كلاسيكي بحجر مركزي واحد، مناسب للخطوبة والارتداء اليومي.' },
+  { slug: 'pear-quartet-ring', ref: 'KH-R-101', ar: 'خاتم الكمثرى الرباعي', category: 'rings', metal: 'white',
+    karat: '', weight: '', stone: 'ألماس · قطع كمثرى ومركيز', certified: false,
+    sizes: '', madeToOrder: false, price: null,
+    image: 'assets/catalogue/pear-quartet-ring.jpg',
+    hover: 'assets/catalogue/pear-quartet-ring-model.jpg',
+    occasions: ['engagement', 'gifts'],
+    note: 'خاتم مفتوح بأربعة أحجار كمثرى ومركيز متدرّجة على جانبي الإصبع، بذهب أبيض مصقول.' },
 
-  { slug: 'pear-ring-18k', ref: 'KH-R-102', ar: 'خاتم ألماس قطع الكمثرى', category: 'rings', metal: 'yellow',
-    karat: '18', weight: '4.1', stone: 'ألماس طبيعي · قطع كمثرى', certified: true,
-    sizes: '12 – 19', madeToOrder: true, price: null,
-    image: 'assets/catalogue/ring-pear.jpg', occasions: ['engagement', 'gifts'],
-    note: 'تصميم يُنفّذ بالطلب، ويمكن تعديل حجم الحجر وعيار الذهب.' },
+  { slug: 'pear-drop-necklace', ref: 'KH-N-201', ar: 'قلادة الكمثرى المتدلية', category: 'necklaces', metal: 'white',
+    karat: '', weight: '', stone: 'ألماس · قطع كمثرى', certified: false,
+    sizes: '', madeToOrder: false, price: null,
+    image: 'assets/catalogue/pear-drop-necklace.jpg',
+    hover: 'assets/catalogue/pear-drop-necklace-model.jpg',
+    occasions: ['wedding', 'engagement', 'gifts'],
+    note: 'صفّان من أحجار الكمثرى ينزلان إلى شكل V، ويتدلّى منهما حجر كمثرى بارز في المنتصف.' },
 
-  { slug: 'diamond-necklace-18k', ref: 'KH-N-201', ar: 'قلادة ألماس متدرجة', category: 'necklaces', metal: 'white',
-    karat: '18', weight: '6.8', stone: 'ألماس طبيعي', certified: true,
-    sizes: '40 – 45 سم', madeToOrder: false, price: null,
-    image: 'assets/catalogue/necklace.jpg', occasions: ['wedding', 'gifts'],
-    note: 'قلادة بتدرّج محسوب يبرز عند فتحة الرقبة.' },
+  { slug: 'marquise-collar-necklace', ref: 'KH-N-202', ar: 'قلادة المركيز العريضة', category: 'necklaces', metal: 'white',
+    karat: '', weight: '', stone: 'ألماس · قطع مركيز وكمثرى', certified: false,
+    sizes: '', madeToOrder: false, price: null,
+    /* ⚠️ لا هوفر: لم تصل صورة موديل لهذه القلادة. */
+    image: 'assets/catalogue/marquise-collar-necklace.jpg',
+    hover: '',
+    occasions: ['wedding'],
+    note: 'قلادة مناسبات عريضة: عنقود مركيز وكمثرى في المنتصف تتدلى منه قطرات، على سلسلة ورقية مصقولة.' },
 
-  { slug: 'circular-necklace-18k', ref: 'KH-N-202', ar: 'قلادة دائرية بالألماس', category: 'necklaces', metal: 'yellow',
-    karat: '18', weight: '5.2', stone: 'ألماس طبيعي', certified: true,
-    sizes: '42 سم', madeToOrder: false, price: null,
-    image: 'assets/catalogue/circular-necklace.jpg', occasions: ['gifts', 'graduation'],
-    note: 'قطعة يومية أنيقة تصلح هدية.' },
+  { slug: 'marquise-cuff-bracelet', ref: 'KH-B-401', ar: 'إسورة المركيز العريضة', category: 'bracelets', metal: 'white',
+    karat: '', weight: '', stone: 'ألماس · قطع مركيز وكمثرى', certified: false,
+    sizes: '', madeToOrder: false, price: null,
+    /* ⚠️ مؤقت: لم تصل صورة منتج للإسورة على خلفية بيضاء، فبطاقتها تستخدم
+       صورة الموديل ولا هوفر لها. تُستبدل أول ما تصل صورة المنتج. */
+    image: 'assets/catalogue/marquise-cuff-bracelet.jpg',
+    hover: '',
+    occasions: ['wedding', 'gifts'],
+    note: 'إسورة عريضة بثلاثة صفوف من المركيز والكمثرى المتشابكة، من نفس عائلة القلادة العريضة.' },
 
-  { slug: 'tennis-bracelet-18k', ref: 'KH-B-301', ar: 'إسورة تنس ألماس', category: 'bracelets', metal: 'white',
-    karat: '18', weight: '8.5', stone: 'ألماس طبيعي · صف كامل', certified: true,
-    sizes: '17 – 19 سم', madeToOrder: false, price: null,
-    image: 'assets/catalogue/bracelet.jpg', occasions: ['wedding', 'gifts'],
-    note: 'صف ألماس متصل بقفل مزدوج للأمان.' },
-
-  { slug: 'drop-earrings-18k', ref: 'KH-E-401', ar: 'أقراط متدلية بالألماس', category: 'earrings', metal: 'white',
-    karat: '18', weight: '4.6', stone: 'ألماس طبيعي', certified: true,
-    sizes: '—', madeToOrder: false, price: null,
-    image: 'assets/catalogue/earrings.jpg', occasions: ['wedding', 'engagement'],
-    note: 'أقراط للسهرات بحركة خفيفة تعكس الضوء.' },
-
-  { slug: 'bridal-set-18k', ref: 'KH-S-501', ar: 'طقم عروس متكامل', category: 'sets', metal: 'yellow',
-    karat: '21', weight: '32.0', stone: 'ألماس وأحجار كريمة', certified: true,
-    sizes: 'حسب المقاس', madeToOrder: true, price: null,
-    image: 'assets/catalogue/jewelry-set.jpg', occasions: ['wedding'],
-    note: 'طقم يُنفّذ بالطلب: قلادة وأقراط وإسورة وخاتم بتصميم موحّد.' },
-
-  { slug: 'classic-bridal-set', ref: 'KH-S-502', ar: 'طقم الزفاف الكلاسيكي', category: 'sets', metal: 'yellow',
-    karat: '21', weight: '28.5', stone: 'ألماس طبيعي', certified: true,
-    sizes: 'حسب المقاس', madeToOrder: true, price: null,
-    image: 'assets/catalogue/bridal-set.jpg', occasions: ['wedding', 'engagement'],
-    note: 'خطوط كلاسيكية تناسب حفلات الزواج والملكة.' }
+  { slug: 'cascade-earrings', ref: 'KH-E-301', ar: 'أقراط الشلال', category: 'earrings', metal: 'white',
+    karat: '', weight: '', stone: 'ألماس · قطع كمثرى ودائري', certified: false,
+    sizes: '', madeToOrder: false, price: null,
+    image: 'assets/catalogue/cascade-earrings.jpg',
+    hover: 'assets/catalogue/cascade-earrings-model.jpg',
+    occasions: ['wedding', 'engagement'],
+    note: 'أقراط طويلة بثلاث سلاسل متتالية من زهور الكمثرى، تتحرك مع الحركة وتعكس الضوء.' }
 ];
 
 /* ------------------------------------------------------------------ *

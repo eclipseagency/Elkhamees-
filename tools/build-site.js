@@ -37,6 +37,12 @@ function wa(text) {
 }
 function up(depth) { return depth === 0 ? '' : new Array(depth + 1).join('../'); }
 
+/* فئة بلا قطع تُنتج صفحة فارغة وسطراً ميتاً في التنقّل. تُستبعد من البناء،
+   وتعود وحدها أول ما تُضاف لها قطعة في data/catalogue.js. */
+D.CATEGORIES = D.CATEGORIES.filter(function (c) {
+  return D.PIECES.some(function (p) { return p.category === c.slug; });
+});
+
 var CAT = {};
 D.CATEGORIES.forEach(function (c) { CAT[c.slug] = c; });
 var OCC = {};
@@ -182,15 +188,24 @@ function layout(o) {
 function pieceCard(p, depth) {
   var u = up(depth);
   return '<a class="card rv" href="' + u + 'piece/' + p.slug + '">' +
-    '<span class="card-img"><img src="' + u + p.image + '" alt="' + esc(p.ar) + '" loading="lazy"></span>' +
+    '<span class="card-img' + (p.hover ? ' has-hover' : '') + '">' +
+      '<img src="' + u + p.image + '" alt="' + esc(p.ar) + '" loading="lazy">' +
+      (p.hover ? '<img class="card-hover" src="' + u + p.hover + '" alt="" loading="lazy">' : '') +
+    '</span>' +
     '<span class="card-body">' +
       '<span class="card-top">' +
         '<span class="card-name">' + esc(p.ar) + '</span>' +
         '<i class="card-rule"></i>' +
         '<span class="card-price">' + esc(priceLabel(p)) + '</span>' +
       '</span>' +
-      '<span class="card-meta">' + esc(METAL[p.metal] || '') + ' · عيار ' + esc(p.karat) + '</span>' +
+      '<span class="card-meta">' + esc(metaLine(p)) + '</span>' +
     '</span></a>';
+}
+
+/* المعدن والعيار على سطر واحد. العيار قد لا يكون معتمداً بعد، فلا يُطبع
+   "عيار " بلا رقم. */
+function metaLine(p) {
+  return [METAL[p.metal] || '', p.karat ? 'عيار ' + p.karat : ''].filter(Boolean).join(' · ');
 }
 
 function trustBar() {
@@ -351,10 +366,13 @@ function piecePage(p) {
 
   return layout({
     title: p.ar, active: 'jewellery', depth: 1,
-    description: p.ar + ' — ' + (METAL[p.metal] || '') + ' عيار ' + p.karat + '. ' + (p.note || ''),
+    description: p.ar + ' — ' + metaLine(p) + '. ' + (p.note || ''),
     body:
 '<section class="piece"><div class="wrap piece-grid">\n' +
-'  <div class="piece-media rv"><img src="../' + p.image + '" alt="' + esc(p.ar) + '"></div>\n' +
+'  <div class="piece-media rv' + (p.hover ? ' has-hover' : '') + '">' +
+     '<img src="../' + p.image + '" alt="' + esc(p.ar) + '">' +
+     (p.hover ? '<img class="card-hover" src="../' + p.hover + '" alt="' + esc(p.ar) + ' على الموديل" loading="lazy">' : '') +
+   '</div>\n' +
 '  <div class="piece-info">\n' +
 '    <nav class="crumb"><a href="../">الرئيسية</a> · <a href="../jewellery">المجوهرات</a> · ' +
        '<a href="../jewellery/' + p.category + '">' + esc(c.ar) + '</a></nav>\n' +

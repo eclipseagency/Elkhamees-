@@ -40,7 +40,7 @@
       <img class="foot-logo" src="assets/wordmark-gold.png" alt="مجوهرات الخميس">
       <p>دار مجوهرات · ذهب وألماس موثّق</p>
     </div>
-    <div><h4>المجوهرات</h4><a href="jewellery/rings">خواتم</a><a href="jewellery/necklaces">قلائد</a><a href="jewellery/bracelets">أساور</a><a href="jewellery/earrings">أقراط</a><a href="jewellery/sets">أطقم كاملة</a></div>
+    <div><h4>المجوهرات</h4><a href="jewellery/rings">خواتم</a><a href="jewellery/necklaces">قلائد</a><a href="jewellery/bracelets">أساور</a><a href="jewellery/earrings">أقراط</a></div>
     <div><h4>الدار</h4>      <a href="about">عن الدار</a>      <a href="services">خدماتنا</a>      <a href="faq">الأسئلة الشائعة</a>      <a href="contact">تواصل وزيارة المعرض</a></div>
     <div><h4>سياسات</h4>      <a href="policies/returns">الاستبدال والإرجاع</a>      <a href="policies/shipping">الشحن والتغليف</a>      <a href="policies/privacy">الخصوصية</a></div>
   </div>
@@ -54,7 +54,7 @@
   var b=document.querySelector(".burger"),n=document.querySelector(".nav");
   if(b&&n)b.addEventListener("click",function(){var o=n.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");});
   // البحث — الفهرس من data/catalogue.js نفسه، فلا مصدر ثانٍ يتخلّف عنه
-  var IX=[{"t":"خاتم سوليتير ألماس","u":"piece/solitaire-ring-18k","c":"خواتم","p":"اطلب السعر"},{"t":"خاتم ألماس قطع الكمثرى","u":"piece/pear-ring-18k","c":"خواتم","p":"اطلب السعر"},{"t":"قلادة ألماس متدرجة","u":"piece/diamond-necklace-18k","c":"قلائد","p":"اطلب السعر"},{"t":"قلادة دائرية بالألماس","u":"piece/circular-necklace-18k","c":"قلائد","p":"اطلب السعر"},{"t":"إسورة تنس ألماس","u":"piece/tennis-bracelet-18k","c":"أساور","p":"اطلب السعر"},{"t":"أقراط متدلية بالألماس","u":"piece/drop-earrings-18k","c":"أقراط","p":"اطلب السعر"},{"t":"طقم عروس متكامل","u":"piece/bridal-set-18k","c":"أطقم كاملة","p":"اطلب السعر"},{"t":"طقم الزفاف الكلاسيكي","u":"piece/classic-bridal-set","c":"أطقم كاملة","p":"اطلب السعر"}];
+  var IX=[{"t":"خاتم الكمثرى الرباعي","u":"piece/pear-quartet-ring","c":"خواتم","p":"اطلب السعر"},{"t":"قلادة الكمثرى المتدلية","u":"piece/pear-drop-necklace","c":"قلائد","p":"اطلب السعر"},{"t":"قلادة المركيز العريضة","u":"piece/marquise-collar-necklace","c":"قلائد","p":"اطلب السعر"},{"t":"إسورة المركيز العريضة","u":"piece/marquise-cuff-bracelet","c":"أساور","p":"اطلب السعر"},{"t":"أقراط الشلال","u":"piece/cascade-earrings","c":"أقراط","p":"اطلب السعر"}];
   var sf=document.querySelector(".search"),si=sf&&sf.querySelector("input"),so=sf&&sf.querySelector(".search-out");
   function norm(s){return (s||"").replace(/[أإآ]/g,"ا").replace(/[ىئ]/g,"ي").replace(/ة/g,"ه").replace(/[ًٌٍَُِّْ]/g,"").toLowerCase();}
   function hits(q){q=norm(q).trim();if(!q)return [];return IX.filter(function(x){return norm(x.t+" "+x.c).indexOf(q)>-1;}).slice(0,6);}
