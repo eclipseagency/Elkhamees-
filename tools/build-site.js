@@ -18,10 +18,26 @@
 
 var fs = require('fs');
 var path = require('path');
+var crypto = require('crypto');
 var D = require('../data/catalogue.js');
 
 var ROOT = path.join(__dirname, '..');
 var WA = D.BRAND.whatsapp;
+
+/* بصمة محتوى لكل أصل. vercel.json يخدم /assets بـ immutable لسنة، فالملف
+   المعدّل باسمه القديم يبقى في متصفح الزائر وفي الـCDN إلى ما لا نهاية —
+   وهذا ما حجب قواعد الهوفر في site.css بعد نشرها (2026-07-30).
+   البصمة تُحسب من المحتوى نفسه لا من رقم يُزاد يدوياً، فلا تُنسى مرة أخرى. */
+var STAMPS = {};
+function stamp(rel) {
+  if (!(rel in STAMPS)) {
+    try {
+      STAMPS[rel] = crypto.createHash('md5')
+        .update(fs.readFileSync(path.join(ROOT, rel))).digest('hex').slice(0, 8);
+    } catch (e) { STAMPS[rel] = '0'; }
+  }
+  return STAMPS[rel];
+}
 
 /* ------------------------------------------------------------------ *
  * أدوات
@@ -91,7 +107,7 @@ function layout(o) {
 '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
 '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
 '<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">\n' +
-'<link rel="stylesheet" href="' + u + 'assets/site.css">\n' +
+'<link rel="stylesheet" href="' + u + 'assets/site.css?v=' + stamp('assets/site.css') + '">\n' +
 '</head>\n<body>\n' +
 
 '<div class="top">صناعة سعودية · ذهب وألماس موثّق · زيارة المعرض بموعد</div>\n' +
@@ -514,14 +530,12 @@ function policy(slug, title, paras) {
 /* ------------------------------------------------------------------ *
  * الكتابة
  * ------------------------------------------------------------------ */
-/* بصمة صور الكتالوج. vercel.json يخدم /assets بـ immutable لسنة، والصور
-   أُعيد تلوينها بأسماء الملفات نفسها — فبدون هذه البصمة يبقى الزائر
-   القديم يرى الخلفية العاجية على موقع أبيض. زدها عند أي تعديل للصور. */
-var CAT_V = '5';
-
 function write(rel, html) {
   if (/\.html$/.test(rel)) {
-    html = html.replace(/(assets\/catalogue\/[a-z0-9-]+\.jpg)/g, '$1?v=' + CAT_V);
+    /* بصمة كل صورة من محتواها: الصورة المعدّلة باسمها القديم تصل للزائر. */
+    html = html.replace(/(assets\/catalogue\/[a-z0-9-]+\.jpg)/g, function (m) {
+      return m + '?v=' + stamp(m);
+    });
   }
   var full = path.join(ROOT, rel);
   fs.mkdirSync(path.dirname(full), { recursive: true });
