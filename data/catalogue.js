@@ -39,13 +39,13 @@ var BRAND = {
  * الفئات — ترتيبها هنا هو ترتيب ظهورها في الموقع
  * ------------------------------------------------------------------ */
 var CATEGORIES = [
-  { slug: 'rings', ar: 'خواتم', hint: 'خواتم الخطوبة والزواج والتصاميم اليومية', image: 'assets/catalogue/cat-rings.jpg' },
-  { slug: 'necklaces', ar: 'قلائد', hint: 'قلائد ناعمة وقطع بارزة للمناسبات', image: 'assets/catalogue/cat-necklaces.jpg' },
+  { slug: 'rings', ar: 'خواتم', hint: 'خطوبة، زواج، وتصاميم تنلبس كل يوم', image: 'assets/catalogue/cat-rings.jpg' },
+  { slug: 'necklaces', ar: 'قلائد', hint: 'من الناعم اليومي إلى قطع السهرة', image: 'assets/catalogue/cat-necklaces.jpg' },
   /* أساور وأطقم: لا قطع لهما في الكتالوج الحالي فيستبعدهما البناء تلقائياً.
      صورة الإسورة على الموديل موجودة في المستودع (44.jpeg) لكن قطعتها لم
      تُسلّم بصورة منتج، وهي قطعة أخرى من نفس الطقم لا صورة ثانية للقلادة. */
-  { slug: 'bracelets', ar: 'أساور', hint: 'أساور ذهب وألماس بتصاميم متدرجة', image: 'assets/catalogue/cat-bracelets.jpg' },
-  { slug: 'earrings', ar: 'أقراط', hint: 'أقراط يومية وأخرى للسهرات', image: 'assets/catalogue/cat-earrings.jpg' },
+  { slug: 'bracelets', ar: 'أساور', hint: 'أساور ألماس وذهب، صف واحد أو عريضة', image: 'assets/catalogue/cat-bracelets.jpg' },
+  { slug: 'earrings', ar: 'أقراط', hint: 'من الفصّ الصغير إلى الأقراط الطويلة', image: 'assets/catalogue/cat-earrings.jpg' },
   /* أطقم: لا توجد لها قطعة في الكتالوج الحالي، فيستبعدها البناء تلقائياً من
      التنقّل والصفحات، وتعود وحدها أول ما تُضاف قطعة. */
   { slug: 'sets', ar: 'أطقم كاملة', hint: 'أطقم متناسقة للعروس والمناسبات', image: 'assets/catalogue/cat-bracelets.jpg' }
@@ -108,16 +108,16 @@ var PIECES = [
  * ------------------------------------------------------------------ */
 var OCCASIONS = [
   { slug: 'wedding', ar: 'الزواج والملكة', image: 'assets/editorial/occ-wedding.jpg',
-    lead: 'أطقم وقطع تليق بليلة العمر، ويمكن تنفيذها بتصميم خاص للعروس.',
+    lead: 'قطع لليلة العمر، وتصميم خاص للعروس إذا بغيت شيء ما أحد لبسه.',
     guide: 'ننصح بالبدء قبل الموعد بشهرين على الأقل إذا كان التصميم خاصاً.' },
   { slug: 'engagement', ar: 'الخطوبة', image: 'assets/editorial/occ-engagement.jpg',
-    lead: 'خواتم خطوبة بحجر مركزي، مع إمكانية اختيار الحجر والعيار.',
+    lead: 'خواتم خطوبة تختار حجرها بنفسك — الشكل والحجم والعيار.',
     guide: 'نساعدك في اختيار المقاس بسرية إذا كانت مفاجأة.' },
   { slug: 'gifts', ar: 'الهدايا', image: 'assets/editorial/occ-gifts.jpg',
-    lead: 'قطع مختارة تصلح هدية في أي مناسبة، بتغليف الدار.',
+    lead: 'قطع تصلح هدية بلا تفكير طويل، وتطلع بتغليف الدار جاهزة.',
     guide: 'أخبرنا بالميزانية ونرشّح لك ثلاث قطع مناسبة.' },
   { slug: 'graduation', ar: 'التخرج والترقيات', image: 'assets/editorial/occ-graduation.jpg',
-    lead: 'قطع يومية أنيقة تُهدى في المناسبات السعيدة.',
+    lead: 'قطع خفيفة تُهدى في يوم فرح وتنلبس بعده كل يوم.',
     guide: 'قطع خفيفة تصلح للارتداء اليومي بعد المناسبة.' }
 ];
 

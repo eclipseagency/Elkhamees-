@@ -51,14 +51,36 @@ def retint(im):
     return Image.fromarray(a)
 
 
+FILL = 0.86   # نسبة ما تشغله القطعة من البلاطة بعد التقريب
+
+
+def bbox(im):
+    """حدود القطعة داخل الإطار: أول بكسل يبتعد عن الخلفية في كل اتجاه."""
+    import numpy as np
+    a = np.asarray(im.convert('RGB')).astype(np.int16)
+    mask = np.abs(a - SRC_BG).max(axis=2) > 12
+    ys, xs = np.where(mask)
+    if not len(xs):
+        return (0, 0, im.width, im.height)
+    return (int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1)
+
+
 def as_product(im):
-    """القطعة كاملة داخل بلاطة 4:5، والفراغ فوقها وتحتها بلون البلاطة."""
+    """القطعة تُقصّ على حدودها ثم تُقرَّب حتى تشغل 86% من البلاطة.
+
+    صور المورّد فيها هامش واسع حول القطعة، فكانت القطعة تطلع صغيرة داخل
+    بلاطة كبيرة و«لا تُعرض جيداً» (ملاحظة مصطفى 2026-07-30). التقريب موحّد
+    بنسبة واحدة لكل القطع، فتبقى النسب بينها محفوظة ولا تكبر قطعة على أخرى.
+    """
     im = retint(im)
-    scale = min(TILE[0] / im.width, TILE[1] / im.height)
-    im = im.resize((round(im.width * scale), round(im.height * scale)), Image.LANCZOS)
-    tile = Image.new('RGB', TILE, tuple(int(c) for c in PAPER3))
-    tile.paste(im, ((TILE[0] - im.width) // 2, (TILE[1] - im.height) // 2))
-    return tile
+    x0, y0, x1, y1 = bbox(im)
+    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+    side = max(x1 - x0, y1 - y0) / FILL              # مربّع حول القطعة
+    side = min(side, im.width, im.height)            # لا يخرج عن الأصل
+    l = max(0, min(im.width - side, cx - side / 2))
+    t = max(0, min(im.height - side, cy - side / 2))
+    im = im.crop((round(l), round(t), round(l + side), round(t + side)))
+    return im.resize(TILE, Image.LANCZOS)
 
 
 def as_model(im):

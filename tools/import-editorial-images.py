@@ -25,12 +25,13 @@ MAP = [
     ('Bracelets.jpeg', os.path.join(CAT, 'cat-bracelets.jpg'),  900, 900),
     ('Earning.png',    os.path.join(CAT, 'cat-earrings.jpg'),   900, 900),
 
-    # المناسبات — التوزيع بالمزاج لا بالقطعة: الأحمر العميق للزواج،
-    # الخواتم للخطوبة، الساتان والصينية للهدايا، الأخضر الفاتح للتخرج.
-    ('Necklaces.jpeg', os.path.join(OUT, 'occ-wedding.jpg'),    1100, 1375),
-    ('Rings.jpeg',     os.path.join(OUT, 'occ-engagement.jpg'), 1100, 1375),
-    ('Bracelets.jpeg', os.path.join(OUT, 'occ-gifts.jpg'),      1100, 1375),
-    ('Earning.png',    os.path.join(OUT, 'occ-graduation.jpg'), 1100, 1375),
+    # المناسبات — صور القطع **ملبوسة**، لا صور ستل-لايف. المناسبة إنسان
+    # لابس القطعة؛ وضع صورة «قلائد» تحت «الزواج والملكة» يخلط الفئة
+    # بالمناسبة ولا يقول شيئاً عن المناسبة (تصحيح مصطفى 2026-07-30).
+    ('333.jpeg', os.path.join(OUT, 'occ-wedding.jpg'),    1100, 1375),   # فستان سهرة
+    ('11.jpeg',  os.path.join(OUT, 'occ-engagement.jpg'), 1100, 1375),   # الخاتم في اليد
+    ('44.jpeg',  os.path.join(OUT, 'occ-gifts.jpg'),      1100, 1375),   # إسورة على المعصم
+    ('22.jpeg',  os.path.join(OUT, 'occ-graduation.jpg'), 1100, 1375),   # أقراط، مزاج نهاري
 
     # القسم المنقسم في الرئيسية (صورة يمين وقائمة الفئات يسار)
     ('Necklaces.jpeg', os.path.join(OUT, 'split-necklaces.jpg'), 1200, 1600),

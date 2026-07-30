@@ -242,7 +242,7 @@ function ctaBand(depth) {
   return '<section class="cta">' +
     '<img class="cta-bg" src="' + up(depth) + 'assets/editorial/cta-bracelets.jpg" alt="" loading="lazy">' +
     '<div class="wrap">' +
-    '<h2>ما لقيت اللي تبيه؟</h2>' +
+    '<h2>عندك تصميم في بالك؟</h2>' +
     '<p>راسلنا ووصف لنا القطعة، أو احجز زيارة للمعرض وشوفها بنفسك.</p>' +
     '<div class="cta-acts">' +
       '<a class="btn btn-gold" href="' + wa('السلام عليكم، أبحث عن قطعة معينة.') + '" target="_blank" rel="noopener">راسلنا واتساب</a>' +
@@ -264,11 +264,11 @@ function home() {
 '<section class="hero">\n' +
 '  <img class="hero-bg" src="assets/editorial/hero-rings.jpg" alt="" fetchpriority="high">\n' +
 '  <div class="hero-in"><div class="hero-copy">\n' +
-'    <span class="hero-eyebrow">مجوهرات الخميس · المملكة العربية السعودية</span>\n' +
-'    <h1>قطعة تُلبس <em>لسنوات</em>،<br>لا لموسم</h1>\n' +
+'    <span class="hero-eyebrow">دار مجوهرات · العليا، الرياض</span>\n' +
+'    <h1>ألماس تشوفه <em>بعينك</em><br>قبل ما تشتريه</h1>\n' +
 '    <i class="hero-rule"></i>\n' +
 '    <div class="hero-row">\n' +
-'      <p>ذهب وألماس موثّق، صياغة يدوية في ورشتنا، وتصميم خاص لو ما لقيت اللي في بالك.</p>\n' +
+'      <p>كل قطعة تُصاغ في ورشتنا وتُسلَّم بشهادتها. تعال المعرض شوفها على الطبيعة، أو راسلنا وارسل لك صور وفيديو للقطعة قبل ما تتحرك.</p>\n' +
 '      <div class="hero-acts">\n' +
 '        <a class="btn btn-gold" href="jewellery">تصفّح المجوهرات</a>\n' +
 '        <a class="more" href="occasions">أشتري لمناسبة ←</a>\n' +
@@ -281,32 +281,35 @@ function home() {
 marquee() +
 trustBar() +
 
-/* الفئات: صورة واحدة كبيرة يقابلها صفّ لكل فئة — تخطيط تحريري غير متماثل
-   بدل خمس بطاقات متساوية لا تقول أيها الأهم. */
+/* الفئات: شريط من بلاطات كبيرة، اسم الفئة عليها بحجم يُقرأ من بعيد.
+   كانت صورة واحدة يقابلها صفّ نحيل لكل فئة، فلم يكن واضحاً أن هذه هي
+   الفئات أصلاً (ملاحظة مصطفى 2026-07-30). البلاطة الآن هي الرابط. */
 '<section class="section"><div class="wrap">\n' +
-'  <div class="sec-head rv"><span class="sec-eyebrow">✳ &nbsp;المجموعات</span>' +
-'    <div class="sec-top"><h2>ادخل من هنا</h2><a class="more" href="jewellery">كل القطع ←</a></div></div>\n' +
-'  <div class="split rv">\n' +
-'    <div class="split-media"><img src="assets/editorial/split-necklaces.jpg" alt="" loading="lazy"></div>\n' +
-'    <div class="split-list">' + D.CATEGORIES.map(function (c) {
-       return '<a class="cat-row" href="jewellery/' + c.slug + '">' +
-         '<img src="' + c.image + '" alt="" loading="lazy">' +
-         '<span><h3>' + esc(c.ar) + '</h3><p>' + esc(c.hint) + '</p></span>' +
-         '<span class="go">←</span></a>';
-     }).join('') + '</div>\n' +
-'  </div>\n' +
-'</div></section>\n' +
+'  <div class="sec-head rv"><span class="sec-eyebrow">✳ &nbsp;الأقسام</span>' +
+'    <div class="sec-top"><h2>وش تدوّر عليه؟</h2>' +
+'    <a class="more" href="jewellery">شوف الكل ←</a></div></div>\n' +
+'</div>\n' +
+'<div class="cat-band rv" style="--n:' + D.CATEGORIES.length + '">' + D.CATEGORIES.map(function (c) {
+   var n = piecesIn(c.slug).length;
+   return '<a class="cat-tile" href="jewellery/' + c.slug + '">' +
+     '<span class="cat-tile-img"><img src="' + c.image + '" alt="' + esc(c.ar) + '" loading="lazy"></span>' +
+     '<span class="cat-tile-in">' +
+       '<h3>' + esc(c.ar) + '</h3>' +
+       '<em>' + (n === 1 ? 'قطعة واحدة' : n === 2 ? 'قطعتان' : n + ' قطع') + '</em>' +
+     '</span></a>';
+ }).join('') + '</div>\n' +
+'</section>\n' +
 
 /* شريط فاتح بين قسمين معتمين — التباين هو ما يمنع الصفحة من أن تصير كتلة واحدة. */
 '<section class="section on-light"><div class="wrap">\n' +
-'  <div class="sec-head rv"><span class="sec-eyebrow">✳ &nbsp;مختارات</span>' +
-'    <div class="sec-top"><h2>قطع اخترناها بأنفسنا</h2><a class="more" href="jewellery">شوف الكل ←</a></div></div>\n' +
+'  <div class="sec-head rv"><span class="sec-eyebrow">✳ &nbsp;في المعرض الآن</span>' +
+'    <div class="sec-top"><h2>قطع موجودة تقدر تجرّبها اليوم</h2><a class="more" href="jewellery">شوف الكل ←</a></div></div>\n' +
 '  <div class="grid">' + featured.map(function (p) { return pieceCard(p, 0); }).join('') + '</div>\n' +
 '</div></section>\n' +
 
 '<section class="section"><div class="wrap">\n' +
 '  <div class="sec-head rv"><span class="sec-eyebrow">✳ &nbsp;المناسبات</span>' +
-'    <h2>تشتري لمناسبة؟</h2><p>أغلب الناس يشترون لمناسبة، لا لقطعة بعينها. اختر المناسبة ونبسّط لك القرار.</p></div>\n' +
+'    <h2>لمين ولمناسبة إيش؟</h2><p>قل لنا المناسبة والميزانية، ونرشّح لك ثلاث قطع تناسبها — بدل ما تقلّب في الكتالوج كله.</p></div>\n' +
 '  <div class="occ-row rv">' + D.OCCASIONS.map(function (o) {
      return '<a class="occ" href="occasions/' + o.slug + '">' +
        '<img src="' + o.image + '" alt="" loading="lazy"><span>' + esc(o.ar) + '</span></a>';
