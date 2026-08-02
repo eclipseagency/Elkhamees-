@@ -204,7 +204,7 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 .wa-top svg{flex:none;color:#25D366;transition:color .3s}
 .wa-top:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .wa-top:hover svg{color:var(--paper)}
-.burger{display:grid;gap:4px;background:none;border:0;cursor:pointer;padding:8px 6px;
+.burger{display:none;gap:4px;background:none;border:0;cursor:pointer;padding:8px 6px;
   place-content:center;width:38px;height:38px}
 .burger span{display:block;width:20px;height:1.4px;background:var(--ink);
   transition:transform .28s ease,opacity .2s ease}
@@ -685,7 +685,7 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
   .header{position:relative}
   .head-main{grid-template-columns:auto 1fr auto;gap:12px;
     grid-template-areas:"burger logo wa" "search search search"}
-  .burger{grid-area:burger;justify-self:start}
+  .burger{display:grid;grid-area:burger;justify-self:start}
   .logo{grid-area:logo}
   .wa-top{grid-area:wa}
   .search{grid-area:search;width:100%;justify-self:stretch}
