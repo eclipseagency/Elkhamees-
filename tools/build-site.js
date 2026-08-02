@@ -99,7 +99,7 @@ function layout(o) {
 '<meta name="viewport" content="width=device-width,initial-scale=1">\n' +
 '<title>' + esc(o.title) + ' · ' + esc(D.BRAND.name) + '</title>\n' +
 '<meta name="description" content="' + esc(o.description || D.BRAND.tagline) + '">\n' +
-'<meta name="theme-color" content="#0d0c0b">\n' +
+'<meta name="theme-color" content="#0b0908">\n' +
 '<meta property="og:title" content="' + esc(o.title) + ' · ' + esc(D.BRAND.name) + '">\n' +
 '<meta property="og:description" content="' + esc(o.description || D.BRAND.tagline) + '">\n' +
 '<meta property="og:type" content="website">\n' +
@@ -110,11 +110,11 @@ function layout(o) {
 '<link rel="stylesheet" href="' + u + 'assets/site.css?v=' + stamp('assets/site.css') + '">\n' +
 '</head>\n<body>\n' +
 
-'<div class="top">صناعة سعودية · ذهب وألماس موثّق · زيارة المعرض بموعد</div>\n' +
+'<div class="top">صناعة سعودية · ألماس موثّق بشهاداته · زيارة المعرض بموعد</div>\n' +
 
 /* هيدر متجر: صفّ أول فيه البحث والشعار في الوسط وزر الواتساب،
-   وتحته صفّ التنقّل بعرض الصفحة. الهيدر أبيض دائماً ويجلس في مسار
-   الصفحة (sticky) — لم يعد يطفو فوق الهيرو، فلا يحتاج حجاباً تحته. */
+   وتحته صفّ التنقّل بعرض الصفحة. الهيدر أونيكس دائماً (v6) ويجلس في مسار
+   الصفحة (sticky) — لا يطفو فوق الهيرو، فلا يحتاج حجاباً تحته. */
 '<header class="header">\n' +
 '  <div class="head-main">\n' +
 '    <button class="burger" type="button" aria-label="القائمة" aria-expanded="false">☰</button>\n' +
@@ -126,7 +126,14 @@ function layout(o) {
 '    </form>\n' +
 '    <a class="logo" href="' + (u || './') + '" aria-label="' + esc(D.BRAND.name) + '">' +
        '<img src="' + u + 'assets/wordmark-gold.png" alt="' + esc(D.BRAND.name) + '"></a>\n' +
-'    <a class="wa-top" href="' + wa('السلام عليكم، عندي استفسار عن مجوهرات الخميس.') + '" target="_blank" rel="noopener">واتساب</a>\n' +
+/* زر الواتساب في الهيدر: كان مستطيلاً بحدود وكلمة "واتساب" وحدها في أعلى
+   الصفحة، فبدا صندوقاً غريباً مقابل حقل البحث البيضاوي (ملاحظة مصطفى
+   2026-07-30). صار بنفس شكل حقل البحث — نفس الحدّ ونفس الاستدارة — وبعلامة
+   واتساب المعروفة قبل الكلمة، فيُقرأ الاثنان كطرفين لصفّ واحد. */
+'    <a class="wa-top" href="' + wa('السلام عليكم، عندي استفسار عن مجوهرات الخميس.') + '" target="_blank" rel="noopener">' +
+       '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">' +
+       '<path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1s-.6.8-.7.9-.3.2-.5 0a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5a1.8 1.8 0 0 0 .2-.4.4.4 0 0 0 0-.4c0-.1-.5-1.3-.7-1.8s-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.1 11.1 0 0 0 4.3 3.8 12 12 0 0 0 1.4.5 3.4 3.4 0 0 0 1.6.1 2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3Z"/></svg>' +
+       '<span>راسلنا</span></a>\n' +
 '  </div>\n' +
 '  <nav class="nav" aria-label="التنقل الرئيسي">' + nav + '</nav>\n' +
 '</header>\n' +
@@ -230,11 +237,16 @@ function trustBar() {
     }).join('') + '</div></div></section>';
 }
 
-/* شريط متحرك — يعطي إحساساً بالحياة بلا صخب. */
+/* شريط متحرك — يعطي إحساساً بالحياة بلا صخب.
+   الفواصل معلَّمة aria-hidden: هي زخرفة بصرية، وقارئ الشاشة كان ينطق
+   «نجمة» بين كل عبارتين. وتأخذ لوناً ذهبياً باهتاً عبر CSS. */
 function marquee() {
-  var words = ['ذهب وألماس موثّق', '✳', 'صياغة يدوية', '✳', 'تصميم خاص حسب الطلب',
-               '✳', 'ضمان الدار', '✳', 'تغليف جاهز للإهداء', '✳'];
-  var run = words.map(function (w) { return '<span>' + esc(w) + '</span>'; }).join('');
+  var words = ['ألماس موثّق بشهاداته', 'صياغة يدوية في ورشة الدار',
+               'تصميم خاص حسب الطلب', 'ضمان الدار على كل قطعة',
+               'تغليف الدار جاهزاً للإهداء'];
+  var run = words.map(function (w) {
+    return '<span>' + esc(w) + '</span><span aria-hidden="true">◆</span>';
+  }).join('');
   return '<div class="marquee"><div class="marquee-in">' + run + run + '</div></div>';
 }
 
@@ -242,10 +254,10 @@ function ctaBand(depth) {
   return '<section class="cta">' +
     '<img class="cta-bg" src="' + up(depth) + 'assets/editorial/cta-bracelets.jpg" alt="" loading="lazy">' +
     '<div class="wrap">' +
-    '<h2>عندك تصميم في بالك؟</h2>' +
-    '<p>راسلنا ووصف لنا القطعة، أو احجز زيارة للمعرض وشوفها بنفسك.</p>' +
+    '<h2>قطعة في خيالك، نصوغها لك</h2>' +
+    '<p>صف لنا ما تريد، أو احجز زيارة للمعرض وترى القطع على الطبيعة.</p>' +
     '<div class="cta-acts">' +
-      '<a class="btn btn-gold" href="' + wa('السلام عليكم، أبحث عن قطعة معينة.') + '" target="_blank" rel="noopener">راسلنا واتساب</a>' +
+      '<a class="btn btn-gold" href="' + wa('السلام عليكم، أبحث عن قطعة معينة.') + '" target="_blank" rel="noopener">تواصل عبر واتساب</a>' +
       '<a class="btn btn-ghost" href="' + up(depth) + 'contact">زيارة المعرض</a>' +
     '</div></div></section>';
 }
@@ -254,24 +266,26 @@ function ctaBand(depth) {
  * الصفحات
  * ------------------------------------------------------------------ */
 function home() {
-  /* خمس قطع: صفّ واحد مكتمل على سطح المكتب بدل قطعة يتيمة في صفّ ثانٍ. */
-  var featured = D.PIECES.slice(0, 5);
+  /* أربع قطع لا خمس: الشبكة صارت أربعة أعمدة (2026-07-30) فالخامسة كانت
+     تسقط وحدها في صفّ ثانٍ وتترك ثلاثة أعمدة فارغة — وهو ما كان يظهر
+     فعلاً على الرئيسية. العدد يتبع الشبكة: مضاعفات الأربعة وحدها. */
+  var featured = D.PIECES.slice(0, 4);
   return layout({
     title: 'دار مجوهرات', active: '', depth: 0,
     description: D.BRAND.name + ' — ذهب وألماس موثّق، صياغة يدوية، وتصميم خاص حسب الطلب.',
     body:
-/* الهيرو: صورة خلفية والنص فوقها، بحجاب حليبي لا أسود. */
+/* الهيرو: صورة خلفية والنص فوقها، بحجاب أونيكس يثقل من جهة النص (v6). */
 '<section class="hero">\n' +
 '  <img class="hero-bg" src="assets/editorial/hero-rings.jpg" alt="" fetchpriority="high">\n' +
 '  <div class="hero-in"><div class="hero-copy">\n' +
 '    <span class="hero-eyebrow">دار مجوهرات · العليا، الرياض</span>\n' +
-'    <h1>ألماس تشوفه <em>بعينك</em><br>قبل ما تشتريه</h1>\n' +
+'    <h1>ألماسٌ تراه <em>بعينك</em><br>قبل أن تقتنيه</h1>\n' +
 '    <i class="hero-rule"></i>\n' +
 '    <div class="hero-row">\n' +
-'      <p>كل قطعة تُصاغ في ورشتنا وتُسلَّم بشهادتها. تعال المعرض شوفها على الطبيعة، أو راسلنا وارسل لك صور وفيديو للقطعة قبل ما تتحرك.</p>\n' +
+'      <p>كل قطعة تُصاغ في ورشتنا وتُسلَّم بشهادتها. زُر المعرض لتراها على الطبيعة، أو راسلنا فنرسل لك صورها ومقطعها قبل أن تتحرك.</p>\n' +
 '      <div class="hero-acts">\n' +
-'        <a class="btn btn-gold" href="jewellery">تصفّح المجوهرات</a>\n' +
-'        <a class="more" href="occasions">أشتري لمناسبة ←</a>\n' +
+'        <a class="btn btn-gold" href="jewellery">تصفّح المجموعات</a>\n' +
+'        <a class="more" href="occasions">اختر لمناسبة ←</a>\n' +
 '      </div>\n' +
 '    </div>\n' +
 '  </div></div>\n' +
@@ -285,9 +299,9 @@ trustBar() +
    كانت صورة واحدة يقابلها صفّ نحيل لكل فئة، فلم يكن واضحاً أن هذه هي
    الفئات أصلاً (ملاحظة مصطفى 2026-07-30). البلاطة الآن هي الرابط. */
 '<section class="section"><div class="wrap">\n' +
-'  <div class="sec-head rv"><span class="sec-eyebrow">✳ &nbsp;الأقسام</span>' +
-'    <div class="sec-top"><h2>وش تدوّر عليه؟</h2>' +
-'    <a class="more" href="jewellery">شوف الكل ←</a></div></div>\n' +
+'  <div class="sec-head rv"><span class="sec-eyebrow">الأقسام</span>' +
+'    <div class="sec-top"><h2>مجموعات الدار</h2>' +
+'    <a class="more" href="jewellery">عرض الكل ←</a></div></div>\n' +
 '</div>\n' +
 '<div class="cat-band rv" style="--n:' + D.CATEGORIES.length + '">' + D.CATEGORIES.map(function (c) {
    var n = piecesIn(c.slug).length;
@@ -300,16 +314,17 @@ trustBar() +
  }).join('') + '</div>\n' +
 '</section>\n' +
 
-/* شريط فاتح بين قسمين معتمين — التباين هو ما يمنع الصفحة من أن تصير كتلة واحدة. */
+/* قطع المعرض: البلاطات عاجية على الأونيكس، فهذا هو الشريط الفاتح الذي
+   يمنع الصفحة من أن تصير كتلة سوداء واحدة. */
 '<section class="section on-light"><div class="wrap">\n' +
-'  <div class="sec-head rv"><span class="sec-eyebrow">✳ &nbsp;في المعرض الآن</span>' +
-'    <div class="sec-top"><h2>قطع موجودة تقدر تجرّبها اليوم</h2><a class="more" href="jewellery">شوف الكل ←</a></div></div>\n' +
+'  <div class="sec-head rv"><span class="sec-eyebrow">في المعرض الآن</span>' +
+'    <div class="sec-top"><h2>قطعٌ تراها وتقيسها اليوم</h2><a class="more" href="jewellery">عرض الكل ←</a></div></div>\n' +
 '  <div class="grid">' + featured.map(function (p) { return pieceCard(p, 0); }).join('') + '</div>\n' +
 '</div></section>\n' +
 
 '<section class="section"><div class="wrap">\n' +
-'  <div class="sec-head rv"><span class="sec-eyebrow">✳ &nbsp;المناسبات</span>' +
-'    <h2>لمين ولمناسبة إيش؟</h2><p>قل لنا المناسبة والميزانية، ونرشّح لك ثلاث قطع تناسبها — بدل ما تقلّب في الكتالوج كله.</p></div>\n' +
+'  <div class="sec-head rv"><span class="sec-eyebrow">المناسبات</span>' +
+'    <h2>لكل مناسبة قطعتها</h2><p>أخبرنا بالمناسبة والميزانية، فنرشّح لك ثلاث قطع تليق بها — بدلاً من تقليب الكتالوج كله.</p></div>\n' +
 '  <div class="occ-row rv">' + D.OCCASIONS.map(function (o) {
      return '<a class="occ" href="occasions/' + o.slug + '">' +
        '<img src="' + o.image + '" alt="" loading="lazy"><span>' + esc(o.ar) + '</span></a>';
@@ -409,7 +424,7 @@ function piecePage(p) {
 '</div></section>\n' +
 (related.length
   ? '<section class="section on-light"><div class="wrap">' +
-    '<div class="sec-head rv"><span class="sec-eyebrow">✳ &nbsp;من نفس الفئة</span><h2>قطع مشابهة</h2></div>' +
+    '<div class="sec-head rv"><span class="sec-eyebrow">من المجموعة نفسها</span><h2>قطعٌ مشابهة</h2></div>' +
     '<div class="grid grid-related">' + related.map(function (x) { return pieceCard(x, 1); }).join('') + '</div>' +
     '</div></section>'
   : '')
