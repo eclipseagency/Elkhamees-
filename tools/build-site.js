@@ -122,7 +122,7 @@ function layout(o) {
 '      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">' +
        '<circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.6-3.6"></path></svg>\n' +
 '      <input type="search" name="q" placeholder="ابحث عن قطعة" aria-label="ابحث عن قطعة">\n' +
-'      <div class="search-out" role="listbox" hidden></div>\n' +
+'      <div class="search-out" role="listbox" data-lenis-prevent hidden></div>\n' +
 '    </form>\n' +
 '    <a class="logo" href="' + (u || './') + '" aria-label="' + esc(D.BRAND.name) + '">' +
        '<img src="' + u + 'assets/wordmark-gold.png" alt="' + esc(D.BRAND.name) + '"></a>\n' +
@@ -168,6 +168,7 @@ function layout(o) {
 '  <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.3-1.94 1.34-.5.04-.97.22-3.27-.68-2.76-1.09-4.5-3.9-4.64-4.08-.13-.18-1.11-1.47-1.11-2.8 0-1.34.7-2 .95-2.27.24-.27.53-.34.7-.34.18 0 .35 0 .5.01.16.01.38-.06.59.45.24.57.8 1.97.87 2.11.07.14.12.31.02.49-.09.18-.14.29-.27.45-.14.16-.29.36-.41.48-.14.14-.28.29-.12.56.16.27.72 1.18 1.54 1.91 1.06.94 1.95 1.23 2.22 1.37.27.14.43.12.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.55.73 1.81.86.27.14.45.2.51.31.07.11.07.63-.17 1.31z"/></svg>\n' +
 '</a>\n' +
 
+'<script src="' + u + 'assets/lenis.min.js?v=' + stamp('assets/lenis.min.js') + '"></script>\n' +
 '<script>\n' +
 '  // القائمة على الجوال\n' +
 '  var b=document.querySelector(".burger"),n=document.querySelector(".nav");\n' +
@@ -200,35 +201,13 @@ function layout(o) {
 '    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{rootMargin:"0px 0px -8% 0px"});\n' +
 '    rv.forEach(function(el){io.observe(el);});\n' +
 '  } else { rv.forEach(function(el){el.classList.add("in");}); }\n' +
-'  /* تمرير ثقيل — عجلة الماوس تدفع هدفاً والصفحة تلحق به بعطالة.\n' +
-'     على الجوال يبقى التمرير الأصلي (اللمس فيه عطالة من النظام أصلاً)،\n' +
-'     ومع تفضيل تقليل الحركة لا يُفعَّل إطلاقاً. */\n' +
+'  /* تمرير ناعم — نفس محرّك furnobly.com وبنفس إعداداته: Lenis 1.1.13\n' +
+'     بـ duration 1.05 وlerp 0.1. المكتبة مستضافة عندنا لا من CDN.\n' +
+'     على اللمس يبقى التمرير الأصلي، ومع تفضيل تقليل الحركة لا يُفعَّل. */\n' +
 '  var MQ=window.matchMedia;\n' +
-'  if(MQ&&MQ("(hover:hover) and (pointer:fine)").matches&&!MQ("(prefers-reduced-motion:reduce)").matches){\n' +
-'    var sT=window.pageYOffset,sC=sT,sRun=false;\n' +
-'    function sMax(){return Math.max(0,document.documentElement.scrollHeight-window.innerHeight);}\n' +
-'    function sTick(){\n' +
-'      sC+=(sT-sC)*0.075;\n' +
-'      if(Math.abs(sT-sC)<0.5){sC=sT;sRun=false;window.scrollTo(0,Math.round(sC));return;}\n' +
-'      window.scrollTo(0,Math.round(sC));\n' +
-'      requestAnimationFrame(sTick);\n' +
-'    }\n' +
-'    window.addEventListener("wheel",function(e){\n' +
-'      if(e.ctrlKey||e.deltaY===0)return;\n' +
-'      /* لا نخطف عجلة عنصر له تمريره الخاص (نتائج البحث مثلاً) */\n' +
-'      for(var el=e.target;el&&el!==document.body&&el.nodeType===1;el=el.parentElement){\n' +
-'        if(el.scrollHeight>el.clientHeight+2){\n' +
-'          var ov=getComputedStyle(el).overflowY;\n' +
-'          if(ov==="auto"||ov==="scroll")return;\n' +
-'        }\n' +
-'      }\n' +
-'      e.preventDefault();\n' +
-'      if(!sRun){sC=sT=window.pageYOffset;}\n' +
-'      sT=Math.max(0,Math.min(sMax(),sT+e.deltaY*(e.deltaMode===1?32:e.deltaMode===2?window.innerHeight:1)));\n' +
-'      if(!sRun){sRun=true;requestAnimationFrame(sTick);}\n' +
-'    },{passive:false});\n' +
-'    /* أي تمرير آخر (لوحة المفاتيح، شريط التمرير، رابط داخلي) يعيد ضبط الهدف */\n' +
-'    window.addEventListener("scroll",function(){if(!sRun){sT=sC=window.pageYOffset;}},{passive:true});\n' +
+'  if(window.Lenis&&MQ&&MQ("(hover:hover) and (pointer:fine)").matches&&!MQ("(prefers-reduced-motion:reduce)").matches){\n' +
+'    var lx=new Lenis({duration:1.05,smoothWheel:true,lerp:0.1});\n' +
+'    (function lxRaf(t){lx.raf(t);requestAnimationFrame(lxRaf);})(0);\n' +
 '  }\n' +
 '</script>\n' +
 '</body>\n</html>\n';
