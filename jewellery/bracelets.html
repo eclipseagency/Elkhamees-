@@ -81,6 +81,36 @@
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{rootMargin:"0px 0px -8% 0px"});
     rv.forEach(function(el){io.observe(el);});
   } else { rv.forEach(function(el){el.classList.add("in");}); }
+  /* تمرير ثقيل — عجلة الماوس تدفع هدفاً والصفحة تلحق به بعطالة.
+     على الجوال يبقى التمرير الأصلي (اللمس فيه عطالة من النظام أصلاً)،
+     ومع تفضيل تقليل الحركة لا يُفعَّل إطلاقاً. */
+  var MQ=window.matchMedia;
+  if(MQ&&MQ("(hover:hover) and (pointer:fine)").matches&&!MQ("(prefers-reduced-motion:reduce)").matches){
+    var sT=window.pageYOffset,sC=sT,sRun=false;
+    function sMax(){return Math.max(0,document.documentElement.scrollHeight-window.innerHeight);}
+    function sTick(){
+      sC+=(sT-sC)*0.075;
+      if(Math.abs(sT-sC)<0.5){sC=sT;sRun=false;window.scrollTo(0,Math.round(sC));return;}
+      window.scrollTo(0,Math.round(sC));
+      requestAnimationFrame(sTick);
+    }
+    window.addEventListener("wheel",function(e){
+      if(e.ctrlKey||e.deltaY===0)return;
+      /* لا نخطف عجلة عنصر له تمريره الخاص (نتائج البحث مثلاً) */
+      for(var el=e.target;el&&el!==document.body&&el.nodeType===1;el=el.parentElement){
+        if(el.scrollHeight>el.clientHeight+2){
+          var ov=getComputedStyle(el).overflowY;
+          if(ov==="auto"||ov==="scroll")return;
+        }
+      }
+      e.preventDefault();
+      if(!sRun){sC=sT=window.pageYOffset;}
+      sT=Math.max(0,Math.min(sMax(),sT+e.deltaY*(e.deltaMode===1?32:e.deltaMode===2?window.innerHeight:1)));
+      if(!sRun){sRun=true;requestAnimationFrame(sTick);}
+    },{passive:false});
+    /* أي تمرير آخر (لوحة المفاتيح، شريط التمرير، رابط داخلي) يعيد ضبط الهدف */
+    window.addEventListener("scroll",function(){if(!sRun){sT=sC=window.pageYOffset;}},{passive:true});
+  }
 </script>
 </body>
 </html>

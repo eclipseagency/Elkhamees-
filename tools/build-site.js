@@ -200,6 +200,36 @@ function layout(o) {
 '    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{rootMargin:"0px 0px -8% 0px"});\n' +
 '    rv.forEach(function(el){io.observe(el);});\n' +
 '  } else { rv.forEach(function(el){el.classList.add("in");}); }\n' +
+'  /* تمرير ثقيل — عجلة الماوس تدفع هدفاً والصفحة تلحق به بعطالة.\n' +
+'     على الجوال يبقى التمرير الأصلي (اللمس فيه عطالة من النظام أصلاً)،\n' +
+'     ومع تفضيل تقليل الحركة لا يُفعَّل إطلاقاً. */\n' +
+'  var MQ=window.matchMedia;\n' +
+'  if(MQ&&MQ("(hover:hover) and (pointer:fine)").matches&&!MQ("(prefers-reduced-motion:reduce)").matches){\n' +
+'    var sT=window.pageYOffset,sC=sT,sRun=false;\n' +
+'    function sMax(){return Math.max(0,document.documentElement.scrollHeight-window.innerHeight);}\n' +
+'    function sTick(){\n' +
+'      sC+=(sT-sC)*0.075;\n' +
+'      if(Math.abs(sT-sC)<0.5){sC=sT;sRun=false;window.scrollTo(0,Math.round(sC));return;}\n' +
+'      window.scrollTo(0,Math.round(sC));\n' +
+'      requestAnimationFrame(sTick);\n' +
+'    }\n' +
+'    window.addEventListener("wheel",function(e){\n' +
+'      if(e.ctrlKey||e.deltaY===0)return;\n' +
+'      /* لا نخطف عجلة عنصر له تمريره الخاص (نتائج البحث مثلاً) */\n' +
+'      for(var el=e.target;el&&el!==document.body&&el.nodeType===1;el=el.parentElement){\n' +
+'        if(el.scrollHeight>el.clientHeight+2){\n' +
+'          var ov=getComputedStyle(el).overflowY;\n' +
+'          if(ov==="auto"||ov==="scroll")return;\n' +
+'        }\n' +
+'      }\n' +
+'      e.preventDefault();\n' +
+'      if(!sRun){sC=sT=window.pageYOffset;}\n' +
+'      sT=Math.max(0,Math.min(sMax(),sT+e.deltaY*(e.deltaMode===1?32:e.deltaMode===2?window.innerHeight:1)));\n' +
+'      if(!sRun){sRun=true;requestAnimationFrame(sTick);}\n' +
+'    },{passive:false});\n' +
+'    /* أي تمرير آخر (لوحة المفاتيح، شريط التمرير، رابط داخلي) يعيد ضبط الهدف */\n' +
+'    window.addEventListener("scroll",function(){if(!sRun){sT=sC=window.pageYOffset;}},{passive:true});\n' +
+'  }\n' +
 '</script>\n' +
 '</body>\n</html>\n';
 }
