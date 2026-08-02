@@ -92,6 +92,14 @@
 
 *{box-sizing:border-box}
 html{overflow-x:clip;scroll-behavior:smooth}
+/* Lenis يقود التمرير بنفسه إطاراً بإطار عبر scrollTo. لو بقي
+   scroll-behavior:smooth مفعّلاً صار كل إطار منه تمريراً ناعماً أصلياً فوق
+   الآخر: بداية كسولة ثم ذيل يزحف طويلاً — وهذا ما لاحظه مصطفى 2026-08-02
+   وهو الفرق عن furnobly.com (لا scroll-behavior عندها أصلاً). */
+html.lenis{scroll-behavior:auto!important}
+html.lenis,html.lenis body{height:auto}
+html.lenis-stopped{overflow:hidden}
+[data-lenis-prevent]{overscroll-behavior:contain}
 body{
   margin:0;background:var(--paper);color:var(--ink);
   font-family:var(--f-body);font-size:16px;line-height:1.85;font-weight:300;
