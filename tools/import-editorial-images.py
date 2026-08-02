@@ -41,6 +41,16 @@ MAP = [
 
     # شريط الدعوة — تحت حجاب داكن بشفافية .22، فالتفصيل ثانوي.
     ('Bracelets.jpeg', os.path.join(OUT, 'cta-bracelets.jpg'),   2000, 1125),
+
+    # سلايدات بانر الرئيسية الأربع (طلب العميل 2026-08-02): فئة لكل سلايد
+    # بنفس ترتيب الفئات في الموقع. الأولى هي نفسها hero-rings.jpg حجماً
+    # ونسبةً — تبقى ملفاً مستقلاً حتى يكون اسم السلايد مقروءاً في الكود.
+    # 1920 لا 2400 وجودة 74 لا 86: أربع صور بدل واحدة، وكلها تجلس تحت حجاب
+    # داكن — الوزن هنا يُدفع أربع مرات بينما الفرق البصري لا يُرى.
+    ('Rings.jpeg',     os.path.join(OUT, 'hero-1-rings.jpg'),     1920, 1080, 74),
+    ('Necklaces.jpeg', os.path.join(OUT, 'hero-2-necklaces.jpg'), 1920, 1080, 74),
+    ('Bracelets.jpeg', os.path.join(OUT, 'hero-3-bracelets.jpg'), 1920, 1080, 74),
+    ('Earning.png',    os.path.join(OUT, 'hero-4-earrings.jpg'),  1920, 1080, 74),
 ]
 
 
@@ -62,11 +72,13 @@ if __name__ == '__main__':
     if len(sys.argv) != 2:
         sys.exit(__doc__)
     src = sys.argv[1]
-    for f, dst, w, h in MAP:
+    for row in MAP:
+        f, dst, w, h = row[0], row[1], row[2], row[3]
+        q = row[4] if len(row) > 4 else 86
         p = os.path.join(src, f)
         if not os.path.exists(p):
             print('  ناقص: ' + p)
             continue
         os.makedirs(os.path.dirname(dst), exist_ok=True)
-        cut(Image.open(p), w, h).save(dst, quality=86, subsampling=1, optimize=True)
+        cut(Image.open(p), w, h).save(dst, quality=q, subsampling=1, optimize=True)
         print('%-38s ← %s' % (dst, f))

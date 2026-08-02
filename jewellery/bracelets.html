@@ -13,13 +13,27 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=f94acaea">
+<link rel="stylesheet" href="../assets/site.css?v=868b372c">
 </head>
 <body>
 <div class="top">صناعة سعودية · ألماس موثّق بشهاداته · زيارة المعرض بموعد</div>
+<div class="side-veil" hidden></div>
+<aside class="side" id="side" hidden aria-label="قائمة الموقع" data-lenis-prevent>
+  <div class="side-head">
+    <img src="../assets/wordmark-gold.png" alt="مجوهرات الخميس">
+    <button class="side-x" type="button" aria-label="إغلاق القائمة">✕</button>
+  </div>
+  <nav class="side-nav">
+    <section><h3>المجوهرات</h3><a href="../jewellery">كل القطع</a><a href="../jewellery/rings">خواتم</a><a href="../jewellery/necklaces">قلائد</a><a href="../jewellery/bracelets">أساور</a><a href="../jewellery/earrings">أقراط</a></section>
+    <section><h3>المناسبات</h3><a href="../occasions/wedding">الزواج والملكة</a><a href="../occasions/engagement">الخطوبة</a><a href="../occasions/gifts">الهدايا</a><a href="../occasions/graduation">التخرج والترقيات</a></section>
+    <section><h3>الدار</h3><a href="../services">خدماتنا</a><a href="../about">عن الدار</a><a href="../faq">الأسئلة الشائعة</a><a href="../contact">تواصل وزيارة المعرض</a></section>
+    <section><h3>سياسات الدار</h3><a href="../policies/returns">الاستبدال والاسترجاع</a><a href="../policies/shipping">الشحن والتغليف</a><a href="../policies/privacy">الخصوصية</a></section>
+  </nav>
+  <a class="side-wa" href="https://wa.me/966138320814?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B9%D9%86%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D8%AC%D9%88%D9%87%D8%B1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AE%D9%85%D9%8A%D8%B3." target="_blank" rel="noopener">راسلنا على واتساب</a>
+</aside>
 <header class="header">
   <div class="head-main">
-    <button class="burger" type="button" aria-label="القائمة" aria-expanded="false">☰</button>
+    <button class="burger" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="side"><span></span><span></span><span></span></button>
     <form class="search" role="search" autocomplete="off">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.6-3.6"></path></svg>
       <input type="search" name="q" placeholder="ابحث عن قطعة" aria-label="ابحث عن قطعة">
@@ -34,9 +48,25 @@
 <section class="page-head"><div class="wrap"><nav class="crumb"><a href="../">الرئيسية</a> · <a href="../jewellery">المجوهرات</a> · <span>أساور</span></nav><h1>أساور</h1><p>أساور ألماسٍ وذهب، صفٌّ واحد أو عريضة</p></div></section>
 <section class="section"><div class="wrap">
   <div class="chips"><a class="chip" href="../jewellery">الكل</a><a class="chip" href="rings">خواتم</a><a class="chip" href="necklaces">قلائد</a><a class="chip on" href="bracelets">أساور</a><a class="chip" href="earrings">أقراط</a></div>
-  <div class="grid"><a class="card rv" href="../piece/cluster-bracelet"><span class="card-img"><img src="../assets/catalogue/cluster-bracelet.jpg?v=0d16eea5" alt="إسورة العنقود" loading="lazy"></span><span class="card-body"><span class="card-top"><span class="card-name">إسورة العنقود</span><span class="card-price">اطلب السعر</span></span><span class="card-meta">ذهب أبيض</span></span></a><a class="card rv" href="../piece/flower-tennis-bracelet"><span class="card-img"><img src="../assets/catalogue/flower-tennis-bracelet.jpg?v=58a13fee" alt="إسورة الزهرة" loading="lazy"></span><span class="card-body"><span class="card-top"><span class="card-name">إسورة الزهرة</span><span class="card-price">اطلب السعر</span></span><span class="card-meta">ذهب أبيض</span></span></a></div>
+  <div class="grid"><a class="card rv" href="../piece/cluster-bracelet"><span class="card-img"><img src="../assets/catalogue/cluster-bracelet.jpg?v=0d16eea5" alt="غصن · إسورة عنقود" loading="lazy"></span><span class="card-body"><span class="card-top"><span class="card-name">غصن</span><span class="card-price">اطلب السعر</span></span><span class="card-sub">إسورة عنقود</span><span class="card-meta">ذهب أبيض</span></span></a><a class="card rv" href="../piece/flower-tennis-bracelet"><span class="card-img"><img src="../assets/catalogue/flower-tennis-bracelet.jpg?v=58a13fee" alt="نجمة · إسورة زهرة" loading="lazy"></span><span class="card-body"><span class="card-top"><span class="card-name">نجمة</span><span class="card-price">اطلب السعر</span></span><span class="card-sub">إسورة زهرة</span><span class="card-meta">ذهب أبيض</span></span></a></div>
 </div></section>
 <section class="cta"><img class="cta-bg" src="../assets/editorial/cta-bracelets.jpg" alt="" loading="lazy"><div class="wrap"><h2>قطعة في خيالك، نصوغها لك</h2><p>صف لنا ما تريد، أو احجز زيارة للمعرض وترى القطع على الطبيعة.</p><div class="cta-acts"><a class="btn btn-gold" href="https://wa.me/966138320814?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D8%AD%D8%AB%20%D8%B9%D9%86%20%D9%82%D8%B7%D8%B9%D8%A9%20%D9%85%D8%B9%D9%8A%D9%86%D8%A9." target="_blank" rel="noopener">تواصل عبر واتساب</a><a class="btn btn-ghost" href="../contact">زيارة المعرض</a></div></div></section></main>
+<section class="foot-contact" id="contact-block"><div class="wrap">
+  <div class="fc-head"><span class="sec-eyebrow">تواصل معنا</span>    <h2>الدار قريبة منك</h2></div>
+  <div class="fc-grid">
+    <div class="fc-card">
+      <h3>أرقام التواصل</h3>
+      <a class="fc-num" href="tel:+966138320814" dir="ltr">+966138320814</a>
+      <a class="fc-wa" href="https://wa.me/966138320814?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B9%D9%86%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D8%AC%D9%88%D9%87%D8%B1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AE%D9%85%D9%8A%D8%B3." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2z"/></svg><span>نفس الرقم على واتساب</span></a>
+      <p class="fc-hours">السبت إلى الخميس · 3 عصراً حتى 11 مساءً · الجمعة إجازة</p>
+    </div>
+    <div class="fc-card">
+      <h3>عنوان المقر</h3>
+      <p class="fc-addr">2581 طريق الأمير سلطان بن عبدالعزيز، العليا، الرياض</p>
+      <a class="fc-map" href="https://maps.google.com/?q=%D9%85%D8%AC%D9%88%D9%87%D8%B1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AE%D9%85%D9%8A%D8%B3%20%D8%A7%D9%84%D8%B9%D9%84%D9%8A%D8%A7%20%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6" target="_blank" rel="noopener">افتح الموقع في قوقل مابس ←</a>
+    </div>
+  </div>
+</div></section>
 <footer class="footer">
   <div class="foot-grid">
     <div>
@@ -45,7 +75,7 @@
     </div>
     <div><h4>المجوهرات</h4><a href="../jewellery/rings">خواتم</a><a href="../jewellery/necklaces">قلائد</a><a href="../jewellery/bracelets">أساور</a><a href="../jewellery/earrings">أقراط</a></div>
     <div><h4>الدار</h4>      <a href="../about">عن الدار</a>      <a href="../services">خدماتنا</a>      <a href="../faq">الأسئلة الشائعة</a>      <a href="../contact">تواصل وزيارة المعرض</a></div>
-    <div><h4>سياسات</h4>      <a href="../policies/returns">الاستبدال والإرجاع</a>      <a href="../policies/shipping">الشحن والتغليف</a>      <a href="../policies/privacy">الخصوصية</a></div>
+    <div><h4>سياسات</h4>      <a href="../policies/returns">الاستبدال والاسترجاع</a>      <a href="../policies/shipping">الشحن والتغليف</a>      <a href="../policies/privacy">الخصوصية</a></div>
   </div>
   <div class="foot-bar"><span>© 2026 مجوهرات الخميس</span>    <span>من إبداع <a href="https://www.eclipseagency.net" target="_blank" rel="noopener">Eclipse Agency</a></span></div>
 </footer>
@@ -54,19 +84,46 @@
 </a>
 <script src="../assets/lenis.min.js?v=79e3a064"></script>
 <script>
-  // القائمة على الجوال
-  var b=document.querySelector(".burger"),n=document.querySelector(".nav");
-  if(b&&n)b.addEventListener("click",function(){var o=n.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");});
+  /* القائمة الجانبية: تُفتح من زرّ الهيدر على كل المقاسات. تحبس التركيز
+     داخلها، وتُغلق بـEscape أو بالنقر على الحجاب، وتعيد التركيز للزر،
+     وتوقف تمرير الصفحة (وLenis معها) ما دامت مفتوحة. */
+  var burger=document.querySelector(".burger"),side=document.getElementById("side"),
+      veil=document.querySelector(".side-veil"),sideX=document.querySelector(".side-x");
+  if(burger&&side&&veil){
+    var lastFocus=null;
+    function sideOpen(on){
+      side.hidden=veil.hidden=!on;
+      document.body.classList.toggle("side-on",on);
+      burger.setAttribute("aria-expanded",on?"true":"false");
+      burger.setAttribute("aria-label",on?"إغلاق القائمة":"فتح القائمة");
+      if(window.__khLenis){ if(on) window.__khLenis.stop(); else window.__khLenis.start(); }
+      if(on){ lastFocus=document.activeElement; var f=side.querySelector("a,button"); if(f)f.focus(); }
+      else if(lastFocus){ lastFocus.focus(); }
+    }
+    burger.addEventListener("click",function(){sideOpen(side.hidden);});
+    veil.addEventListener("click",function(){sideOpen(false);});
+    if(sideX)sideX.addEventListener("click",function(){sideOpen(false);});
+    document.addEventListener("keydown",function(e){
+      if(side.hidden)return;
+      if(e.key==="Escape"){sideOpen(false);return;}
+      if(e.key!=="Tab")return;
+      var f=side.querySelectorAll("a[href],button:not([disabled])");
+      if(!f.length)return;
+      var first=f[0],last=f[f.length-1];
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+    });
+  }
   // البحث — الفهرس من data/catalogue.js نفسه، فلا مصدر ثانٍ يتخلّف عنه
-  var IX=[{"t":"خاتم الكمثرى الرباعي","u":"../piece/pear-quartet-ring","c":"خواتم","p":"اطلب السعر"},{"t":"قلادة الكمثرى المتدلية","u":"../piece/pear-drop-necklace","c":"قلائد","p":"اطلب السعر"},{"t":"قلادة المركيز العريضة","u":"../piece/marquise-collar-necklace","c":"قلائد","p":"اطلب السعر"},{"t":"أقراط الشلال","u":"../piece/cascade-earrings","c":"أقراط","p":"اطلب السعر"},{"t":"إسورة العنقود","u":"../piece/cluster-bracelet","c":"أساور","p":"اطلب السعر"},{"t":"إسورة الزهرة","u":"../piece/flower-tennis-bracelet","c":"أساور","p":"اطلب السعر"}];
+  var IX=[{"t":"عهد","d":"خاتم كمثرى رباعي","u":"../piece/pear-quartet-ring","c":"خواتم","p":"اطلب السعر"},{"t":"همسة","d":"قلادة كمثرى متدلية","u":"../piece/pear-drop-necklace","c":"قلائد","p":"اطلب السعر"},{"t":"لؤلؤة","d":"قلادة مركيز عريضة","u":"../piece/marquise-collar-necklace","c":"قلائد","p":"اطلب السعر"},{"t":"دلال","d":"أقراط شلال متدلية","u":"../piece/cascade-earrings","c":"أقراط","p":"اطلب السعر"},{"t":"غصن","d":"إسورة عنقود","u":"../piece/cluster-bracelet","c":"أساور","p":"اطلب السعر"},{"t":"نجمة","d":"إسورة زهرة","u":"../piece/flower-tennis-bracelet","c":"أساور","p":"اطلب السعر"}];
   var sf=document.querySelector(".search"),si=sf&&sf.querySelector("input"),so=sf&&sf.querySelector(".search-out");
   function norm(s){return (s||"").replace(/[أإآ]/g,"ا").replace(/[ىئ]/g,"ي").replace(/ة/g,"ه").replace(/[ًٌٍَُِّْ]/g,"").toLowerCase();}
-  function hits(q){q=norm(q).trim();if(!q)return [];return IX.filter(function(x){return norm(x.t+" "+x.c).indexOf(q)>-1;}).slice(0,6);}
+  function hits(q){q=norm(q).trim();if(!q)return [];return IX.filter(function(x){return norm(x.t+" "+x.d+" "+x.c).indexOf(q)>-1;}).slice(0,6);}
   function draw(){
     var r=hits(si.value);
     if(!si.value.trim()){so.hidden=true;so.innerHTML="";return;}
     so.hidden=false;
-    so.innerHTML=r.length?r.map(function(x){return '<a href="'+x.u+'"><span>'+x.t+'</span><small>'+x.c+' · '+x.p+'</small></a>';}).join("")
+    so.innerHTML=r.length?r.map(function(x){return '<a href="'+x.u+'"><span>'+x.t+(x.d?' <i>'+x.d+'</i>':'')+'</span><small>'+x.c+' · '+x.p+'</small></a>';}).join("")
       :'<p class="search-none">ما لقينا قطعة بهذا الاسم. <a href="../jewellery">تصفّح كل القطع</a></p>';
   }
   if(sf&&si&&so){
@@ -89,6 +146,33 @@
   if(window.Lenis&&MQ&&MQ("(hover:hover) and (pointer:fine)").matches&&!MQ("(prefers-reduced-motion:reduce)").matches){
     var lx=new Lenis({duration:1.05,smoothWheel:true,lerp:0.1});
     (function lxRaf(t){lx.raf(t);requestAnimationFrame(lxRaf);})(0);
+    window.__khLenis=lx;
+  }
+  /* بانر الرئيسية: أربع سلايدات بتلاشٍ متقاطع بالـCSS، وJS للتوقيت فقط.
+     الصورة التالية تُحمَّل قبل دورها لا مع أول فتح، والدوران يقف مع
+     تفضيل تقليل الحركة، وعند إخفاء التبويب، وعند المرور بالماوس. */
+  var hero=document.querySelector("[data-hero]");
+  if(hero){
+    var sl=hero.querySelectorAll(".hero-slide"),dots=hero.querySelectorAll(".hero-dots button"),cur=0,timer=null;
+    var still=MQ&&MQ("(prefers-reduced-motion:reduce)").matches;
+    function load(i){var im=sl[i]&&sl[i].querySelector("img[data-src]");if(im){im.src=im.getAttribute("data-src");im.removeAttribute("data-src");}}
+    function show(i){
+      if(i===cur)return;
+      load(i);
+      sl[cur].classList.remove("on");sl[i].classList.add("on");
+      sl[cur].setAttribute("aria-hidden","true");sl[cur].setAttribute("tabindex","-1");
+      sl[i].removeAttribute("aria-hidden");sl[i].removeAttribute("tabindex");
+      if(dots.length){dots[cur].classList.remove("on");dots[i].classList.add("on");
+        dots[cur].setAttribute("aria-selected","false");dots[i].setAttribute("aria-selected","true");}
+      cur=i;load((i+1)%sl.length);
+    }
+    function play(){if(still||sl.length<2)return;stop();timer=setInterval(function(){show((cur+1)%sl.length);},6500);}
+    function stop(){if(timer){clearInterval(timer);timer=null;}}
+    for(var di=0;di<dots.length;di++){(function(i){dots[i].addEventListener("click",function(){show(i);play();});})(di);}
+    hero.addEventListener("mouseenter",stop);hero.addEventListener("mouseleave",play);
+    document.addEventListener("visibilitychange",function(){document.hidden?stop():play();});
+    if(!still){ if(document.readyState==="complete")setTimeout(function(){load(1);play();},600);
+      else window.addEventListener("load",function(){setTimeout(function(){load(1);play();},600);}); }
   }
 </script>
 </body>

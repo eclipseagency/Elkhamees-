@@ -204,7 +204,13 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 .wa-top svg{flex:none;color:#25D366;transition:color .3s}
 .wa-top:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .wa-top:hover svg{color:var(--paper)}
-.burger{display:none;background:none;border:0;color:var(--ink);font-size:1.2rem;cursor:pointer;padding:6px}
+.burger{display:grid;gap:4px;background:none;border:0;cursor:pointer;padding:8px 6px;
+  place-content:center;width:38px;height:38px}
+.burger span{display:block;width:20px;height:1.4px;background:var(--ink);
+  transition:transform .28s ease,opacity .2s ease}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(5.4px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.4px) rotate(-45deg)}
 
 
 /* ---------- الهيرو ---------- */
@@ -218,8 +224,15 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
   min-height:clamp(600px,88svh,820px);display:flex;align-items:center;
   padding:clamp(3rem,6vw,5rem) 0;
 }
+/* السلايدات الأربع فوق بعضها، والظاهرة وحدها opacity:1 — تلاشٍ متقاطع
+   بالـCSS بلا إعادة تخطيط. الرابط يغطي المساحة كلها فالسلايد نفسه يقود
+   إلى فئته، والنص فوقه بـz-index أعلى. */
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.15s ease;
+  z-index:0;pointer-events:none}
+.hero-slide.on{opacity:1;pointer-events:auto}
 .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  object-position:32% 28%;animation:kenburns 30s ease-out both}
+  object-position:32% 28%}
+.hero-slide.on .hero-bg{animation:kenburns 30s ease-out both}
 @keyframes kenburns{from{transform:scale(1.06)}to{transform:scale(1)}}
 /* حجابان: أفقي يحمل النص من جهة اليمين، ورأسي خفيف من الأسفل يربط الهيرو
    بالأونيكس تحته فلا يُقرأ كصورة ملصوقة. */
@@ -229,6 +242,21 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
       rgba(7,6,5,.94) 0%,rgba(7,6,5,.86) 28%,
       rgba(7,6,5,.52) 48%,rgba(7,6,5,.14) 68%,rgba(7,6,5,.06) 100%),
     linear-gradient(to top, rgba(7,6,5,.9) 0%, transparent 34%)}
+/* النقاط: خرزة Perlee صغيرة لكل سلايد، واسم الفئة يظهر عند المرور —
+   فالزائر يعرف إلى أين تقوده لا يخمّن. */
+.hero-dots{position:absolute;z-index:3;inset-inline-end:var(--pad);bottom:clamp(22px,4vw,42px);
+  display:flex;gap:14px;align-items:center}
+.hero-dots button{background:none;border:0;cursor:pointer;padding:6px 2px;
+  display:flex;align-items:center;gap:8px;color:var(--muted-on-dark);
+  font:inherit;font-size:.7rem;letter-spacing:.1em}
+.hero-dots button::before{content:'';width:7px;height:7px;border-radius:50%;
+  border:1px solid var(--gold-dim);background:transparent;
+  transition:background .3s ease,border-color .3s ease,transform .3s ease}
+.hero-dots button.on::before{background:var(--gold);border-color:var(--gold);transform:scale(1.15)}
+.hero-dots button span{opacity:0;transition:opacity .25s ease;white-space:nowrap}
+.hero-dots button.on span,.hero-dots button:hover span{opacity:1}
+.hero-dots button:hover::before{border-color:var(--gold)}
+
 .hero-in{position:relative;z-index:2;width:min(1320px,100% - var(--pad)*2);margin-inline:auto}
 .hero-copy{max-width:min(620px,100%)}
 .hero-eyebrow{display:block;color:var(--gold);letter-spacing:.14em;font-size:.74rem;
@@ -641,16 +669,19 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 }
 @media (prefers-reduced-motion:reduce){
   .rv{opacity:1;transform:none;transition:none}
-  .hero-img{animation:none}
+  /* كانت `.hero-img` — صنف غير موجود، فحركة كِن-بيرنز كانت تعمل رغم طلب
+     تقليل الحركة (كشفه Codex 2026-08-02). الصنف الصحيح `.hero-bg`. */
+  .hero-bg{animation:none}
+  .hero-slide{transition:none}
   .marquee-in{animation:none}
   html{scroll-behavior:auto}
 }
 
 /* ---------- الجوال ---------- */
 @media (max-width:960px){
-  /* الجوال: صفّ فيه القائمة والشعار وواتساب، والبحث بعرض الصفحة تحته،
-     وقائمة التنقّل تنسدل من الزر. */
-  .burger{display:block}
+  /* الجوال: صفّ فيه زرّ القائمة والشعار وواتساب، والبحث بعرض الصفحة تحته.
+     زرّ القائمة صار يفتح الدرج الجانبي على كل المقاسات (بريف 2026-08-02)،
+     فشريط التنقّل يختفي هنا ولا تبقى قائمة منسدلة لا يفتحها شيء. */
   .header{position:relative}
   .head-main{grid-template-columns:auto 1fr auto;gap:12px;
     grid-template-areas:"burger logo wa" "search search search"}
@@ -658,17 +689,16 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
   .logo{grid-area:logo}
   .wa-top{grid-area:wa}
   .search{grid-area:search;width:100%;justify-self:stretch}
-  .nav{position:absolute;top:100%;inset-inline:0;flex-direction:column;gap:0;background:var(--black);
-    border-block-end:1px solid var(--gold-dim);padding:10px 0;display:none;text-align:center;z-index:65}
-  .nav.open{display:flex}
-  .nav a{color:var(--ink);opacity:.82}
-  .nav a.on{color:var(--gold);opacity:1}
-  .nav a{padding:16px var(--pad);font-size:.9rem;letter-spacing:.08em}
+  .nav{display:none}
+  .hero-dots button span{display:none}
   .piece-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
   .about-media{min-height:340px}
   .svc{border-inline-start:0;border-block-start:1px solid var(--hair-2)}
   .svc:first-child{border-block-start:0}
   .foot-grid{grid-template-columns:1fr 1fr}
+  /* خانة التواصل: عمودان على 390px يضغطان الرقم والعنوان على سطرين مكسورين */
+  .fc-grid{grid-template-columns:1fr}
+  .hero-dots{inset-inline-end:auto;inset-inline-start:var(--pad);gap:10px}
 }
 @media (max-width:600px){
   /* الشاشة الضيقة لا تتّسع لنصّ بجانب الموديل: الحجاب يصير رأسياً من أسفل
@@ -699,3 +729,109 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
     background:linear-gradient(to left,transparent,var(--hair),transparent)}
   .trust-row>div:first-child::before{display:none}
 }
+
+
+/* ================================================================== *
+ * القائمة الجانبية (الدرج) — بريف العميل 2026-08-02
+ *
+ * تُفتح من زرّ الهيدر على كل المقاسات لا الجوال وحده، لأن الشريط العلوي
+ * يسع ستة روابط بينما الموقع أكبر: فئات وأطقم ومناسبات وسياسات.
+ * تنزلق من جهة البداية (يمين في RTL) عبر inset-inline-start فلا تحتاج
+ * حساب اتجاه في JS.
+ * ================================================================== */
+/* ⚠️ `display:flex/block` هنا يتغلّب على قاعدة المتصفح [hidden]{display:none}،
+   فالدرج كان يُفتح مع الصفحة (ظهر في لقطة 2026-08-02). الإخفاء يُعاد
+   تثبيته صراحةً — الحالة المغلقة هي حالة الصفحة الافتراضية. */
+.side[hidden],.side-veil[hidden]{display:none}
+.side-veil{position:fixed;inset:0;z-index:90;background:rgba(7,6,5,.62);
+  backdrop-filter:blur(3px);animation:veil-in .3s ease both}
+@keyframes veil-in{from{opacity:0}to{opacity:1}}
+.side{
+  position:fixed;inset-block:0;inset-inline-start:0;z-index:95;
+  width:min(380px,86vw);background:var(--paper-2);
+  border-inline-end:1px solid var(--gold-dim);
+  display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;
+  animation:side-in .34s cubic-bezier(.22,.61,.36,1) both;
+}
+@keyframes side-in{from{transform:translateX(var(--side-from,100%))}to{transform:translateX(0)}}
+[dir="rtl"] .side{--side-from:100%}
+[dir="ltr"] .side{--side-from:-100%}
+.side-head{display:flex;align-items:center;justify-content:space-between;
+  padding:22px var(--pad) 18px;border-bottom:1px solid var(--hair-2)}
+.side-head img{height:30px;width:auto}
+.side-x{background:none;border:0;color:var(--ink-2);font-size:1.05rem;cursor:pointer;
+  padding:8px;line-height:1;transition:color .25s ease}
+.side-x:hover{color:var(--gold)}
+.side-nav{flex:1;padding:8px var(--pad) 24px}
+.side-nav section{padding:22px 0;border-bottom:1px solid var(--hair-2)}
+.side-nav section:last-child{border-bottom:0}
+.side-nav h3{font-size:.68rem;letter-spacing:.14em;color:var(--gold);
+  margin-bottom:12px;font-weight:400}
+.side-nav a{display:block;padding:9px 0;color:var(--ink);opacity:.8;
+  font-size:.98rem;transition:opacity .25s ease,padding-inline-start .25s ease}
+.side-nav a:hover{opacity:1;color:var(--gold-lt);padding-inline-start:8px}
+.side-wa{display:block;margin:0 var(--pad) 26px;text-align:center;
+  border:1px solid var(--gold-dim);color:var(--gold-lt);
+  padding:14px;font-size:.86rem;letter-spacing:.06em;transition:background .25s ease}
+.side-wa:hover{background:rgba(198,162,103,.1)}
+body.side-on{overflow:hidden}
+
+/* ================================================================== *
+ * خانة «تواصل معنا» في آخر الموقع — بريف العميل 2026-08-02
+ * ================================================================== */
+.foot-contact{background:var(--paper-2);border-top:1px solid var(--hair-2);
+  padding-block:clamp(3.5rem,7vw,6rem)}
+.fc-head{text-align:center;margin-bottom:clamp(2rem,4vw,3rem)}
+.fc-head h2{font-family:var(--f-head);font-size:clamp(1.7rem,3.4vw,2.5rem);
+  line-height:1.3;margin-top:10px}
+.fc-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3vw,2.5rem)}
+.fc-card{border:1px solid var(--hair-2);padding:clamp(1.6rem,3vw,2.4rem);
+  background:rgba(236,228,213,.02)}
+.fc-card h3{font-size:.7rem;letter-spacing:.14em;color:var(--gold);margin-bottom:16px}
+.fc-num{display:block;font-size:clamp(1.3rem,2.6vw,1.75rem);color:var(--ink);
+  letter-spacing:.04em;margin-bottom:14px;transition:color .25s ease}
+.fc-num:hover{color:var(--gold-lt)}
+.fc-wa{display:inline-flex;align-items:center;gap:9px;color:var(--wa);
+  font-size:.85rem;transition:opacity .25s ease}
+.fc-wa:hover{opacity:.78}
+.fc-hours{color:var(--muted-on-dark);font-size:.86rem;margin:16px 0 0}
+.fc-social{display:flex;gap:18px;margin-top:20px;padding-top:18px;
+  border-top:1px solid var(--hair-2)}
+.fc-social a{color:var(--ink-2);font-size:.84rem;transition:color .25s ease}
+.fc-social a:hover{color:var(--gold-lt)}
+.fc-addr{color:var(--ink);font-size:1.02rem;line-height:1.9;margin:0 0 18px}
+.fc-map{color:var(--gold);font-size:.84rem;letter-spacing:.06em}
+.fc-map:hover{color:var(--gold-lt)}
+
+/* ================================================================== *
+ * تفاصيل Perlee — الخرز الذهبي (قرار مصطفى 2026-08-02: نبقى على الأونيكس
+ * ونستعير من Van Cleef & Arpels «Perlee» تفاصيلها لا ألوانها)
+ *
+ * الخرزة نقطة مرسومة بـradial-gradient مكرّرة على حدّ العنصر: تبقى حادّة
+ * على الريتينا (لا صورة تُمطّ)، ولا تضيف عقدة DOM واحدة، ولا تُحرّك أبداً
+ * فلا تكلّف شيئاً أثناء التمرير (توصية Codex 2026-08-02).
+ * تُستعمل على الأقسام والفواصل لا على كل بطاقة — الخرز على كل شيء يقرأ
+ * زخرفة رخيصة لا تفصيلاً.
+ * ================================================================== */
+.beaded{position:relative}
+.beaded::before,.beaded::after{
+  content:'';position:absolute;inset-inline:0;height:3px;pointer-events:none;
+  background:radial-gradient(circle at 1.5px 1.5px, var(--gold) 1.5px, transparent 1.6px);
+  background-size:11px 3px;background-repeat:repeat-x;opacity:.5;
+}
+.beaded::before{top:0}
+.beaded::after{bottom:0}
+.fc-head::after{
+  content:'';display:block;width:120px;height:3px;margin:18px auto 0;
+  background:radial-gradient(circle at 1.5px 1.5px, var(--gold) 1.5px, transparent 1.6px);
+  background-size:11px 3px;background-repeat:repeat-x;opacity:.6;
+}
+
+/* ================================================================== *
+ * اسم الدار ووصفه التقني على البطاقة وصفحة القطعة
+ * ================================================================== */
+.card-sub{display:block;color:var(--muted-on-dark);font-size:.78rem;
+  letter-spacing:.04em;margin-top:2px}
+.piece-sub{color:var(--muted-on-dark);font-size:.95rem;margin:6px 0 0;
+  letter-spacing:.04em}
+.search-out i{font-style:normal;color:var(--muted);font-size:.86em}

@@ -24,6 +24,14 @@ var D = require('../data/catalogue.js');
 var ROOT = path.join(__dirname, '..');
 var WA = D.BRAND.whatsapp;
 
+/* الحسابات المتوفرة فعلاً. الفارغ لا يُطبع: رابط سوشيال يقود إلى صفحة
+   غير موجودة يضرب ثقة موقع مجوهرات أكثر مما يفيد. */
+var SOCIAL = [
+  { ar: 'إنستقرام', url: D.BRAND.instagram },
+  { ar: 'سناب شات', url: D.BRAND.snapchat },
+  { ar: 'تيك توك', url: D.BRAND.tiktok }
+].filter(function (x) { return x.url; });
+
 /* بصمة محتوى لكل أصل. vercel.json يخدم /assets بـ immutable لسنة، فالملف
    المعدّل باسمه القديم يبقى في متصفح الزائر وفي الـCDN إلى ما لا نهاية —
    وهذا ما حجب قواعد الهوفر في site.css بعد نشرها (2026-07-30).
@@ -112,12 +120,51 @@ function layout(o) {
 
 '<div class="top">صناعة سعودية · ألماس موثّق بشهاداته · زيارة المعرض بموعد</div>\n' +
 
+/* القائمة الجانبية (بريف العميل 2026-08-02): تُفتح من زرّ الهيدر على كل
+   المقاسات لا الجوال وحده، ومقسّمة بخانات تعرض كل أقسام الموقع — فالقائمة
+   العلوية تسع ستة روابط فقط بينما الموقع أكبر من ذلك.
+   الأطقم تظهر هنا تلقائياً أول ما تُملأ SETS في data/catalogue.js. */
+'<div class="side-veil" hidden></div>\n' +
+'<aside class="side" id="side" hidden aria-label="قائمة الموقع" data-lenis-prevent>\n' +
+'  <div class="side-head">\n' +
+'    <img src="' + u + 'assets/wordmark-gold.png" alt="' + esc(D.BRAND.name) + '">\n' +
+'    <button class="side-x" type="button" aria-label="إغلاق القائمة">✕</button>\n' +
+'  </div>\n' +
+'  <nav class="side-nav">\n' +
+'    <section><h3>المجوهرات</h3>' +
+       '<a href="' + u + 'jewellery">كل القطع</a>' +
+       D.CATEGORIES.map(function (c) {
+         return '<a href="' + u + 'jewellery/' + c.slug + '">' + esc(c.ar) + '</a>';
+       }).join('') + '</section>\n' +
+     (D.SETS.length
+       ? '    <section><h3>الأطقم</h3>' + D.SETS.map(function (t) {
+           return '<a href="' + u + 'sets/' + t.slug + '">' + esc(t.ar) + '</a>';
+         }).join('') + '</section>\n'
+       : '') +
+'    <section><h3>المناسبات</h3>' +
+       D.OCCASIONS.map(function (o) {
+         return '<a href="' + u + 'occasions/' + o.slug + '">' + esc(o.ar) + '</a>';
+       }).join('') + '</section>\n' +
+'    <section><h3>الدار</h3>' +
+       '<a href="' + u + 'services">خدماتنا</a>' +
+       '<a href="' + u + 'about">عن الدار</a>' +
+       '<a href="' + u + 'faq">الأسئلة الشائعة</a>' +
+       '<a href="' + u + 'contact">تواصل وزيارة المعرض</a></section>\n' +
+'    <section><h3>سياسات الدار</h3>' +
+       '<a href="' + u + 'policies/returns">الاستبدال والاسترجاع</a>' +
+       '<a href="' + u + 'policies/shipping">الشحن والتغليف</a>' +
+       '<a href="' + u + 'policies/privacy">الخصوصية</a></section>\n' +
+'  </nav>\n' +
+'  <a class="side-wa" href="' + wa('السلام عليكم، عندي استفسار عن مجوهرات الخميس.') + '" target="_blank" rel="noopener">راسلنا على واتساب</a>\n' +
+'</aside>\n' +
+
 /* هيدر متجر: صفّ أول فيه البحث والشعار في الوسط وزر الواتساب،
    وتحته صفّ التنقّل بعرض الصفحة. الهيدر أونيكس دائماً (v6) ويجلس في مسار
    الصفحة (sticky) — لا يطفو فوق الهيرو، فلا يحتاج حجاباً تحته. */
 '<header class="header">\n' +
 '  <div class="head-main">\n' +
-'    <button class="burger" type="button" aria-label="القائمة" aria-expanded="false">☰</button>\n' +
+'    <button class="burger" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="side">' +
+       '<span></span><span></span><span></span></button>\n' +
 '    <form class="search" role="search" autocomplete="off">\n' +
 '      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">' +
        '<circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.6-3.6"></path></svg>\n' +
@@ -140,6 +187,37 @@ function layout(o) {
 
 '<main id="main">\n' + o.body + '</main>\n' +
 
+/* خانة «تواصل معنا» في آخر الموقع (بريف العميل 2026-08-02): أرقام التواصل،
+   تحتها روابط السوشيال، ثم عنوان المقر.
+   ⚠️ المتوفر رقم الواتساب والعنوان فقط. الحسابات لم تصل، وصفّ السوشيال
+   لا يُطبع أصلاً ما دامت كلها فارغة في data/catalogue.js — أيقونة تقود
+   إلى لا شيء أسوأ من غيابها. أول ما تصل الحسابات يظهر الصفّ وحده. */
+'<section class="foot-contact" id="contact-block"><div class="wrap">\n' +
+'  <div class="fc-head"><span class="sec-eyebrow">تواصل معنا</span>' +
+'    <h2>الدار قريبة منك</h2></div>\n' +
+'  <div class="fc-grid">\n' +
+'    <div class="fc-card">\n' +
+'      <h3>أرقام التواصل</h3>\n' +
+'      <a class="fc-num" href="tel:+' + WA + '" dir="ltr">+' + WA + '</a>\n' +
+'      <a class="fc-wa" href="' + wa('السلام عليكم، عندي استفسار عن مجوهرات الخميس.') + '" target="_blank" rel="noopener">' +
+       '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">' +
+       '<path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2z"/></svg>' +
+       '<span>نفس الرقم على واتساب</span></a>\n' +
+'      <p class="fc-hours">' + esc(D.BRAND.hours) + '</p>\n' +
+     (SOCIAL.length
+       ? '      <div class="fc-social">' + SOCIAL.map(function (x) {
+           return '<a href="' + x.url + '" target="_blank" rel="noopener">' + esc(x.ar) + '</a>';
+         }).join('') + '</div>\n'
+       : '') +
+'    </div>\n' +
+'    <div class="fc-card">\n' +
+'      <h3>عنوان المقر</h3>\n' +
+'      <p class="fc-addr">' + esc(D.BRAND.address) + '</p>\n' +
+'      <a class="fc-map" href="' + D.BRAND.maps + '" target="_blank" rel="noopener">افتح الموقع في قوقل مابس ←</a>\n' +
+'    </div>\n' +
+'  </div>\n' +
+'</div></section>\n' +
+
 '<footer class="footer">\n' +
 '  <div class="foot-grid">\n' +
 '    <div>\n' +
@@ -156,7 +234,7 @@ function layout(o) {
 '      <a href="' + u + 'faq">الأسئلة الشائعة</a>' +
 '      <a href="' + u + 'contact">تواصل وزيارة المعرض</a></div>\n' +
 '    <div><h4>سياسات</h4>' +
-'      <a href="' + u + 'policies/returns">الاستبدال والإرجاع</a>' +
+'      <a href="' + u + 'policies/returns">الاستبدال والاسترجاع</a>' +
 '      <a href="' + u + 'policies/shipping">الشحن والتغليف</a>' +
 '      <a href="' + u + 'policies/privacy">الخصوصية</a></div>\n' +
 '  </div>\n' +
@@ -170,22 +248,49 @@ function layout(o) {
 
 '<script src="' + u + 'assets/lenis.min.js?v=' + stamp('assets/lenis.min.js') + '"></script>\n' +
 '<script>\n' +
-'  // القائمة على الجوال\n' +
-'  var b=document.querySelector(".burger"),n=document.querySelector(".nav");\n' +
-'  if(b&&n)b.addEventListener("click",function(){var o=n.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");});\n' +
+'  /* القائمة الجانبية: تُفتح من زرّ الهيدر على كل المقاسات. تحبس التركيز\n' +
+'     داخلها، وتُغلق بـEscape أو بالنقر على الحجاب، وتعيد التركيز للزر،\n' +
+'     وتوقف تمرير الصفحة (وLenis معها) ما دامت مفتوحة. */\n' +
+'  var burger=document.querySelector(".burger"),side=document.getElementById("side"),\n' +
+'      veil=document.querySelector(".side-veil"),sideX=document.querySelector(".side-x");\n' +
+'  if(burger&&side&&veil){\n' +
+'    var lastFocus=null;\n' +
+'    function sideOpen(on){\n' +
+'      side.hidden=veil.hidden=!on;\n' +
+'      document.body.classList.toggle("side-on",on);\n' +
+'      burger.setAttribute("aria-expanded",on?"true":"false");\n' +
+'      burger.setAttribute("aria-label",on?"إغلاق القائمة":"فتح القائمة");\n' +
+'      if(window.__khLenis){ if(on) window.__khLenis.stop(); else window.__khLenis.start(); }\n' +
+'      if(on){ lastFocus=document.activeElement; var f=side.querySelector("a,button"); if(f)f.focus(); }\n' +
+'      else if(lastFocus){ lastFocus.focus(); }\n' +
+'    }\n' +
+'    burger.addEventListener("click",function(){sideOpen(side.hidden);});\n' +
+'    veil.addEventListener("click",function(){sideOpen(false);});\n' +
+'    if(sideX)sideX.addEventListener("click",function(){sideOpen(false);});\n' +
+'    document.addEventListener("keydown",function(e){\n' +
+'      if(side.hidden)return;\n' +
+'      if(e.key==="Escape"){sideOpen(false);return;}\n' +
+'      if(e.key!=="Tab")return;\n' +
+'      var f=side.querySelectorAll("a[href],button:not([disabled])");\n' +
+'      if(!f.length)return;\n' +
+'      var first=f[0],last=f[f.length-1];\n' +
+'      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}\n' +
+'      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}\n' +
+'    });\n' +
+'  }\n' +
 '  // البحث — الفهرس من data/catalogue.js نفسه، فلا مصدر ثانٍ يتخلّف عنه\n' +
 '  var IX=' + JSON.stringify(D.PIECES.map(function (p) {
      var c = D.CATEGORIES.filter(function (x) { return x.slug === p.category; })[0];
-     return { t: p.ar, u: u + 'piece/' + p.slug, c: (c ? c.ar : ''), p: priceLabel(p) };
+     return { t: p.ar, d: p.sub || '', u: u + 'piece/' + p.slug, c: (c ? c.ar : ''), p: priceLabel(p) };
    })) + ';\n' +
 '  var sf=document.querySelector(".search"),si=sf&&sf.querySelector("input"),so=sf&&sf.querySelector(".search-out");\n' +
 '  function norm(s){return (s||"").replace(/[أإآ]/g,"ا").replace(/[ىئ]/g,"ي").replace(/ة/g,"ه").replace(/[ًٌٍَُِّْ]/g,"").toLowerCase();}\n' +
-'  function hits(q){q=norm(q).trim();if(!q)return [];return IX.filter(function(x){return norm(x.t+" "+x.c).indexOf(q)>-1;}).slice(0,6);}\n' +
+'  function hits(q){q=norm(q).trim();if(!q)return [];return IX.filter(function(x){return norm(x.t+" "+x.d+" "+x.c).indexOf(q)>-1;}).slice(0,6);}\n' +
 '  function draw(){\n' +
 '    var r=hits(si.value);\n' +
 '    if(!si.value.trim()){so.hidden=true;so.innerHTML="";return;}\n' +
 '    so.hidden=false;\n' +
-'    so.innerHTML=r.length?r.map(function(x){return \'<a href="\'+x.u+\'"><span>\'+x.t+\'</span><small>\'+x.c+\' · \'+x.p+\'</small></a>\';}).join("")\n' +
+'    so.innerHTML=r.length?r.map(function(x){return \'<a href="\'+x.u+\'"><span>\'+x.t+(x.d?\' <i>\'+x.d+\'</i>\':\'\')+\'</span><small>\'+x.c+\' · \'+x.p+\'</small></a>\';}).join("")\n' +
 '      :\'<p class="search-none">ما لقينا قطعة بهذا الاسم. <a href="' + u + 'jewellery">تصفّح كل القطع</a></p>\';\n' +
 '  }\n' +
 '  if(sf&&si&&so){\n' +
@@ -208,6 +313,33 @@ function layout(o) {
 '  if(window.Lenis&&MQ&&MQ("(hover:hover) and (pointer:fine)").matches&&!MQ("(prefers-reduced-motion:reduce)").matches){\n' +
 '    var lx=new Lenis({duration:1.05,smoothWheel:true,lerp:0.1});\n' +
 '    (function lxRaf(t){lx.raf(t);requestAnimationFrame(lxRaf);})(0);\n' +
+'    window.__khLenis=lx;\n' +
+'  }\n' +
+'  /* بانر الرئيسية: أربع سلايدات بتلاشٍ متقاطع بالـCSS، وJS للتوقيت فقط.\n' +
+'     الصورة التالية تُحمَّل قبل دورها لا مع أول فتح، والدوران يقف مع\n' +
+'     تفضيل تقليل الحركة، وعند إخفاء التبويب، وعند المرور بالماوس. */\n' +
+'  var hero=document.querySelector("[data-hero]");\n' +
+'  if(hero){\n' +
+'    var sl=hero.querySelectorAll(".hero-slide"),dots=hero.querySelectorAll(".hero-dots button"),cur=0,timer=null;\n' +
+'    var still=MQ&&MQ("(prefers-reduced-motion:reduce)").matches;\n' +
+'    function load(i){var im=sl[i]&&sl[i].querySelector("img[data-src]");if(im){im.src=im.getAttribute("data-src");im.removeAttribute("data-src");}}\n' +
+'    function show(i){\n' +
+'      if(i===cur)return;\n' +
+'      load(i);\n' +
+'      sl[cur].classList.remove("on");sl[i].classList.add("on");\n' +
+'      sl[cur].setAttribute("aria-hidden","true");sl[cur].setAttribute("tabindex","-1");\n' +
+'      sl[i].removeAttribute("aria-hidden");sl[i].removeAttribute("tabindex");\n' +
+'      if(dots.length){dots[cur].classList.remove("on");dots[i].classList.add("on");\n' +
+'        dots[cur].setAttribute("aria-selected","false");dots[i].setAttribute("aria-selected","true");}\n' +
+'      cur=i;load((i+1)%sl.length);\n' +
+'    }\n' +
+'    function play(){if(still||sl.length<2)return;stop();timer=setInterval(function(){show((cur+1)%sl.length);},6500);}\n' +
+'    function stop(){if(timer){clearInterval(timer);timer=null;}}\n' +
+'    for(var di=0;di<dots.length;di++){(function(i){dots[i].addEventListener("click",function(){show(i);play();});})(di);}\n' +
+'    hero.addEventListener("mouseenter",stop);hero.addEventListener("mouseleave",play);\n' +
+'    document.addEventListener("visibilitychange",function(){document.hidden?stop():play();});\n' +
+'    if(!still){ if(document.readyState==="complete")setTimeout(function(){load(1);play();},600);\n' +
+'      else window.addEventListener("load",function(){setTimeout(function(){load(1);play();},600);}); }\n' +
 '  }\n' +
 '</script>\n' +
 '</body>\n</html>\n';
@@ -216,12 +348,17 @@ function layout(o) {
 /* ------------------------------------------------------------------ *
  * مكوّنات
  * ------------------------------------------------------------------ */
+/* اسم الدار «عهد» وحده لا يقول إن القطعة خاتم. `fullName` يجمعه بوصفه
+   التقني للعناوين ورسائل الواتساب والصور، والبطاقة تعرض الاثنين مفصولين
+   سطراً. (اعتماد أسماء الدار: بريف العميل 2026-08-02) */
+function fullName(p) { return p.sub ? p.ar + ' · ' + p.sub : p.ar; }
+
 /* الاسم ثم خط شعري ثم السعر على سطر واحد — نمط تحريري يقرأه العين مرة واحدة. */
 function pieceCard(p, depth) {
   var u = up(depth);
   return '<a class="card rv" href="' + u + 'piece/' + p.slug + '">' +
     '<span class="card-img' + (p.hover ? ' has-hover' : '') + '">' +
-      '<img src="' + u + p.image + '" alt="' + esc(p.ar) + '" loading="lazy">' +
+      '<img src="' + u + p.image + '" alt="' + esc(fullName(p)) + '" loading="lazy">' +
       (p.hover ? '<img class="card-hover" src="' + u + p.hover + '" alt="" loading="lazy">' : '') +
     '</span>' +
     '<span class="card-body">' +
@@ -229,6 +366,7 @@ function pieceCard(p, depth) {
         '<span class="card-name">' + esc(p.ar) + '</span>' +
         '<span class="card-price">' + esc(priceLabel(p)) + '</span>' +
       '</span>' +
+      (p.sub ? '<span class="card-sub">' + esc(p.sub) + '</span>' : '') +
       '<span class="card-meta">' + esc(metaLine(p)) + '</span>' +
     '</span></a>';
 }
@@ -240,7 +378,7 @@ function metaLine(p) {
 }
 
 function trustBar() {
-  return '<section class="trust"><div class="wrap"><div class="trust-row">' +
+  return '<section class="trust beaded"><div class="wrap"><div class="trust-row">' +
     D.TRUST.map(function (t) {
       return '<div class="rv"><strong>' + esc(t.ar) + '</strong><span>' + esc(t.hint) + '</span></div>';
     }).join('') + '</div></div></section>';
@@ -284,20 +422,36 @@ function home() {
     description: D.BRAND.name + ' — ذهب وألماس موثّق، صياغة يدوية، وتصميم خاص حسب الطلب.',
     body:
 /* الهيرو: صورة خلفية والنص فوقها، بحجاب أونيكس يثقل من جهة النص (v6). */
-'<section class="hero">\n' +
-'  <img class="hero-bg" src="assets/editorial/hero-rings.jpg" alt="" fetchpriority="high">\n' +
+/* الهيرو: أربع سلايدات تتبدّل تلقائياً خلف جملة ثابتة (بريف 2026-08-02).
+   الصورة الأولى وحدها eager وبأولوية عالية — هي الـLCP؛ والثلاث الباقية
+   بلا src وتُحمَّل من JS بعد استقرار الصفحة، فأربع صور لا تعني أربعة
+   أحمال في أول فتح. */
+'<section class="hero" data-hero>\n' +
+   D.HERO.slides.map(function (sl, i) {
+     return '  <a class="hero-slide' + (i === 0 ? ' on' : '') + '" href="jewellery/' + sl.cat + '"' +
+       ' aria-label="' + esc(sl.ar) + '"' + (i === 0 ? '' : ' tabindex="-1" aria-hidden="true"') + '>' +
+       '<img class="hero-bg"' + (i === 0
+         ? ' src="' + sl.image + '" fetchpriority="high"'
+         : ' data-src="' + sl.image + '" loading="lazy"') +
+       ' alt=""></a>\n';
+   }).join('') +
 '  <div class="hero-in"><div class="hero-copy">\n' +
 '    <span class="hero-eyebrow">دار مجوهرات · العليا، الرياض</span>\n' +
-'    <h1>ألماسٌ تراه <em>بعينك</em><br>قبل أن تقتنيه</h1>\n' +
+'    <h1>' + esc(D.HERO.title) + '</h1>\n' +
 '    <i class="hero-rule"></i>\n' +
 '    <div class="hero-row">\n' +
-'      <p>كل قطعة تُصاغ في ورشتنا وتُسلَّم بشهادتها. زُر المعرض لتراها على الطبيعة، أو راسلنا فنرسل لك صورها ومقطعها قبل أن تتحرك.</p>\n' +
+'      <p>' + esc(D.HERO.lead) + '</p>\n' +
 '      <div class="hero-acts">\n' +
 '        <a class="btn btn-gold" href="jewellery">تصفّح المجموعات</a>\n' +
-'        <a class="more" href="occasions">اختر لمناسبة ←</a>\n' +
+'        <a class="more" href="services">التصميم الخاص ←</a>\n' +
 '      </div>\n' +
 '    </div>\n' +
 '  </div></div>\n' +
+'  <div class="hero-dots" role="tablist" aria-label="أقسام البانر">' +
+   D.HERO.slides.map(function (sl, i) {
+     return '<button type="button" role="tab" aria-selected="' + (i === 0 ? 'true' : 'false') + '"' +
+       ' aria-label="' + esc(sl.ar) + '"' + (i === 0 ? ' class="on"' : '') + '><span>' + esc(sl.ar) + '</span></button>';
+   }).join('') + '</div>\n' +
 '  <div class="scroll-cue"><span>مرّر</span><i></i></div>\n' +
 '</section>\n' +
 
@@ -390,7 +544,7 @@ function categoryPage(c) {
 /* صفحة القطعة — الغرض منها إعطاء ثقة كافية ليراسل العميل وهو جاد. */
 function piecePage(p) {
   var c = CAT[p.category] || {};
-  var msg = 'السلام عليكم، مهتم بـ' + p.ar + ' (رقم ' + p.ref + '). ممكن التفاصيل والسعر؟';
+  var msg = 'السلام عليكم، مهتم بـ' + fullName(p) + ' (رقم ' + p.ref + '). ممكن التفاصيل والسعر؟';
   var specs = [
     ['الفئة', c.ar],
     ['المعدن', METAL[p.metal]],
@@ -407,18 +561,19 @@ function piecePage(p) {
   }).slice(0, 3);
 
   return layout({
-    title: p.ar, active: 'jewellery', depth: 1,
-    description: p.ar + ' — ' + metaLine(p) + '. ' + (p.note || ''),
+    title: fullName(p), active: 'jewellery', depth: 1,
+    description: fullName(p) + ' — ' + metaLine(p) + '. ' + (p.note || ''),
     body:
 '<section class="piece"><div class="wrap piece-grid">\n' +
 '  <div class="piece-media rv' + (p.hover ? ' has-hover' : '') + '">' +
      '<img src="../' + p.image + '" alt="' + esc(p.ar) + '">' +
-     (p.hover ? '<img class="card-hover" src="../' + p.hover + '" alt="' + esc(p.ar) + ' على الموديل" loading="lazy">' : '') +
+     (p.hover ? '<img class="card-hover" src="../' + p.hover + '" alt="' + esc(fullName(p)) + ' على الموديل" loading="lazy">' : '') +
    '</div>\n' +
 '  <div class="piece-info">\n' +
 '    <nav class="crumb"><a href="../">الرئيسية</a> · <a href="../jewellery">المجوهرات</a> · ' +
        '<a href="../jewellery/' + p.category + '">' + esc(c.ar) + '</a></nav>\n' +
 '    <h1>' + esc(p.ar) + '</h1>\n' +
+     (p.sub ? '<p class="piece-sub">' + esc(p.sub) + '</p>\n' : '') +
 '    <div class="piece-ref">رقم القطعة: <b>' + esc(p.ref) + '</b></div>\n' +
 '    <div class="piece-price">' + esc(priceLabel(p)) + '</div>\n' +
      (p.note ? '<p class="piece-note">' + esc(p.note) + '</p>' : '') +
@@ -480,7 +635,7 @@ function services() {
     description: 'تصميم خاص، صيانة وتلميع، تغيير المقاس، والتقييم وإعادة الشراء.',
     body:
 '<section class="page-head"><div class="wrap"><h1>خدماتنا</h1>' +
-'<p>الدار ما هي بيع فقط. هذي الخدمات اللي نقدمها لقطعك، سواء اشتريتها منا أو لا.</p></div></section>\n' +
+'<p>' + esc(D.SERVICES_LEAD) + '</p></div></section>\n' +
 '<section class="section"><div class="wrap"><div class="svc-grid">' +
  D.SERVICES.map(function (s) {
    return '<article class="svc rv"><span class="svc-ic">' + s.icon + '</span>' +
@@ -510,7 +665,7 @@ function faq() {
     description: 'الضمان والاستبدال والشحن والشهادات ومدة التصميم الخاص.',
     body:
 '<section class="page-head"><div class="wrap"><h1>الأسئلة الشائعة</h1>' +
-'<p>لو ما لقيت جوابك، راسلنا واتساب وبنرد عليك.</p></div></section>\n' +
+'<p>إذا لم تجد إجابة على استفسارك، تواصل معنا عبر واتساب وسنكون سعداء بمساعدتك.</p></div></section>\n' +
 '<section class="section"><div class="wrap faq-list">' +
  D.FAQ.map(function (f) {
    return '<details class="rv"><summary>' + esc(f.q) + '</summary><p>' + esc(f.a) + '</p></details>';
@@ -581,15 +736,16 @@ written.push(write('about.html', about()));
 written.push(write('faq.html', faq()));
 written.push(write('contact.html', contact()));
 
-written.push(write('policies/returns.html', policy('returns', 'الاستبدال والإرجاع', [
-  'نستقبل طلبات الاستبدال خلال المدة المعتمدة من تاريخ الشراء، بشرط أن تكون القطعة بحالتها الأصلية ومعها الفاتورة وتغليف الدار.',
-  'القطع المصنوعة بالطلب أو المعدّلة بالمقاس لها شروط خاصة نوضحها لك قبل بدء التنفيذ، حتى تكون على علم قبل الاتفاق.',
-  'لأي حالة، راسلنا أولاً ونرتّب لك الإجراء المناسب.'
+/* نصوص السياسات — نصّ العميل المعتمد 2026-08-02 حرفياً. */
+written.push(write('policies/returns.html', policy('returns', 'الاستبدال والاسترجاع', [
+  'نحرص على تقديم تجربة شراء مريحة وموثوقة. يمكن طلب الاستبدال خلال الفترة المحددة من تاريخ الشراء، بشرط أن تكون القطعة بحالتها الأصلية، مرفقة بالفاتورة والتغليف الخاص بالدار.',
+  'أما القطع المصمّمة حسب الطلب أو المعدّلة خصيصاً بالمقاس، فتخضع لشروط خاصة يتم توضيحها والاتفاق عليها معك قبل بدء التنفيذ.',
+  'لأي استفسار أو طلب استبدال، تواصل معنا وسنساعدك في إتمام الإجراء المناسب بكل سهولة.'
 ])));
 written.push(write('policies/shipping.html', policy('shipping', 'الشحن والتغليف', [
-  'الشحن متاح داخل المملكة العربية السعودية، بتغليف مؤمّن يليق بالقطعة وجاهز للإهداء.',
-  'مدة التوصيل تختلف حسب المدينة وحسب توفر القطعة أو كونها تُصنع بالطلب.',
-  'راسلنا لتأكيد تفاصيل الشحن لمدينتك قبل الطلب.'
+  'نحرص على أن تصل قطعتك إليك بنفس العناية التي صُنعت بها. نوفّر الشحن داخل المملكة العربية السعودية مع تغليف آمن وأنيق يليق بقيمة القطعة ويجعلها جاهزة للإهداء.',
+  'تختلف مدة التوصيل حسب المدينة وتوفّر القطعة، كما قد تختلف للقطع المصمّمة حسب الطلب نظراً لكونها تُنفَّذ بعناية خاصة.',
+  'للتأكد من تفاصيل الشحن ومدة التوصيل لمدينتك، تواصل معنا قبل إتمام الطلب.'
 ])));
 written.push(write('policies/privacy.html', policy('privacy', 'سياسة الخصوصية', [
   'هذا الموقع واجهة عرض. لا يطلب منك إنشاء حساب، ولا يجمع بيانات دفع، ولا يحتفظ ببيانات شخصية عنك.',
