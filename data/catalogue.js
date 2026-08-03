@@ -255,8 +255,19 @@ var ABOUT = {
   ]
 };
 
+/* ⭐ آراء جوجل — حلّت محل شريط «المناسبات» على الرئيسية (مصطفى، 2026-08-03).
+   ⚠️ لا يُكتب هنا إلا كلام عملاء حقيقي منقول من ملف الدار على خرائط جوجل.
+   لا تُخترع مراجعة ولا اسم ولا تقييم — القسم لا يُطبع أصلاً وهو فارغ، وهذا
+   مقصود: صفحة بلا قسم أفضل من قسم بكلام غير حقيقي.
+   لكل عنصر: { name, stars, text, when }  —  `when` نصّ حرّ («قبل شهرين»).
+   GOOGLE.url = رابط الملف على الخرائط، يظهر كزر «اقرأ كل الآراء على جوجل».
+   GOOGLE.rating / GOOGLE.count = المتوسط وعدد المراجعات كما يعرضهما جوجل. */
+var GOOGLE = { url: '', rating: '', count: '' };
+var REVIEWS = [];
+
 module.exports = {
   BRAND: BRAND, HERO: HERO, SETS: SETS, CATEGORIES: CATEGORIES, METALS: METALS,
   PIECES: PIECES, OCCASIONS: OCCASIONS, SERVICES: SERVICES,
-  SERVICES_LEAD: SERVICES_LEAD, SERVICE_TERMS: SERVICE_TERMS, FAQ: FAQ, TRUST: TRUST, ABOUT: ABOUT
+  SERVICES_LEAD: SERVICES_LEAD, SERVICE_TERMS: SERVICE_TERMS, FAQ: FAQ, TRUST: TRUST, ABOUT: ABOUT,
+  GOOGLE: GOOGLE, REVIEWS: REVIEWS
 };

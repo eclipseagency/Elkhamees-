@@ -415,6 +415,42 @@ function marquee() {
   return '<div class="marquee"><div class="marquee-in">' + run + run + '</div></div>';
 }
 
+/* ⭐ آراء جوجل — بديل شريط المناسبات على الرئيسية (مصطفى، 2026-08-03).
+   يُطبع فقط إذا كانت هناك مراجعات فعلية في `data/catalogue.js`. الفراغ متعمّد:
+   لا يُكتب في هذا القسم إلا كلام عملاء حقيقي منقول من ملف الدار على الخرائط. */
+function googleReviews() {
+  var list = D.REVIEWS || [];
+  if (!list.length) return '';
+  var g = D.GOOGLE || {};
+  var head = '<div class="sec-head rv"><span class="sec-eyebrow">آراء العملاء</span>' +
+    '<h2>ماذا يقول عملاؤنا على جوجل</h2>' +
+    (g.rating ? '<p class="g-score"><b>' + esc(g.rating) + '</b> ' + starRow(g.rating) +
+      (g.count ? ' · ' + esc(g.count) + ' مراجعة على جوجل' : '') + '</p>' : '') +
+    '</div>';
+  var cards = list.map(function (r) {
+    return '<figure class="g-review rv">' +
+      starRow(r.stars) +
+      '<blockquote>' + esc(r.text) + '</blockquote>' +
+      '<figcaption><span class="g-who">' + esc(r.name) + '</span>' +
+        (r.when ? '<span class="g-when">' + esc(r.when) + '</span>' : '') + '</figcaption>' +
+    '</figure>';
+  }).join('');
+  var more = g.url ? '<div class="g-more"><a class="more" href="' + esc(g.url) +
+    '" target="_blank" rel="noopener">اقرأ كل الآراء على جوجل ←</a></div>' : '';
+  return '<section class="section"><div class="wrap">\n' +
+    '  ' + head + '\n' +
+    '  <div class="g-reviews">' + cards + '</div>\n' +
+    '  ' + more + '\n' +
+    '</div></section>\n';
+}
+/* نجوم مملوءة حتى التقييم — الرقم قد يكون كسرياً (4.8) فيُقرَّب للأعلى بصرياً. */
+function starRow(rating) {
+  var n = Math.round(Number(rating) || 5);
+  var out = '';
+  for (var i = 1; i <= 5; i++) out += '<span class="g-star' + (i <= n ? ' on' : '') + '">★</span>';
+  return '<span class="g-stars" aria-label="' + n + ' من 5">' + out + '</span>';
+}
+
 function ctaBand(depth) {
   return '<section class="cta">' +
     '<img class="cta-bg" src="' + up(depth) + 'assets/editorial/cta-bracelets.jpg" alt="" loading="lazy">' +
@@ -509,15 +545,13 @@ trustBar() +
    طويلاً، ومكانها صفحاتها المستقلة `about` و`services` و`faq`
    و`policies/*` — وهي مبنية أصلاً من نفس مصدر البيانات فلم يضِع نصّ،
    وروابطها في القائمة والفوتر. لا تُعِد طباعتها هنا بدون قرار جديد.
-   المتبقّي: بانر ← الأقسام ← قطع المعرض ← المناسبات ← الخاتمة ← تواصل معنا. */
-'<section class="section"><div class="wrap">\n' +
-'  <div class="sec-head rv"><span class="sec-eyebrow">المناسبات</span>' +
-'    <h2>لكل مناسبة قطعتها</h2><p>أخبرنا بالمناسبة والميزانية، فنرشّح لك ثلاث قطع تليق بها — بدلاً من تقليب الكتالوج كله.</p></div>\n' +
-'  <div class="occ-row rv">' + D.OCCASIONS.map(function (o) {
-     return '<a class="occ" href="occasions/' + o.slug + '">' +
-       '<img src="' + o.image + '" alt="" loading="lazy"><span>' + esc(o.ar) + '</span></a>';
-   }).join('') + '</div>\n' +
-'</div></section>\n' +
+   المتبقّي: بانر ← الأقسام ← قطع المعرض ← آراء جوجل ← الخاتمة ← تواصل معنا.
+
+   ⚠️ قسم **المناسبات** («لكل مناسبة قطعتها») رُفع من الرئيسية (مصطفى،
+   2026-08-03) ومكانه صار آراء جوجل. صفحات المناسبات نفسها باقية كما هي
+   (`occasions.html` والأربع صفحات) وروابطها في القائمة والفوتر والـsitemap،
+   فلم يضِع منها شيء — المرفوع هو الشريط من الرئيسية فقط. */
+googleReviews() +
 
 ctaBand(0)
   });

@@ -884,3 +884,24 @@ body.side-on{overflow:hidden}
 .term a:hover{color:var(--gold-lt)}
 .on-light .term h3{color:var(--gold)}
 @media (max-width:860px){ .svc-terms{grid-template-columns:1fr} }
+
+/* ================================================================
+   ⭐ آراء جوجل — حلّت محل شريط «المناسبات» على الرئيسية (2026-08-03)
+   بطاقات هادئة على الورق: النجوم ذهبية، الاقتباس بحبر العناوين، والاسم
+   والتاريخ في الحبر الخافت. لا تُطبع أصلاً ما لم تكن هناك مراجعات حقيقية.
+   ================================================================ */
+.g-reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,26px)}
+.g-review{margin:0;padding:clamp(22px,2.4vw,30px);background:var(--paper-3);
+  border:1px solid var(--line);display:flex;flex-direction:column;gap:16px}
+.g-review blockquote{margin:0;color:var(--ink-head);font-size:1rem;line-height:1.9}
+.g-review figcaption{display:flex;flex-direction:column;gap:3px;margin-block-start:auto}
+.g-who{font-weight:700;color:var(--ink-head);font-size:.94rem}
+.g-when{color:var(--ink-2);font-size:.8rem}
+.g-stars{display:inline-flex;gap:2px;letter-spacing:.04em}
+.g-star{color:var(--line);font-size:.95rem}
+.g-star.on{color:var(--gold)}
+.g-score{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.g-score b{font-size:1.3rem;color:var(--ink-head)}
+.g-more{margin-block-start:clamp(22px,2.4vw,30px)}
+@media (max-width:900px){.g-reviews{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.g-reviews{grid-template-columns:1fr}}
