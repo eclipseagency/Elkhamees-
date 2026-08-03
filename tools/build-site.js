@@ -382,7 +382,9 @@ function pieceCard(p, depth) {
         '<span class="card-name">' + esc(p.ar) + '</span>' +
         '<span class="card-price">' + esc(priceLabel(p)) + '</span>' +
       '</span>' +
-      (p.sub ? '<span class="card-sub">' + esc(p.sub) + '</span>' : '') +
+      /* بلا سطر الوصف الصغير تحت الصورة (مصطفى، 2026-08-03): الاسم والسعر
+         والمعدن يكفون على البطاقة، والوصف مكانه صفحة القطعة. `sub` ما زال
+         مستعملاً في اسم القطعة الكامل ونص الـ alt وصفحة القطعة. */
       '<span class="card-meta">' + esc(metaLine(p)) + '</span>' +
     '</span></a>';
 }
