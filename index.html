@@ -196,8 +196,13 @@
     };
     Array.prototype.forEach.call(document.querySelectorAll("[data-g-nav]"),function(b){
       b.addEventListener("click",function(){
-        var d=parseInt(b.getAttribute("data-g-nav"),10)||1;
-        gTrack.scrollBy({left:gStep()*d*(gRtl?-1:1),behavior:"smooth"});
+        var d=parseInt(b.getAttribute("data-g-nav"),10)||1,
+            dx=gStep()*d*(gRtl?-1:1),from=gTrack.scrollLeft;
+        gTrack.scrollBy({left:dx,behavior:"smooth"});
+        /* احتياط: التمرير الناعم قد لا يُنفَّذ (تبويب في الخلفية، أو تفضيل
+           تقليل الحركة، أو تعارض مع scroll-snap) — عندها ننقل فوراً بدل أن
+           يبدو السهم معطّلاً. */
+        setTimeout(function(){ if(Math.abs(gTrack.scrollLeft-from)<2) gTrack.scrollLeft=from+dx; },320);
       });
     });
     gTrack.addEventListener("scroll",gEnds); window.addEventListener("resize",gEnds); gEnds();

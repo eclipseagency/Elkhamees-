@@ -345,8 +345,13 @@ function layout(o) {
 '    };\n' +
 '    Array.prototype.forEach.call(document.querySelectorAll("[data-g-nav]"),function(b){\n' +
 '      b.addEventListener("click",function(){\n' +
-'        var d=parseInt(b.getAttribute("data-g-nav"),10)||1;\n' +
-'        gTrack.scrollBy({left:gStep()*d*(gRtl?-1:1),behavior:"smooth"});\n' +
+'        var d=parseInt(b.getAttribute("data-g-nav"),10)||1,\n' +
+'            dx=gStep()*d*(gRtl?-1:1),from=gTrack.scrollLeft;\n' +
+'        gTrack.scrollBy({left:dx,behavior:"smooth"});\n' +
+'        /* احتياط: التمرير الناعم قد لا يُنفَّذ (تبويب في الخلفية، أو تفضيل\n' +
+'           تقليل الحركة، أو تعارض مع scroll-snap) — عندها ننقل فوراً بدل أن\n' +
+'           يبدو السهم معطّلاً. */\n' +
+'        setTimeout(function(){ if(Math.abs(gTrack.scrollLeft-from)<2) gTrack.scrollLeft=from+dx; },320);\n' +
 '      });\n' +
 '    });\n' +
 '    gTrack.addEventListener("scroll",gEnds); window.addEventListener("resize",gEnds); gEnds();\n' +
