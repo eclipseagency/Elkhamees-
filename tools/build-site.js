@@ -115,7 +115,7 @@ function layout(o) {
 '<meta name="viewport" content="width=device-width,initial-scale=1">\n' +
 '<title>' + esc(o.title) + ' · ' + esc(D.BRAND.name) + '</title>\n' +
 '<meta name="description" content="' + esc(o.description || D.BRAND.tagline) + '">\n' +
-'<meta name="theme-color" content="#0b0908">\n' +
+'<meta name="theme-color" content="#ffffff">\n' +
 '<meta property="og:title" content="' + esc(o.title) + ' · ' + esc(D.BRAND.name) + '">\n' +
 '<meta property="og:description" content="' + esc(o.description || D.BRAND.tagline) + '">\n' +
 '<meta property="og:type" content="website">\n' +
@@ -126,6 +126,8 @@ function layout(o) {
 '<link rel="stylesheet" href="' + u + 'assets/site.css?v=' + stamp('assets/site.css') + '">\n' +
 '</head>\n<body>\n' +
 
+/* نسختا الشعار: الداكنة على الأسطح البيضاء (الهيدر والدرج) والذهبية على
+   الفوتر الداكن. v7 صيّر الصفحة بيضاء، والذهبية عليها تُقرأ باهتة. */
 '<div class="top">صناعة سعودية · ألماس موثّق بشهاداته · زيارة المعرض بموعد</div>\n' +
 
 /* القائمة الجانبية (بريف العميل 2026-08-02): تُفتح من زرّ الهيدر على كل
@@ -135,7 +137,7 @@ function layout(o) {
 '<div class="side-veil" hidden></div>\n' +
 '<aside class="side" id="side" hidden aria-label="قائمة الموقع" data-lenis-prevent>\n' +
 '  <div class="side-head">\n' +
-'    <img src="' + u + 'assets/wordmark-gold.png" alt="' + esc(D.BRAND.name) + '">\n' +
+'    <img src="' + u + 'assets/wordmark-dark.png" alt="' + esc(D.BRAND.name) + '">\n' +
 '    <button class="side-x" type="button" aria-label="إغلاق القائمة">✕</button>\n' +
 '  </div>\n' +
 '  <nav class="side-nav">\n' +
@@ -180,7 +182,7 @@ function layout(o) {
 '      <div class="search-out" role="listbox" data-lenis-prevent hidden></div>\n' +
 '    </form>\n' +
 '    <a class="logo" href="' + (u || './') + '" aria-label="' + esc(D.BRAND.name) + '">' +
-       '<img src="' + u + 'assets/wordmark-gold.png" alt="' + esc(D.BRAND.name) + '"></a>\n' +
+       '<img src="' + u + 'assets/wordmark-dark.png" alt="' + esc(D.BRAND.name) + '"></a>\n' +
 /* زر الواتساب في الهيدر: كان مستطيلاً بحدود وكلمة "واتساب" وحدها في أعلى
    الصفحة، فبدا صندوقاً غريباً مقابل حقل البحث البيضاوي (ملاحظة مصطفى
    2026-07-30). صار بنفس شكل حقل البحث — نفس الحدّ ونفس الاستدارة — وبعلامة

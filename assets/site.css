@@ -42,44 +42,50 @@
  */
 
 :root{
-  /* v6 — الأونيكس هو الورق (قرار مصطفى 2026-08-02، بدل الأبيض الناصع).
-     الأبيض الناصع كان يقرأ «متجر عادي»؛ الألماس لا يلمع إلا على داكن.
+  /* v7 — الصفحة بيضاء ناصعة (قرار مصطفى 2026-08-03، بدل أونيكس v6).
+     v5 كانت بيضاء ورُفضت لأنها «تقرأ متجراً عادياً»، فلا نعيدها كما كانت:
+     الأبيض هنا **فراغ** لا لوح فارغ — جُزر داكنة محدودة (الشريط العلوي،
+     الهيرو، الخاتمة، الفوتر) تؤطّر الصفحة، وكل ما بينها بياض وخيوط.
 
-     ⚠️ --paper-3 يبقى **فاتحاً عمداً** ولا يُقلب مع البقية. هو سطح بلاطة
-     المنتج، وصور assets/catalogue خلفياتها وظلالها مخبوزة على لون فاتح
-     (tools/retint-catalogue.py). قلبها إلى داكن يترك هالة رمادية حول
-     القطعة لأن السكربت ينقل لون الخلفية ولا يعيد بناء الظل — فُحصت صورة
-     فعلية وتأكد ذلك (استُشير Codex، 2026-08-02). فالبلاطة تُقرأ كـ
-     «فاترينة مضاءة» تطفو على الأونيكس: تباين مقصود لا خلل.
+     ⚠️ آلية القلب: التوكنات هنا هي **سياق الفاتح**، والجُزر الداكنة تعيد
+     تعريف نفس الأسماء داخلها (انظر كتلة «الجُزر الداكنة» تحت). لا تكتب
+     لوناً صريحاً داخل جزيرة داكنة — اترك التوكن يرثه، فتبقى الصفحة
+     قابلة للقلب مرة أخرى بتغيير كتلتين لا بمطاردة مئة مُحدِّد.
 
-     و--ivory سطح/حبر فاتح دائماً (أزرار الخاتمة) — كان يُشتقّ من --paper
-     فانكسر أول ما صار الورق داكناً. */
-  --paper:#0b0908;         /* الأونيكس — خلفية الصفحة */
-  --paper-2:#131010;       /* شريط مرتفع قليلاً عن الأونيكس */
-  /* القيمة مطابقة تماماً لخلفية صور الكتالوج المخبوزة (#f7f6f4، من
-     tools/retint-catalogue.py) — أي فرق ولو درجة يُظهر خيطاً حول الصورة
-     داخل البلاطة على الأونيكس، وهو ما لم يكن يُرى على صفحة بيضاء. */
-  --paper-3:#f7f6f4;       /* الفاترينة — فاتح دائماً، لا يُقلب */
-  --ivory:#f4efe4;         /* حبر/سطح فاتح دائماً */
+     --paper-3 سطح بلاطة المنتج ويطابق تماماً خلفية صور الكتالوج المخبوزة.
+     نُقلت الصور المسطّحة الأربع إلى #ffffff بـ tools/retint-catalogue.py،
+     فصارت البلاطة والصفحة لوناً واحداً بلا مربّع رمادي تحت القطعة.
+     ⚠️ صورتا الإسورتين (cluster/flower-tennis) مقصوصتان من صورة أجواء
+     بخلفية بيج، فبلاطتاهما تبقيان صورتين لا سطحاً — بانتظار تصوير منتج.
 
-  /* الحبر — صار فاتحاً على الأونيكس */
-  --ink:#ece4d5;
-  --ink-2:#bab0a0;
+     --ivory حبر/سطح فاتح دائماً، يُستعمل **داخل الجُزر الداكنة** وحدها. */
+  --paper:#ffffff;         /* الورق — خلفية الصفحة */
+  --paper-2:#f6f4f0;       /* سطح مرتفع قليلاً: الدرج، خانة التواصل، البحث */
+  --paper-3:#ffffff;       /* الفاترينة — يطابق خلفية صور المنتج تماماً */
+  --ivory:#f4efe4;         /* حبر/سطح فاتح دائماً (داخل الداكن) */
+
+  /* الحبر — أسود دافئ لا أسود صافٍ: الأسود الصافي على الأبيض يقرأ حاداً. */
+  --ink:#1a1613;
+  --ink-2:#5d554c;
+  --ink-head:#14110e;      /* حبر العناوين — يُقلب داخل الجُزر الداكنة */
   --black:#070605;
 
-  /* المعدن — تفصيل لا مساحة. أفتح من نسخة الورق الأبيض ليقرأ على الداكن. */
-  --gold:#c6a267;
-  --gold-lt:#e0c08a;
+  /* المعدن على الأبيض: الذهب الفاتح يختفي على الورق (تباين ~1.7:1).
+     نسخة الورق أغمق وتحقّق تبايناً مقروءاً، ونسخة الداكن تبقى فاتحة
+     وتُورَّث داخل الجُزر (فحص تباين، استُشير Codex 2026-08-03). */
+  --gold:#8a6a30;
+  --gold-lt:#a2803c;
   --gold-on-dark:#d9b787;
-  --gold-dim:rgba(198,162,103,.34);
+  --gold-lt-on-dark:#e0c08a;
+  --gold-dim:rgba(138,106,48,.32);
 
   --sand:#e6dece;
-  --muted:#9c9080;
+  --muted:#7d7368;
   --muted-on-dark:#a89b8b;
 
-  /* الخيوط الشعرية انقلبت: فاتحة شفافة على داكن. */
-  --hair:rgba(236,228,213,.16);
-  --hair-2:rgba(236,228,213,.085);
+  /* الخيوط الشعرية على الأبيض: حبر شفاف لا أبيض شفاف. */
+  --hair:rgba(26,22,19,.14);
+  --hair-2:rgba(26,22,19,.08);
   --hair-on-dark:rgba(236,228,213,.18);
 
   --wa:#25D366;
@@ -88,6 +94,27 @@
 
   --pad:clamp(20px,5vw,72px);
   --gap:clamp(6rem,12vw,11rem);   /* الفراغ بين الأقسام */
+}
+
+/* ------------------------------------------------------------------ *
+ * الجُزر الداكنة (v7)
+ *
+ * الصفحة بيضاء، وأربعة مواضع تبقى داكنة لتؤطّرها: الشريط العلوي، الهيرو،
+ * الخاتمة، الفوتر. كلٌّ منها **يعيد تعريف التوكنات نفسها** بدل أن يكتب
+ * ألواناً صريحة، فكل قاعدة داخلها ترثها بلا تكرار: العنوان يصير عاجياً،
+ * والذهب يصير نسخته الفاتحة، والخيط يصير أبيض شفافاً.
+ * إضافة جزيرة جديدة = إضافة مُحدِّدها هنا فقط.
+ * ------------------------------------------------------------------ */
+.top,.hero,.cta,.footer{
+  --ink:#ece4d5;
+  --ink-2:#c4bbab;
+  --ink-head:var(--ivory);
+  --muted:var(--muted);
+  --gold:var(--gold-on-dark);
+  --gold-lt:var(--gold-lt-on-dark);
+  --gold-dim:rgba(217,183,135,.34);
+  --hair:rgba(236,228,213,.16);
+  --hair-2:rgba(236,228,213,.085);
 }
 
 *{box-sizing:border-box}
@@ -110,8 +137,8 @@ body{
 body::before{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(120% 62% at 50% -12%, rgba(198,162,103,.10), transparent 62%),
-    radial-gradient(90% 50% at 50% 108%, rgba(198,162,103,.05), transparent 60%);
+    radial-gradient(120% 62% at 50% -12%, rgba(138,106,48,.035), transparent 62%),
+    radial-gradient(90% 50% at 50% 108%, rgba(138,106,48,.022), transparent 60%);
 }
 body>*{position:relative;z-index:1}
 img{max-width:100%;display:block}
@@ -147,7 +174,7 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
    مقروءاً وهو يمرّ فوق الصور عند التمرير. */
 .header{
   position:sticky;top:0;z-index:60;
-  background:rgba(11,9,8,.94);backdrop-filter:blur(14px);
+  background:rgba(255,255,255,.92);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--hair-2);
 }
 .head-main{
@@ -172,7 +199,7 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 .search-out{
   position:absolute;top:calc(100% + 10px);inset-inline:0;z-index:70;
   background:var(--paper-2);border:1px solid var(--hair);
-  box-shadow:0 24px 60px rgba(0,0,0,.6);max-height:min(60vh,420px);overflow:auto;
+  box-shadow:0 24px 60px rgba(26,22,19,.14);max-height:min(60vh,420px);overflow:auto;
 }
 .search-out a{display:flex;flex-direction:column;gap:3px;padding:12px 18px;
   border-block-end:1px solid var(--hair-2);color:var(--ink);transition:background .2s}
@@ -241,13 +268,13 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
     linear-gradient(to left,
       rgba(7,6,5,.94) 0%,rgba(7,6,5,.86) 28%,
       rgba(7,6,5,.52) 48%,rgba(7,6,5,.14) 68%,rgba(7,6,5,.06) 100%),
-    linear-gradient(to top, rgba(7,6,5,.9) 0%, transparent 34%)}
+    linear-gradient(to top, rgba(7,6,5,.52) 0%, transparent 26%)}
 /* النقاط: خرزة Perlee صغيرة لكل سلايد، واسم الفئة يظهر عند المرور —
    فالزائر يعرف إلى أين تقوده لا يخمّن. */
 .hero-dots{position:absolute;z-index:3;inset-inline-end:var(--pad);bottom:clamp(22px,4vw,42px);
   display:flex;gap:14px;align-items:center}
 .hero-dots button{background:none;border:0;cursor:pointer;padding:6px 2px;
-  display:flex;align-items:center;gap:8px;color:var(--muted-on-dark);
+  display:flex;align-items:center;gap:8px;color:var(--muted);
   font:inherit;font-size:.7rem;letter-spacing:.1em}
 .hero-dots button::before{content:'';width:7px;height:7px;border-radius:50%;
   border:1px solid var(--gold-dim);background:transparent;
@@ -262,7 +289,7 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 .hero-eyebrow{display:block;color:var(--gold);letter-spacing:.14em;font-size:.74rem;
   font-weight:300;margin-block-end:clamp(20px,2.8vw,30px)}
 .hero h1{
-  font-family:var(--f-head);font-weight:700;color:var(--ivory);
+  font-family:var(--f-head);font-weight:700;color:var(--ink-head);
   font-size:clamp(2.6rem,6vw,5.4rem);line-height:1.18;
   max-width:14ch;margin-block-end:clamp(22px,2.8vw,32px);
   text-shadow:0 2px 30px rgba(0,0,0,.5);
@@ -299,12 +326,17 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
   padding:17px 38px;font-family:var(--f-body);font-weight:400;font-size:.78rem;
   letter-spacing:.1em;border:1px solid transparent;cursor:pointer;transition:.35s;
 }
-.btn-gold,.btn-wa{background:var(--ivory);color:var(--black);border-color:var(--ivory)}
-.btn-gold:hover,.btn-wa:hover{background:transparent;color:var(--gold-lt);border-color:var(--gold-lt)}
+/* v7: الزرّ الأساسي أونيكس صلب على الورق. كان عاجياً (--ivory) لأن
+   الصفحة كانت داكنة، فصار أبيض على أبيض أول ما ابيضّت. داخل الجزيرتين
+   الداكنتين (الهيرو والخاتمة) ينقلب فيبقى عاجياً على داكن. */
+.btn-gold,.btn-wa{background:var(--black);color:var(--ivory);border-color:var(--black)}
+.btn-gold:hover,.btn-wa:hover{background:transparent;color:var(--ink);border-color:var(--ink)}
 .btn-ghost{border-color:var(--gold-dim);color:var(--ink);background:transparent}
 .btn-ghost:hover{border-color:var(--gold-lt);color:var(--gold-lt)}
 .btn-block{display:flex;width:100%}
+.hero .btn-gold,.hero .btn-wa,
 .cta .btn-gold,.cta .btn-wa{background:var(--ivory);color:var(--black);border-color:var(--ivory)}
+.hero .btn-gold:hover,.hero .btn-wa:hover,
 .cta .btn-gold:hover,.cta .btn-wa:hover{background:transparent;color:var(--gold-lt);border-color:var(--gold-lt)}
 .cta .btn-ghost{border-color:var(--gold-dim);color:var(--sand)}
 .cta .btn-ghost:hover{border-color:var(--gold-lt);color:var(--gold-lt)}
@@ -323,7 +355,7 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
   letter-spacing:.14em;color:var(--gold);margin-block-end:22px;font-weight:400}
 .sec-eyebrow::before{content:'';flex:none;width:34px;height:1px;
   background:linear-gradient(to left,var(--gold),transparent)}
-.sec-head h2{font-family:var(--f-head);font-weight:700;color:var(--ivory);
+.sec-head h2{font-family:var(--f-head);font-weight:700;color:var(--ink-head);
   font-size:clamp(2.1rem,4.8vw,3.6rem);max-width:18ch;line-height:1.2}
 .sec-head p{color:var(--ink-2);margin:22px 0 0;max-width:46ch;font-size:1.02rem;
   line-height:1.85;font-weight:300}
@@ -334,7 +366,7 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 
 /* رأس الصفحات الداخلية */
 .page-head{padding:clamp(3.4rem,7.4vw,6.5rem) 0 clamp(2.4rem,5vw,4rem)}
-.page-head h1{font-family:var(--f-head);font-weight:700;color:var(--ivory);
+.page-head h1{font-family:var(--f-head);font-weight:700;color:var(--ink-head);
   font-size:clamp(2.4rem,6.4vw,4.8rem);line-height:1.2;margin-block-end:20px}
 .page-head p{color:var(--ink-2);max-width:56ch;margin:0;font-size:1rem;font-weight:300}
 .crumb{font-size:.72rem;letter-spacing:.1em;color:var(--muted);margin-block-end:22px}
@@ -345,7 +377,7 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
    صار شريطاً أونيكس أغمق من الصفحة بحروف ذهبية وفواصل ماسية، ويتلاشى
    طرفاه في الخلفية فلا يُقطع النص قطعاً حادّاً عند الحافة. */
 .marquee{
-  border-block:1px solid var(--gold-dim);overflow:hidden;background:var(--black);
+  border-block:1px solid var(--gold-dim);overflow:hidden;background:transparent;
   padding:22px 0;
   -webkit-mask-image:linear-gradient(to left,transparent,#000 12%,#000 88%,transparent);
   mask-image:linear-gradient(to left,transparent,#000 12%,#000 88%,transparent);
@@ -365,7 +397,7 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 .trust-row>div::before{content:'';position:absolute;inset-block:22%;inset-inline-start:0;
   width:1px;background:linear-gradient(to bottom,transparent,var(--hair),transparent)}
 .trust-row>div:first-child::before{display:none}
-.trust-row strong{display:block;font-family:var(--f-head);color:var(--ivory);
+.trust-row strong{display:block;font-family:var(--f-head);color:var(--ink-head);
   font-size:1.18rem;font-weight:700;line-height:1.5;margin-block-end:8px}
 .trust-row span{color:var(--muted);font-size:.74rem;letter-spacing:.08em;font-weight:300}
 
@@ -445,8 +477,9 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
    عند المرور، وتحته هالة تعمّق جلوسه على الأونيكس. */
 .card-img{
   display:block;aspect-ratio:1/1;overflow:hidden;background:var(--paper-3);
-  position:relative;box-shadow:0 18px 44px rgba(0,0,0,.5);
-  transition:box-shadow .5s ease;
+  position:relative;box-shadow:0 14px 34px rgba(26,22,19,.07);
+  outline:1px solid var(--hair-2);outline-offset:0;
+  transition:box-shadow .5s ease,outline-color .45s ease;
 }
 .card-img img{width:100%;height:100%;object-fit:cover}
 /* الإطار طبقة فوق الصورة لا حدّ على العنصر: الحدّ يزيح المقاس ويُرجّح الشبكة. */
@@ -455,7 +488,7 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
   border:1px solid transparent;transition:border-color .45s ease;
 }
 .card:hover .card-img::after{border-color:var(--gold-dim)}
-.card:hover .card-img{box-shadow:0 26px 60px rgba(0,0,0,.62)}
+.card:hover .card-img{box-shadow:0 22px 48px rgba(26,22,19,.12)}
 
 /* صورة الموديل تحت المؤشر: صورة المنتج تختفي وتظهر القطعة ملبوسة.
    البطاقة ثابتة الحجم فلا تتزحزح الشبكة، ولا ترتفع البطاقة — الارتفاع
@@ -486,7 +519,7 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 .card-body{display:grid;gap:0;padding:20px clamp(2px,.6vw,10px) 0;position:relative}
 .card-top{display:contents}
 .card-name{order:1;font-size:1.06rem;font-weight:400;min-width:0;letter-spacing:.01em;
-  color:var(--ivory);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  color:var(--ink-head);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .card-meta{order:2;display:block;color:var(--muted);font-size:.72rem;
   letter-spacing:.06em;margin-block-start:7px;font-weight:300}
 .card-price{order:3;color:var(--gold);font-size:.78rem;letter-spacing:.06em;
@@ -527,14 +560,14 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 /* نفس منطق «الفاترينة» في الشبكة: السطح عاجي والإطار ذهبي شعري وتحته هالة. */
 .piece-media{position:relative;overflow:hidden;background:var(--paper-3);
   aspect-ratio:4/5;max-width:500px;margin-inline-start:auto;width:100%;
-  box-shadow:0 30px 70px rgba(0,0,0,.55);outline:1px solid var(--gold-dim);outline-offset:0}
+  box-shadow:0 22px 54px rgba(26,22,19,.09);outline:1px solid var(--hair);outline-offset:0}
 .piece-media img{object-fit:contain}
 .piece-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .piece-media .card-hover{opacity:0;transition:opacity .55s ease}
 .piece-media.has-hover:hover .card-hover{opacity:1}
 @media (hover:none){.piece-media .card-hover{display:none}}
 .piece-info{padding:clamp(1rem,2vw,2rem) 0 0}
-.piece-info h1{font-family:var(--f-head);font-weight:700;color:var(--ivory);
+.piece-info h1{font-family:var(--f-head);font-weight:700;color:var(--ink-head);
   font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.24;margin-block-end:16px}
 .piece-ref{color:var(--muted);font-size:.72rem;letter-spacing:.1em}
 .piece-ref b{color:var(--gold);font-weight:400}
@@ -556,13 +589,13 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 .occ:hover img{transform:scale(1.04)}
 .occ span{position:static;display:block;padding:20px 2px 0;background:none;
   font-family:var(--f-head);font-weight:700;line-height:1.5;
-  font-size:clamp(1.2rem,1.7vw,1.5rem);color:var(--ivory);transition:color .3s}
+  font-size:clamp(1.2rem,1.7vw,1.5rem);color:var(--ink-head);transition:color .3s}
 .occ:hover span{color:var(--gold-lt)}
 .occ-cards{display:grid;gap:clamp(2rem,4vw,3.4rem);grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border:0}
 .occ-card{border:0;display:flex;flex-direction:column;background:transparent}
 .occ-card img{aspect-ratio:4/5;object-fit:cover;width:100%}
 .occ-card>div{padding:22px 2px 0}
-.occ-card h3{font-family:var(--f-head);font-weight:700;font-size:1.4rem;line-height:1.45;margin-block-end:14px;color:var(--ivory)}
+.occ-card h3{font-family:var(--f-head);font-weight:700;font-size:1.4rem;line-height:1.45;margin-block-end:14px;color:var(--ink-head)}
 .occ-card p{color:var(--ink-2);font-size:.92rem;margin:0 0 20px;font-weight:300}
 .occ-card span{color:var(--gold);font-size:.78rem;letter-spacing:.06em;border-bottom:1px solid var(--gold-dim);padding-block-end:5px}
 .guide{border-inline-start:1px solid var(--gold);padding:4px 22px;background:transparent;
@@ -577,7 +610,7 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 .svc:first-child{border-inline-start:0}
 .svc:hover{filter:none}
 .svc-ic{color:var(--gold);font-size:1.5rem;display:block;margin-block-end:24px}
-.svc h3{font-family:var(--f-head);font-weight:700;font-size:1.34rem;line-height:1.45;margin-block-end:16px;color:var(--ivory)}
+.svc h3{font-family:var(--f-head);font-weight:700;font-size:1.34rem;line-height:1.45;margin-block-end:16px;color:var(--ink-head)}
 .svc p{color:var(--ink-2);font-size:.9rem;margin:0 0 22px;font-weight:300}
 .svc a{color:var(--gold);font-size:.78rem;letter-spacing:.06em;border-bottom:1px solid var(--gold-dim);padding-block-end:5px}
 
@@ -586,14 +619,14 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 .about-copy{padding:0;display:flex;flex-direction:column;justify-content:center}
 .about-copy p{color:var(--ink-2);margin:0 0 22px;font-size:1.02rem;line-height:1.95;font-weight:300;max-width:46ch}
 .about-media{position:relative;min-height:clamp(340px,48vw,620px);overflow:hidden;
-  outline:1px solid var(--hair-2);box-shadow:0 30px 70px rgba(0,0,0,.5)}
+  outline:1px solid var(--hair-2);box-shadow:0 22px 54px rgba(26,22,19,.09)}
 .about-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
 /* ---------- الأسئلة ---------- */
 .faq-list{max-width:920px;border-block-start:1px solid var(--hair-2)}
 .faq-list details{border-block-end:1px solid var(--hair-2)}
 .faq-list summary{cursor:pointer;padding:28px 0;font-family:var(--f-head);font-weight:700;
-  font-size:clamp(1.08rem,2vw,1.34rem);line-height:1.5;color:var(--ivory);
+  font-size:clamp(1.08rem,2vw,1.34rem);line-height:1.5;color:var(--ink-head);
   list-style:none;display:flex;justify-content:space-between;gap:20px;align-items:baseline;transition:color .3s}
 .faq-list summary:hover{color:var(--gold)}
 .faq-list summary::-webkit-details-marker{display:none}
@@ -608,7 +641,7 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 .c-row span{color:var(--gold);font-size:.74rem;letter-spacing:.1em}
 .c-row b{font-weight:300;font-size:1rem;color:var(--ink);line-height:1.9}
 .contact-media{position:relative;min-height:360px;overflow:hidden;
-  outline:1px solid var(--hair-2);box-shadow:0 30px 70px rgba(0,0,0,.5)}
+  outline:1px solid var(--hair-2);box-shadow:0 22px 54px rgba(26,22,19,.09)}
 .contact-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
 /* ---------- الخاتمة ---------- */
@@ -617,12 +650,12 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
    بثلاثة أشياء لا بلون واحد: صورة أظهر (0.22 → 0.34)، وخيط ذهبي على
    الحافّتين، وحجاب أفتح قليلاً من الصفحة لا أغمق. */
 .cta{position:relative;overflow:hidden;padding:clamp(7rem,13vw,11rem) 0;text-align:center;
-  background:var(--paper-2);border-block:1px solid var(--gold-dim)}
+  background:var(--black);border-block:1px solid var(--gold-dim)}
 .cta-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 34%;opacity:.34}
 .cta::after{content:'';position:absolute;inset:0;
   background:radial-gradient(80% 70% at 50% 50%, rgba(11,9,8,.6), rgba(11,9,8,.9))}
 .cta .wrap{position:relative;z-index:2}
-.cta h2{font-family:var(--f-head);font-weight:700;color:var(--ivory);
+.cta h2{font-family:var(--f-head);font-weight:700;color:var(--ink-head);
   font-size:clamp(2.1rem,4.8vw,3.5rem);line-height:1.24;
   margin-block-end:22px;max-width:20ch;margin-inline:auto}
 .cta p{color:var(--ink-2);margin:0 auto 38px;max-width:46ch;font-weight:300;font-size:.98rem}
@@ -652,7 +685,7 @@ h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;letter-spacing:0}
 /* ---------- واتساب عائم ---------- */
 .wa-fab{position:fixed;inset-inline-end:22px;bottom:22px;z-index:70;
   width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
-  background:var(--wa);color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.55);transition:transform .3s}
+  background:var(--wa);color:#fff;box-shadow:0 10px 26px rgba(26,22,19,.22);transition:transform .3s}
 .wa-fab:hover{transform:scale(1.06)}
 
 /* ---------- ظهور عند التمرير ---------- */
@@ -786,7 +819,7 @@ body.side-on{overflow:hidden}
   line-height:1.3;margin-top:10px}
 .fc-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3vw,2.5rem)}
 .fc-card{border:1px solid var(--hair-2);padding:clamp(1.6rem,3vw,2.4rem);
-  background:rgba(236,228,213,.02)}
+  background:var(--paper)}
 .fc-card h3{font-size:.7rem;letter-spacing:.14em;color:var(--gold);margin-bottom:16px}
 .fc-num{display:block;font-size:clamp(1.3rem,2.6vw,1.75rem);color:var(--ink);
   letter-spacing:.04em;margin-bottom:14px;transition:color .25s ease}
@@ -794,7 +827,7 @@ body.side-on{overflow:hidden}
 .fc-wa{display:inline-flex;align-items:center;gap:9px;color:var(--wa);
   font-size:.85rem;transition:opacity .25s ease}
 .fc-wa:hover{opacity:.78}
-.fc-hours{color:var(--muted-on-dark);font-size:.86rem;margin:16px 0 0}
+.fc-hours{color:var(--muted);font-size:.86rem;margin:16px 0 0}
 .fc-social{display:flex;gap:18px;margin-top:20px;padding-top:18px;
   border-top:1px solid var(--hair-2)}
 .fc-social a{display:inline-flex;align-items:center;gap:7px;color:var(--ink-2);
@@ -833,9 +866,9 @@ body.side-on{overflow:hidden}
 /* ================================================================== *
  * اسم الدار ووصفه التقني على البطاقة وصفحة القطعة
  * ================================================================== */
-.card-sub{display:block;color:var(--muted-on-dark);font-size:.78rem;
+.card-sub{display:block;color:var(--muted);font-size:.78rem;
   letter-spacing:.04em;margin-top:2px}
-.piece-sub{color:var(--muted-on-dark);font-size:.95rem;margin:6px 0 0;
+.piece-sub{color:var(--muted);font-size:.95rem;margin:6px 0 0;
   letter-spacing:.04em}
 .search-out i{font-style:normal;color:var(--muted);font-size:.86em}
 
