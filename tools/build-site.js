@@ -331,6 +331,26 @@ function layout(o) {
 '    (function lxRaf(t){lx.raf(t);requestAnimationFrame(lxRaf);})(0);\n' +
 '    window.__khLenis=lx;\n' +
 '  }\n' +
+'  /* كاروسيل آراء جوجل: ثلاث بطاقات ظاهرة، والسهمان يمرّران بطاقة واحدة.\n' +
+'     العرض يُقاس ولا يُفترض ليبقى صحيحاً حين تنزل الشبكة لبطاقتين أو واحدة،\n' +
+'     وفي العربية يكون scrollLeft سالباً فتنقلب الإشارة مع الاتجاه. */\n' +
+'  var gTrack=document.querySelector("[data-g-track]");\n' +
+'  if(gTrack){\n' +
+'    var gStep=function(){var c=gTrack.querySelector(".g-review");return c?c.getBoundingClientRect().width+22:gTrack.clientWidth;};\n' +
+'    var gRtl=document.documentElement.getAttribute("dir")==="rtl";\n' +
+'    var gEnds=function(){\n' +
+'      var max=gTrack.scrollWidth-gTrack.clientWidth-2,x=Math.abs(gTrack.scrollLeft);\n' +
+'      var p=document.querySelector("[data-g-nav=\'-1\']"),n=document.querySelector("[data-g-nav=\'1\']");\n' +
+'      if(p)p.disabled=x<=2; if(n)n.disabled=x>=max;\n' +
+'    };\n' +
+'    Array.prototype.forEach.call(document.querySelectorAll("[data-g-nav]"),function(b){\n' +
+'      b.addEventListener("click",function(){\n' +
+'        var d=parseInt(b.getAttribute("data-g-nav"),10)||1;\n' +
+'        gTrack.scrollBy({left:gStep()*d*(gRtl?-1:1),behavior:"smooth"});\n' +
+'      });\n' +
+'    });\n' +
+'    gTrack.addEventListener("scroll",gEnds); window.addEventListener("resize",gEnds); gEnds();\n' +
+'  }\n' +
 '  /* بانر الرئيسية: أربع سلايدات بتلاشٍ متقاطع بالـCSS، وJS للتوقيت فقط.\n' +
 '     الصورة التالية تُحمَّل قبل دورها لا مع أول فتح، والدوران يقف مع\n' +
 '     تفضيل تقليل الحركة، وعند إخفاء التبويب، وعند المرور بالماوس. */\n' +
@@ -440,9 +460,17 @@ function googleReviews() {
   }).join('');
   var more = g.url ? '<div class="g-more"><a class="more" href="' + esc(g.url) +
     '" target="_blank" rel="noopener">اقرأ كل الآراء على جوجل ←</a></div>' : '';
+  /* ثلاث بطاقات ظاهرة والباقي خلف السهمين (مصطفى، 2026-08-03). الشريط حاوية
+     تمرير حقيقية فالسحب بالإصبع يعمل بلا JS، والسهمان يحرّكانه بطاقة واحدة.
+     ⚠️ يمرَّر، فيحمل data-lenis-prevent كأي صندوق قابل للتمرير في الموقع. */
   return '<section class="section"><div class="wrap">\n' +
     '  ' + head + '\n' +
-    '  <div class="g-reviews">' + cards + '</div>\n' +
+    '  <div class="g-carousel" data-g-car>\n' +
+    /* الموقع كله RTL، فالسهم «السابق» يشير يميناً و«التالي» يشير يساراً. */
+'    <button class="g-nav g-prev" type="button" data-g-nav="-1" aria-label="السابق">›</button>\n' +
+    '    <div class="g-reviews g-track" data-g-track data-lenis-prevent>' + cards + '</div>\n' +
+    '    <button class="g-nav g-next" type="button" data-g-nav="1" aria-label="التالي">‹</button>\n' +
+    '  </div>\n' +
     '  ' + more + '\n' +
     '</div></section>\n';
 }

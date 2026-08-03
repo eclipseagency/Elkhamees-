@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=126c5886">
+<link rel="stylesheet" href="../assets/site.css?v=7f17ad1c">
 </head>
 <body>
 <div class="top">صناعة سعودية · ألماس موثّق بشهاداته · زيارة المعرض بموعد</div>
@@ -145,6 +145,26 @@
     var lx=new Lenis({duration:1.05,smoothWheel:true,lerp:0.1});
     (function lxRaf(t){lx.raf(t);requestAnimationFrame(lxRaf);})(0);
     window.__khLenis=lx;
+  }
+  /* كاروسيل آراء جوجل: ثلاث بطاقات ظاهرة، والسهمان يمرّران بطاقة واحدة.
+     العرض يُقاس ولا يُفترض ليبقى صحيحاً حين تنزل الشبكة لبطاقتين أو واحدة،
+     وفي العربية يكون scrollLeft سالباً فتنقلب الإشارة مع الاتجاه. */
+  var gTrack=document.querySelector("[data-g-track]");
+  if(gTrack){
+    var gStep=function(){var c=gTrack.querySelector(".g-review");return c?c.getBoundingClientRect().width+22:gTrack.clientWidth;};
+    var gRtl=document.documentElement.getAttribute("dir")==="rtl";
+    var gEnds=function(){
+      var max=gTrack.scrollWidth-gTrack.clientWidth-2,x=Math.abs(gTrack.scrollLeft);
+      var p=document.querySelector("[data-g-nav='-1']"),n=document.querySelector("[data-g-nav='1']");
+      if(p)p.disabled=x<=2; if(n)n.disabled=x>=max;
+    };
+    Array.prototype.forEach.call(document.querySelectorAll("[data-g-nav]"),function(b){
+      b.addEventListener("click",function(){
+        var d=parseInt(b.getAttribute("data-g-nav"),10)||1;
+        gTrack.scrollBy({left:gStep()*d*(gRtl?-1:1),behavior:"smooth"});
+      });
+    });
+    gTrack.addEventListener("scroll",gEnds); window.addEventListener("resize",gEnds); gEnds();
   }
   /* بانر الرئيسية: أربع سلايدات بتلاشٍ متقاطع بالـCSS، وJS للتوقيت فقط.
      الصورة التالية تُحمَّل قبل دورها لا مع أول فتح، والدوران يقف مع

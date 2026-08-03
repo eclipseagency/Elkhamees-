@@ -890,7 +890,19 @@ body.side-on{overflow:hidden}
    بطاقات هادئة على الورق: النجوم ذهبية، الاقتباس بحبر العناوين، والاسم
    والتاريخ في الحبر الخافت. لا تُطبع أصلاً ما لم تكن هناك مراجعات حقيقية.
    ================================================================ */
-.g-reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,26px)}
+.g-carousel{display:flex;align-items:center;gap:12px}
+.g-track{flex:1;min-width:0;display:flex;gap:22px;overflow-x:auto;
+  scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;padding-block-end:4px}
+.g-track::-webkit-scrollbar{display:none}
+/* ثلاث بطاقات ظاهرة بالضبط: الثلث ناقص نصيب البطاقة من الفجوتين (22px×2). */
+.g-track>.g-review{flex:0 0 calc((100% - 44px)/3);scroll-snap-align:start}
+.g-nav{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);
+  background:var(--paper-3);color:var(--ink-head);font-size:1.4rem;line-height:1;cursor:pointer;
+  display:grid;place-items:center;transition:background .2s,color .2s,border-color .2s}
+.g-nav:hover:not(:disabled){background:var(--ink-head);color:var(--paper);border-color:var(--ink-head)}
+.g-nav:disabled{opacity:.32;cursor:default}
+@media (max-width:900px){.g-track>.g-review{flex-basis:calc((100% - 22px)/2)}}
+@media (max-width:620px){.g-track>.g-review{flex-basis:100%}.g-nav{width:36px;height:36px}}
 .g-review{margin:0;padding:clamp(22px,2.4vw,30px);background:var(--paper-3);
   border:1px solid var(--line);display:flex;flex-direction:column;gap:16px}
 .g-review blockquote{margin:0;color:var(--ink-head);font-size:1rem;line-height:1.9}
