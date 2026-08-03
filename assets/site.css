@@ -797,8 +797,11 @@ body.side-on{overflow:hidden}
 .fc-hours{color:var(--muted-on-dark);font-size:.86rem;margin:16px 0 0}
 .fc-social{display:flex;gap:18px;margin-top:20px;padding-top:18px;
   border-top:1px solid var(--hair-2)}
-.fc-social a{color:var(--ink-2);font-size:.84rem;transition:color .25s ease}
+.fc-social a{display:inline-flex;align-items:center;gap:7px;color:var(--ink-2);
+  font-size:.84rem;transition:color .25s ease}
+.fc-social a svg{opacity:.72;transition:opacity .25s ease}
 .fc-social a:hover{color:var(--gold-lt)}
+.fc-social a:hover svg{opacity:1}
 .fc-addr{color:var(--ink);font-size:1.02rem;line-height:1.9;margin:0 0 18px}
 .fc-map{color:var(--gold);font-size:.84rem;letter-spacing:.06em}
 .fc-map:hover{color:var(--gold-lt)}

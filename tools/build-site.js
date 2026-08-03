@@ -25,11 +25,19 @@ var ROOT = path.join(__dirname, '..');
 var WA = D.BRAND.whatsapp;
 
 /* الحسابات المتوفرة فعلاً. الفارغ لا يُطبع: رابط سوشيال يقود إلى صفحة
-   غير موجودة يضرب ثقة موقع مجوهرات أكثر مما يفيد. */
+   غير موجودة يضرب ثقة موقع مجوهرات أكثر مما يفيد.
+   الأيقونة مرسومة SVG داخل الصفحة: ثلاث كلمات صغيرة وحدها لا تُقرأ كصفّ
+   حسابات، والأيقونة تُعرف من نظرة. لا ملف خارجي ولا خط أيقونات. */
+var SOCIAL_ICON = {
+  instagram: '<path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.25 2.2.42.6.22 1 .48 1.4.9.43.42.7.83.9 1.4.18.4.37 1 .43 2.2.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.25 1.8-.42 2.2a3.8 3.8 0 0 1-.9 1.4c-.42.43-.83.7-1.4.9-.4.18-1 .37-2.2.43-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.8-.25-2.2-.42a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.18-.4-.37-1-.43-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.25-1.8.42-2.2.22-.6.48-1 .9-1.4.42-.43.83-.7 1.4-.9.4-.18 1-.37 2.2-.43C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.07-1.1.05-1.7.24-2.1.4-.5.2-.9.44-1.3.83-.4.4-.63.8-.83 1.3-.16.4-.35 1-.4 2.1C2.6 8.5 2.6 8.9 2.6 12s0 3.5.07 4.7c.05 1.1.24 1.7.4 2.1.2.5.44.9.83 1.3.4.4.8.63 1.3.83.4.16 1 .35 2.1.4 1.2.06 1.6.07 4.7.07s3.5 0 4.7-.07c1.1-.05 1.7-.24 2.1-.4.5-.2.9-.44 1.3-.83.4-.4.63-.8.83-1.3.16-.4.35-1 .4-2.1.06-1.2.07-1.6.07-4.7s0-3.5-.07-4.7c-.05-1.1-.24-1.7-.4-2.1a3.5 3.5 0 0 0-.83-1.3 3.5 3.5 0 0 0-1.3-.83c-.4-.16-1-.35-2.1-.4-1.2-.06-1.6-.07-4.7-.07Zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8Zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2Zm5.1-3.2a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/>',
+  tiktok: '<path d="M16.6 2h-3v13.1a2.4 2.4 0 1 1-1.9-2.35V9.6a5.5 5.5 0 1 0 4.9 5.47V8.9a6.6 6.6 0 0 0 3.9 1.26V7.1a3.9 3.9 0 0 1-3.9-3.9V2Z"/>',
+  linkedin: '<path d="M4.6 3.5a2.1 2.1 0 1 1 0 4.2 2.1 2.1 0 0 1 0-4.2ZM2.8 9.3h3.6v11.2H2.8V9.3Zm6.1 0h3.45v1.53h.05a3.78 3.78 0 0 1 3.4-1.87c3.64 0 4.3 2.4 4.3 5.5v6.04h-3.6v-5.35c0-1.28-.02-2.92-1.78-2.92-1.78 0-2.05 1.39-2.05 2.83v5.44H8.9V9.3Z"/>'
+};
 var SOCIAL = [
-  { ar: 'إنستقرام', url: D.BRAND.instagram },
-  { ar: 'سناب شات', url: D.BRAND.snapchat },
-  { ar: 'تيك توك', url: D.BRAND.tiktok }
+  { key: 'instagram', ar: 'إنستقرام', url: D.BRAND.instagram },
+  { key: 'snapchat', ar: 'سناب شات', url: D.BRAND.snapchat },
+  { key: 'tiktok', ar: 'تيك توك', url: D.BRAND.tiktok },
+  { key: 'linkedin', ar: 'لينكدإن', url: D.BRAND.linkedin }
 ].filter(function (x) { return x.url; });
 
 /* بصمة محتوى لكل أصل. vercel.json يخدم /assets بـ immutable لسنة، فالملف
@@ -206,7 +214,13 @@ function layout(o) {
 '      <p class="fc-hours">' + esc(D.BRAND.hours) + '</p>\n' +
      (SOCIAL.length
        ? '      <div class="fc-social">' + SOCIAL.map(function (x) {
-           return '<a href="' + x.url + '" target="_blank" rel="noopener">' + esc(x.ar) + '</a>';
+           /* الحساب بلا أيقونة معرّفة يبقى رابطاً نصياً لا يختفي. */
+           return '<a href="' + x.url + '" target="_blank" rel="noopener">' +
+             (SOCIAL_ICON[x.key]
+               ? '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">' +
+                 SOCIAL_ICON[x.key] + '</svg>'
+               : '') +
+             '<span>' + esc(x.ar) + '</span></a>';
          }).join('') + '</div>\n'
        : '') +
 '    </div>\n' +
@@ -485,10 +499,12 @@ trustBar() +
 '  <div class="grid">' + featured.map(function (p) { return pieceCard(p, 0); }).join('') + '</div>\n' +
 '</div></section>\n' +
 
-/* البريف كله تحت عنوان «الصفحة الرئيسية (Home)»: من نحن والخدمات والأسئلة
-   نصوصٌ تُقرأ على الرئيسية نفسها لا في صفحات منفصلة وحدها (طلب مصطفى
-   2026-08-03). تُبنى من نفس مصدر البيانات فلا يوجد نصّان لنفس الكلام،
-   والصفحات المستقلة تبقى للفهرسة والمشاركة، وكل قسم هنا يقود إلى صفحته. */
+/* «من نحن» يبقى على الرئيسية مختصراً ويقود إلى صفحته.
+   ⚠️ الخدمات وبنودها (الاستبدال والشحن) والأسئلة الشائعة **رُفعت من هنا**
+   بقرار مصطفى 2026-08-03: كانت تُطبع بالكامل على الرئيسية وتجعلها صفحة نصّ
+   طويلة، ومكانها صفحاتها المستقلة `services` و`faq` و`policies/*` — وهي
+   مبنية أصلاً من نفس مصدر البيانات فلم يضِع نصّ. روابطها في القائمة
+   والفوتر. لا تُعِد طباعتها هنا بدون قرار جديد. */
 '<section class="section"><div class="wrap">\n' +
 '  <div class="sec-head rv"><span class="sec-eyebrow">من نحن</span>' +
 '    <div class="sec-top"><h2>رحلةُ تصميمٍ نرافقك فيها</h2>' +
@@ -500,40 +516,12 @@ trustBar() +
 '  </div>\n' +
 '</div></section>\n' +
 
-'<section class="section on-light"><div class="wrap">\n' +
-'  <div class="sec-head rv"><span class="sec-eyebrow">الخدمات</span>' +
-'    <div class="sec-top"><h2>علاقتنا لا تنتهي عند الشراء</h2>' +
-'    <a class="more" href="services">كل الخدمات ←</a></div>' +
-'    <p>' + esc(D.SERVICES_LEAD) + '</p></div>\n' +
-'  <div class="svc-grid">' + D.SERVICES.map(function (sv) {
-     return '<article class="svc rv"><span class="svc-ic">' + sv.icon + '</span>' +
-       '<h3>' + esc(sv.ar) + '</h3><p>' + esc(sv.body) + '</p>' +
-       '<a href="' + wa('السلام عليكم، أبي أستفسر عن خدمة ' + sv.ar + '.') + '" target="_blank" rel="noopener">اسأل عن الخدمة ←</a>' +
-       '</article>';
-   }).join('') + '</div>\n' +
-'</div></section>\n' +
-'  <div class="svc-terms">' + D.SERVICE_TERMS.map(function (t) {
-     return '<article class="term rv"><h3>' + esc(t.ar) + '</h3>' +
-       t.body.map(function (x) { return '<p>' + esc(x) + '</p>'; }).join('') +
-       '<a href="' + '' + t.href + '">التفاصيل كاملة ←</a></article>';
-   }).join('') + '</div>\n' +
-
 '<section class="section"><div class="wrap">\n' +
 '  <div class="sec-head rv"><span class="sec-eyebrow">المناسبات</span>' +
 '    <h2>لكل مناسبة قطعتها</h2><p>أخبرنا بالمناسبة والميزانية، فنرشّح لك ثلاث قطع تليق بها — بدلاً من تقليب الكتالوج كله.</p></div>\n' +
 '  <div class="occ-row rv">' + D.OCCASIONS.map(function (o) {
      return '<a class="occ" href="occasions/' + o.slug + '">' +
        '<img src="' + o.image + '" alt="" loading="lazy"><span>' + esc(o.ar) + '</span></a>';
-   }).join('') + '</div>\n' +
-'</div></section>\n' +
-
-'<section class="section"><div class="wrap">\n' +
-'  <div class="sec-head rv"><span class="sec-eyebrow">الأسئلة الشائعة</span>' +
-'    <div class="sec-top"><h2>أسئلةٌ تتكرر علينا</h2>' +
-'    <a class="more" href="faq">كل الأسئلة ←</a></div>' +
-'    <p>إذا لم تجد إجابة على استفسارك، تواصل معنا عبر واتساب وسنكون سعداء بمساعدتك.</p></div>\n' +
-'  <div class="faq-list">' + D.FAQ.map(function (f) {
-     return '<details class="rv"><summary>' + esc(f.q) + '</summary><p>' + esc(f.a) + '</p></details>';
    }).join('') + '</div>\n' +
 '</div></section>\n' +
 
