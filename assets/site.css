@@ -835,3 +835,16 @@ body.side-on{overflow:hidden}
 .piece-sub{color:var(--muted-on-dark);font-size:.95rem;margin:6px 0 0;
   letter-spacing:.04em}
 .search-out i{font-style:normal;color:var(--muted);font-size:.86em}
+
+/* بندا «الاستبدال والاسترجاع» و«الشحن والتغليف» داخل قسم الخدمات — نصّ
+   طويل يُقرأ، لا بطاقة أيقونة. عمودان على الشاشة الواسعة وعمود على الجوال. */
+.svc-terms{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3vw,3rem);
+  margin-top:clamp(2.5rem,5vw,4rem);padding-top:clamp(2.5rem,5vw,4rem);
+  border-top:1px solid var(--hair-2)}
+.term h3{font-family:var(--f-head);font-size:clamp(1.15rem,2vw,1.5rem);
+  color:var(--gold-lt);margin-bottom:16px;line-height:1.5}
+.term p{color:var(--ink-2);font-size:.98rem;line-height:1.95;margin:0 0 14px;max-width:52ch}
+.term a{color:var(--gold);font-size:.82rem;letter-spacing:.06em}
+.term a:hover{color:var(--gold-lt)}
+.on-light .term h3{color:var(--gold)}
+@media (max-width:860px){ .svc-terms{grid-template-columns:1fr} }

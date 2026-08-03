@@ -485,12 +485,55 @@ trustBar() +
 '  <div class="grid">' + featured.map(function (p) { return pieceCard(p, 0); }).join('') + '</div>\n' +
 '</div></section>\n' +
 
+/* البريف كله تحت عنوان «الصفحة الرئيسية (Home)»: من نحن والخدمات والأسئلة
+   نصوصٌ تُقرأ على الرئيسية نفسها لا في صفحات منفصلة وحدها (طلب مصطفى
+   2026-08-03). تُبنى من نفس مصدر البيانات فلا يوجد نصّان لنفس الكلام،
+   والصفحات المستقلة تبقى للفهرسة والمشاركة، وكل قسم هنا يقود إلى صفحته. */
+'<section class="section"><div class="wrap">\n' +
+'  <div class="sec-head rv"><span class="sec-eyebrow">من نحن</span>' +
+'    <div class="sec-top"><h2>رحلةُ تصميمٍ نرافقك فيها</h2>' +
+'    <a class="more" href="about">عن الدار ←</a></div></div>\n' +
+'  <div class="about-grid">\n' +
+'    <div class="about-copy rv"><p>' + esc(D.ABOUT.lead) + '</p>' +
+       D.ABOUT.body.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</div>\n' +
+'    <div class="about-media rv"><img src="assets/model-gold.jpg" alt="" loading="lazy"></div>\n' +
+'  </div>\n' +
+'</div></section>\n' +
+
+'<section class="section on-light"><div class="wrap">\n' +
+'  <div class="sec-head rv"><span class="sec-eyebrow">الخدمات</span>' +
+'    <div class="sec-top"><h2>علاقتنا لا تنتهي عند الشراء</h2>' +
+'    <a class="more" href="services">كل الخدمات ←</a></div>' +
+'    <p>' + esc(D.SERVICES_LEAD) + '</p></div>\n' +
+'  <div class="svc-grid">' + D.SERVICES.map(function (sv) {
+     return '<article class="svc rv"><span class="svc-ic">' + sv.icon + '</span>' +
+       '<h3>' + esc(sv.ar) + '</h3><p>' + esc(sv.body) + '</p>' +
+       '<a href="' + wa('السلام عليكم، أبي أستفسر عن خدمة ' + sv.ar + '.') + '" target="_blank" rel="noopener">اسأل عن الخدمة ←</a>' +
+       '</article>';
+   }).join('') + '</div>\n' +
+'</div></section>\n' +
+'  <div class="svc-terms">' + D.SERVICE_TERMS.map(function (t) {
+     return '<article class="term rv"><h3>' + esc(t.ar) + '</h3>' +
+       t.body.map(function (x) { return '<p>' + esc(x) + '</p>'; }).join('') +
+       '<a href="' + '' + t.href + '">التفاصيل كاملة ←</a></article>';
+   }).join('') + '</div>\n' +
+
 '<section class="section"><div class="wrap">\n' +
 '  <div class="sec-head rv"><span class="sec-eyebrow">المناسبات</span>' +
 '    <h2>لكل مناسبة قطعتها</h2><p>أخبرنا بالمناسبة والميزانية، فنرشّح لك ثلاث قطع تليق بها — بدلاً من تقليب الكتالوج كله.</p></div>\n' +
 '  <div class="occ-row rv">' + D.OCCASIONS.map(function (o) {
      return '<a class="occ" href="occasions/' + o.slug + '">' +
        '<img src="' + o.image + '" alt="" loading="lazy"><span>' + esc(o.ar) + '</span></a>';
+   }).join('') + '</div>\n' +
+'</div></section>\n' +
+
+'<section class="section"><div class="wrap">\n' +
+'  <div class="sec-head rv"><span class="sec-eyebrow">الأسئلة الشائعة</span>' +
+'    <div class="sec-top"><h2>أسئلةٌ تتكرر علينا</h2>' +
+'    <a class="more" href="faq">كل الأسئلة ←</a></div>' +
+'    <p>إذا لم تجد إجابة على استفسارك، تواصل معنا عبر واتساب وسنكون سعداء بمساعدتك.</p></div>\n' +
+'  <div class="faq-list">' + D.FAQ.map(function (f) {
+     return '<details class="rv"><summary>' + esc(f.q) + '</summary><p>' + esc(f.a) + '</p></details>';
    }).join('') + '</div>\n' +
 '</div></section>\n' +
 
@@ -642,7 +685,12 @@ function services() {
      '<h3>' + esc(s.ar) + '</h3><p>' + esc(s.body) + '</p>' +
      '<a href="' + wa('السلام عليكم، أبي أستفسر عن خدمة ' + s.ar + '.') + '" target="_blank" rel="noopener">اسأل عن الخدمة ←</a>' +
      '</article>';
- }).join('') + '</div></div></section>\n' + marquee() + ctaBand(0)
+ }).join('') + '</div>\n' +
+'  <div class="svc-terms">' + D.SERVICE_TERMS.map(function (t) {
+     return '<article class="term rv"><h3>' + esc(t.ar) + '</h3>' +
+       t.body.map(function (x) { return '<p>' + esc(x) + '</p>'; }).join('') +
+       '<a href="' + '' + t.href + '">التفاصيل كاملة ←</a></article>';
+   }).join('') + '</div>\n' +'</div></section>\n' + marquee() + ctaBand(0)
   });
 }
 
