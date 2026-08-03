@@ -351,7 +351,8 @@ function layout(o) {
 '        /* احتياط: التمرير الناعم قد لا يُنفَّذ (تبويب في الخلفية، أو تفضيل\n' +
 '           تقليل الحركة، أو تعارض مع scroll-snap) — عندها ننقل فوراً بدل أن\n' +
 '           يبدو السهم معطّلاً. */\n' +
-'        setTimeout(function(){ if(Math.abs(gTrack.scrollLeft-from)<2) gTrack.scrollLeft=from+dx; },320);\n' +
+'        setTimeout(function(){ if(Math.abs(gTrack.scrollLeft-from)<2) gTrack.scrollLeft=from+dx; gEnds(); },320);\n' +
+'        setTimeout(gEnds,700);\n' +
 '      });\n' +
 '    });\n' +
 '    gTrack.addEventListener("scroll",gEnds); window.addEventListener("resize",gEnds); gEnds();\n' +

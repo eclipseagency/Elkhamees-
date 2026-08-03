@@ -169,7 +169,8 @@
         /* احتياط: التمرير الناعم قد لا يُنفَّذ (تبويب في الخلفية، أو تفضيل
            تقليل الحركة، أو تعارض مع scroll-snap) — عندها ننقل فوراً بدل أن
            يبدو السهم معطّلاً. */
-        setTimeout(function(){ if(Math.abs(gTrack.scrollLeft-from)<2) gTrack.scrollLeft=from+dx; },320);
+        setTimeout(function(){ if(Math.abs(gTrack.scrollLeft-from)<2) gTrack.scrollLeft=from+dx; gEnds(); },320);
+        setTimeout(gEnds,700);
       });
     });
     gTrack.addEventListener("scroll",gEnds); window.addEventListener("resize",gEnds); gEnds();
