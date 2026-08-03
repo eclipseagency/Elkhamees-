@@ -905,3 +905,5 @@ body.side-on{overflow:hidden}
 .g-more{margin-block-start:clamp(22px,2.4vw,30px)}
 @media (max-width:900px){.g-reviews{grid-template-columns:1fr 1fr}}
 @media (max-width:620px){.g-reviews{grid-template-columns:1fr}}
+.g-count{color:var(--ink-2);font-size:.9rem}
+.g-count::before{content:"·";margin-inline-end:8px;color:var(--line)}

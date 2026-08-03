@@ -425,7 +425,10 @@ function googleReviews() {
   var head = '<div class="sec-head rv"><span class="sec-eyebrow">آراء العملاء</span>' +
     '<h2>ماذا يقول عملاؤنا على جوجل</h2>' +
     (g.rating ? '<p class="g-score"><b>' + esc(g.rating) + '</b> ' + starRow(g.rating) +
-      (g.count ? ' · ' + esc(g.count) + ' مراجعة على جوجل' : '') + '</p>' : '') +
+      /* ⚠️ الفاصل «·» بين النجوم والعدد كان يقع بجوار الرقم في السياق العربي
+         فيُقرأ صفراً ملتصقاً («٣٢٠ مراجعة»). صار عنصراً مستقلاً بفاصل من CSS. */
+      (g.count ? '<span class="g-count">' + esc(g.count) + ' مراجعة على جوجل</span>' : '') +
+      '</p>' : '') +
     '</div>';
   var cards = list.map(function (r) {
     return '<figure class="g-review rv">' +
