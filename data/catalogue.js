@@ -50,7 +50,7 @@ var HERO = {
   title: 'بريقٌ يورث لا يقلد.',
   lead: 'نحوّل تصوّراتك وتصاميمك الخاصة إلى مجوهرات فريدة، تُصنع بعناية من اختيار الأحجار وحتى أدقّ التفاصيل، لتمنحك قطعةً تحمل قصتك وترافقك لسنوات.',
   slides: [
-    { cat: 'rings',     ar: 'الخواتم', image: 'assets/editorial/hero-1-rings.jpg' },
+    { cat: 'rings',     ar: 'الخواتم', image: 'assets/editorial/hero-1-ring-banner.jpg' },
     { cat: 'necklaces', ar: 'القلائد', image: 'assets/editorial/hero-2-necklaces.jpg' },
     { cat: 'bracelets', ar: 'الأساور', image: 'assets/editorial/hero-3-bracelets.jpg' },
     { cat: 'earrings',  ar: 'الأقراط', image: 'assets/editorial/hero-4-earrings.jpg' }
