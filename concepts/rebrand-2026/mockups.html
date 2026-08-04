@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<title>مجوهرات الخميس — المعرض والتغليف</title>
+<title>مجوهرات الخميس · المعرض والتغليف</title>
 <style>
   :root{
     --paper:#F7F4ED; --paper-2:#EFEAE0; --ink:#141416;
@@ -39,7 +39,7 @@
   .duo{ display:grid; grid-template-columns:1fr 1fr; gap:6mm; flex:1; min-height:0; margin-top:5mm; }
   .quad{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:5mm; flex:1; min-height:0; margin-top:5mm; }
   .card{ border:1px solid var(--line); border-radius:2mm; overflow:hidden; display:flex; flex-direction:column; background:#fff; min-height:0; }
-  .card img{ width:100%; flex:1; object-fit:cover; display:block; min-height:0; }
+  .card img{ width:100%; flex:1; object-fit:contain; display:block; min-height:0; background:#FBF9F4; }
   .card .lab{ padding:2.5mm 3.5mm; border-top:1px solid var(--line); font-size:7.4pt; line-height:1.55; color:var(--soft); flex:none; }
   .card .lab b{ color:var(--ink); display:block; font-size:8.4pt; margin-bottom:.5mm; }
 
@@ -53,7 +53,7 @@
   .ba{ display:grid; grid-template-columns:1fr 1fr; gap:5mm; flex:1; min-height:0; margin-top:5mm; }
   .ba figure{ display:flex; flex-direction:column; min-height:0; border:1px solid var(--line);
               border-radius:2mm; overflow:hidden; background:#fff; }
-  .ba img{ width:100%; flex:1; object-fit:cover; min-height:0; display:block; }
+  .ba img{ width:100%; flex:1; object-fit:contain; min-height:0; display:block; background:#FBF9F4; }
   .ba figcaption{ padding:2.5mm 4mm; border-top:1px solid var(--line); font-size:8pt; color:var(--soft); flex:none; }
   .ba figcaption b{ display:block; color:var(--ink); font-size:9pt; margin-bottom:.6mm; }
   .ba .now b{ color:#9A5B4C; }
@@ -80,14 +80,14 @@
 <section class="p">
   <div class="full"><img src="mockups/out-1-storefront.jpg" alt="الواجهة"></div>
   <div class="cap"><i>EXTERIOR · OLAYA</i><b>الواجهة</b>
-    <span>حجر ترافرتين عاجي وزعانف رأسية وذهب مفروش على الإطارات. العلامة وحدها على اللوحة، بلا اسم ولا سطر ثانٍ — الواجهة تُقرأ من السيارة في ثانية.</span></div>
+    <span>حجر فاتح بلون العاج، وأعمدة رفيعة، وإطارات بلون الذهب الهادئ. التوقيع وحده على اللوحة، بلا أي سطر إضافي، حتى يُقرأ من السيارة في ثانية واحدة.</span></div>
 </section>
 
 <!-- الصالة -->
 <section class="p">
   <div class="full"><img src="mockups/raw/2-showroom.jpg" alt="صالة العرض"></div>
   <div class="cap"><i>SHOWROOM</i><b>الصالة</b>
-    <span>الاتجاه الفاتح كاملاً: جدران عاجية، أرضية ترافرتين مصقولة، ألواح مرمر خلفية مضاءة، وذهب شامبانيا على الإطارات فقط. الفاترينات متباعدة لأن الفراغ نفسه رسالة سعر.</span></div>
+    <span>اللون الفاتح في كل الصالة: جدران بلون العاج، وأرضية حجرية مصقولة، وألواح مضاءة من الخلف، والذهب على الإطارات فقط. خزائن العرض متباعدة، لأن المساحة الفارغة حولها هي ما يرفع قيمة القطعة.</span></div>
 </section>
 
 <!-- الفاترينة والصالون -->
@@ -96,45 +96,62 @@
   <h2>الفاترينة،<br><em>وصالون التكليف الخاص.</em></h2>
   <div class="duo">
     <div class="card"><img src="mockups/raw/3-vitrine.jpg" alt="فاترينة">
-      <div class="lab"><b>الفاترينة</b>زجاج منخفض الحديد وإطار ذهبي مفروش، وبطانة جلد شامواه كريمي. إضاءة متحفية والقطع متباعدة.</div></div>
+      <div class="lab"><b>الفاترينة</b>زجاج شديد الصفاء وإطار ذهبي رفيع، وبطانة قماش ناعم كريمي، وإضاءة هادئة موجّهة على القطع.</div></div>
     <div class="card"><img src="mockups/raw/4-salon.jpg" alt="صالون التكليف">
-      <div class="lab"><b>صالون التكليف</b>غرفة التصميم الخاص: صينية عرض، ولوب، وأحجار سائبة على قماش. هنا يحدث طقس التسليم.</div></div>
+      <div class="lab"><b>صالون التكليف</b>غرفة التصميم الخاص: صينية عرض، وعدسة فحص، وأحجار على قماش. هنا تُسلَّم القطعة للعميلة.</div></div>
   </div>
   <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>03</span></div>
 </div></section>
 
-<!-- التغليف -->
+<!-- التغليف 1 -->
 <section class="p"><div class="pad">
-  <div class="kick">Packaging</div>
-  <h2>التغليف،<br><em>والعلامة محفورة لا مطبوعة.</em></h2>
-  <div class="quad">
-    <div class="card"><img src="mockups/out-5-boxset.jpg" alt="العلبة">
-      <div class="lab"><b>العلبة والكيس</b>ورق عظمي مطفي، وشامواه كريمي، وشريط ذهبي. العلامة حفر غائر بلا لون.</div></div>
-    <div class="card"><img src="mockups/out-6-bag.jpg" alt="الكيس">
-      <div class="lab"><b>كيس الحمل</b>العلامة وحدها في منتصف الوجه، بمساحة حرة سخية حولها.</div></div>
-    <div class="card"><img src="mockups/out-8-giftbox.jpg" alt="علبة الهدية">
-      <div class="lab"><b>علبة الهدية</b>الغطاء الداخلي يحمل العلامة ذهباً — أول ما تراه العميلة عند الفتح.</div></div>
-    <div class="card"><img src="mockups/out-7-stationery.jpg" alt="المطبوعات">
-      <div class="lab"><b>المطبوعات</b>ورق قطني بحواف ممزّقة، وختم شمعي ذهبي، وبطاقة قطعة بخيط ذهبي.</div></div>
+  <div class="kick">Packaging · 1</div>
+  <h2>العلبة والكيس.</h2>
+  <p class="lede" style="margin-top:3mm">
+    ورق أبيض عظمي مطفي، وقماش ناعم كريمي، وشريط ذهبي. العلامة تُحفر حفراً غائراً
+    بلا لون على الغطاء، فتُحسّ باليد قبل أن تُرى. على الكيس يظهر التوقيع كاملاً
+    في منتصف الوجه.
+  </p>
+  <div class="duo">
+    <div class="card"><img src="mockups/out-5-boxset.jpg" alt="العلبة والكيس الصغير">
+      <div class="lab"><b>العلبة الرئيسية</b>غطاء يحمل العلامة وحدها، ومعه كيس صغير من القماش وبطاقة مطوية.</div></div>
+    <div class="card"><img src="mockups/out-6-bag.jpg" alt="كيس الحمل">
+      <div class="lab"><b>كيس الحمل</b>التوقيع كاملاً في منتصف الوجه، مع مساحة فارغة واسعة حوله.</div></div>
   </div>
   <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>04</span></div>
 </div></section>
 
+<!-- التغليف 2 -->
+<section class="p"><div class="pad">
+  <div class="kick">Packaging · 2</div>
+  <h2>علبة الهدية والمطبوعات.</h2>
+  <p class="lede" style="margin-top:3mm">
+    الغطاء الداخلي يحمل العلامة بالذهب، وهو أول ما تراه العميلة عند الفتح.
+    والمطبوعات على ورق قطني سميك بحواف طبيعية، مع ختم شمعي ذهبي وبطاقة للقطعة بخيط رفيع.
+  </p>
+  <div class="duo">
+    <div class="card"><img src="mockups/out-8-giftbox.jpg" alt="علبة الهدية">
+      <div class="lab"><b>علبة الهدية</b>العلامة بالذهب في منتصف الغطاء الداخلي، فوق القطعة مباشرة.</div></div>
+    <div class="card"><img src="mockups/out-7-stationery.jpg" alt="المطبوعات">
+      <div class="lab"><b>المطبوعات</b>بطاقة تعريف وظرف بختم شمعي وبطاقتان صغيرتان وبطاقة قطعة معلّقة.</div></div>
+  </div>
+  <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>05</span></div>
+</div></section>
 
 <!-- المعرض القائم مقابل المقترح -->
 <section class="p"><div class="pad">
   <div class="kick">The Existing Showroom</div>
   <h2>الصالة القائمة،<br><em>وما الذي يجعلها تُقرأ قديمة.</em></h2>
   <p class="lede" style="margin-top:3mm">
-    الهيكل جيد: قاعة طويلة متناظرة بفتحات عرض على الجدارين. ما يشدّها إلى الوراء هو
-    <b>الخشب الماهوجني الداكن بالتيجان الكلاسيكية</b>، وخلفيات ورق الذهب داخل الفتحات،
-    وأسطح الجرانيت، والسجادة العجمية، وسقفٌ مزدحم بالإنارة ووحدات التكييف الظاهرة.
+    شكل الصالة نفسه جيد: قاعة طويلة متناظرة، وفتحات عرض على الجدارين. ما يجعلها تبدو قديمة هو
+    <b>الخشب الداكن بزخارفه الكلاسيكية</b>، والخلفيات الذهبية داخل الفتحات، وأسطح الجرانيت،
+    والسجادة المزخرفة، وسقف مزدحم بالإضاءة ووحدات التكييف الظاهرة.
   </p>
   <div class="ba">
-    <figure class="now"><img src="mockups/before-start.jpg" alt="القائم — من المدخل">
-      <figcaption><b>القائم · من المدخل</b>إطارات ماهوجني بتيجان، خلفيات ذهبية، جرانيت، سجادة نقشية.</figcaption></figure>
-    <figure class="now"><img src="mockups/before-end.jpg" alt="القائم — من العمق">
-      <figcaption><b>القائم · من العمق</b>كراسي مكتبية متفرقة، لافتة خروج ظاهرة، تكييف مكشوف.</figcaption></figure>
+    <figure class="now"><img src="mockups/before-start.jpg" alt="القائم من المدخل">
+      <figcaption><b>القائم · من المدخل</b>إطارات خشب داكن بزخارف، وخلفيات ذهبية، وأسطح جرانيت، وسجادة مزخرفة.</figcaption></figure>
+    <figure class="now"><img src="mockups/before-end.jpg" alt="القائم من العمق">
+      <figcaption><b>القائم · من العمق</b>كراسي مكتبية غير موحّدة، ولافتة خروج ظاهرة، وتكييف مكشوف.</figcaption></figure>
   </div>
   <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>06</span></div>
 </div></section>
@@ -143,16 +160,16 @@
   <div class="kick">Redesign · Same Room</div>
   <h2>الغرفة نفسها،<br><em>بتشطيب وعرضٍ جديدين.</em></h2>
   <p class="lede" style="margin-top:3mm">
-    لم يتغيّر المخطط ولا موضع الفتحات ولا زاوية التصوير. تغيّر التشطيب فقط:
-    <b>الفتحات صارت بلا إطار</b> بإضاءة خلفية دافئة وحافة ذهب مفروش، والجزر صارت
-    فاترينات زجاج منخفض الحديد على قواعد سنديان فاتح، والجدران ميكروسمنت عاجي،
-    والسقف لوح جبس نظيف بكوة إنارة واحدة بلا وحدات تكييف ظاهرة.
+    لم يتغيّر شكل القاعة ولا مواضع الفتحات ولا زاوية التصوير. تغيّر التشطيب فقط:
+    <b>الفتحات صارت بلا إطار</b>، بإضاءة دافئة من داخلها وحافة ذهبية رفيعة. وطاولات العرض
+    صارت خزائن زجاجية على قواعد خشب فاتح. والجدران بلون العاج، والسقف نظيف
+    بشريط إضاءة واحد، بلا وحدات تكييف ظاهرة.
   </p>
   <div class="ba">
-    <figure><img src="mockups/after-start.jpg" alt="المقترح — من المدخل">
-      <figcaption><b>المقترح · من المدخل</b>الزاوية نفسها. لاكيه عاجي وسنديان فاتح، وفاترينات بلا إطار.</figcaption></figure>
-    <figure><img src="mockups/after-end.jpg" alt="المقترح — من العمق">
-      <figcaption><b>المقترح · من العمق</b>ركن الاستقبال بكراسي بوكليه كريمية وطاولة سنديان.</figcaption></figure>
+    <figure><img src="mockups/after-start.jpg" alt="المقترح من المدخل">
+      <figcaption><b>المقترح · من المدخل</b>الزاوية نفسها. دهان بلون العاج وخشب فاتح، وخزائن عرض بلا إطار.</figcaption></figure>
+    <figure><img src="mockups/after-end.jpg" alt="المقترح من العمق">
+      <figcaption><b>المقترح · من العمق</b>ركن الاستقبال بكراسي قماش كريمية وطاولة خشب فاتح.</figcaption></figure>
   </div>
   <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>07</span></div>
 </div></section>
@@ -160,7 +177,7 @@
 <section class="p">
   <div class="full"><img src="mockups/vitrine-run.jpg" alt="شريط الفاترينات"></div>
   <div class="cap"><i>WALL VITRINES</i><b>شريط العرض الجداري</b>
-    <span>فتحة غائرة بلا إطار، مبطّنة بالشامواه الكريمي ومضاءة من داخلها، وحافة ذهب مفروش بعرض شعرة. القطع متباعدة، والفراغ بينها هو ما يرفع قيمتها.</span></div>
+    <span>فتحة غائرة في الجدار بلا إطار، مبطّنة بقماش ناعم كريمي ومضاءة من داخلها، وحولها حافة ذهبية رفيعة جداً. القطع متباعدة، والمساحة بينها هي ما يرفع قيمتها.</span></div>
 </section>
 
 
@@ -168,18 +185,18 @@
   <div class="kick">Signature Lockup</div>
   <h2>العلامة والاسم،<br><em>الاسم يبدأ من حيث تبدأ العلامة.</em></h2>
   <p class="lede" style="margin-top:3mm">
-    الاسم اللاتيني <b>MUSAID ALKHAMEES</b> يوضع أسفل العلامة ومحاذياً لحافتها اليسرى،
-    بخط <b>Avenir Next Ultra Light</b> بحروف كبيرة ومسافات واسعة. لا يُوسَّط تحت العلامة،
-    ولا يكبر عن ثلث عرضها بصرياً — هو توقيع لا عنوان.
+    الاسم <b>MUSAID ALKHAMEES</b> يوضع أسفل العلامة وفي منتصفها تماماً،
+    بخط <b>Avenir Next Ultra Light</b> بحروف كبيرة ومسافات واسعة بينها.
+    يبقى صغيراً دائماً، فهو توقيع تحت العلامة وليس عنواناً بجانبها.
   </p>
   <div class="lock-row">
-    <img src="logo/lockup-ink.png" alt="التوقيع — حبر">
-    <div style="background:#141416;padding:6mm 8mm;border-radius:2mm"><img src="logo/lockup-gold.png" alt="التوقيع — ذهب" style="height:22mm"></div>
+    <img src="logo/lockup-ink.png" alt="التوقيع بالحبر">
+    <div style="background:#141416;padding:6mm 8mm;border-radius:2mm"><img src="logo/lockup-gold.png" alt="التوقيع بالذهب" style="height:22mm"></div>
   </div>
   <div class="note" style="margin-top:7mm">
-    <b>ملاحظة إنتاج:</b> Avenir Next خط نظام أبل وترخيصه لا يغطي شعاراً تجارياً.
-    تُحوَّل الحروف إلى مسارات في الملف النهائي، أو يُشترى ترخيص، أو يُستبدل ببديل مفتوح
-    قريب البنية. القاعدة نفسها المسجّلة على الكوفي العربي.
+    <b>ملاحظة إنتاج:</b> خط Avenir Next يأتي مع نظام أبل، وترخيصه لا يسمح باستخدامه في شعار تجاري.
+    الحل أن تُحوَّل الحروف إلى أشكال ثابتة في الملف النهائي، أو يُشترى ترخيص،
+    أو يُستبدل بخط مفتوح قريب منه. وهذه هي الملاحظة نفسها المسجّلة على الخط العربي.
   </div>
   <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>09</span></div>
 </div></section>
@@ -189,23 +206,23 @@
   <div class="kick">How These Were Made</div>
   <h2>كيف صُنعت هذه الصور،<br><em>ولماذا يهمّ ذلك.</em></h2>
   <p class="lede">
-    المشاهد مولّدة ثلاثية الأبعاد، لكن العلامة فيها ليست مولّدة. طُلبت كل الأسطح
-    <b>فارغة تماماً</b> — لوحة الواجهة، وغطاء العلبة، ووجه الكيس — ثم رُكّبت عليها
-    علامة الخاء المتجهة نفسها بتحويل منظوري مأخوذ من حواف السطح في الصورة.
+    الصور مولّدة بالحاسب، لكن العلامة نفسها ليست كذلك. طُلبت كل الأسطح
+    <b>فارغة تماماً</b>، مثل لوحة الواجهة وغطاء العلبة ووجه الكيس، ثم وُضعت عليها
+    علامة الخاء الأصلية بزاوية مأخوذة من حواف السطح في الصورة نفسها.
   </p>
   <div class="note">
-    <b>لماذا لا تُترك للمولّد؟</b> لأن مولّدات الصور لا ترسم الحروف العربية رسماً صحيحاً؛
-    تُنتج شكلاً يشبه الحرف ولا يكونه. شعارٌ مشوّه في صورة عرض يفسد الاجتماع كله.
-    هذه القاعدة نفسها مطبّقة في خط إعلانات NICK: <b>الشعار يُركَّب ولا يُولَّد.</b>
+    <b>لماذا لا تُترك للمولّد؟</b> لأن برامج توليد الصور لا تكتب الحروف العربية بشكل صحيح.
+    تُخرج شكلاً قريباً من الحرف لكنه ليس الحرف. وشعار مشوّه في صورة عرض يُفقد العميل ثقته فوراً.
+    القاعدة نفسها متّبعة في إعلانات NICK: <b>الشعار يوضع جاهزاً ولا يُترك للبرنامج.</b>
   </div>
   <div class="note">
-    <b>ما ليس حقيقياً في هذه الصور:</b> المعمار والمجوهرات والمواد كلها تصوّر مقترح لا
-    توثيق لمحل قائم. تصلح لعرض الاتجاه على الدار وللمقاولين والمصمم الداخلي،
-    ولا تصلح للنشر على أنها المعرض الفعلي.
+    <b>ما ليس حقيقياً في هذه الصور:</b> التصميم والمجوهرات والخامات كلها اقتراح، وليست صوراً للمحل كما هو اليوم.
+    تصلح لعرض الفكرة على العميل وعلى المقاول والمصمم الداخلي،
+    ولا تصلح للنشر على أنها صور المعرض الحقيقي.
   </div>
   <div class="note">
     <b>الأصول الجاهزة:</b> <span style="font-family:Didot;direction:ltr">concepts/rebrand-2026/logo/*.svg</span>
-    — ست صيغ متجهة (خاء وختم × ذهب/أونيكس/عاج)، وهي المصدر لكل تركيب هنا.
+    , وفيه ست نسخ جاهزة من العلامة والختم بالذهب والأسود والعاج، وهي مصدر كل صورة هنا.
   </div>
   <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>05</span></div>
 </div></section>

@@ -16,7 +16,7 @@ def coeffs(dst, src):
     return np.linalg.solve(np.array(A, float), np.array(B, float))
 
 
-def on_plane(corners, frac=0.5, shift=(0.0, 0.0)):
+def on_plane(corners, frac=0.5, shift=(0.0, 0.0), ratio=1.0):
     """رباعي متمركز داخل مستوى السطح نفسه، فيرث منظوره بدل تخمينه.
 
     corners = [يسار، خلف، يمين، أمام] لحواف السطح. frac نسبة العرض،
@@ -30,7 +30,8 @@ def on_plane(corners, frac=0.5, shift=(0.0, 0.0)):
     nu, nv = _np.linalg.norm(u), _np.linalg.norm(v)
     if nu and nv:
         side = min(nu, nv)
-        u, v = u / nu * side, v / nv * side
+        # ratio = ارتفاع الأصل ÷ عرضه، يحفظ نسبة التوقيع المستطيل
+        u, v = u / nu * side, v / nv * side * ratio
     centre = centre + shift[0]*u + shift[1]*v
     s = frac / 2
     return [tuple(centre - s*u - s*v), tuple(centre + s*u - s*v),
@@ -39,6 +40,13 @@ def on_plane(corners, frac=0.5, shift=(0.0, 0.0)):
 def place(base, logo, quad, opacity=1.0, blend="normal"):
     """يضع الشعار داخل رباعي الأضلاع quad = [TL, TR, BR, BL] بإحداثيات الصورة."""
     W, H = base.size
+    # تصغير الشعار إلى حجم قريب من وجهته أولاً: التحويل المنظوري يأخذ عيّنة
+    # واحدة لكل بكسل، فالتصغير الحاد داخله يبتلع الحروف الرفيعة
+    import math as _m
+    tw = _m.dist(quad[0], quad[1]); th = _m.dist(quad[0], quad[3])
+    target = max(2, int(max(tw, th) * 2))
+    if logo.width > target:
+        logo = logo.resize((target, max(1, round(logo.height * target / logo.width))), Image.LANCZOS)
     warped = logo.transform((W, H), Image.PERSPECTIVE,
                             coeffs(quad, [(0,0), (logo.width,0), (logo.width,logo.height), (0,logo.height)]),
                             Image.BICUBIC)
@@ -60,13 +68,15 @@ def load(p, size=None):
 
 if __name__ == "__main__":
     ink, gold = load("kha-ink.png"), load("kha-gold.png")
+    # الأسطح الكبيرة تحمل التوقيع كاملاً، والصغيرة العلامة وحدها
+    lock_ink = Image.open("../logo/lockup-ink.png").convert("RGBA")
     seal_ink, seal_gold = load("seal-ink.png"), load("seal-gold.png")
     out = {}
 
     # 01 · لوحة الواجهة — حوافها الأربع من الصورة
     b = Image.open("raw/1-storefront.png").convert("RGB")
     panel = [(572,120), (850,58), (850,352), (572,374)]
-    out["1-storefront.png"] = place(b, ink, on_plane(panel, .42), .85, "multiply")
+    out["1-storefront.png"] = place(b, lock_ink, on_plane(panel, .78, ratio=1413/2643), .85, "multiply")
 
     # 05 · غطاء العلبة
     b = Image.open("raw/5-boxset.png").convert("RGB")
@@ -75,13 +85,15 @@ if __name__ == "__main__":
 
     # 06 · وجه الكيس
     b = Image.open("raw/6-bag.png").convert("RGB")
-    face = [(300,420), (700,420), (700,760), (300,760)]
-    out["6-bag.png"] = place(b, ink, on_plane(face, .46), .84, "multiply")
+    # الحبل يمرّ في أعلى الوجه، فيُنزَل التوقيع تحته
+    face = [(312,566), (688,566), (688,782), (312,782)]
+    out["6-bag.png"] = place(b, lock_ink, on_plane(face, .86, ratio=1413/2643), .84, "multiply")
 
     # 08 · الغطاء الداخلي لعلبة الهدية
     b = Image.open("raw/8-giftbox.png").convert("RGB")
-    inner = [(330,180), (700,180), (700,470), (330,470)]
-    out["8-giftbox.png"] = place(b, gold, on_plane(inner, .40), .92)
+    # الغطاء مائل، فالمستطيل المسطّح كان يجعل العلامة تبدو ملصوقة ومزاحة
+    inner = [(468,176), (849,139), (878,512), (483,549)]
+    out["8-giftbox.png"] = place(b, gold, on_plane(inner, .34), .92)
 
     # 07 · الختم على البطاقة
     b = Image.open("raw/7-stationery.png").convert("RGB")
