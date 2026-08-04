@@ -112,5 +112,19 @@ if __name__ == "__main__":
     lid_b = [(206,198), (581,152), (624,545), (231,581)]
     out["24-giftbox-burgundy.png"] = place(b, gold, on_plane(lid_b, .30, (0,-0.10)), .92)
 
+
+    # ---- عائلة التغليف بالبرجندي ----
+    b = Image.open("raw/51-box.png").convert("RGB")
+    lid51 = [(478,463), (731,336), (951,573), (695,707)]      # الغطاء المائل
+    out["51-box.png"] = place(b, ink, on_plane(lid51, .40), .82, "multiply")
+
+    b = Image.open("raw/52-bag.png").convert("RGB")
+    face52 = [(150,610), (520,610), (520,800), (150,800)]      # تحت المقابض
+    out["52-bag.png"] = place(b, lock_ink, on_plane(face52, .88, ratio=1413/2643), .84, "multiply")
+
+    b = Image.open("raw/53-stat.png").convert("RGB")
+    card53 = [(180,150), (575,150), (575,455), (180,455)]       # البطاقة المطوية
+    out["53-stat.png"] = place(b, seal_ink, on_plane(card53, .34, (0,-0.18)), .80, "multiply")
+
     for name, im in out.items():
         im.save("out-" + name); print("out-" + name)
