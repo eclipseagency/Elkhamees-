@@ -59,3 +59,34 @@ if __name__ == "__main__":
     b = Image.open("raw/81-box-empty.png").convert("RGB")
     b = drop(b, collar, (200, 300, 900, 830), .80).convert("RGB")
     b.save("styled-box.png"); print("styled-box.png")
+
+
+def cinematic():
+    """المشاهد السينمائية: تُوضع فيها العلامة وقطعة حقيقية."""
+    ink, gold = load("kha-ink.png"), load("kha-gold.png")
+    seal = load("seal-ink.png")
+    collar = Image.open(JEW + "marquise-collar-necklace.png")
+
+    # 94 · الصينية والمجموعة على الحجر
+    b = Image.open("raw/94-cine.png").convert("RGB")
+    tray = [(662, 322), (1208, 268), (1252, 528), (698, 604)]
+    b = place(b, collar, on_plane(tray, .74), .97)
+    card = [(160, 402), (286, 393), (296, 512), (170, 522)]
+    b = place(b, seal, on_plane(card, .42), .70, "multiply")
+    lid94 = [(186, 44), (476, 28), (498, 100), (204, 120)]
+    b = place(b, ink, on_plane(lid94, .30), .55, "multiply")
+    b.save("cine-set.png"); print("cine-set.png")
+
+    # 91 · العلبتان في الضوء الجانبي
+    b = Image.open("raw/91-cine.png").convert("RGB")
+    lid91 = [(196, 300), (566, 280), (600, 372), (222, 400)]
+    b = place(b, ink, on_plane(lid91, .30), .48, "multiply")
+    inner = [(714, 190), (966, 178), (972, 386), (720, 396)]
+    b = place(b, gold, on_plane(inner, .32), .88)
+    b.save("cine-boxes.png"); print("cine-boxes.png")
+
+    # 93 · اللقطة القريبة
+    b = Image.open("raw/93-cine.png").convert("RGB")
+    lid93 = [(60, 400), (470, 330), (520, 560), (105, 660)]
+    b = place(b, ink, on_plane(lid93, .30), .50, "multiply")
+    b.save("cine-corner.png"); print("cine-corner.png")

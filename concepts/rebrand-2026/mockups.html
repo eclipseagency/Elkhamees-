@@ -36,8 +36,10 @@
   .cap i{ display:block; font-family:Didot,serif; font-style:normal; font-size:7pt;
           letter-spacing:2px; color:var(--gold); direction:ltr; text-align:right; margin-bottom:2mm; }
 
-  .duo{ display:grid; grid-template-columns:1fr 1fr; gap:7mm; align-items:start;
+  .duo{ display:grid; grid-template-columns:1fr 1fr; gap:7mm; align-items:stretch;
         flex:1; min-height:0; margin-top:6mm; }
+  .duo .card{ min-height:0; }
+  .duo .card img{ aspect-ratio:auto; flex:1; min-height:0; object-fit:contain; }
   .quad{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:5mm; flex:1; min-height:0; margin-top:5mm; }
   .card{ border:1px solid var(--line); border-radius:2mm; overflow:hidden;
          display:flex; flex-direction:column; background:#fff; }
@@ -71,8 +73,36 @@
   .jw img{ max-width:100%; max-height:40mm; object-fit:contain; display:block; }
   .jw span{ margin-top:5mm; font-size:8pt; color:#E4D7D9; text-align:center; line-height:1.5; }
   .jw svg{ position:absolute; top:4mm; left:4mm; width:5mm; opacity:.55; }
-  .trio{ display:grid; grid-template-columns:repeat(3,1fr); gap:6mm; align-items:start;
+
+  .solo{ flex:1; min-height:0; margin-top:6mm; border:1px solid var(--line); border-radius:2mm;
+         overflow:hidden; display:flex; flex-direction:column; background:#fff; }
+  .solo img{ width:100%; flex:1; min-height:0; object-fit:contain; background:#FBF9F4; display:block; }
+  .solo figcaption{ padding:3mm 4.5mm; border-top:1px solid var(--line); flex:none;
+                    font-size:8.4pt; line-height:1.6; color:var(--soft); }
+  .solo figcaption b{ display:block; color:var(--ink); font-size:9.4pt; margin-bottom:.7mm; }
+
+  /* شبكة اللقطات السينمائية: الصورة تملأ خليتها بدل أن تفرض ارتفاعها */
+
+  /* ---------- النسخة الإنجليزية ---------- */
+  .en{ direction:ltr; text-align:left; font-family:'Avenir Next','Helvetica Neue',Arial,sans-serif; }
+  .en .kick{ text-align:left; }
+  .en h1,.en h2{ letter-spacing:-.3px; font-weight:600; }
+  .en h2 em{ font-weight:600; }
+  .en p.lede{ font-size:10pt; line-height:1.75; max-width:150mm; }
+  .en .cap{ right:auto; left:18mm; text-align:left; }
+  .en .cap i{ text-align:left; }
+  .en .lab, .en figcaption{ text-align:left; }
+  .en .foot{ direction:ltr; }
+  .en .jw span{ font-family:'Avenir Next',Arial,sans-serif; font-size:7.6pt; letter-spacing:1.4px; }
+  .en .divider{ text-align:center; }
+  .cine{ display:grid; grid-template-columns:1.45fr 1fr; grid-template-rows:1fr 1fr;
+         gap:5mm; flex:1; min-height:0; margin-top:6mm; }
+  .cine .card{ min-height:0; }
+  .cine .card img{ aspect-ratio:auto; flex:1; min-height:0; object-fit:cover; }
+  .trio{ display:grid; grid-template-columns:repeat(3,1fr); gap:6mm; align-items:stretch;
          flex:1; min-height:0; margin-top:6mm; }
+  .trio .card{ min-height:0; }
+  .trio .card img{ aspect-ratio:auto; flex:1; min-height:0; object-fit:contain; }
   .lock-row{ display:flex; gap:14mm; align-items:flex-end; margin-top:6mm; flex-wrap:wrap; }
   .lock-row img{ height:30mm; }
 
@@ -171,17 +201,20 @@
 </section>
 
 <section class="p"><div class="pad">
-  <div class="kick">In Place</div>
-  <h2>هكذا تُعرض،<br><em>وهكذا تُسلَّم.</em></h2>
+  <div class="kick">The Craft Of Giving</div>
+  <h2>ما يبقى في اليد<br><em>بعد أن تُرفع القطعة.</em></h2>
   <p class="lede" style="margin-top:3mm">
-    القطعة نفسها في موضعين: على العارضة داخل الفتحة، وفي العلبة بين يدي العميلة.
-    البرجندي خلفها في الحالين، لأن الألماس الأبيض والمعدن الأبيض يحتاجان خلفية تعطيهما حدّاً.
+    العلبة تُفتح مرة واحدة أمام العميلة، وتبقى عندها سنوات. لذلك تُعامَل كقطعة لا كغلاف:
+    ورق عاجي بملمسه، وبطانة برجندية، وخاءٌ محفورة على الغطاء. الضوء في هذه اللقطات جانبي
+    وحادّ، لأن الملمس هو ما يُباع هنا لا اللون.
   </p>
-  <div class="duo">
-    <div class="card sq"><img src="mockups/styled-bust.jpg" alt="القطعة على العارضة">
-      <div class="lab"><b>في الفتحة</b>العارضة العاجية على البرجندي، والقطعة وحدها بلا مزاحمة.</div></div>
-    <div class="card sq"><img src="mockups/styled-box.jpg" alt="القطعة في العلبة">
-      <div class="lab"><b>في العلبة</b>القطعة على البطانة البرجندية، وفوقها الغطاء الذي يحمل الخاء.</div></div>
+  <div class="cine">
+    <div class="card" style="grid-row:span 2"><img src="mockups/cine-set.jpg" alt="المجموعة كاملة">
+      <div class="lab"><b>المجموعة</b>صينية العرض وفيها عقد الدار، والعلبة والكيس والبطاقة والشريط. لقطة واحدة تجمع ما تراه العميلة يوم الاستلام.</div></div>
+    <div class="card"><img src="mockups/cine-boxes.jpg" alt="العلبتان">
+      <div class="lab"><b>مغلقة ومفتوحة</b>الخاء محفورة على الغطاء، وذهبية داخل العلبة.</div></div>
+    <div class="card"><img src="mockups/cine-corner.jpg" alt="زاوية العلبة">
+      <div class="lab"><b>الملمس</b>حبيبات الورق العاجي مقابل نعومة البطانة.</div></div>
   </div>
   <div class="foot"><span>MUSAID ALKHAMEES</span><span>04</span></div>
 </div></section>
@@ -218,12 +251,10 @@
     في السقف، وبرجنديٌّ داخل فتحات العرض وحدها</b>. البرجندي لا يخرج من الفتحة إلى الجدار،
     لأنه يفقد أثره إن كثُر. الغرفة تهدأ، فتظهر المجوهرات.
   </p>
-  <div class="ba">
-    <figure><img src="mockups/after-start.jpg" alt="القاعة">
-      <figcaption><b>المقترح · من المدخل</b>الزاوية نفسها من المدخل. الفرق كله في الهدوء الذي حلّ محل الزحام.</figcaption></figure>
-    <figure><img src="mockups/after-end.jpg" alt="ركن الاختيار">
-      <figcaption><b>المقترح · من العمق</b>ركن الاستقبال في العمق، مكان للجلوس والاختيار على مهل.</figcaption></figure>
-  </div>
+  <figure class="solo">
+    <img src="mockups/after-start.jpg" alt="القاعة من المدخل">
+    <figcaption><b>القاعة من المدخل</b>الأعمدة في مواضعها، وبينها فتحات العرض المبطّنة بالبرجندي. خزائن منخفضة في الوسط، ومقاعد بينها للجلوس والاختيار.</figcaption>
+  </figure>
   <div class="foot"><span>MUSAID ALKHAMEES</span><span>06</span></div>
 </div></section>
 
@@ -249,6 +280,162 @@
 </div></section>
 
 
+
+
+<!-- ==================== النسخة الإنجليزية ==================== -->
+<section class="p cover en"><div class="pad cover" style="justify-content:center">
+  <svg viewBox="34 28 122 130" style="width:30mm">
+    <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112 C52 132 70 144 92 144
+             C120 144 142 128 154 106 C150 138 122 158 90 158 C58 158 34 138 34 110
+             C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#141416"/>
+    <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#141416"/>
+  </svg>
+  <h1 style="margin-top:9mm;text-align:center">Showroom &amp; Packaging<br><b>The identity, in the real world.</b></h1>
+  <div class="sub" style="text-align:center">MUSAID ALKHAMEES</div>
+</div></section>
+
+<section class="p en">
+  <div class="full"><img src="mockups/out-1-storefront.jpg" alt="Storefront"></div>
+  <div class="cap"><i>EXTERIOR · OLAYA</i><b>The facade</b>
+    <span>A quiet ivory frontage with the signature alone at its centre. Nothing else, because a house confident in its name does not explain itself on the street.</span></div>
+</section>
+
+<section class="p en">
+  <div class="full"><img src="mockups/showroom-wide.jpg" alt="Showroom"></div>
+  <div class="cap"><i>SHOWROOM</i><b>The hall</b>
+    <span>The same room, its columns and dimensions untouched. Everything in it now serves the piece: quiet walls, light inside the niches rather than in the visitor's eyes, and generous space between pieces.</span></div>
+</section>
+
+<section class="p en"><div class="pad">
+  <div class="kick">Packaging · 1</div>
+  <h2>The box and the bag.</h2>
+  <p class="lede" style="margin-top:3mm">
+    Ivory on the outside, burgundy within. The mark is debossed into the lid rather than printed,
+    felt before it is seen. Ribbon, pouch and inner tissue all carry the burgundy, so ivory
+    remains only the outer shell.
+  </p>
+  <div class="duo">
+    <div class="card sq"><img src="mockups/out-5-boxset.jpg" alt="Box">
+      <div class="lab"><b>The box</b>An ivory lid carrying the mark alone, over a burgundy lining and a suede pouch in the same tone.</div></div>
+    <div class="card sq"><img src="mockups/out-6-bag.jpg" alt="Bag">
+      <div class="lab"><b>The carrier bag</b>Burgundy cord and inner tissue, with the signature alone at the centre of the ivory face.</div></div>
+  </div>
+  <div class="foot"><span>MUSAID ALKHAMEES</span><span>08</span></div>
+</div></section>
+
+<section class="p en"><div class="pad">
+  <div class="kick">Packaging · 2</div>
+  <h2>Gift box and stationery.</h2>
+  <p class="lede" style="margin-top:3mm">
+    The box opens onto gold over burgundy. Stationery is thick cotton paper with its natural
+    deckled edge, the envelope lined in burgundy and the tag hung on a thread of the same colour.
+    Things meant to be handled, not only read.
+  </p>
+  <div class="duo">
+    <div class="card sq"><img src="mockups/out-8-giftbox.jpg" alt="Gift box">
+      <div class="lab"><b>Gift box</b>The mark in gold directly above the piece.</div></div>
+    <div class="card sq"><img src="mockups/out-7-stationery.jpg" alt="Stationery">
+      <div class="lab"><b>Stationery</b>A burgundy-lined envelope, cards on a mat of the same tone, and a tag on a burgundy thread.</div></div>
+  </div>
+  <div class="foot"><span>MUSAID ALKHAMEES</span><span>09</span></div>
+</div></section>
+
+<section class="p en"><div class="pad">
+  <div class="kick">The Pieces</div>
+  <h2>The house pieces,<br><em>in the house colour.</em></h2>
+  <p class="lede" style="margin-top:3mm">
+    These are the house's own photographed pieces, placed on burgundy as they sit in the niche
+    and as they are shot for publication. The diamonds are white and the metal is white, so it is
+    the dark ground that gives them an edge. On a pale surface the piece dissolves; on burgundy it appears.
+  </p>
+  <div class="jewels">
+    <div class="jw"><img src="jewels/marquise-collar-necklace.png" alt="Marquise collar"><span>MARQUISE COLLAR</span></div>
+    <div class="jw"><img src="jewels/pear-drop-necklace.png" alt="Pear drop necklace"><span>PEAR DROP NECKLACE</span></div>
+    <div class="jw"><img src="jewels/cascade-earrings.png" alt="Cascade earrings"><span>CASCADE EARRINGS</span></div>
+    <div class="jw"><img src="jewels/pear-quartet-ring.png" alt="Four stone ring"><span>FOUR STONE RING</span></div>
+  </div>
+  <div class="foot"><span>MUSAID ALKHAMEES</span><span>10</span></div>
+</div></section>
+
+<section class="p en">
+  <div class="full"><img src="mockups/styled-flatlay.jpg" alt="The set"></div>
+  <div class="cap"><i>THE SET</i><b>Piece and packaging together</b>
+    <span>The house collar in the presentation tray, its earrings on the suede pouch, and the mark on the lid and the card. The jewellery here is the house's own photography, not staged substitutes.</span></div>
+</section>
+
+<section class="p en"><div class="pad">
+  <div class="kick">The Craft Of Giving</div>
+  <h2>What stays in the hand<br><em>once the piece is lifted out.</em></h2>
+  <p class="lede" style="margin-top:3mm">
+    The box is opened once in front of the client and kept for years afterwards. So it is treated
+    as an object rather than a wrapper: ivory board with its own grain, a burgundy lining, and the
+    khaa debossed into the lid. The light in these frames is hard and raking, because here it is
+    texture that sells, not colour.
+  </p>
+  <div class="cine">
+    <div class="card" style="grid-row:span 2"><img src="mockups/cine-set.jpg" alt="The full set">
+      <div class="lab"><b>The set</b>The tray holding the house collar, with box, pouch, card and ribbon. One frame of everything the client sees on collection day.</div></div>
+    <div class="card"><img src="mockups/cine-boxes.jpg" alt="Closed and open">
+      <div class="lab"><b>Closed and open</b>The khaa debossed on the lid, and in gold inside the box.</div></div>
+    <div class="card"><img src="mockups/cine-corner.jpg" alt="Texture">
+      <div class="lab"><b>Texture</b>The grain of ivory board against the softness of the lining.</div></div>
+  </div>
+  <div class="foot"><span>MUSAID ALKHAMEES</span><span>11</span></div>
+</div></section>
+
+<section class="p en"><div class="pad">
+  <div class="kick">The Interior Colour</div>
+  <h2>Burgundy is the colour within,<br><em>not the colour of the facade.</em></h2>
+  <p class="lede" style="margin-top:3mm">
+    Ivory and gold outside, burgundy inside. It is not seen from the street or from the doorway;
+    it appears the moment a box is opened or a niche is lit. <b>That is its only place</b> —
+    what opens and what is lit, never the walls and never the frontage. Its value lies in arriving
+    after the quiet rather than alongside it.
+    <span style="color:var(--mute)">Approved value #6B2231, closest print match Pantone 505 C.</span>
+  </p>
+  <div class="trio">
+    <div class="card sq"><img src="mockups/out-8-giftbox.jpg" alt="Box lining">
+      <div class="lab"><b>Box lining</b>The first thing the client sees on lifting the lid: warm burgundy, with a gold khaa above it.</div></div>
+    <div class="card wide"><img src="mockups/burgundy-vitrine.jpg" alt="Display wall">
+      <div class="lab"><b>Display wall</b>Burgundy behind the piece makes the gold read, instead of losing it against a pale wall.</div></div>
+    <div class="card sq"><img src="mockups/burgundy-stationery.jpg" alt="Shooting surface">
+      <div class="lab"><b>Shooting surface</b>Ivory paper on burgundy. This is the approved ground for photographing stationery and small pieces.</div></div>
+  </div>
+  <div class="foot"><span>MUSAID ALKHAMEES</span><span>12</span></div>
+</div></section>
+
+<section class="p en"><div class="pad">
+  <div class="kick">Inside</div>
+  <h2>Inside,<br><em>a calm that lets the piece speak.</em></h2>
+  <p class="lede" style="margin-top:3mm">
+    The hall as it stands: its dimensions, its columns in place, its ceiling height. Nothing was
+    demolished. What changed is that the dark timber and its carving came out, replaced by
+    <b>one colour on the walls, one light in the ceiling, and burgundy inside the display niches alone</b>.
+    The burgundy never spreads from the niche onto the wall, because it loses its effect in quantity.
+  </p>
+  <figure class="solo">
+    <img src="mockups/after-start.jpg" alt="The hall from the entrance">
+    <figcaption><b>The hall from the entrance</b>The columns in their positions, with the burgundy-lined display niches between them. Low cases through the centre, and seating between them.</figcaption>
+  </figure>
+  <div class="foot"><span>MUSAID ALKHAMEES</span><span>13</span></div>
+</div></section>
+
+<section class="p en"><div class="pad">
+  <div class="kick">Signature Lockup</div>
+  <h2>The mark and the name,<br><em>Arabic first.</em></h2>
+  <p class="lede" style="margin-top:3mm">
+    The mark leads, with the name set beneath it in Arabic and then in English, both centred on its
+    axis. Arabic always sits above English, and both stay small, because the khaa is what is seen
+    first and the name follows rather than accompanies it.
+  </p>
+  <div class="lock-row" style="gap:0;margin-top:9mm;border:1px solid var(--line);border-radius:2mm;overflow:hidden">
+    <div style="flex:1;background:#141416;display:flex;align-items:center;justify-content:center;padding:16mm 10mm">
+      <img src="logo/lockup-ar-gold.png" alt="Signature in gold" style="height:30mm"></div>
+    <div style="flex:1;background:#fff;display:flex;align-items:center;justify-content:center;padding:16mm 10mm">
+      <img src="logo/lockup-ar-ink.png" alt="Signature in ink" style="height:30mm"></div>
+  </div>
+  <div class="foot"><span>MUSAID ALKHAMEES</span><span>14</span></div>
+</div></section>
 
 </body>
 </html>
