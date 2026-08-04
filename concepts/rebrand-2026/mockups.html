@@ -36,10 +36,14 @@
   .cap i{ display:block; font-family:Didot,serif; font-style:normal; font-size:7pt;
           letter-spacing:2px; color:var(--gold); direction:ltr; text-align:right; margin-bottom:2mm; }
 
-  .duo{ display:grid; grid-template-columns:1fr 1fr; gap:6mm; flex:1; min-height:0; margin-top:5mm; }
+  .duo{ display:grid; grid-template-columns:1fr 1fr; gap:7mm; align-items:start;
+        flex:1; min-height:0; margin-top:6mm; }
   .quad{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:5mm; flex:1; min-height:0; margin-top:5mm; }
-  .card{ border:1px solid var(--line); border-radius:2mm; overflow:hidden; display:flex; flex-direction:column; background:#fff; min-height:0; }
-  .card img{ width:100%; flex:1; object-fit:contain; display:block; min-height:0; background:#FBF9F4; }
+  .card{ border:1px solid var(--line); border-radius:2mm; overflow:hidden;
+         display:flex; flex-direction:column; background:#fff; }
+  .card img{ width:100%; display:block; object-fit:cover; background:#FBF9F4; }
+  .card.wide img{ aspect-ratio:16/9; }   /* لقطات الصالة */
+  .card.sq img{ aspect-ratio:1/1; }      /* لقطات التغليف */
   .card .lab{ padding:2.5mm 3.5mm; border-top:1px solid var(--line); font-size:7.4pt; line-height:1.55; color:var(--soft); flex:none; }
   .card .lab b{ color:var(--ink); display:block; font-size:8.4pt; margin-bottom:.5mm; }
 
@@ -50,15 +54,16 @@
   .note{ margin-top:4mm; padding:5mm 6mm; border:1px solid var(--line); border-radius:2mm;
          font-size:8.5pt; line-height:1.75; color:var(--soft); background:#fff; }
   .note b{ color:var(--ink); }
-  .ba{ display:grid; grid-template-columns:1fr 1fr; gap:5mm; flex:1; min-height:0; margin-top:5mm; }
-  .ba figure{ display:flex; flex-direction:column; min-height:0; border:1px solid var(--line);
+  .ba{ display:grid; grid-template-columns:1fr 1fr; gap:7mm; align-items:start;
+       flex:1; min-height:0; margin-top:6mm; }
+  .ba figure{ display:flex; flex-direction:column; border:1px solid var(--line);
               border-radius:2mm; overflow:hidden; background:#fff; }
-  .ba img{ width:100%; flex:1; object-fit:contain; min-height:0; display:block; background:#FBF9F4; }
+  .ba img{ width:100%; aspect-ratio:16/9; object-fit:cover; display:block; background:#FBF9F4; }
   .ba figcaption{ padding:2.5mm 4mm; border-top:1px solid var(--line); font-size:8pt; color:var(--soft); flex:none; }
   .ba figcaption b{ display:block; color:var(--ink); font-size:9pt; margin-bottom:.6mm; }
   .ba .now b{ color:#9A5B4C; }
   .lock-row{ display:flex; gap:14mm; align-items:flex-end; margin-top:6mm; flex-wrap:wrap; }
-  .lock-row img{ height:26mm; }
+  .lock-row img{ height:30mm; }
 
 </style>
 </head>
@@ -95,9 +100,9 @@
   <div class="kick">Interior</div>
   <h2>الفاترينة،<br><em>وصالون التكليف الخاص.</em></h2>
   <div class="duo">
-    <div class="card"><img src="mockups/raw/3-vitrine.jpg" alt="فاترينة">
+    <div class="card wide"><img src="mockups/raw/3-vitrine.jpg" alt="فاترينة">
       <div class="lab"><b>الفاترينة</b>زجاج شديد الصفاء وإطار ذهبي رفيع، وبطانة قماش ناعم كريمي، وإضاءة هادئة موجّهة على القطع.</div></div>
-    <div class="card"><img src="mockups/raw/4-salon.jpg" alt="صالون التكليف">
+    <div class="card wide"><img src="mockups/raw/4-salon.jpg" alt="صالون التكليف">
       <div class="lab"><b>صالون التكليف</b>غرفة التصميم الخاص: صينية عرض، وعدسة فحص، وأحجار على قماش. هنا تُسلَّم القطعة للعميلة.</div></div>
   </div>
   <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>03</span></div>
@@ -113,9 +118,9 @@
     في منتصف الوجه.
   </p>
   <div class="duo">
-    <div class="card"><img src="mockups/out-5-boxset.jpg" alt="العلبة والكيس الصغير">
+    <div class="card sq"><img src="mockups/out-5-boxset.jpg" alt="العلبة والكيس الصغير">
       <div class="lab"><b>العلبة الرئيسية</b>غطاء يحمل العلامة وحدها، ومعه كيس صغير من القماش وبطاقة مطوية.</div></div>
-    <div class="card"><img src="mockups/out-6-bag.jpg" alt="كيس الحمل">
+    <div class="card sq"><img src="mockups/out-6-bag.jpg" alt="كيس الحمل">
       <div class="lab"><b>كيس الحمل</b>التوقيع كاملاً في منتصف الوجه، مع مساحة فارغة واسعة حوله.</div></div>
   </div>
   <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>04</span></div>
@@ -130,9 +135,9 @@
     والمطبوعات على ورق قطني سميك بحواف طبيعية، مع ختم شمعي ذهبي وبطاقة للقطعة بخيط رفيع.
   </p>
   <div class="duo">
-    <div class="card"><img src="mockups/out-8-giftbox.jpg" alt="علبة الهدية">
+    <div class="card sq"><img src="mockups/out-8-giftbox.jpg" alt="علبة الهدية">
       <div class="lab"><b>علبة الهدية</b>العلامة بالذهب في منتصف الغطاء الداخلي، فوق القطعة مباشرة.</div></div>
-    <div class="card"><img src="mockups/out-7-stationery.jpg" alt="المطبوعات">
+    <div class="card sq"><img src="mockups/out-7-stationery.jpg" alt="المطبوعات">
       <div class="lab"><b>المطبوعات</b>بطاقة تعريف وظرف بختم شمعي وبطاقتان صغيرتان وبطاقة قطعة معلّقة.</div></div>
   </div>
   <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>05</span></div>
@@ -189,9 +194,11 @@
     بخط <b>Avenir Next Ultra Light</b> بحروف كبيرة ومسافات واسعة بينها.
     يبقى صغيراً دائماً، فهو توقيع تحت العلامة وليس عنواناً بجانبها.
   </p>
-  <div class="lock-row">
-    <img src="logo/lockup-ink.png" alt="التوقيع بالحبر">
-    <div style="background:#141416;padding:6mm 8mm;border-radius:2mm"><img src="logo/lockup-gold.png" alt="التوقيع بالذهب" style="height:22mm"></div>
+  <div class="lock-row" style="gap:0;margin-top:9mm;border:1px solid var(--line);border-radius:2mm;overflow:hidden">
+    <div style="flex:1;background:#fff;display:flex;align-items:center;justify-content:center;padding:16mm 10mm">
+      <img src="logo/lockup-ink.png" alt="التوقيع بالحبر" style="height:30mm"></div>
+    <div style="flex:1;background:#141416;display:flex;align-items:center;justify-content:center;padding:16mm 10mm">
+      <img src="logo/lockup-gold.png" alt="التوقيع بالذهب" style="height:30mm"></div>
   </div>
   <div class="note" style="margin-top:7mm">
     <b>ملاحظة إنتاج:</b> خط Avenir Next يأتي مع نظام أبل، وترخيصه لا يسمح باستخدامه في شعار تجاري.
@@ -221,7 +228,7 @@
     ولا تصلح للنشر على أنها صور المعرض الحقيقي.
   </div>
   <div class="note">
-    <b>الأصول الجاهزة:</b> <span style="font-family:Didot;direction:ltr">concepts/rebrand-2026/logo/*.svg</span>
+    <b>الأصول الجاهزة:</b> <span style="font-family:Didot;direction:ltr;unicode-bidi:isolate;display:inline-block">concepts/rebrand-2026/logo/*.svg</span>
     , وفيه ست نسخ جاهزة من العلامة والختم بالذهب والأسود والعاج، وهي مصدر كل صورة هنا.
   </div>
   <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>05</span></div>
