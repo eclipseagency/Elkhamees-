@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>Musaid Alkhamees · Brand Identity</title>
+<style>
+  @font-face{font-family:'Tajawal';src:url('fonts/Tajawal.ttf') format('truetype');}
+  :root{
+    --paper:#F7F4ED;
+    --paper-2:#EFEAE0;
+    --onyx:#0B0B0C;
+    --ink:#141416;
+    --gold:#A8871C;
+    --gold-bright:#C9A227;
+    --burgundy:#6B2231;
+    --ivory:#EDE7DC;
+    --soft:#57534B;
+    --mute:#8F8A80;
+    --line:#DED8CC;
+  }
+  @page{ size:297mm 210mm; margin:0; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:'Avenir Next','Helvetica Neue',Helvetica,sans-serif; background:var(--paper); color:var(--ink); }
+
+  .p{ width:297mm; height:210mm; padding:18mm 20mm 14mm; page-break-after:always;
+      position:relative; overflow:hidden; display:flex; flex-direction:column; background:var(--paper); }
+  .p:last-child{ page-break-after:auto; }
+  .p.light{ background:var(--paper-2); }
+
+  .kick{ font-family:Didot,serif; font-size:8pt; letter-spacing:3px; color:var(--gold);
+         text-transform:uppercase; }
+  h1{ font-family:Didot,serif; font-size:28pt; font-weight:400; line-height:1.25; margin-top:4mm; }
+  h1 b{ color:var(--gold); font-weight:400; font-style:italic; }
+  h2{ font-family:Didot,serif; font-size:20pt; font-weight:400; line-height:1.3; margin-top:3mm; }
+  h2 em{ font-style:italic; color:var(--gold); }
+  p.lede{ font-size:9.5pt; line-height:1.75; color:var(--soft); max-width:158mm; margin-top:5mm; }
+  p.lede b{ color:var(--ink); font-weight:600; }
+  .rule{ height:1px; background:var(--line); margin:6mm 0; }
+  .foot{ margin-top:auto; display:flex; justify-content:space-between; font-size:7pt;
+         color:var(--mute); letter-spacing:1.5px; }
+
+  .cols{ display:grid; gap:8mm; margin-top:6mm; }
+  .c2{ grid-template-columns:1fr 1fr; } .c3{ grid-template-columns:repeat(3,1fr); }
+  .box{ border:1px solid var(--line); border-radius:2mm; padding:6mm; }
+  .box h3{ font-family:Didot,serif; font-size:12pt; font-weight:400; margin-bottom:2.5mm; }
+  .box h3 span{ display:block; font-family:'Avenir Next',sans-serif; font-size:7pt; font-weight:600;
+                letter-spacing:2px; color:var(--gold); margin-bottom:2mm; }
+  .box p{ font-size:8.4pt; line-height:1.7; color:var(--soft); }
+
+  /* Cover */
+  .cover{ justify-content:center; align-items:center; text-align:center; }
+  .cover .mark{ width:44mm; }
+  .cover h1{ font-size:32pt; margin-top:10mm; letter-spacing:.5px; }
+  .cover .sub{ font-size:9pt; font-weight:500; letter-spacing:7px; text-indent:7px;
+               color:var(--gold); margin-top:6mm; }
+  .cover .meta{ position:absolute; bottom:14mm; left:20mm; right:20mm; display:flex;
+                justify-content:space-between; font-size:7.5pt; color:var(--mute); letter-spacing:1.5px; }
+
+  /* Mark grid */
+  .markrow{ margin-top:auto; display:grid; grid-template-columns:repeat(4,1fr); gap:6mm; }
+  .tile{ border:1px solid var(--line); border-radius:2mm; aspect-ratio:1;
+         display:flex; align-items:center; justify-content:center; position:relative; }
+  .tile.solid{ background:var(--gold-bright); border-color:var(--gold-bright); }
+  .tile.ivory{ background:#FFFFFF; border-color:var(--line); }
+  .tile svg{ width:52%; height:52%; }
+  .tile b{ position:absolute; bottom:3mm; left:4mm; font-size:6.5pt; font-weight:600;
+           letter-spacing:1.5px; color:var(--mute); }
+  .tile.solid b, .tile.ivory b{ color:rgba(11,11,12,.5); }
+
+  .swatches{ margin-top:auto; display:grid; grid-template-columns:repeat(6,1fr); gap:4.5mm; }
+  .sw{ border-radius:2mm; overflow:hidden; border:1px solid var(--line); }
+  .sw .chip{ height:34mm; }
+  .sw .info{ padding:3.5mm 4mm; font-size:7.2pt; line-height:1.55; color:var(--soft); }
+  .sw .info b{ display:block; font-family:Didot,serif; font-weight:400; color:var(--ink);
+               font-size:10pt; margin-bottom:1.2mm; }
+  .sw .info code{ font-family:Didot,serif; letter-spacing:1px; display:block; margin-bottom:1mm; }
+
+  .type-spec{ margin-top:auto; margin-bottom:auto; }
+  .type-spec .line{ padding:4mm 0; border-bottom:1px solid var(--line); display:flex;
+                    align-items:baseline; gap:8mm; }
+  .type-spec .nm{ width:44mm; flex:none; font-size:7.5pt; font-weight:600; letter-spacing:1.5px;
+                  color:var(--gold); }
+  .type-spec .spec{ width:118mm; flex:none; }
+  .type-spec .sm{ font-size:8pt; color:var(--mute); }
+
+  /* Applications */
+  .apps{ flex:1; min-height:0; margin-top:6mm; display:grid; gap:5mm;
+         grid-template-columns:1.25fr 1fr 1fr; grid-template-rows:1fr 1fr; }
+  .apps figure{ border:1px solid var(--line); border-radius:2mm; overflow:hidden;
+                background:#fff; display:flex; flex-direction:column; min-height:0; }
+  .apps figure.tall{ grid-row:span 2; }
+  .apps img{ width:100%; flex:1; min-height:0; object-fit:cover; display:block; }
+  .apps figcaption{ padding:2.2mm 3.5mm; border-top:1px solid var(--line); flex:none;
+                    font-size:7pt; line-height:1.45; color:var(--soft); }
+  .apps figcaption b{ display:block; font-family:Didot,serif; font-weight:400; color:var(--ink);
+                      font-size:9pt; margin-bottom:.6mm; }
+</style>
+</head>
+<body>
+
+<!-- ==================== 01 · Cover ==================== -->
+<section class="p cover">
+  <svg class="mark" viewBox="0 0 200 200">
+    <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112
+             C52 132 70 144 92 144 C120 144 142 128 154 106
+             C150 138 122 158 90 158 C58 158 34 138 34 110
+             C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#141416"/>
+    <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#141416"/>
+  </svg>
+  <h1>Musaid Alkhamees</h1>
+  <div class="sub">JEWELLERY · RIYADH</div>
+  <div class="meta"><span>RIYADH · OLAYA</span><span>BRAND IDENTITY · 2026</span></div>
+</section>
+
+<!-- ==================== 02 · The Mark ==================== -->
+<section class="p">
+  <div class="kick">The Mark</div>
+  <h2>The letter khā,<br><em>with a stone for its dot.</em></h2>
+  <p class="lede">
+    The mark is a letter, not a picture of a product. It is the khā — the first letter of Alkhamees —
+    drawn as a single stroke whose weight swells and thins the way a broad-nib pen lays it down.
+    The dot above it is a four-faceted diamond: it points at the stone without drawing one.
+    The letter's internal proportions are set on a division of five, a quiet nod to the name that
+    lives in the construction rather than on the surface. Everything else is deliberately absent —
+    the mark has to read at a glance, with no caption to explain it.
+  </p>
+  <div class="markrow">
+    <div class="tile"><b>PRIMARY</b>
+      <svg viewBox="0 0 200 200">
+        <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112 C52 132 70 144 92 144
+                 C120 144 142 128 154 106 C150 138 122 158 90 158 C58 158 34 138 34 110
+                 C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#141416"/>
+        <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#141416"/>
+      </svg></div>
+    <div class="tile"><b>SEAL</b>
+      <svg viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="92" fill="none" stroke="#141416" stroke-width="2.5"/>
+        <path d="M148 76 C148 83 143 86 136 86 L88 86 C68 86 60 98 60 111 C60 128 75 138 94 138
+                 C118 138 136 125 146 107 C142 133 118 150 91 150 C64 150 44 133 44 109
+                 C44 87 63 72 90 72 L136 72 C143 72 148 70 148 76 Z" fill="#141416"/>
+        <path d="M100 38 L112 52 L100 66 L88 52 Z" fill="#141416"/>
+      </svg></div>
+    <div class="tile solid"><b>ON GOLD</b>
+      <svg viewBox="0 0 200 200">
+        <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112 C52 132 70 144 92 144
+                 C120 144 142 128 154 106 C150 138 122 158 90 158 C58 158 34 138 34 110
+                 C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#0B0B0C"/>
+        <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#0B0B0C"/>
+      </svg></div>
+    <div class="tile ivory"><b>HALLMARK · 3MM</b>
+      <svg viewBox="0 0 200 200" style="width:20%;height:20%">
+        <circle cx="100" cy="100" r="92" fill="none" stroke="#141416" stroke-width="6"/>
+        <path d="M148 76 C148 83 143 86 136 86 L88 86 C68 86 60 98 60 111 C60 128 75 138 94 138
+                 C118 138 136 125 146 107 C142 133 118 150 91 150 C64 150 44 133 44 109
+                 C44 87 63 72 90 72 L136 72 C143 72 148 70 148 76 Z" fill="#141416"/>
+        <path d="M100 38 L112 52 L100 66 L88 52 Z" fill="#141416"/>
+      </svg></div>
+  </div>
+  <p class="lede" style="font-size:8.2pt;margin-top:5mm">
+    <b>Primary</b> for everything above 12&nbsp;mm · <b>Seal</b> for small sizes, wax stamps and metal ·
+    <b>On gold</b> reverses to onyx, never to white · <b>Hallmark</b> is the 3&nbsp;mm engraving cut,
+    tested on the actual piece before release
+  </p>
+  <div class="foot"><span>MUSAID ALKHAMEES</span><span>02</span></div>
+</section>
+
+<!-- ==================== 03 · Lockups ==================== -->
+<section class="p light">
+  <div class="kick">Lockups</div>
+  <h2>Three lockups,<br><em>and no fourth.</em></h2>
+  <p class="lede">
+    The primary signature stacks the mark above the name — Arabic first, Latin beneath it, both centred
+    on the mark's axis. The horizontal lockup exists for wide, shallow spaces: shopfront fascias,
+    email footers, the top of an invoice. Below 12&nbsp;mm the seal stands alone; at that size the
+    wordmark closes up and stops being legible. Nothing else is authorised, and no one recombines
+    these parts on the fly.
+  </p>
+  <div class="cols c3">
+    <div class="box" style="display:flex;align-items:center;justify-content:center;min-height:96mm;padding:8mm">
+      <img src="logo/lockup-ar-ink.png" alt="Primary signature" style="max-width:100%;max-height:74mm;object-fit:contain">
+    </div>
+    <div class="box" style="display:flex;align-items:center;justify-content:center;min-height:96mm;gap:7mm">
+      <svg viewBox="34 28 122 130" style="width:16mm">
+        <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112 C52 132 70 144 92 144
+                 C120 144 142 128 154 106 C150 138 122 158 90 158 C58 158 34 138 34 110
+                 C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#141416"/>
+        <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#141416"/>
+      </svg>
+      <div style="width:1px;height:22mm;background:#d8d2c6"></div>
+      <div style="text-align:left">
+        <div style="font-family:'Tajawal';font-size:22pt;color:#141416;line-height:1.5;direction:rtl">مجوهرات الخميس</div>
+        <div style="font-family:'Avenir Next';font-weight:200;letter-spacing:4px;text-indent:4px;font-size:7pt;color:#6B6459;white-space:nowrap;margin-top:3mm">MUSAID ALKHAMEES JEWELLERY</div>
+      </div>
+    </div>
+    <div class="box" style="display:flex;align-items:center;justify-content:center;min-height:96mm">
+      <svg viewBox="0 0 200 200" style="width:34mm">
+        <circle cx="100" cy="100" r="92" fill="none" stroke="#141416" stroke-width="2.5"/>
+        <path d="M148 76 C148 83 143 86 136 86 L88 86 C68 86 60 98 60 111 C60 128 75 138 94 138
+                 C118 138 136 125 146 107 C142 133 118 150 91 150 C64 150 44 133 44 109
+                 C44 87 63 72 90 72 L136 72 C143 72 148 70 148 76 Z" fill="#141416"/>
+        <path d="M100 38 L112 52 L100 66 L88 52 Z" fill="#141416"/>
+      </svg>
+    </div>
+  </div>
+  <p class="lede" style="font-size:8.2pt;margin-top:5mm">
+    <b>Clear space</b> on all four sides is at least the height of the khā's dot ·
+    <b>Minimum size</b> is 12&nbsp;mm wide for the full signature and 3&nbsp;mm for the seal alone ·
+    <b>Arabic always leads</b>, including in English-language material
+  </p>
+  <div class="foot"><span>MUSAID ALKHAMEES</span><span>03</span></div>
+</section>
+
+<!-- ==================== 04 · Palette ==================== -->
+<section class="p">
+  <div class="kick">Palette</div>
+  <h2>Ivory and gold outside,<br><em>burgundy inside.</em></h2>
+  <p class="lede">
+    Gold is one flat colour with no gradient. A gradient is an attempt to imitate the shine of metal on
+    a flat surface, and it never convinces; a single flat tone does, because it is what actually gets
+    foiled onto paper and engraved into the metal itself. Burgundy is the interior colour only — box
+    lining, the back panel of a vitrine, the surface a piece is photographed on. It appears the moment
+    a box opens, which is what makes it land: colour arriving after the ivory calm outside.
+  </p>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#0B0B0C"></div>
+      <div class="info"><b>Onyx</b><code>#0B0B0C</code>Ink, rules and fine detail</div></div>
+    <div class="sw"><div class="chip" style="background:#C9A227"></div>
+      <div class="info"><b>Champagne Gold</b><code>#C9A227</code>The mark · Pantone&nbsp;4028&nbsp;C</div></div>
+    <div class="sw"><div class="chip" style="background:#EDE7DC"></div>
+      <div class="info"><b>Ivory</b><code>#EDE7DC</code>Paper, packaging, surfaces</div></div>
+    <div class="sw"><div class="chip" style="background:#E3C86A"></div>
+      <div class="info"><b>Light Gold</b><code>#E3C86A</code>Hairline detail only</div></div>
+    <div class="sw"><div class="chip" style="background:#8A857D"></div>
+      <div class="info"><b>Stone</b><code>#8A857D</code>Secondary text and borders</div></div>
+    <div class="sw"><div class="chip" style="background:#6B2231"></div>
+      <div class="info"><b>Burgundy</b><code>#6B2231</code>Interior only · near Pantone&nbsp;505&nbsp;C</div></div>
+  </div>
+  <div class="rule"></div>
+  <p class="lede" style="font-size:8.2pt;margin-top:0">
+    Gold prints as foil, never as a four-colour build · On metal the mark is engraved in the metal's own
+    colour, with no infill · Burgundy is for linings and backdrops — never a full wall, never a fascia ·
+    Do not set small ivory type on burgundy, and do not put light gold on a dark ground
+  </p>
+  <div class="foot"><span>MUSAID ALKHAMEES</span><span>04</span></div>
+</section>
+
+<!-- ==================== 05 · Typography ==================== -->
+<section class="p">
+  <div class="kick">Typography</div>
+  <h2>A composed Arabic hand,<br><em>and a high-contrast Latin signature.</em></h2>
+  <p class="lede">
+    The first proposal replaced the Arabic wordmark with a plain geometric Kufi. That direction was
+    dropped on review: stripped-back geometric Kufi reads as a property developer or a bank, not as an
+    old family house. So the name keeps an Arabic face with real character — a modern Kufi with open
+    counters and decided corners — and the modernity is carried by the mark and the Latin instead.
+    Latin is a signature voice: Didot on certificates, cards and the fascia, never for running text.
+  </p>
+  <div class="type-spec">
+    <div class="line"><div class="nm">WORDMARK</div>
+      <div class="spec"><span style="font-family:'Tajawal';font-size:30pt;color:#A8871C;direction:rtl">الخميس</span>
+      </div><span class="sm">Modern Kufi · drawn once, then converted to outlines</span></div>
+    <div class="line"><div class="nm">ARABIC HEADLINE</div>
+      <div class="spec"><span style="font-family:'Al Bayan';font-size:22pt;direction:rtl">بريقٌ يورث لا يقلد</span>
+      </div><span class="sm">Headlines across the site and print</span></div>
+    <div class="line"><div class="nm">LATIN SIGNATURE</div>
+      <div class="spec"><span style="font-family:Didot,serif;font-size:18pt;letter-spacing:5px">AL KHAMEES</span>
+      </div><span class="sm">Didot · signatures and certificates only, not body copy</span></div>
+    <div class="line"><div class="nm">BODY</div>
+      <div class="spec"><span style="font-family:'Avenir Next',sans-serif;font-weight:300;font-size:13pt">Shaped from the choice of stone to the final detail</span>
+      </div><span class="sm">10–12 pt · 1.75 line height</span></div>
+  </div>
+  <div class="foot"><span>MUSAID ALKHAMEES</span><span>05</span></div>
+</section>
+
+<!-- ==================== 06 · Applications ==================== -->
+<section class="p">
+  <div class="kick">Applications</div>
+  <h2>The identity on the storefront,<br><em>and on what she carries home.</em></h2>
+  <div class="apps">
+    <figure class="tall"><img src="mockups/out-1-storefront.jpg" alt="Storefront">
+      <figcaption><b>Storefront</b>Full signature on an otherwise empty fascia. No strapline, no phone number.</figcaption></figure>
+    <figure><img src="mockups/out-5-boxset.jpg" alt="Box set">
+      <figcaption><b>Boxes</b>The mark alone, blind-debossed with no colour at all.</figcaption></figure>
+    <figure><img src="mockups/out-6-bag.jpg" alt="Carrier bag">
+      <figcaption><b>Carrier bag</b>Signature centred on the face, just below the cord.</figcaption></figure>
+    <figure><img src="mockups/out-8-giftbox.jpg" alt="Gift box">
+      <figcaption><b>Gift box</b>Gold-foiled mark on the inside of the lid, seen only on opening.</figcaption></figure>
+    <figure><img src="mockups/out-7-stationery.jpg" alt="Stationery">
+      <figcaption><b>Stationery</b>Gold wax seal on deckle-edged cotton stock.</figcaption></figure>
+  </div>
+  <div class="foot"><span>MUSAID ALKHAMEES</span><span>06</span></div>
+</section>
+
+</body>
+</html>
