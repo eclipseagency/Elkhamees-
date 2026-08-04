@@ -5,25 +5,26 @@
 <title>مجوهرات الخميس — الهوية الجديدة</title>
 <style>
   :root{
-    --onyx:#0B0B0C;
+    --paper:#F7F4ED;       /* الورق — الخلفية الأساسية الآن */
+    --paper-2:#EFEAE0;      /* ورق أدفأ لإيقاع الصفحات */
+    --onyx:#0B0B0C;         /* صار حبراً وتفصيلاً لا خلفية */
     --ink:#141416;
-    --gold:#C9A227;        /* الذهب الشامبانيا — لون مسطّح واحد، بلا تدرّج */
-    --gold-soft:#E3C86A;
+    --gold:#A8871C;         /* ذهب عميق — يُقرأ على الفاتح */
+    --gold-bright:#C9A227;  /* الذهب الشامبانيا للمساحات المصمتة */
     --ivory:#EDE7DC;
-    --stone:#8A857D;
-    --line:#232326;
+    --soft:#57534B;
+    --mute:#8F8A80;
+    --line:#DED8CC;
   }
   @page{ size:297mm 210mm; margin:0; }
   *{ box-sizing:border-box; margin:0; padding:0; }
   html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-  body{ font-family:'Al Bayan','Geeza Pro',sans-serif; background:var(--onyx); color:var(--ivory); }
+  body{ font-family:'Al Bayan','Geeza Pro',sans-serif; background:var(--paper); color:var(--ink); }
 
   .p{ width:297mm; height:210mm; padding:18mm 20mm 14mm; page-break-after:always;
-      position:relative; overflow:hidden; display:flex; flex-direction:column; background:var(--onyx); }
+      position:relative; overflow:hidden; display:flex; flex-direction:column; background:var(--paper); }
   .p:last-child{ page-break-after:auto; }
-  .p.light{ background:var(--ivory); color:var(--ink); }
-  .p.light .kick{ color:#8a6f14; }
-  .p.light .rule{ background:#d8d2c6; }
+  .p.light{ background:var(--paper-2); }   /* صفحة بورق أدفأ، لا صفحة معكوسة */
 
   .kick{ font-family:Didot,serif; font-size:8pt; letter-spacing:3px; color:var(--gold);
          text-transform:uppercase; direction:ltr; text-align:right; }
@@ -31,11 +32,10 @@
   h1 b{ color:var(--gold); font-weight:700; }
   h2{ font-size:20pt; font-weight:700; line-height:1.35; margin-top:3mm; }
   h2 em{ font-style:normal; color:var(--gold); }
-  p.lede{ font-size:10.5pt; line-height:1.9; color:#B9B3A8; max-width:150mm; margin-top:5mm; }
-  .p.light p.lede{ color:#57534b; }
+  p.lede{ font-size:10.5pt; line-height:1.9; color:var(--soft); max-width:150mm; margin-top:5mm; }
   .rule{ height:1px; background:var(--line); margin:6mm 0; }
   .foot{ margin-top:auto; display:flex; justify-content:space-between; font-size:7pt;
-         color:#4d4a45; letter-spacing:1px; direction:ltr; }
+         color:var(--mute); letter-spacing:1px; direction:ltr; }
 
   .cols{ display:grid; gap:8mm; margin-top:6mm; }
   .c2{ grid-template-columns:1fr 1fr; } .c3{ grid-template-columns:repeat(3,1fr); }
@@ -44,8 +44,7 @@
   .box h3{ font-size:11pt; margin-bottom:2.5mm; }
   .box h3 span{ display:block; font-family:Didot,serif; font-size:7.5pt; letter-spacing:2px;
                 color:var(--gold); direction:ltr; text-align:right; margin-bottom:1.5mm; }
-  .box p{ font-size:8.6pt; line-height:1.75; color:#A9A49A; }
-  .p.light .box{ border-color:#ddd7cb; } .p.light .box p{ color:#5d594f; }
+  .box p{ font-size:8.6pt; line-height:1.75; color:var(--soft); }
 
   /* الغلاف */
   .cover{ justify-content:center; align-items:center; text-align:center; }
@@ -54,24 +53,24 @@
   .cover .sub{ font-family:Didot,serif; letter-spacing:7px; font-size:10pt; color:var(--gold);
                direction:ltr; margin-top:6mm; }
   .cover .meta{ position:absolute; bottom:14mm; left:20mm; right:20mm; display:flex;
-                justify-content:space-between; font-size:7.5pt; color:#4d4a45; letter-spacing:1px; }
+                justify-content:space-between; font-size:7.5pt; color:var(--mute); letter-spacing:1px; }
 
   /* شبكة العلامة */
   .markrow{ display:grid; grid-template-columns:repeat(4,1fr); gap:6mm; margin-top:6mm; }
   .tile{ border:1px solid var(--line); border-radius:2mm; aspect-ratio:1;
          display:flex; align-items:center; justify-content:center; position:relative; }
-  .tile.gold{ background:var(--gold); border-color:var(--gold); }
-  .tile.ivory{ background:var(--ivory); border-color:var(--ivory); }
+  .tile.solid{ background:var(--gold-bright); border-color:var(--gold-bright); }
+  .tile.ivory{ background:#FFFFFF; border-color:var(--line); }
   .tile svg{ width:52%; height:52%; }
   .tile b{ position:absolute; bottom:3mm; right:4mm; font-family:Didot,serif; font-size:7pt;
-           letter-spacing:1.5px; color:#4d4a45; direction:ltr; font-weight:400; }
-  .tile.gold b, .tile.ivory b{ color:rgba(11,11,12,.5); }
+           letter-spacing:1.5px; color:var(--mute); direction:ltr; font-weight:400; }
+  .tile.solid b, .tile.ivory b{ color:rgba(11,11,12,.5); }
 
   .swatches{ display:grid; grid-template-columns:repeat(5,1fr); gap:5mm; margin-top:6mm; }
   .sw{ border-radius:2mm; overflow:hidden; border:1px solid var(--line); }
   .sw .chip{ height:34mm; }
-  .sw .info{ padding:3.5mm 4mm; font-size:7.5pt; line-height:1.6; color:#8f8a80; }
-  .sw .info b{ display:block; color:var(--ivory); font-size:9pt; margin-bottom:1mm; }
+  .sw .info{ padding:3.5mm 4mm; font-size:7.5pt; line-height:1.6; color:var(--soft); }
+  .sw .info b{ display:block; color:var(--ink); font-size:9pt; margin-bottom:1mm; }
   .sw .info code{ font-family:Didot,serif; letter-spacing:1px; direction:ltr; display:block; }
 
   .type-spec{ margin-top:5mm; }
@@ -79,21 +78,21 @@
                     align-items:baseline; gap:8mm; }
   .type-spec .nm{ width:44mm; flex:none; font-family:Didot,serif; font-size:8pt; letter-spacing:1.5px;
                   color:var(--gold); direction:ltr; text-align:right; }
-  .type-spec .sm{ font-size:8.5pt; color:#8f8a80; }
+  .type-spec .sm{ font-size:8.5pt; color:var(--mute); }
 
   .dos{ display:grid; grid-template-columns:1fr 1fr; gap:8mm; margin-top:5mm; }
   .dos ul{ list-style:none; }
   .dos li{ font-size:9pt; line-height:1.7; padding:2mm 0 2mm 0; border-bottom:1px solid var(--line);
-           color:#A9A49A; }
+           color:var(--soft); }
   .dos h3{ font-size:10pt; margin-bottom:2mm; }
-  .yes h3{ color:var(--gold); } .no h3{ color:#8f5b5b; }
+  .yes h3{ color:var(--gold); } .no h3{ color:#9A5B4C; }
 
   .app{ border:1px solid var(--line); border-radius:2mm; overflow:hidden; }
   .app .stage{ height:52mm; display:flex; align-items:center; justify-content:center; position:relative; }
-  .app .cap{ padding:3mm 4mm; font-size:8pt; color:#8f8a80; border-top:1px solid var(--line); }
-  .app .cap b{ color:var(--ivory); display:block; font-size:9pt; margin-bottom:.8mm; }
+  .app .cap{ padding:3mm 4mm; font-size:8pt; color:var(--soft); border-top:1px solid var(--line); }
+  .app .cap b{ color:var(--ink); display:block; font-size:9pt; margin-bottom:.8mm; }
 
-  .gap li{ font-size:9pt; line-height:1.75; color:#A9A49A; margin-bottom:2.5mm; list-style:none;
+  .gap li{ font-size:9pt; line-height:1.75; color:var(--soft); margin-bottom:2.5mm; list-style:none;
            padding-right:5mm; position:relative; }
   .gap li::before{ content:"—"; position:absolute; right:0; color:var(--gold); }
 </style>
@@ -106,8 +105,8 @@
     <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112
              C52 132 70 144 92 144 C120 144 142 128 154 106
              C150 138 122 158 90 158 C58 158 34 138 34 110
-             C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#C9A227"/>
-    <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#C9A227"/>
+             C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#141416"/>
+    <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#141416"/>
   </svg>
   <h1>الهوية البصرية الجديدة</h1>
   <div class="sub">AL KHAMEES JEWELLERY</div>
@@ -147,18 +146,18 @@
       <svg viewBox="0 0 200 200">
         <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112 C52 132 70 144 92 144
                  C120 144 142 128 154 106 C150 138 122 158 90 158 C58 158 34 138 34 110
-                 C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#C9A227"/>
-        <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#C9A227"/>
+                 C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#141416"/>
+        <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#141416"/>
       </svg></div>
     <div class="tile"><b>SEAL</b>
       <svg viewBox="0 0 200 200">
-        <circle cx="100" cy="100" r="92" fill="none" stroke="#C9A227" stroke-width="2.5"/>
+        <circle cx="100" cy="100" r="92" fill="none" stroke="#141416" stroke-width="2.5"/>
         <path d="M148 76 C148 83 143 86 136 86 L88 86 C68 86 60 98 60 111 C60 128 75 138 94 138
                  C118 138 136 125 146 107 C142 133 118 150 91 150 C64 150 44 133 44 109
-                 C44 87 63 72 90 72 L136 72 C143 72 148 70 148 76 Z" fill="#C9A227"/>
-        <path d="M100 38 L112 52 L100 66 L88 52 Z" fill="#C9A227"/>
+                 C44 87 63 72 90 72 L136 72 C143 72 148 70 148 76 Z" fill="#141416"/>
+        <path d="M100 38 L112 52 L100 66 L88 52 Z" fill="#141416"/>
       </svg></div>
-    <div class="tile gold"><b>ON GOLD</b>
+    <div class="tile solid"><b>ON GOLD</b>
       <svg viewBox="0 0 200 200">
         <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112 C52 132 70 144 92 144
                  C120 144 142 128 154 106 C150 138 122 158 90 158 C58 158 34 138 34 110
@@ -180,7 +179,7 @@
 <!-- ==================== 04 · اللوقو ==================== -->
 <section class="p light">
   <div class="kick">Lockups</div>
-  <h2 style="color:#141416">التركيب،<br><em style="color:#8a6f14">وثلاث حالات فقط.</em></h2>
+  <h2>التركيب،<br><em>وثلاث حالات فقط.</em></h2>
   <p class="lede">العربية هي العلامة، واللاتينية توقيعٌ تحتها لا ترجمةٌ بجانبها. لا يُستخدم تركيب رابع.</p>
   <div class="cols c3">
     <div class="box" style="display:flex;align-items:center;justify-content:center;min-height:96mm;flex-direction:column;gap:6mm">
@@ -220,7 +219,7 @@
     <b>المسافة الحرة</b> حول العلامة لا تقلّ عن ارتفاع نقطة الخاء من كل جهة ·
     <b>أصغر مقاس</b> للعلامة الكاملة ١٢ مم عرضاً، وللختم وحده ٣ مم
   </p>
-  <div class="foot" style="color:#a09a8e"><span>AL KHAMEES JEWELLERY</span><span>04</span></div>
+  <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>04</span></div>
 </section>
 
 <!-- ==================== 05 · اللون ==================== -->
@@ -262,7 +261,7 @@
   </p>
   <div class="type-spec">
     <div class="line"><div class="nm">WORDMARK</div>
-      <div><span style="font-family:'Diwan Kufi';font-size:30pt;color:#C9A227">الخميس</span>
+      <div><span style="font-family:'Diwan Kufi';font-size:30pt;color:#A8871C">الخميس</span>
       <span class="sm">كوفي محدَّث · يُرسم مرة واحدة ويُحوَّل إلى مسارات</span></div></div>
     <div class="line"><div class="nm">ARABIC HEADLINE</div>
       <div><span style="font-family:'Al Bayan';font-size:22pt">بريقٌ يورث لا يقلد</span>
@@ -280,7 +279,7 @@
 <!-- ==================== 07 · ما يميّز الدار فعلاً ==================== -->
 <section class="p light">
   <div class="kick">Beyond The Logo</div>
-  <h2 style="color:#141416">الشعار لا يصنع داراً.<br><em style="color:#8a6f14">ثلاثة أشياء تصنعها.</em></h2>
+  <h2>الشعار لا يصنع داراً.<br><em>ثلاثة أشياء تصنعها.</em></h2>
   <p class="lede">هذه هي التي تفصل الخميس عن كل جوهرجي في الرياض، وكلها خارج ملف الشعار.</p>
   <div class="cols c3">
     <div class="box"><h3><span>01 · IMAGE</span>لغة تصوير خاصة</h3>
@@ -293,7 +292,7 @@
   <p class="lede" style="font-size:8.5pt">
     هذه الثلاثة اقترحها كودكس عند مراجعة الاتجاه، وهي التي تجعل الهوية تصمد بعد أن يعتاد السوق على الشعار.
   </p>
-  <div class="foot" style="color:#a09a8e"><span>AL KHAMEES JEWELLERY</span><span>07</span></div>
+  <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>07</span></div>
 </section>
 
 <!-- ==================== 08 · التطبيقات ==================== -->
@@ -304,8 +303,8 @@
     <div class="app"><div class="stage" style="background:#141416">
       <div style="width:44mm;height:30mm;background:#0B0B0C;border:1px solid #2a2a2d;border-radius:1.5mm;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2.5mm">
         <svg viewBox="0 0 200 200" style="width:9mm">
-          <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112 C52 132 70 144 92 144 C120 144 142 128 154 106 C150 138 122 158 90 158 C58 158 34 138 34 110 C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#C9A227"/>
-          <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#C9A227"/></svg>
+          <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112 C52 132 70 144 92 144 C120 144 142 128 154 106 C150 138 122 158 90 158 C58 158 34 138 34 110 C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#141416"/>
+          <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#141416"/></svg>
         <div style="font-family:Didot,serif;font-size:5pt;letter-spacing:3px;color:#C9A227;direction:ltr">AL KHAMEES</div>
       </div></div>
       <div class="cap"><b>علبة القطعة</b>أونيكس مطفي · العلامة فويل ذهبي</div></div>
@@ -363,7 +362,7 @@
 <!-- ==================== 10 · ما يلزم لإقفال الهوية ==================== -->
 <section class="p light">
   <div class="kick">To Finish</div>
-  <h2 style="color:#141416">ما لم يُقفل بعد،<br><em style="color:#8a6f14">مذكوراً بصراحة.</em></h2>
+  <h2>ما لم يُقفل بعد،<br><em>مذكوراً بصراحة.</em></h2>
   <p class="lede">هذه الملفات ليست نهائية للإنتاج. ما يلزم قبل التسليم للمصنع والمطبعة:</p>
   <ul class="gap" style="margin-top:4mm">
     <li><b>رسم الاسم يدوياً.</b> «الخميس» هنا مضبوط على خط كوفي محدَّث ليُظهر الاتجاه. اللوقو النهائي يجب أن تُرسم حروفه مرة واحدة وتُحوَّل إلى مسارات، فلا تعود العلامة رهينة ترخيص خط.</li>
@@ -377,7 +376,7 @@
     قرار سابق مسجّل في <code style="font-family:Didot">docs/roadmap.md</code>: «خط العناوين Aref Ruqaa يبقى — رُفض استبداله».
     هذه الهوية تفتحه من جديد لأن إعادة العلامة كاملةً تقتضيه. القرار قرارك.
   </p>
-  <div class="foot" style="color:#a09a8e"><span>AL KHAMEES JEWELLERY</span><span>10</span></div>
+  <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>10</span></div>
 </section>
 
 </body>

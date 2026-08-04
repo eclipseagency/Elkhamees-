@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>مجوهرات الخميس — المعرض والتغليف</title>
+<style>
+  :root{
+    --paper:#F7F4ED; --paper-2:#EFEAE0; --ink:#141416;
+    --gold:#A8871C; --soft:#57534B; --mute:#8F8A80; --line:#DED8CC;
+  }
+  @page{ size:297mm 210mm; margin:0; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:'Al Bayan','Geeza Pro',sans-serif; background:var(--paper); color:var(--ink); }
+  .p{ width:297mm; height:210mm; page-break-after:always; position:relative;
+      overflow:hidden; display:flex; flex-direction:column; background:var(--paper); }
+  .p:last-child{ page-break-after:auto; }
+  .pad{ padding:16mm 18mm 12mm; display:flex; flex-direction:column; height:100%; }
+
+  .kick{ font-family:Didot,serif; font-size:8pt; letter-spacing:3px; color:var(--gold);
+         text-transform:uppercase; direction:ltr; text-align:right; }
+  h1{ font-size:28pt; font-weight:400; line-height:1.3; margin-top:4mm; }
+  h1 b{ color:var(--gold); font-weight:700; }
+  h2{ font-size:19pt; font-weight:700; line-height:1.35; margin-top:3mm; }
+  h2 em{ font-style:normal; color:var(--gold); }
+  p.lede{ font-size:10pt; line-height:1.85; color:var(--soft); max-width:160mm; margin-top:4mm; }
+  .foot{ margin-top:auto; padding-top:4mm; display:flex; justify-content:space-between;
+         font-size:7pt; color:var(--mute); letter-spacing:1px; direction:ltr; }
+
+  .full{ position:absolute; inset:0; }
+  .full img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .cap{ position:absolute; right:18mm; bottom:14mm; background:rgba(247,244,237,.93);
+        padding:5mm 7mm; border-radius:1.5mm; max-width:120mm; }
+  .cap b{ display:block; font-size:11pt; margin-bottom:1.5mm; }
+  .cap span{ font-size:8.5pt; line-height:1.7; color:var(--soft); }
+  .cap i{ display:block; font-family:Didot,serif; font-style:normal; font-size:7pt;
+          letter-spacing:2px; color:var(--gold); direction:ltr; text-align:right; margin-bottom:2mm; }
+
+  .duo{ display:grid; grid-template-columns:1fr 1fr; gap:6mm; flex:1; min-height:0; margin-top:5mm; }
+  .quad{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:5mm; flex:1; min-height:0; margin-top:5mm; }
+  .card{ border:1px solid var(--line); border-radius:2mm; overflow:hidden; display:flex; flex-direction:column; background:#fff; min-height:0; }
+  .card img{ width:100%; flex:1; object-fit:cover; display:block; min-height:0; }
+  .card .lab{ padding:2.5mm 3.5mm; border-top:1px solid var(--line); font-size:7.4pt; line-height:1.55; color:var(--soft); flex:none; }
+  .card .lab b{ color:var(--ink); display:block; font-size:8.4pt; margin-bottom:.5mm; }
+
+  .cover{ align-items:center; justify-content:center; text-align:center; }
+  .cover svg{ width:34mm; }
+  .cover .sub{ font-family:Didot,serif; letter-spacing:6px; font-size:9pt; color:var(--gold);
+               direction:ltr; margin-top:5mm; }
+  .note{ margin-top:4mm; padding:5mm 6mm; border:1px solid var(--line); border-radius:2mm;
+         font-size:8.5pt; line-height:1.75; color:var(--soft); background:#fff; }
+  .note b{ color:var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- الغلاف -->
+<section class="p cover"><div class="pad cover" style="justify-content:center">
+  <svg viewBox="0 0 200 200">
+    <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112 C52 132 70 144 92 144
+             C120 144 142 128 154 106 C150 138 122 158 90 158 C58 158 34 138 34 110
+             C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#141416"/>
+    <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#141416"/>
+  </svg>
+  <h1 style="margin-top:8mm">المعرض والتغليف<br><b>الهوية على أرض الواقع.</b></h1>
+  <div class="sub">SHOWROOM &amp; PACKAGING</div>
+</div></section>
+
+<!-- الواجهة -->
+<section class="p">
+  <div class="full"><img src="mockups/out-1-storefront.jpg" alt="الواجهة"></div>
+  <div class="cap"><i>EXTERIOR · OLAYA</i><b>الواجهة</b>
+    <span>حجر ترافرتين عاجي وزعانف رأسية وذهب مفروش على الإطارات. العلامة وحدها على اللوحة، بلا اسم ولا سطر ثانٍ — الواجهة تُقرأ من السيارة في ثانية.</span></div>
+</section>
+
+<!-- الصالة -->
+<section class="p">
+  <div class="full"><img src="mockups/raw/2-showroom.jpg" alt="صالة العرض"></div>
+  <div class="cap"><i>SHOWROOM</i><b>الصالة</b>
+    <span>الاتجاه الفاتح كاملاً: جدران عاجية، أرضية ترافرتين مصقولة، ألواح مرمر خلفية مضاءة، وذهب شامبانيا على الإطارات فقط. الفاترينات متباعدة لأن الفراغ نفسه رسالة سعر.</span></div>
+</section>
+
+<!-- الفاترينة والصالون -->
+<section class="p"><div class="pad">
+  <div class="kick">Interior</div>
+  <h2>الفاترينة،<br><em>وصالون التكليف الخاص.</em></h2>
+  <div class="duo">
+    <div class="card"><img src="mockups/raw/3-vitrine.jpg" alt="فاترينة">
+      <div class="lab"><b>الفاترينة</b>زجاج منخفض الحديد وإطار ذهبي مفروش، وبطانة جلد شامواه كريمي. إضاءة متحفية والقطع متباعدة.</div></div>
+    <div class="card"><img src="mockups/raw/4-salon.jpg" alt="صالون التكليف">
+      <div class="lab"><b>صالون التكليف</b>غرفة التصميم الخاص: صينية عرض، ولوب، وأحجار سائبة على قماش. هنا يحدث طقس التسليم.</div></div>
+  </div>
+  <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>03</span></div>
+</div></section>
+
+<!-- التغليف -->
+<section class="p"><div class="pad">
+  <div class="kick">Packaging</div>
+  <h2>التغليف،<br><em>والعلامة محفورة لا مطبوعة.</em></h2>
+  <div class="quad">
+    <div class="card"><img src="mockups/out-5-boxset.jpg" alt="العلبة">
+      <div class="lab"><b>العلبة والكيس</b>ورق عظمي مطفي، وشامواه كريمي، وشريط ذهبي. العلامة حفر غائر بلا لون.</div></div>
+    <div class="card"><img src="mockups/out-6-bag.jpg" alt="الكيس">
+      <div class="lab"><b>كيس الحمل</b>العلامة وحدها في منتصف الوجه، بمساحة حرة سخية حولها.</div></div>
+    <div class="card"><img src="mockups/out-8-giftbox.jpg" alt="علبة الهدية">
+      <div class="lab"><b>علبة الهدية</b>الغطاء الداخلي يحمل العلامة ذهباً — أول ما تراه العميلة عند الفتح.</div></div>
+    <div class="card"><img src="mockups/out-7-stationery.jpg" alt="المطبوعات">
+      <div class="lab"><b>المطبوعات</b>ورق قطني بحواف ممزّقة، وختم شمعي ذهبي، وبطاقة قطعة بخيط ذهبي.</div></div>
+  </div>
+  <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>04</span></div>
+</div></section>
+
+<!-- ملاحظة الإنتاج -->
+<section class="p"><div class="pad">
+  <div class="kick">How These Were Made</div>
+  <h2>كيف صُنعت هذه الصور،<br><em>ولماذا يهمّ ذلك.</em></h2>
+  <p class="lede">
+    المشاهد مولّدة ثلاثية الأبعاد، لكن العلامة فيها ليست مولّدة. طُلبت كل الأسطح
+    <b>فارغة تماماً</b> — لوحة الواجهة، وغطاء العلبة، ووجه الكيس — ثم رُكّبت عليها
+    علامة الخاء المتجهة نفسها بتحويل منظوري مأخوذ من حواف السطح في الصورة.
+  </p>
+  <div class="note">
+    <b>لماذا لا تُترك للمولّد؟</b> لأن مولّدات الصور لا ترسم الحروف العربية رسماً صحيحاً؛
+    تُنتج شكلاً يشبه الحرف ولا يكونه. شعارٌ مشوّه في صورة عرض يفسد الاجتماع كله.
+    هذه القاعدة نفسها مطبّقة في خط إعلانات NICK: <b>الشعار يُركَّب ولا يُولَّد.</b>
+  </div>
+  <div class="note">
+    <b>ما ليس حقيقياً في هذه الصور:</b> المعمار والمجوهرات والمواد كلها تصوّر مقترح لا
+    توثيق لمحل قائم. تصلح لعرض الاتجاه على الدار وللمقاولين والمصمم الداخلي،
+    ولا تصلح للنشر على أنها المعرض الفعلي.
+  </div>
+  <div class="note">
+    <b>الأصول الجاهزة:</b> <span style="font-family:Didot;direction:ltr">concepts/rebrand-2026/logo/*.svg</span>
+    — ست صيغ متجهة (خاء وختم × ذهب/أونيكس/عاج)، وهي المصدر لكل تركيب هنا.
+  </div>
+  <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>05</span></div>
+</div></section>
+
+</body>
+</html>
