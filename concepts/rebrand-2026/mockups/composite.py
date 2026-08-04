@@ -126,5 +126,12 @@ if __name__ == "__main__":
     card53 = [(180,150), (575,150), (575,455), (180,455)]       # البطاقة المطوية
     out["53-stat.png"] = place(b, seal_ink, on_plane(card53, .34, (0,-0.18)), .80, "multiply")
 
+
+    # 71 · الخاء محفورة في وجه المشبك: التفصيلة التي تتكرّر في القطعة نفسها
+    b = Image.open("raw/71-clasp.png").convert("RGB")
+    faceC = [(180,150), (900,95), (955,620), (225,700)]
+    kha_engraved = load("kha-ink.png")
+    out["71-clasp.png"] = place(b, kha_engraved, on_plane(faceC, .34), .34, "multiply")
+
     for name, im in out.items():
         im.save("out-" + name); print("out-" + name)
