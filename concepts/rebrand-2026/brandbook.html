@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>مجوهرات الخميس — الهوية الجديدة</title>
+<style>
+  :root{
+    --onyx:#0B0B0C;
+    --ink:#141416;
+    --gold:#C9A227;        /* الذهب الشامبانيا — لون مسطّح واحد، بلا تدرّج */
+    --gold-soft:#E3C86A;
+    --ivory:#EDE7DC;
+    --stone:#8A857D;
+    --line:#232326;
+  }
+  @page{ size:297mm 210mm; margin:0; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:'Al Bayan','Geeza Pro',sans-serif; background:var(--onyx); color:var(--ivory); }
+
+  .p{ width:297mm; height:210mm; padding:18mm 20mm 14mm; page-break-after:always;
+      position:relative; overflow:hidden; display:flex; flex-direction:column; background:var(--onyx); }
+  .p:last-child{ page-break-after:auto; }
+  .p.light{ background:var(--ivory); color:var(--ink); }
+  .p.light .kick{ color:#8a6f14; }
+  .p.light .rule{ background:#d8d2c6; }
+
+  .kick{ font-family:Didot,serif; font-size:8pt; letter-spacing:3px; color:var(--gold);
+         text-transform:uppercase; direction:ltr; text-align:right; }
+  h1{ font-size:30pt; font-weight:400; line-height:1.3; letter-spacing:-.5px; margin-top:4mm; }
+  h1 b{ color:var(--gold); font-weight:700; }
+  h2{ font-size:20pt; font-weight:700; line-height:1.35; margin-top:3mm; }
+  h2 em{ font-style:normal; color:var(--gold); }
+  p.lede{ font-size:10.5pt; line-height:1.9; color:#B9B3A8; max-width:150mm; margin-top:5mm; }
+  .p.light p.lede{ color:#57534b; }
+  .rule{ height:1px; background:var(--line); margin:6mm 0; }
+  .foot{ margin-top:auto; display:flex; justify-content:space-between; font-size:7pt;
+         color:#4d4a45; letter-spacing:1px; direction:ltr; }
+
+  .cols{ display:grid; gap:8mm; margin-top:6mm; }
+  .c2{ grid-template-columns:1fr 1fr; } .c3{ grid-template-columns:repeat(3,1fr); }
+  .c4{ grid-template-columns:repeat(4,1fr); }
+  .box{ border:1px solid var(--line); border-radius:2mm; padding:6mm; }
+  .box h3{ font-size:11pt; margin-bottom:2.5mm; }
+  .box h3 span{ display:block; font-family:Didot,serif; font-size:7.5pt; letter-spacing:2px;
+                color:var(--gold); direction:ltr; text-align:right; margin-bottom:1.5mm; }
+  .box p{ font-size:8.6pt; line-height:1.75; color:#A9A49A; }
+  .p.light .box{ border-color:#ddd7cb; } .p.light .box p{ color:#5d594f; }
+
+  /* الغلاف */
+  .cover{ justify-content:center; align-items:center; text-align:center; }
+  .cover .mark{ width:44mm; }
+  .cover h1{ font-size:34pt; margin-top:10mm; }
+  .cover .sub{ font-family:Didot,serif; letter-spacing:7px; font-size:10pt; color:var(--gold);
+               direction:ltr; margin-top:6mm; }
+  .cover .meta{ position:absolute; bottom:14mm; left:20mm; right:20mm; display:flex;
+                justify-content:space-between; font-size:7.5pt; color:#4d4a45; letter-spacing:1px; }
+
+  /* شبكة العلامة */
+  .markrow{ display:grid; grid-template-columns:repeat(4,1fr); gap:6mm; margin-top:6mm; }
+  .tile{ border:1px solid var(--line); border-radius:2mm; aspect-ratio:1;
+         display:flex; align-items:center; justify-content:center; position:relative; }
+  .tile.gold{ background:var(--gold); border-color:var(--gold); }
+  .tile.ivory{ background:var(--ivory); border-color:var(--ivory); }
+  .tile svg{ width:52%; height:52%; }
+  .tile b{ position:absolute; bottom:3mm; right:4mm; font-family:Didot,serif; font-size:7pt;
+           letter-spacing:1.5px; color:#4d4a45; direction:ltr; font-weight:400; }
+  .tile.gold b, .tile.ivory b{ color:rgba(11,11,12,.5); }
+
+  .swatches{ display:grid; grid-template-columns:repeat(5,1fr); gap:5mm; margin-top:6mm; }
+  .sw{ border-radius:2mm; overflow:hidden; border:1px solid var(--line); }
+  .sw .chip{ height:34mm; }
+  .sw .info{ padding:3.5mm 4mm; font-size:7.5pt; line-height:1.6; color:#8f8a80; }
+  .sw .info b{ display:block; color:var(--ivory); font-size:9pt; margin-bottom:1mm; }
+  .sw .info code{ font-family:Didot,serif; letter-spacing:1px; direction:ltr; display:block; }
+
+  .type-spec{ margin-top:5mm; }
+  .type-spec .line{ padding:4mm 0; border-bottom:1px solid var(--line); display:flex;
+                    align-items:baseline; gap:8mm; }
+  .type-spec .nm{ width:44mm; flex:none; font-family:Didot,serif; font-size:8pt; letter-spacing:1.5px;
+                  color:var(--gold); direction:ltr; text-align:right; }
+  .type-spec .sm{ font-size:8.5pt; color:#8f8a80; }
+
+  .dos{ display:grid; grid-template-columns:1fr 1fr; gap:8mm; margin-top:5mm; }
+  .dos ul{ list-style:none; }
+  .dos li{ font-size:9pt; line-height:1.7; padding:2mm 0 2mm 0; border-bottom:1px solid var(--line);
+           color:#A9A49A; }
+  .dos h3{ font-size:10pt; margin-bottom:2mm; }
+  .yes h3{ color:var(--gold); } .no h3{ color:#8f5b5b; }
+
+  .app{ border:1px solid var(--line); border-radius:2mm; overflow:hidden; }
+  .app .stage{ height:52mm; display:flex; align-items:center; justify-content:center; position:relative; }
+  .app .cap{ padding:3mm 4mm; font-size:8pt; color:#8f8a80; border-top:1px solid var(--line); }
+  .app .cap b{ color:var(--ivory); display:block; font-size:9pt; margin-bottom:.8mm; }
+
+  .gap li{ font-size:9pt; line-height:1.75; color:#A9A49A; margin-bottom:2.5mm; list-style:none;
+           padding-right:5mm; position:relative; }
+  .gap li::before{ content:"—"; position:absolute; right:0; color:var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- ==================== 01 · الغلاف ==================== -->
+<section class="p cover">
+  <svg class="mark" viewBox="0 0 200 200">
+    <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112
+             C52 132 70 144 92 144 C120 144 142 128 154 106
+             C150 138 122 158 90 158 C58 158 34 138 34 110
+             C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#C9A227"/>
+    <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#C9A227"/>
+  </svg>
+  <h1>الهوية البصرية الجديدة</h1>
+  <div class="sub">AL KHAMEES JEWELLERY</div>
+  <div class="meta"><span>RIYADH · OLAYA</span><span>BRAND IDENTITY · 2026</span></div>
+</section>
+
+<!-- ==================== 02 · الموقع ==================== -->
+<section class="p">
+  <div class="kick">Positioning</div>
+  <h1>دارٌ لا متجر.<br><b>والفرق يُرى قبل أن يُقال.</b></h1>
+  <p class="lede">
+    الهوية السابقة كانت تقول «مجوهرات». هذه تقول «الخميس». الفرق أن الأولى تصف فئة تجارية
+    يشترك فيها كل بائع ذهب في الرياض، والثانية تصف داراً لها يد وذاكرة وطريقة عمل.
+  </p>
+  <div class="cols c3">
+    <div class="box"><h3><span>THE PROBLEM</span>ما كان يضعف العلامة</h3>
+      <p>خاتمٌ بفصٍّ رُسم خطياً — علامة تصف بضاعة لا داراً، ويستخدمها كل جوهرجي. وتدرّج ذهبي بثلاث درجات، وهو أثر برمجي لا أثر معدن.</p></div>
+    <div class="box"><h3><span>THE SHIFT</span>ما تغيّر</h3>
+      <p>العلامة صارت حرف الخاء — أول ما يُنطق من الاسم. والذهب صار لوناً واحداً مسطّحاً كما يُطبع على المعدن، لا تدرّجاً يُحاكي لمعاناً.</p></div>
+    <div class="box"><h3><span>THE PROOF</span>ما يثبت الفرق</h3>
+      <p>لا تُبنى الثقة من شعار. تُبنى من تفصيلة تتكرّر في القطعة نفسها، ومن طقس تسليم يُعرف من رآه مرة واحدة.</p></div>
+  </div>
+  <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>02</span></div>
+</section>
+
+<!-- ==================== 03 · العلامة ==================== -->
+<section class="p">
+  <div class="kick">The Mark</div>
+  <h2>الخاء،<br><em>ونقطتها حجر.</em></h2>
+  <p class="lede">
+    العلامة حرفٌ لا رسم. جسم الخاء يُكتب بضربة واحدة متغيّرة السماكة كما يكتبها القلم العريض،
+    ونقطتها معيّنٌ بأربعة أوجه — إشارة إلى الحجر لا صورةٌ له. النسبة الداخلية مبنية على خماسي
+    منتظم، وهو أثر الاسم في البناء لا في الشكل: يُقرأ الحرف أولاً، ولا يحتاج المعنى إلى شرح.
+  </p>
+  <div class="markrow">
+    <div class="tile"><b>PRIMARY</b>
+      <svg viewBox="0 0 200 200">
+        <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112 C52 132 70 144 92 144
+                 C120 144 142 128 154 106 C150 138 122 158 90 158 C58 158 34 138 34 110
+                 C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#C9A227"/>
+        <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#C9A227"/>
+      </svg></div>
+    <div class="tile"><b>SEAL</b>
+      <svg viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="92" fill="none" stroke="#C9A227" stroke-width="2.5"/>
+        <path d="M148 76 C148 83 143 86 136 86 L88 86 C68 86 60 98 60 111 C60 128 75 138 94 138
+                 C118 138 136 125 146 107 C142 133 118 150 91 150 C64 150 44 133 44 109
+                 C44 87 63 72 90 72 L136 72 C143 72 148 70 148 76 Z" fill="#C9A227"/>
+        <path d="M100 38 L112 52 L100 66 L88 52 Z" fill="#C9A227"/>
+      </svg></div>
+    <div class="tile gold"><b>ON GOLD</b>
+      <svg viewBox="0 0 200 200">
+        <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112 C52 132 70 144 92 144
+                 C120 144 142 128 154 106 C150 138 122 158 90 158 C58 158 34 138 34 110
+                 C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#0B0B0C"/>
+        <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#0B0B0C"/>
+      </svg></div>
+    <div class="tile ivory"><b>HALLMARK 3MM</b>
+      <svg viewBox="0 0 200 200" style="width:20%;height:20%">
+        <circle cx="100" cy="100" r="92" fill="none" stroke="#141416" stroke-width="6"/>
+        <path d="M148 76 C148 83 143 86 136 86 L88 86 C68 86 60 98 60 111 C60 128 75 138 94 138
+                 C118 138 136 125 146 107 C142 133 118 150 91 150 C64 150 44 133 44 109
+                 C44 87 63 72 90 72 L136 72 C143 72 148 70 148 76 Z" fill="#141416"/>
+        <path d="M100 38 L112 52 L100 66 L88 52 Z" fill="#141416"/>
+      </svg></div>
+  </div>
+  <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>03</span></div>
+</section>
+
+<!-- ==================== 04 · اللوقو ==================== -->
+<section class="p light">
+  <div class="kick">Lockups</div>
+  <h2 style="color:#141416">التركيب،<br><em style="color:#8a6f14">وثلاث حالات فقط.</em></h2>
+  <p class="lede">العربية هي العلامة، واللاتينية توقيعٌ تحتها لا ترجمةٌ بجانبها. لا يُستخدم تركيب رابع.</p>
+  <div class="cols c3">
+    <div class="box" style="display:flex;align-items:center;justify-content:center;min-height:96mm;flex-direction:column;gap:6mm">
+      <svg viewBox="0 0 200 200" style="width:20mm">
+        <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112 C52 132 70 144 92 144
+                 C120 144 142 128 154 106 C150 138 122 158 90 158 C58 158 34 138 34 110
+                 C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#141416"/>
+        <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#141416"/>
+      </svg>
+      <div style="font-family:'Diwan Kufi';font-size:38pt;color:#141416;line-height:1.5">الخميس</div>
+      <div style="font-family:Didot,serif;letter-spacing:6px;font-size:7.5pt;color:#8a6f14;white-space:nowrap;direction:ltr">AL KHAMEES JEWELLERY</div>
+    </div>
+    <div class="box" style="display:flex;align-items:center;justify-content:center;min-height:96mm;gap:7mm">
+      <div style="text-align:right">
+        <div style="font-family:'Diwan Kufi';font-size:34pt;color:#141416;line-height:1.6">الخميس</div>
+        <div style="font-family:Didot,serif;letter-spacing:5px;font-size:7pt;color:#8a6f14;white-space:nowrap;direction:ltr;margin-top:5mm">AL KHAMEES JEWELLERY</div>
+      </div>
+      <div style="width:1px;height:20mm;background:#d8d2c6"></div>
+      <svg viewBox="0 0 200 200" style="width:16mm">
+        <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112 C52 132 70 144 92 144
+                 C120 144 142 128 154 106 C150 138 122 158 90 158 C58 158 34 138 34 110
+                 C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#141416"/>
+        <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#141416"/>
+      </svg>
+    </div>
+    <div class="box" style="display:flex;align-items:center;justify-content:center;min-height:96mm">
+      <svg viewBox="0 0 200 200" style="width:34mm">
+        <circle cx="100" cy="100" r="92" fill="none" stroke="#141416" stroke-width="2.5"/>
+        <path d="M148 76 C148 83 143 86 136 86 L88 86 C68 86 60 98 60 111 C60 128 75 138 94 138
+                 C118 138 136 125 146 107 C142 133 118 150 91 150 C64 150 44 133 44 109
+                 C44 87 63 72 90 72 L136 72 C143 72 148 70 148 76 Z" fill="#141416"/>
+        <path d="M100 38 L112 52 L100 66 L88 52 Z" fill="#141416"/>
+      </svg>
+    </div>
+  </div>
+  <p class="lede" style="font-size:8.5pt;margin-top:5mm">
+    <b>المسافة الحرة</b> حول العلامة لا تقلّ عن ارتفاع نقطة الخاء من كل جهة ·
+    <b>أصغر مقاس</b> للعلامة الكاملة ١٢ مم عرضاً، وللختم وحده ٣ مم
+  </p>
+  <div class="foot" style="color:#a09a8e"><span>AL KHAMEES JEWELLERY</span><span>04</span></div>
+</section>
+
+<!-- ==================== 05 · اللون ==================== -->
+<section class="p">
+  <div class="kick">Palette</div>
+  <h2>لونان يحملان الدار،<br><em>وثلاثة تخدمهما.</em></h2>
+  <p class="lede">
+    الذهب لونٌ مسطّح واحد لا تدرّج. التدرّج يُقلّد لمعان المعدن ويفشل، والمسطّح يُطبع بالفويل
+    ويُحفر على الذهب فيصدق. الأونيكس ليس أسود تاماً: الأسود التام يُغلق الصورة، وهذا يترك للحجر مجالاً.
+  </p>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#0B0B0C"></div>
+      <div class="info"><b>الأونيكس</b><code>#0B0B0C</code>الخلفية الأساسية</div></div>
+    <div class="sw"><div class="chip" style="background:#C9A227"></div>
+      <div class="info"><b>ذهب شامبانيا</b><code>#C9A227</code>العلامة · Pantone 4028 C</div></div>
+    <div class="sw"><div class="chip" style="background:#EDE7DC"></div>
+      <div class="info"><b>العاج</b><code>#EDE7DC</code>النص والمساحات الفاتحة</div></div>
+    <div class="sw"><div class="chip" style="background:#E3C86A"></div>
+      <div class="info"><b>ذهب فاتح</b><code>#E3C86A</code>للتفاصيل الدقيقة فقط</div></div>
+    <div class="sw"><div class="chip" style="background:#8A857D"></div>
+      <div class="info"><b>الحجر</b><code>#8A857D</code>النص الثانوي والحدود</div></div>
+  </div>
+  <div class="rule"></div>
+  <p class="lede" style="font-size:8.5pt;margin-top:0">
+    الفويل الذهبي للطباعة والتغليف · الحفر على المعدن بلون المعدن نفسه بلا تلوين ·
+    لا يُستخدم الذهب الفاتح كلون نص على الأونيكس، تباينه لا يكفي
+  </p>
+  <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>05</span></div>
+</section>
+
+<!-- ==================== 06 · الخط ==================== -->
+<section class="p">
+  <div class="kick">Typography</div>
+  <h2>يدٌ عربية مؤلَّفة،<br><em>وتوقيع لاتيني عالي التباين.</em></h2>
+  <p class="lede">
+    الاتجاه الأول كان استبدال الخط العربي بكوفي هندسي نظيف. رُوجع وسقط: الكوفي الهندسي المجرّد
+    يصلح لشركة عقارية ولا يحمل نسب دارٍ عائلية. الاسم يبقى بيدٍ عربية لها مؤلِّف —
+    كوفي محدَّث بعدّادات واسعة وزوايا محسومة — والحداثة يحملها الشعار والخط اللاتيني.
+  </p>
+  <div class="type-spec">
+    <div class="line"><div class="nm">WORDMARK</div>
+      <div><span style="font-family:'Diwan Kufi';font-size:30pt;color:#C9A227">الخميس</span>
+      <span class="sm">كوفي محدَّث · يُرسم مرة واحدة ويُحوَّل إلى مسارات</span></div></div>
+    <div class="line"><div class="nm">ARABIC HEADLINE</div>
+      <div><span style="font-family:'Al Bayan';font-size:22pt">بريقٌ يورث لا يقلد</span>
+      <span class="sm">للعناوين داخل الموقع والمطبوعات</span></div></div>
+    <div class="line"><div class="nm">LATIN SIGNATURE</div>
+      <div><span style="font-family:Didot,serif;font-size:18pt;letter-spacing:5px;direction:ltr">AL KHAMEES</span>
+      <span class="sm">Didot · للتوقيع والشهادات فقط، لا للنص الجاري</span></div></div>
+    <div class="line"><div class="nm">BODY</div>
+      <div><span style="font-family:'Al Bayan';font-size:12pt">تُصاغ القطعة من اختيار الحجر حتى أدقّ التفاصيل</span>
+      <span class="sm">مقاس ١٠–١٢ نقطة · ارتفاع سطر ١٫٩</span></div></div>
+  </div>
+  <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>06</span></div>
+</section>
+
+<!-- ==================== 07 · ما يميّز الدار فعلاً ==================== -->
+<section class="p light">
+  <div class="kick">Beyond The Logo</div>
+  <h2 style="color:#141416">الشعار لا يصنع داراً.<br><em style="color:#8a6f14">ثلاثة أشياء تصنعها.</em></h2>
+  <p class="lede">هذه هي التي تفصل الخميس عن كل جوهرجي في الرياض، وكلها خارج ملف الشعار.</p>
+  <div class="cols c3">
+    <div class="box"><h3><span>01 · IMAGE</span>لغة تصوير خاصة</h3>
+      <p>بشرة سعودية دافئة، وطقوس عائلية حقيقية، وظلال أونيكس محكومة، وماكرو شديد القرب على الذهب والحجر. ولا صورة قفّاز أسود على مخمل — تلك صورة المكتبة التي يشتريها الجميع.</p></div>
+    <div class="box"><h3><span>02 · SIGNATURE</span>تفصيلة تتكرّر في القطعة</h3>
+      <p>قصّة أو حافة أو حزّ أو خاءٌ مخفيّة تظهر في المشغولة نفسها لا في المطبوعات. من رأى قطعتين عرف الدار قبل أن يقرأ الاسم. تمييز المنتج أقوى من تمييز الشعار.</p></div>
+    <div class="box"><h3><span>03 · RITUAL</span>طقس تسليم معروف</h3>
+      <p>مراحل تكليف لها أسماء، وصينية عرض، وملف شهادة الحجر، وبطاقة أصل مكتوبة بخط اليد، ولحظة كشفٍ واحدة تتكرّر مع كل عميلة. الخدمة تتحوّل إلى ملكية فكرية.</p></div>
+  </div>
+  <p class="lede" style="font-size:8.5pt">
+    هذه الثلاثة اقترحها كودكس عند مراجعة الاتجاه، وهي التي تجعل الهوية تصمد بعد أن يعتاد السوق على الشعار.
+  </p>
+  <div class="foot" style="color:#a09a8e"><span>AL KHAMEES JEWELLERY</span><span>07</span></div>
+</section>
+
+<!-- ==================== 08 · التطبيقات ==================== -->
+<section class="p">
+  <div class="kick">Applications</div>
+  <h2>الهوية تنجو<br><em>حين تمرّ على المعدن والورق والشاشة.</em></h2>
+  <div class="cols c4" style="margin-top:5mm">
+    <div class="app"><div class="stage" style="background:#141416">
+      <div style="width:44mm;height:30mm;background:#0B0B0C;border:1px solid #2a2a2d;border-radius:1.5mm;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2.5mm">
+        <svg viewBox="0 0 200 200" style="width:9mm">
+          <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112 C52 132 70 144 92 144 C120 144 142 128 154 106 C150 138 122 158 90 158 C58 158 34 138 34 110 C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#C9A227"/>
+          <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#C9A227"/></svg>
+        <div style="font-family:Didot,serif;font-size:5pt;letter-spacing:3px;color:#C9A227;direction:ltr">AL KHAMEES</div>
+      </div></div>
+      <div class="cap"><b>علبة القطعة</b>أونيكس مطفي · العلامة فويل ذهبي</div></div>
+
+    <div class="app"><div class="stage" style="background:var(--ivory)">
+      <div style="width:44mm;height:26mm;background:#fff;border-radius:1mm;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2mm;box-shadow:0 2mm 6mm rgba(0,0,0,.15)">
+        <div style="font-family:'Diwan Kufi';font-size:13pt;color:#141416">الخميس</div>
+        <div style="font-family:Didot,serif;font-size:4.5pt;letter-spacing:2.5px;color:#8a6f14;direction:ltr">OLAYA · RIYADH</div>
+      </div></div>
+      <div class="cap"><b>بطاقة التعريف</b>ورق قطني · حفر غائر بلا لون</div></div>
+
+    <div class="app"><div class="stage" style="background:#141416">
+      <div style="width:20mm;height:34mm;background:var(--ivory);border-radius:1mm;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2mm">
+        <svg viewBox="0 0 200 200" style="width:7mm">
+          <circle cx="100" cy="100" r="92" fill="none" stroke="#141416" stroke-width="4"/>
+          <path d="M148 76 C148 83 143 86 136 86 L88 86 C68 86 60 98 60 111 C60 128 75 138 94 138 C118 138 136 125 146 107 C142 133 118 150 91 150 C64 150 44 133 44 109 C44 87 63 72 90 72 L136 72 C143 72 148 70 148 76 Z" fill="#141416"/>
+          <path d="M100 38 L112 52 L100 66 L88 52 Z" fill="#141416"/></svg>
+        <div style="font-size:5pt;color:#8A857D">اطلب السعر</div>
+      </div></div>
+      <div class="cap"><b>بطاقة القطعة</b>الختم وحده · بلا سعر حتى يعتمد الكتالوج</div></div>
+
+    <div class="app"><div class="stage" style="background:#0B0B0C">
+      <div style="width:30mm;height:42mm;background:linear-gradient(180deg,#1a1a1d,#0f0f11);border:1px solid #2a2a2d;display:flex;align-items:flex-end;padding:3mm">
+        <div><div style="font-family:'Diwan Kufi';font-size:9pt;color:var(--ivory)">الخميس</div>
+        <div style="font-size:4.5pt;color:#8A857D;margin-top:1mm">قلادة · ذهب ١٨ · ألماس معتمد</div></div>
+      </div></div>
+      <div class="cap"><b>بطاقة واتساب</b>الصيغة التي تصل العميلة فعلاً</div></div>
+  </div>
+  <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>08</span></div>
+</section>
+
+<!-- ==================== 09 · افعل ولا تفعل ==================== -->
+<section class="p">
+  <div class="kick">Rules</div>
+  <h2>القواعد التي تحمي العلامة<br><em>من أن تصير خمس علامات.</em></h2>
+  <div class="dos">
+    <div class="yes"><h3>يُفعل</h3><ul>
+      <li>الذهب لوناً مسطّحاً واحداً، فويلاً على الورق وحفراً على المعدن</li>
+      <li>العربية أولاً واللاتينية توقيعاً تحتها</li>
+      <li>الختم وحده حين يصغر المقاس عن ١٢ مم</li>
+      <li>مساحة حرة لا تقل عن ارتفاع نقطة الخاء</li>
+      <li>تصوير الدار نفسه لا صور المكتبات</li>
+    </ul></div>
+    <div class="no"><h3>لا يُفعل</h3><ul>
+      <li>تدرّج ذهبي بأي عدد من الدرجات</li>
+      <li>ظل أو وهج أو بروز على العلامة</li>
+      <li>إعادة رسم الخاء بخط جاهز أو تمطيطها</li>
+      <li>وضع العلامة على صورة مزدحمة بلا طبقة عزل</li>
+      <li>ترجمة الاسم إلى «الخميس للمجوهرات» أو أي صيغة أخرى</li>
+    </ul></div>
+  </div>
+  <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>09</span></div>
+</section>
+
+<!-- ==================== 10 · ما يلزم لإقفال الهوية ==================== -->
+<section class="p light">
+  <div class="kick">To Finish</div>
+  <h2 style="color:#141416">ما لم يُقفل بعد،<br><em style="color:#8a6f14">مذكوراً بصراحة.</em></h2>
+  <p class="lede">هذه الملفات ليست نهائية للإنتاج. ما يلزم قبل التسليم للمصنع والمطبعة:</p>
+  <ul class="gap" style="margin-top:4mm">
+    <li><b>رسم الاسم يدوياً.</b> «الخميس» هنا مضبوط على خط كوفي محدَّث ليُظهر الاتجاه. اللوقو النهائي يجب أن تُرسم حروفه مرة واحدة وتُحوَّل إلى مسارات، فلا تعود العلامة رهينة ترخيص خط.</li>
+    <li><b>ترخيص الخط.</b> Diwan Kufi و Didot مرفقان مع نظام أبل، وترخيصهما لا يغطي شعاراً تجارياً. بعد تحويل اللوقو إلى مسارات تسقط المسألة عن الشعار، وتبقى على خطوط النصوص — يلزم شراء ترخيص أو اختيار بديل مفتوح.</li>
+    <li><b>اختبار الحفر الحقيقي.</b> ٣ مم مقاسٌ نظري حتى يُحفر على قطعة فعلية. تُختبر النقطة أولاً: هي أول ما يُطمس.</li>
+    <li><b>تسجيل العلامة التجارية</b> لدى الهيئة السعودية للملكية الفكرية قبل أي إنتاج بكميات.</li>
+    <li><b>قرارات العميل المعلّقة</b> من ملف المشروع: الكتالوج المعتمد والأسعار، ورقم الواتساب غير المختبر، والعنوان وساعات العمل، وحساب سناب شات.</li>
+  </ul>
+  <div class="rule"></div>
+  <p class="lede" style="font-size:8.5pt;margin-top:0">
+    قرار سابق مسجّل في <code style="font-family:Didot">docs/roadmap.md</code>: «خط العناوين Aref Ruqaa يبقى — رُفض استبداله».
+    هذه الهوية تفتحه من جديد لأن إعادة العلامة كاملةً تقتضيه. القرار قرارك.
+  </p>
+  <div class="foot" style="color:#a09a8e"><span>AL KHAMEES JEWELLERY</span><span>10</span></div>
+</section>
+
+</body>
+</html>
