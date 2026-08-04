@@ -100,5 +100,17 @@ if __name__ == "__main__":
     card = [(100,150), (392,150), (392,830), (100,830)]   # البطاقة اليسرى وحدها
     out["7-stationery.png"] = place(b, seal_ink, on_plane(card, .42, (0,-0.34)), .80, "multiply")
 
+
+    # 23 · المطبوعات على الخمري
+    b = Image.open("raw/23-stationery-burgundy.png").convert("RGB")
+    big = [(560,120), (930,120), (930,520), (560,520)]
+    out["23-stationery-burgundy.png"] = place(b, seal_ink, on_plane(big, .40, (0,-0.22)), .82, "multiply")
+
+
+    # 24 · علبة الهدية ببطانة خمرية
+    b = Image.open("raw/24-giftbox-burgundy.png").convert("RGB")
+    lid_b = [(206,198), (581,152), (624,545), (231,581)]
+    out["24-giftbox-burgundy.png"] = place(b, gold, on_plane(lid_b, .30, (0,-0.10)), .92)
+
     for name, im in out.items():
         im.save("out-" + name); print("out-" + name)

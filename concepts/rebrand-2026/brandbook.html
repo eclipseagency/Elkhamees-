@@ -11,6 +11,7 @@
     --ink:#141416;
     --gold:#A8871C;         /* ذهب عميق يُقرأ على الفاتح */
     --gold-bright:#C9A227;  /* الذهب الشامبانيا للمساحات المصمتة */
+    --burgundy:#6B2231;     /* الخمري: لون الداخل، لا لون الواجهات */
     --ivory:#EDE7DC;
     --soft:#57534B;
     --mute:#8F8A80;
@@ -66,7 +67,7 @@
            letter-spacing:1.5px; color:var(--mute); direction:ltr; font-weight:400; }
   .tile.solid b, .tile.ivory b{ color:rgba(11,11,12,.5); }
 
-  .swatches{ display:grid; grid-template-columns:repeat(5,1fr); gap:5mm; margin-top:6mm; }
+  .swatches{ display:grid; grid-template-columns:repeat(6,1fr); gap:4.5mm; margin-top:6mm; }
   .sw{ border-radius:2mm; overflow:hidden; border:1px solid var(--line); }
   .sw .chip{ height:34mm; }
   .sw .info{ padding:3.5mm 4mm; font-size:7.5pt; line-height:1.6; color:var(--soft); }
@@ -92,6 +93,17 @@
   .app .cap{ padding:3mm 4mm; font-size:8pt; color:var(--soft); border-top:1px solid var(--line); }
   .app .cap b{ color:var(--ink); display:block; font-size:9pt; margin-bottom:.8mm; }
 
+
+  /* التطبيقات: الواجهة عمود طويل، والتغليف أربع مربّعات */
+  .apps{ flex:1; min-height:0; margin-top:6mm; display:grid; gap:5mm;
+         grid-template-columns:1.25fr 1fr 1fr; grid-template-rows:1fr 1fr; }
+  .apps figure{ border:1px solid var(--line); border-radius:2mm; overflow:hidden;
+                background:#fff; display:flex; flex-direction:column; min-height:0; }
+  .apps figure.tall{ grid-row:span 2; }
+  .apps img{ width:100%; flex:1; min-height:0; object-fit:cover; display:block; }
+  .apps figcaption{ padding:2.2mm 3.5mm; border-top:1px solid var(--line); flex:none;
+                    font-size:7.2pt; line-height:1.5; color:var(--soft); }
+  .apps figcaption b{ display:block; color:var(--ink); font-size:8.2pt; margin-bottom:.4mm; }
   .gap li{ font-size:9pt; line-height:1.75; color:var(--soft); margin-bottom:2.5mm; list-style:none;
            padding-right:5mm; position:relative; }
   .gap li::before{ content:"·"; position:absolute; right:0; color:var(--gold); }
@@ -226,11 +238,12 @@
 <!-- ==================== 05 · اللون ==================== -->
 <section class="p">
   <div class="kick">Palette</div>
-  <h2>لونان يحملان الدار،<br><em>وثلاثة تخدمهما.</em></h2>
+  <h2>عاجٌ وذهب في الخارج،<br><em>وخمريٌّ في الداخل.</em></h2>
   <p class="lede">
     الذهب لون واحد ثابت بلا تدرّج. التدرّج يحاول تقليد لمعان المعدن ولا ينجح،
-    أما اللون الثابت فيُطبع بالورق الذهبي ويُحفر على الذهب نفسه. والأسود المستخدم ليس أسود كاملاً،
-    لأن الأسود الكامل يُغلق الصورة، وهذه الدرجة تترك مجالاً للحجر أن يلمع.
+    أما اللون الثابت فيُطبع بالورق الذهبي ويُحفر على الذهب نفسه.
+    أما الخمري فهو لون الداخل وحده: بطانة العلبة، وخلفية فتحة العرض، وأرضية التصوير.
+    يظهر لحظة فتح العلبة، فيكون مفاجأة اللون بعد الهدوء العاجي في الخارج.
   </p>
   <div class="swatches">
     <div class="sw"><div class="chip" style="background:#0B0B0C"></div>
@@ -243,11 +256,14 @@
       <div class="info"><b>ذهب فاتح</b><code>#E3C86A</code>للتفاصيل الدقيقة فقط</div></div>
     <div class="sw"><div class="chip" style="background:#8A857D"></div>
       <div class="info"><b>الحجر</b><code>#8A857D</code>النص الثانوي والحدود</div></div>
+    <div class="sw"><div class="chip" style="background:#6B2231"></div>
+      <div class="info"><b>الخمري</b><code>#6B2231</code>لون الداخل · قريب من Pantone 505 C</div></div>
   </div>
   <div class="rule"></div>
   <p class="lede" style="font-size:8.5pt;margin-top:0">
     الورق الذهبي للطباعة والتغليف · الحفر على المعدن بلون المعدن نفسه بلا تلوين ·
-    لا يُستخدم الذهب الفاتح لوناً للنص على الخلفية الداكنة، لأنه لا يُقرأ
+    الخمري للبطانات والخلفيات فقط، ولا يُدهن به جدار كامل ولا واجهة ·
+    لا يُكتب نص عاجي صغير على الخمري، ولا يُوضع الذهب الفاتح على الخلفيات الداكنة
   </p>
   <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>05</span></div>
 </section>
@@ -301,40 +317,18 @@
 <!-- ==================== 08 · التطبيقات ==================== -->
 <section class="p">
   <div class="kick">Applications</div>
-  <h2>الهوية تنجو<br><em>حين تمرّ على المعدن والورق والشاشة.</em></h2>
-  <div class="cols c4" style="margin-top:5mm">
-    <div class="app"><div class="stage" style="background:#141416">
-      <div style="width:44mm;height:30mm;background:#0B0B0C;border:1px solid #2a2a2d;border-radius:1.5mm;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2.5mm">
-        <svg viewBox="0 0 200 200" style="width:9mm">
-          <path d="M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112 C52 132 70 144 92 144 C120 144 142 128 154 106 C150 138 122 158 90 158 C58 158 34 138 34 110 C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z" fill="#141416"/>
-          <path d="M100 28 L114 44 L100 60 L86 44 Z" fill="#141416"/></svg>
-        <div style="font-family:Didot,serif;font-size:5pt;letter-spacing:3px;color:#C9A227;direction:ltr">AL KHAMEES</div>
-      </div></div>
-      <div class="cap"><b>علبة القطعة</b>أونيكس مطفي · العلامة فويل ذهبي</div></div>
-
-    <div class="app"><div class="stage" style="background:var(--ivory)">
-      <div style="width:44mm;height:26mm;background:#fff;border-radius:1mm;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2mm;box-shadow:0 2mm 6mm rgba(0,0,0,.15)">
-        <div style="font-family:'Diwan Kufi';font-size:13pt;color:#141416">الخميس</div>
-        <div style="font-family:Didot,serif;font-size:4.5pt;letter-spacing:2.5px;color:#8a6f14;direction:ltr">OLAYA · RIYADH</div>
-      </div></div>
-      <div class="cap"><b>بطاقة التعريف</b>ورق قطني · حفر غائر بلا لون</div></div>
-
-    <div class="app"><div class="stage" style="background:#141416">
-      <div style="width:20mm;height:34mm;background:var(--ivory);border-radius:1mm;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2mm">
-        <svg viewBox="0 0 200 200" style="width:7mm">
-          <circle cx="100" cy="100" r="92" fill="none" stroke="#141416" stroke-width="4"/>
-          <path d="M148 76 C148 83 143 86 136 86 L88 86 C68 86 60 98 60 111 C60 128 75 138 94 138 C118 138 136 125 146 107 C142 133 118 150 91 150 C64 150 44 133 44 109 C44 87 63 72 90 72 L136 72 C143 72 148 70 148 76 Z" fill="#141416"/>
-          <path d="M100 38 L112 52 L100 66 L88 52 Z" fill="#141416"/></svg>
-        <div style="font-size:5pt;color:#8A857D">اطلب السعر</div>
-      </div></div>
-      <div class="cap"><b>بطاقة القطعة</b>الختم وحده · بلا سعر حتى يعتمد الكتالوج</div></div>
-
-    <div class="app"><div class="stage" style="background:#0B0B0C">
-      <div style="width:30mm;height:42mm;background:linear-gradient(180deg,#1a1a1d,#0f0f11);border:1px solid #2a2a2d;display:flex;align-items:flex-end;padding:3mm">
-        <div><div style="font-family:'Diwan Kufi';font-size:9pt;color:var(--ivory)">الخميس</div>
-        <div style="font-size:4.5pt;color:#8A857D;margin-top:1mm">قلادة · ذهب ١٨ · ألماس معتمد</div></div>
-      </div></div>
-      <div class="cap"><b>بطاقة واتساب</b>الصيغة التي تصل العميلة فعلاً</div></div>
+  <h2>الهوية على الواجهة<br><em>وعلى ما تحمله العميلة معها.</em></h2>
+  <div class="apps">
+    <figure class="tall"><img src="mockups/out-1-storefront.jpg" alt="الواجهة">
+      <figcaption><b>الواجهة</b>التوقيع كاملاً على لوحة فارغة، بلا أي سطر إضافي.</figcaption></figure>
+    <figure><img src="mockups/out-5-boxset.jpg" alt="العلبة">
+      <figcaption><b>العلبة</b>العلامة وحدها، حفراً غائراً بلا لون.</figcaption></figure>
+    <figure><img src="mockups/out-6-bag.jpg" alt="الكيس">
+      <figcaption><b>كيس الحمل</b>التوقيع في منتصف الوجه تحت الحبل.</figcaption></figure>
+    <figure><img src="mockups/out-8-giftbox.jpg" alt="علبة الهدية">
+      <figcaption><b>علبة الهدية</b>العلامة بالذهب على الغطاء الداخلي.</figcaption></figure>
+    <figure><img src="mockups/out-7-stationery.jpg" alt="المطبوعات">
+      <figcaption><b>المطبوعات</b>ختم شمعي ذهبي وورق قطني بحواف طبيعية.</figcaption></figure>
   </div>
   <div class="foot"><span>AL KHAMEES JEWELLERY</span><span>08</span></div>
 </section>
