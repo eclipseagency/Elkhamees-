@@ -51,6 +51,12 @@ var BRAND = {
  * والحجاب الداكن ينتقلان إلى الجهة الفارغة حتى لا يُغطّى المجوهر
  * (قرار مصطفى 2026-08-05): الخاتم والأقراط يساراً فالنص يميناً، والقلادة
  * والإسورة يميناً فالنص يساراً. تغيير الصورة يستوجب مراجعة هذه القيمة.
+ *
+ * ⚠️ **الترتيب مقصود ولا يُبعثر**: مصطفى طلب ألا يتكرّر جانب النص في
+ * سلايدين متتاليين (2026-08-05). القطع تتناوب يمين/يسار في التكوين، فرُتّبت
+ * الأقراط قبل الإسورة حتى يتناوب النص يمين → يسار → يمين → يسار، ويصحّ
+ * التناوب عند العودة من الأخير إلى الأول. أي إضافة سلايد أو تبديل صورة
+ * يجب أن يحافظ على هذا التناوب — لا بتحريك النص فوق المجوهرة.
  * ------------------------------------------------------------------ */
 var HERO = {
   title: 'بريقٌ يورث لا يقلد.',
@@ -58,8 +64,8 @@ var HERO = {
   slides: [
     { cat: 'rings',     ar: 'الخواتم', image: 'assets/editorial/hero-1-ring-banner.jpg',     text: 'right' },
     { cat: 'necklaces', ar: 'القلائد', image: 'assets/editorial/hero-2-necklace-banner.jpg', text: 'left'  },
-    { cat: 'bracelets', ar: 'الأساور', image: 'assets/editorial/hero-3-bracelet-banner.jpg', text: 'left'  },
-    { cat: 'earrings',  ar: 'الأقراط', image: 'assets/editorial/hero-4-earring-banner.jpg',  text: 'right' }
+    { cat: 'earrings',  ar: 'الأقراط', image: 'assets/editorial/hero-4-earring-banner.jpg',  text: 'right' },
+    { cat: 'bracelets', ar: 'الأساور', image: 'assets/editorial/hero-3-bracelet-banner.jpg', text: 'left'  }
   ]
 };
 
