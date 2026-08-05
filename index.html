@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css?v=7f17ad1c">
+<link rel="stylesheet" href="assets/site.css?v=da586961">
 </head>
 <body>
 <div class="top">صناعة سعودية · ألماس موثّق بشهاداته · زيارة المعرض بموعد</div>
@@ -45,11 +45,11 @@
   <nav class="nav" aria-label="التنقل الرئيسي"><a href="jewellery">المجوهرات</a><a href="occasions">المناسبات</a><a href="services">خدماتنا</a><a href="about">عن الدار</a><a href="faq">الأسئلة الشائعة</a><a href="contact">تواصل</a></nav>
 </header>
 <main id="main">
-<section class="hero" data-hero>
-  <a class="hero-slide on" href="jewellery/rings" aria-label="الخواتم"><img class="hero-bg" src="assets/editorial/hero-1-ring-banner.jpg" fetchpriority="high" alt=""></a>
-  <a class="hero-slide" href="jewellery/necklaces" aria-label="القلائد" tabindex="-1" aria-hidden="true"><img class="hero-bg" data-src="assets/editorial/hero-2-necklaces.jpg" loading="lazy" alt=""></a>
-  <a class="hero-slide" href="jewellery/bracelets" aria-label="الأساور" tabindex="-1" aria-hidden="true"><img class="hero-bg" data-src="assets/editorial/hero-3-bracelets.jpg" loading="lazy" alt=""></a>
-  <a class="hero-slide" href="jewellery/earrings" aria-label="الأقراط" tabindex="-1" aria-hidden="true"><img class="hero-bg" data-src="assets/editorial/hero-4-earrings.jpg" loading="lazy" alt=""></a>
+<section class="hero" data-hero data-text="right">
+  <a class="hero-slide on" href="jewellery/rings" data-text="right" data-cat="rings" aria-label="الخواتم"><img class="hero-bg" src="assets/editorial/hero-1-ring-banner.jpg" fetchpriority="high" alt=""></a>
+  <a class="hero-slide" href="jewellery/necklaces" data-text="left" data-cat="necklaces" aria-label="القلائد" tabindex="-1" aria-hidden="true"><img class="hero-bg" data-src="assets/editorial/hero-2-necklace-banner.jpg" loading="lazy" alt=""></a>
+  <a class="hero-slide" href="jewellery/bracelets" data-text="left" data-cat="bracelets" aria-label="الأساور" tabindex="-1" aria-hidden="true"><img class="hero-bg" data-src="assets/editorial/hero-3-bracelet-banner.jpg" loading="lazy" alt=""></a>
+  <a class="hero-slide" href="jewellery/earrings" data-text="right" data-cat="earrings" aria-label="الأقراط" tabindex="-1" aria-hidden="true"><img class="hero-bg" data-src="assets/editorial/hero-4-earring-banner.jpg" loading="lazy" alt=""></a>
   <div class="hero-in"><div class="hero-copy">
     <span class="hero-eyebrow">دار مجوهرات · العليا، الرياض</span>
     <h1>بريقٌ يورث لا يقلد.</h1>
@@ -214,6 +214,7 @@
   var hero=document.querySelector("[data-hero]");
   if(hero){
     var sl=hero.querySelectorAll(".hero-slide"),dots=hero.querySelectorAll(".hero-dots button"),cur=0,timer=null;
+    var copy=hero.querySelector(".hero-copy");
     var still=MQ&&MQ("(prefers-reduced-motion:reduce)").matches;
     function load(i){var im=sl[i]&&sl[i].querySelector("img[data-src]");if(im){im.src=im.getAttribute("data-src");im.removeAttribute("data-src");}}
     function show(i){
@@ -224,6 +225,11 @@
       sl[i].removeAttribute("aria-hidden");sl[i].removeAttribute("tabindex");
       if(dots.length){dots[cur].classList.remove("on");dots[i].classList.add("on");
         dots[cur].setAttribute("aria-selected","false");dots[i].setAttribute("aria-selected","true");}
+      var side=sl[i].getAttribute("data-text")||"right";
+      if(side!==hero.getAttribute("data-text")){
+        hero.setAttribute("data-text",side);
+        if(copy){copy.classList.remove("hero-copy--in");void copy.offsetWidth;copy.classList.add("hero-copy--in");}
+      }
       cur=i;load((i+1)%sl.length);
     }
     function play(){if(still||sl.length<2)return;stop();timer=setInterval(function(){show((cur+1)%sl.length);},6500);}

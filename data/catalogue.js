@@ -45,15 +45,21 @@ var BRAND = {
  *
  * الجملة الرئيسية ثابتة فوق السلايدات ولا تتبدّل معها: هي وعد الدار لا
  * تعليق على الصورة. كل سلايد يحمل فئته ويقود إليها.
+ *
+ * `text` — جهة النص في هذا السلايد: 'right' أو 'left' (جهة الشاشة، لا جهة
+ * الكتابة). البانرات مصوّرة بقطعة في جهة وفراغ في الجهة المقابلة، فالنص
+ * والحجاب الداكن ينتقلان إلى الجهة الفارغة حتى لا يُغطّى المجوهر
+ * (قرار مصطفى 2026-08-05): الخاتم والأقراط يساراً فالنص يميناً، والقلادة
+ * والإسورة يميناً فالنص يساراً. تغيير الصورة يستوجب مراجعة هذه القيمة.
  * ------------------------------------------------------------------ */
 var HERO = {
   title: 'بريقٌ يورث لا يقلد.',
   lead: 'نحوّل تصوّراتك وتصاميمك الخاصة إلى مجوهرات فريدة، تُصنع بعناية من اختيار الأحجار وحتى أدقّ التفاصيل، لتمنحك قطعةً تحمل قصتك وترافقك لسنوات.',
   slides: [
-    { cat: 'rings',     ar: 'الخواتم', image: 'assets/editorial/hero-1-ring-banner.jpg' },
-    { cat: 'necklaces', ar: 'القلائد', image: 'assets/editorial/hero-2-necklaces.jpg' },
-    { cat: 'bracelets', ar: 'الأساور', image: 'assets/editorial/hero-3-bracelets.jpg' },
-    { cat: 'earrings',  ar: 'الأقراط', image: 'assets/editorial/hero-4-earrings.jpg' }
+    { cat: 'rings',     ar: 'الخواتم', image: 'assets/editorial/hero-1-ring-banner.jpg',     text: 'right' },
+    { cat: 'necklaces', ar: 'القلائد', image: 'assets/editorial/hero-2-necklace-banner.jpg', text: 'left'  },
+    { cat: 'bracelets', ar: 'الأساور', image: 'assets/editorial/hero-3-bracelet-banner.jpg', text: 'left'  },
+    { cat: 'earrings',  ar: 'الأقراط', image: 'assets/editorial/hero-4-earring-banner.jpg',  text: 'right' }
   ]
 };
 

@@ -363,6 +363,7 @@ function layout(o) {
 '  var hero=document.querySelector("[data-hero]");\n' +
 '  if(hero){\n' +
 '    var sl=hero.querySelectorAll(".hero-slide"),dots=hero.querySelectorAll(".hero-dots button"),cur=0,timer=null;\n' +
+'    var copy=hero.querySelector(".hero-copy");\n' +
 '    var still=MQ&&MQ("(prefers-reduced-motion:reduce)").matches;\n' +
 '    function load(i){var im=sl[i]&&sl[i].querySelector("img[data-src]");if(im){im.src=im.getAttribute("data-src");im.removeAttribute("data-src");}}\n' +
 '    function show(i){\n' +
@@ -373,6 +374,13 @@ function layout(o) {
 '      sl[i].removeAttribute("aria-hidden");sl[i].removeAttribute("tabindex");\n' +
 '      if(dots.length){dots[cur].classList.remove("on");dots[i].classList.add("on");\n' +
 '        dots[cur].setAttribute("aria-selected","false");dots[i].setAttribute("aria-selected","true");}\n' +
+/* النص والحجاب ينتقلان إلى الجهة الفارغة من الصورة الجديدة. القفزة تُخفى
+   بإعادة تشغيل تلاشي النص: يختفي ثم يظهر في مكانه الجديد بدل أن ينطّ. */
+'      var side=sl[i].getAttribute("data-text")||"right";\n' +
+'      if(side!==hero.getAttribute("data-text")){\n' +
+'        hero.setAttribute("data-text",side);\n' +
+'        if(copy){copy.classList.remove("hero-copy--in");void copy.offsetWidth;copy.classList.add("hero-copy--in");}\n' +
+'      }\n' +
 '      cur=i;load((i+1)%sl.length);\n' +
 '    }\n' +
 '    function play(){if(still||sl.length<2)return;stop();timer=setInterval(function(){show((cur+1)%sl.length);},6500);}\n' +
@@ -517,9 +525,10 @@ function home() {
    الصورة الأولى وحدها eager وبأولوية عالية — هي الـLCP؛ والثلاث الباقية
    بلا src وتُحمَّل من JS بعد استقرار الصفحة، فأربع صور لا تعني أربعة
    أحمال في أول فتح. */
-'<section class="hero" data-hero>\n' +
+'<section class="hero" data-hero data-text="' + (D.HERO.slides[0].text || 'right') + '">\n' +
    D.HERO.slides.map(function (sl, i) {
      return '  <a class="hero-slide' + (i === 0 ? ' on' : '') + '" href="jewellery/' + sl.cat + '"' +
+       ' data-text="' + (sl.text || 'right') + '" data-cat="' + sl.cat + '"' +
        ' aria-label="' + esc(sl.ar) + '"' + (i === 0 ? '' : ' tabindex="-1" aria-hidden="true"') + '>' +
        '<img class="hero-bg"' + (i === 0
          ? ' src="' + sl.image + '" fetchpriority="high"'
