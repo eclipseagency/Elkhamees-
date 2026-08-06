@@ -22,6 +22,8 @@ var crypto = require('crypto');
 var D = require('../data/catalogue.js');
 
 var ROOT = path.join(__dirname, '..');
+/* أصل الموقع — مكان واحد: يستعمله og:image وsitemap.xml وrobots.txt. */
+var SITE = 'https://alkhamees-jewellery.vercel.app';
 var WA = D.BRAND.whatsapp;
 
 /* الحسابات المتوفرة فعلاً. الفارغ لا يُطبع: رابط سوشيال يقود إلى صفحة
@@ -93,6 +95,41 @@ function priceLabel(p) {
 }
 
 /* ------------------------------------------------------------------ *
+ * الشعار — هوية 2026 (concepts/rebrand-2026)
+ *
+ * العلامة صارت **حرف الخاء** بنقطة معيّنة، بدل خاتم الخطّ القديم الذي كان
+ * يصف فئة المنتج التي يبيعها كل صائغ في الرياض لا هذه الدار. المصدر
+ * `assets/brand/kha-*.svg`، ونسخة الصفحة تُكتب SVG **داخل** الصفحة لا
+ * `<img>`: عندها ترث `currentColor` فتصير أونيكس على الورق وذهباً داخل
+ * الجُزر الداكنة من نفس السطر، بلا ملفين ولا نسخة تُنسى عند تغيير اللون.
+ *
+ * الاسم صار **نصاً حقيقياً** لا صورة: يُقرأ للبحث وقارئ الشاشة، ويكبر مع
+ * تكبير الخط. العربية تتصدّر واللاتيني توقيع تحتها — قاعدة الدليل.
+ * ⚠️ الاسم في الشعار يُقرأ من `data/catalogue.js` كبقية الموقع.
+ * ------------------------------------------------------------------ */
+var KHA_BODY =
+  'M156 70 C156 78 150 82 142 82 L86 82 C62 82 52 96 52 112 ' +
+  'C52 132 70 144 92 144 C120 144 142 128 154 106 ' +
+  'C150 138 122 158 90 158 C58 158 34 138 34 110 ' +
+  'C34 84 56 66 88 66 L142 66 C150 66 156 64 156 70 Z';
+var KHA_DOT = 'M100 28 L114 44 L100 60 L86 44 Z';
+
+function khaMark() {
+  return '<svg class="kha" viewBox="23 22 144 144" fill="currentColor" aria-hidden="true">' +
+    '<path d="' + KHA_BODY + '"/><path d="' + KHA_DOT + '"/></svg>';
+}
+
+/* التوقيع الأفقي: العلامة، ثم خيط شعري، ثم الاسم العربي وتحته اللاتيني.
+   هو التوقيع الوحيد المستعمل في الموقع — الدليل يجيز ثلاثة ولا رابع،
+   والاثنان الآخران (المكدّس والختم) للطباعة والمعدن لا للشاشة. */
+function lockup(cls) {
+  return '<span class="lock' + (cls ? ' ' + cls : '') + '">' +
+    khaMark() +
+    '<span class="lock-t"><b>' + esc(D.BRAND.name) + '</b>' +
+    '<i>AL KHAMEES JEWELLERY</i></span></span>';
+}
+
+/* ------------------------------------------------------------------ *
  * القالب المشترك
  * ------------------------------------------------------------------ */
 function layout(o) {
@@ -115,19 +152,31 @@ function layout(o) {
 '<meta name="viewport" content="width=device-width,initial-scale=1">\n' +
 '<title>' + esc(o.title) + ' · ' + esc(D.BRAND.name) + '</title>\n' +
 '<meta name="description" content="' + esc(o.description || D.BRAND.tagline) + '">\n' +
-'<meta name="theme-color" content="#ffffff">\n' +
+/* أونيكس لا أبيض: أول شريط في الصفحة أونيكس، وواجهة المتصفّح تلتحم به. */
+'<meta name="theme-color" content="#0B0B0C">\n' +
 '<meta property="og:title" content="' + esc(o.title) + ' · ' + esc(D.BRAND.name) + '">\n' +
 '<meta property="og:description" content="' + esc(o.description || D.BRAND.tagline) + '">\n' +
 '<meta property="og:type" content="website">\n' +
-'<link rel="icon" href="' + u + 'assets/monogram.svg">\n' +
+'<meta property="og:site_name" content="' + esc(D.BRAND.name) + '">\n' +
+'<meta property="og:locale" content="ar_SA">\n' +
+'<meta property="og:image" content="' + SITE + '/assets/brand/og.jpg?v=' + stamp('assets/brand/og.jpg') + '">\n' +
+'<meta property="og:image:width" content="1200">\n' +
+'<meta property="og:image:height" content="630">\n' +
+'<meta name="twitter:card" content="summary_large_image">\n' +
+/* الأيقونة صارت الختم — نسخة العلامة المعتمدة للمقاسات الصغيرة في
+   الدليل، والدائرة تمسك الحرف في مربّع 16px حيث يتفكّك الحرف وحده. */
+'<link rel="icon" href="' + u + 'assets/brand/seal-gold.svg">\n' +
+'<link rel="apple-touch-icon" href="' + u + 'assets/brand/seal-gold.svg">\n' +
 '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
 '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
-'<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">\n' +
+/* Amiri للعناوين، Reem Kufi للاسم في الشعار، Tajawal للمتن،
+   وBodoni Moda لسطر التوقيع اللاتيني وحده (latin subset). */
+'<link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Reem+Kufi:wght@400..700&family=Tajawal:wght@300;400;500;700&family=Bodoni+Moda:opsz,wght@6..96,400&display=swap" rel="stylesheet">\n' +
 '<link rel="stylesheet" href="' + u + 'assets/site.css?v=' + stamp('assets/site.css') + '">\n' +
 '</head>\n<body>\n' +
 
-/* نسختا الشعار: الداكنة على الأسطح البيضاء (الهيدر والدرج) والذهبية على
-   الفوتر الداكن. v7 صيّر الصفحة بيضاء، والذهبية عليها تُقرأ باهتة. */
+/* v8: نسخة واحدة من التوقيع في كل موضع — العلامة SVG داخل الصفحة ترث
+   لون سياقها، فلا نسخة داكنة وأخرى ذهبية تفترقان عند تغيير اللون. */
 '<div class="top">صناعة سعودية · ألماس موثّق بشهاداته · زيارة المعرض بموعد</div>\n' +
 
 /* القائمة الجانبية (بريف العميل 2026-08-02): تُفتح من زرّ الهيدر على كل
@@ -137,7 +186,7 @@ function layout(o) {
 '<div class="side-veil" hidden></div>\n' +
 '<aside class="side" id="side" hidden aria-label="قائمة الموقع" data-lenis-prevent>\n' +
 '  <div class="side-head">\n' +
-'    <img src="' + u + 'assets/wordmark-dark.png" alt="' + esc(D.BRAND.name) + '">\n' +
+'    ' + lockup('lock--side') + '\n' +
 '    <button class="side-x" type="button" aria-label="إغلاق القائمة">✕</button>\n' +
 '  </div>\n' +
 '  <nav class="side-nav">\n' +
@@ -181,8 +230,7 @@ function layout(o) {
 '      <input type="search" name="q" placeholder="ابحث عن قطعة" aria-label="ابحث عن قطعة">\n' +
 '      <div class="search-out" role="listbox" data-lenis-prevent hidden></div>\n' +
 '    </form>\n' +
-'    <a class="logo" href="' + (u || './') + '" aria-label="' + esc(D.BRAND.name) + '">' +
-       '<img src="' + u + 'assets/wordmark-dark.png" alt="' + esc(D.BRAND.name) + '"></a>\n' +
+'    <a class="logo" href="' + (u || './') + '">' + lockup() + '</a>\n' +
 /* زر الواتساب في الهيدر: كان مستطيلاً بحدود وكلمة "واتساب" وحدها في أعلى
    الصفحة، فبدا صندوقاً غريباً مقابل حقل البحث البيضاوي (ملاحظة مصطفى
    2026-07-30). صار بنفس شكل حقل البحث — نفس الحدّ ونفس الاستدارة — وبعلامة
@@ -237,7 +285,7 @@ function layout(o) {
 '<footer class="footer">\n' +
 '  <div class="foot-grid">\n' +
 '    <div>\n' +
-'      <img class="foot-logo" src="' + u + 'assets/wordmark-gold.png" alt="' + esc(D.BRAND.name) + '">\n' +
+'      ' + lockup('lock--foot') + '\n' +
 '      <p>' + esc(D.BRAND.tagline) + '</p>\n' +
 '    </div>\n' +
 '    <div><h4>المجوهرات</h4>' +
@@ -864,7 +912,7 @@ written.push(write('policies/privacy.html', policy('privacy', 'سياسة الخ
 ])));
 
 /* sitemap.xml — يتولد بعد ثبات الهيكل، كما نصّ docs/sitemap.md */
-var origin = 'https://alkhamees-jewellery.vercel.app';
+var origin = SITE;
 var urls = written
   .filter(function (f) { return f.indexOf('policies/') !== 0; })
   .map(function (f) {
