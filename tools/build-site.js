@@ -544,6 +544,38 @@ function starRow(rating) {
   return '<span class="g-stars" aria-label="' + n + ' من 5">' + out + '</span>';
 }
 
+/* ---------- التغليف ----------
+ * ثلاث لقطات من دليل الهوية: القطعة في علبتها، الغطاء لحظة الفتح،
+ * والأوراق. مكانها هنا لأن «تغليف الدار جاهزاً للإهداء» وعدٌ مكتوب في
+ * شريط الثقة بلا صورة تسنده — والصور تسنده الآن.
+ *
+ * الخمري يظهر هنا وحده في الموقع كله، وهذا نصّ الدليل: «الداخل فقط —
+ * بطانة علبة، ظهر فاترينة». لا جدار خمري ولا واجهة خمرية.
+ *
+ * ⚠️ اللقطات **تصوّر هوية مركَّب** لا تصوير منتج حقيقي: العلبة والأوراق
+ * لم تُصنّع بعد. تُستبدل بتصوير حقيقي أول ما يُنفَّذ التغليف.
+ * ------------------------------------------------------------------ */
+function packaging() {
+  var items = [
+    ['pack-box.jpg', 'علبة الدار',
+     'بطانة مخملية خمرية وغطاء عاجي. القطعة تُسلَّم فيها، لا في كيس.'],
+    ['pack-lid.jpg', 'الغطاء',
+     'العلامة محفورة على الغطاء بلا لون، ولا تُرى إلا حين يُرفع.'],
+    ['pack-papers.jpg', 'الأوراق',
+     'بطاقة القطعة وشهادة أحجارها، وظرف بختم شمعي يُفضّ مرة واحدة.']
+  ];
+  return '<section class="section"><div class="wrap">\n' +
+    '  <div class="sec-head rv"><span class="sec-eyebrow">التغليف</span>' +
+    '    <div class="sec-top"><h2>القطعة تصل في علبتها</h2>' +
+    '    <a class="more" href="policies/shipping">الشحن والتغليف ←</a></div></div>\n' +
+    '  <div class="pack-row">' + items.map(function (it) {
+      return '<figure class="pack rv">' +
+        '<img src="assets/editorial/' + it[0] + '" alt="' + esc(it[1]) + '" loading="lazy">' +
+        '<figcaption><h3>' + esc(it[1]) + '</h3><p>' + esc(it[2]) + '</p></figcaption></figure>';
+    }).join('') + '</div>\n' +
+    '</div></section>\n';
+}
+
 function ctaBand(depth) {
   return '<section class="cta">' +
     '<img class="cta-bg" src="' + up(depth) + 'assets/editorial/cta-bracelets.jpg" alt="" loading="lazy">' +
@@ -645,6 +677,8 @@ trustBar() +
    2026-08-03) ومكانه صار آراء جوجل. صفحات المناسبات نفسها باقية كما هي
    (`occasions.html` والأربع صفحات) وروابطها في القائمة والفوتر والـsitemap،
    فلم يضِع منها شيء — المرفوع هو الشريط من الرئيسية فقط. */
+packaging() +
+
 googleReviews() +
 
 ctaBand(0)
@@ -838,6 +872,18 @@ function contact() {
     body:
 '<section class="page-head"><div class="wrap"><h1>تواصل وزيارة المعرض</h1>' +
 '<p>راسلنا على واتساب، أو زرنا في المعرض وشوف القطع على الطبيعة.</p></div></section>\n' +
+
+/* واجهة الدار بعرض الصفحة. اللوحة تحمل التوقيع نفسه الذي في هيدر الموقع
+   — رُكِّب على اللقطة الخام بـ `node tools/render-lockup.js` ثم
+   `python3 tools/render-storefront.py`، فلا تحمل الواجهة اسماً غير اسم
+   الموقع كما كانت لقطة الدليل («MUSAID ALKHAMEES»).
+
+   ⚠️ **تصوّر هوية لا صورة للمقرّ.** الواجهة الحقيقية في العليا لم تُصوَّر
+   بعد. لا يُكتب فوقها ولا حولها ما يقول إنها صورة المحل، وتُستبدل بتصوير
+   حقيقي أول ما يصل (مسجّل في docs/roadmap.md). */
+'<section class="storefront rv">' +
+'  <img src="assets/editorial/storefront.jpg" alt="واجهة الدار بهوية ' + esc(D.BRAND.name) + '" loading="lazy">' +
+'</section>\n' +
 '<section class="section"><div class="wrap contact-grid">\n' +
 '  <div class="contact-card rv">\n' +
 '    <a class="btn btn-wa btn-block" href="' + wa('السلام عليكم، عندي استفسار.') + '" target="_blank" rel="noopener">راسلنا على واتساب</a>\n' +
